@@ -5,33 +5,29 @@
   <title>EGR Careers — Join the Future</title>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <meta name="theme-color" content="#0f1629"/>
-  <link rel="stylesheet" href="/css/careers.css?v=5"/>
+  <link rel="stylesheet" href="/css/careers.css?v=6"/>
   <style>
-    /* Minimal extras to guarantee the new effects render nicely */
+    /* --- visual upgrades for energy --- */
     .hero{position:relative;overflow:hidden}
-    .hero .container{padding:48px 0}
+    .hero .container{padding:56px 0}
+    .title{font-size:clamp(28px,5.8vw,56px)}
     .eyebrow{letter-spacing:.18em;text-transform:uppercase;font-size:.8rem;color:#9fb0d1}
-    .glow{animation:shine 3.5s ease-in-out infinite;background:linear-gradient(90deg,#fff,#d9e6ff,#fff);
-      -webkit-background-clip:text;background-clip:text;color:transparent}
+    .glow{animation:shine 3.5s ease-in-out infinite;background:linear-gradient(90deg,#fff,#d9e6ff,#fff);-webkit-background-clip:text;background-clip:text;color:transparent}
     @keyframes shine{0%,100%{filter:drop-shadow(0 0 0 rgba(158,196,255,.0))}50%{filter:drop-shadow(0 0 18px rgba(158,196,255,.35))}}
-    /* particles canvas */
     #fx{position:absolute;inset:0;z-index:-3}
-    /* orbs */
     .orbs{position:absolute;inset:0;z-index:-2;pointer-events:none}
     .orb{position:absolute;border-radius:50%;filter:blur(12px) saturate(120%);opacity:.5}
     .orb.a{width:280px;height:280px;background:radial-gradient(circle at 30% 30%,#7eb2ff,transparent 60%);top:-40px;right:8%;animation:float 16s ease-in-out infinite}
     .orb.b{width:220px;height:220px;background:radial-gradient(circle at 30% 30%,#ff2d55,transparent 60%);bottom:-20px;left:12%;animation:float 20s ease-in-out infinite}
     .orb.c{width:180px;height:180px;background:radial-gradient(circle at 30% 30%,#6bffb3,transparent 60%);top:30%;left:38%;animation:float 22s ease-in-out infinite}
     @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
-    /* band & tiles */
-    .band{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 0;margin-top:-1px;
-      background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.03));backdrop-filter:blur(6px)}
+
+    .band{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 0;margin-top:-1px;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.03));backdrop-filter:blur(6px)}
     .band-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
     @media (max-width:900px){.band-grid{grid-template-columns:1fr}}
     .time-tile{display:grid;gap:6px;place-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px}
     .time{font:700 28px/1.1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace}
     .mini{font-size:12px;color:#a9b8d6}
-    /* counters */
     .grid.four{grid-template-columns:repeat(4,1fr)}
     @media (max-width:900px){.grid.four{grid-template-columns:1fr 1fr}}
     .stat-neo{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.04));border:1px solid var(--line);border-radius:16px;padding:18px;text-align:center;transition:transform .2s ease, box-shadow .2s ease}
@@ -39,23 +35,23 @@
     .kpi{font-size:34px;font-weight:900;letter-spacing:.5px}
     .under{position:relative;display:inline-block}
     .under::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:linear-gradient(90deg,transparent,#9ec4ff,transparent);opacity:.7}
-    /* ticker */
     .ticker{margin-top:10px}
-    .neon{border:1px solid rgba(158,196,255,.25); background:rgba(158,196,255,.08); padding:10px 12px; border-radius:12px;
-      box-shadow:0 0 28px rgba(158,196,255,.15) inset}
-    /* carousel */
+    .neon{border:1px solid rgba(158,196,255,.25); background:rgba(158,196,255,.08); padding:10px 12px; border-radius:12px; box-shadow:0 0 28px rgba(158,196,255,.15) inset}
     .carousel{display:grid;grid-auto-flow:column;grid-auto-columns:calc(25% - 12px);gap:16px;overflow:auto;scroll-snap-type:x mandatory;padding-bottom:6px}
     @media (max-width:900px){.carousel{grid-auto-columns:80%}}
-    .slide{scroll-snap-align:start;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.04));border:1px solid var(--line);border-radius:14px;
-      padding:14px;display:grid;gap:6px;min-height:120px}
-    .skel{background:linear-gradient(90deg, rgba(255,255,255,.06), rgba(255,255,255,.1), rgba(255,255,255,.06));background-size:200% 100%;
-      animation:sweep 1.2s ease-in-out infinite;border-radius:12px}
+    .slide{scroll-snap-align:start;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.04));border:1px solid var(--line);border-radius:14px;padding:14px;display:grid;gap:6px;min-height:120px}
+    .skel{background:linear-gradient(90deg, rgba(255,255,255,.06), rgba(255,255,255,.1), rgba(255,255,255,.06));background-size:200% 100%;animation:sweep 1.2s ease-in-out infinite;border-radius:12px}
     @keyframes sweep{0%{background-position:200% 0}100%{background-position:-200% 0}}
-  </style>
 
+    /* photo mosaic to make page feel alive */
+    .mosaic{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px}
+    .mosaic img{width:100%;height:100%;object-fit:cover;border-radius:14px;border:1px solid var(--line);background:#0a0f1f}
+    @media (max-width:900px){.mosaic{grid-template-columns:1fr 1fr}}
+
+  </style>
   <link rel="preconnect" href="https://unpkg.com">
   <script defer src="https://unpkg.com/@supabase/supabase-js@2"></script>
-  <script defer src="/js/supabaseClient.js?v=5"></script>
+  <script defer src="/js/supabaseClient.js?v=6"></script>
 </head>
 <body>
   <!-- NAV -->
@@ -75,14 +71,13 @@
   <!-- HERO -->
   <section
     class="hero"
-    data-hero-path=""  <!-- files are at repo root -->
+    data-hero-path=""
     data-hero-images="EGR Headquarters Pic.png, meeting room hq.png, occ office.png, occ.png, office 1.png, office hq.png"
     id="hero"
   >
     <canvas id="fx"></canvas>
     <div class="orbs"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div></div>
     <img id="heroImg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1;filter:brightness(.78)">
-
     <div class="container hero-inner">
       <div>
         <div class="eyebrow">Hello Tomorrow</div>
@@ -93,6 +88,16 @@
           <a class="btn primary" href="/jobs.html">Browse Open Roles</a>
           <a class="btn ghost" href="https://emiratesgrouproblox.link/" target="_blank" rel="noopener">Main Site</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIVE PHOTOS (MOSAIC using your images) -->
+  <section class="container" style="margin-top:18px">
+    <div class="card">
+      <h2 class="under">Inside EGR</h2>
+      <div class="mosaic" id="mosaic">
+        <!-- We’ll populate via JS with your 6 image names -->
       </div>
     </div>
   </section>
@@ -111,10 +116,10 @@
     <div class="card">
       <h2 class="under">EGR in numbers</h2>
       <div class="grid four">
-        <div class="stat-neo"><div class="kpi" data-count="2023">2023</div><div class="label">Founded</div></div>
+        <div class="stat-neo"><div class="kpi" data-count="2023">0</div><div class="label">Founded</div></div>
         <div class="stat-neo"><div class="kpi" id="kpiOpen" data-count="0">0</div><div class="label">Open roles right now</div></div>
-        <div class="stat-neo"><div class="kpi" data-count="6">5</div><div class="label">Departments</div></div>
-        <div class="stat-neo"><div class="kpi" data-count="4">4</div><div class="label">Divisions/Subsidiary</div></div>
+        <div class="stat-neo"><div class="kpi" data-count="6">0</div><div class="label">Departments</div></div>
+        <div class="stat-neo"><div class="kpi" data-count="4">0</div><div class="label">Divisions/Subsidiary</div></div>
       </div>
     </div>
   </section>
@@ -200,74 +205,63 @@
     </form>
   </dialog>
 
-  <!-- SCRIPTS: clocks, rotator, counters, carousel, particles -->
+  <!-- JS: clocks, rotator, counters, carousel, particles, mosaic -->
   <script>
-    /* ===== Supabase presence (optional) ===== */
     const hasSupabase = !!(window.supabase && typeof window.supabase.from === 'function');
 
-    /* ===== Local/Dubai time with robust fallback ===== */
-    function fmtDubaiFallback() {
-      // GST is UTC+4, no DST
-      const now = new Date();
-      const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
-      const dubai = new Date(utc + 4 * 3600 * 1000);
-      return dubai.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
-    }
+    function fmtDubaiFallback(){ const now=new Date(); const utc=now.getTime()+now.getTimezoneOffset()*60000; const dubai=new Date(utc+4*3600*1000); return dubai.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}); }
     function startClocks(){
-      const elLocal = document.getElementById('timeLocal');
-      const elDubai = document.getElementById('timeDubai');
-      const tick = ()=>{
-        if (elLocal) elLocal.textContent = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
-        try {
-          const dubai = new Intl.DateTimeFormat([], {hour:'2-digit',minute:'2-digit', timeZone:'Asia/Dubai'}).format(new Date());
-          if (elDubai) elDubai.textContent = dubai;
-        } catch(e) {
-          if (elDubai) elDubai.textContent = fmtDubaiFallback();
-        }
-      };
-      tick(); setInterval(tick, 15000);
+      const elLocal=document.getElementById('timeLocal'); const elDubai=document.getElementById('timeDubai');
+      const tick=()=>{
+        if(elLocal) elLocal.textContent=new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+        try{ const d=new Intl.DateTimeFormat([], {hour:'2-digit',minute:'2-digit',timeZone:'Asia/Dubai'}).format(new Date()); if(elDubai) elDubai.textContent=d; }
+        catch(e){ if(elDubai) elDubai.textContent=fmtDubaiFallback(); }
+      }; tick(); setInterval(tick,15000);
     }
 
-    /* ===== Hero rotator using your exact filenames at repo root ===== */
-    function startHeroRotator(){
-      const section = document.getElementById('hero');
-      const imgEl = document.getElementById('heroImg');
-      if (!section || !imgEl) return;
-      const base = section.getAttribute('data-hero-path') || '';
-      const names = (section.getAttribute('data-hero-images') || '').split(',').map(s=>s.trim()).filter(Boolean);
-      if (!names.length) return;
+    // Robust hero rotator: only uses URLs that actually load (filters bad names)
+    async function startHeroRotator(){
+      const section=document.getElementById('hero'); const imgEl=document.getElementById('heroImg'); if(!section||!imgEl) return;
+      const base=section.getAttribute('data-hero-path')||''; 
+      const names=(section.getAttribute('data-hero-images')||'').split(',').map(s=>s.trim()).filter(Boolean);
+      if(!names.length) return;
+      const urls=names.map(n=>`${base}${n.split('/').map(encodeURIComponent).join('/')}?v=${Date.now()}`);
 
-      const urls = names.map(n => `${base}${n.split('/').map(encodeURIComponent).join('/')}?v=${Date.now()}`);
-      urls.forEach(u => { const p=new Image(); p.onload=()=>console.log('Loaded:',u); p.onerror=()=>console.error('Image not found:',u); p.src=u; });
+      // test-load all, keep only successes
+      const ok=[];
+      await Promise.all(urls.map(u=>new Promise(res=>{
+        const p=new Image();
+        p.onload=()=>{ ok.push(u); res(); };
+        p.onerror=()=>{ console.warn('Image not found:', u); res(); };
+        p.src=u;
+      })));
+      if(!ok.length){ console.error('No hero images loaded'); return; }
 
-      let i=0; imgEl.src = urls[0];
-      setInterval(()=>{ i=(i+1)%urls.length; imgEl.src = urls[i]; }, 7000);
+      let i=0; imgEl.src=ok[0];
+      setInterval(()=>{ i=(i+1)%ok.length; imgEl.src=ok[i]; }, 7000);
     }
 
-    /* ===== Animated counters on visible ===== */
     function animateCounters(){
-      const counters = [...document.querySelectorAll('.kpi')];
-      const io = new IntersectionObserver((entries)=>{
+      const counters=[...document.querySelectorAll('.kpi')];
+      const io=new IntersectionObserver((entries)=>{
         entries.forEach(e=>{
-          if (!e.isIntersecting) return;
-          const el = e.target; const target = parseInt(el.getAttribute('data-count')||'0',10);
-          const t0 = performance.now(), dur = 1200;
-          const step = (t)=>{ const p=Math.min(1,(t-t0)/dur); const v=Math.floor(target * (0.5 - Math.cos(p*Math.PI)/2)); el.textContent=v; if(p<1) requestAnimationFrame(step); };
+          if(!e.isIntersecting) return;
+          const el=e.target; const target=parseInt(el.getAttribute('data-count')||'0',10);
+          const t0=performance.now(), dur=1200;
+          const step=(t)=>{ const p=Math.min(1,(t-t0)/dur); const v=Math.floor(target*(0.5-Math.cos(p*Math.PI)/2)); el.textContent=v; if(p<1) requestAnimationFrame(step); };
           requestAnimationFrame(step); io.unobserve(el);
         });
       },{threshold:.4});
       counters.forEach(el=>io.observe(el));
     }
 
-    /* ===== Latest roles carousel ===== */
     async function loadLatestRoles(){
-      const wrap = document.getElementById('latestRoles'); if (!wrap) return;
-      if (!hasSupabase){ wrap.innerHTML = '<div class="slide">Connect Supabase to list live roles.</div>'; return; }
-      const { data: jobs, error } = await supabase.from('jobs')
-        .select('id,title,division,posted_at,status,is_paid').eq('status','open').order('posted_at',{ascending:false}).limit(8);
-      if (error){ wrap.innerHTML = `<div class="slide">Load failed: ${error.message}</div>`; return; }
-      if (!jobs?.length){ wrap.innerHTML = `<div class="slide">No open roles right now.</div>`; return; }
-      wrap.innerHTML = jobs.map(j=>`
+      const wrap=document.getElementById('latestRoles'); if(!wrap) return;
+      if(!hasSupabase){ wrap.innerHTML='<div class="slide">Connect Supabase to list live roles.</div>'; return; }
+      const { data:jobs, error }=await supabase.from('jobs').select('id,title,division,posted_at,status,is_paid').eq('status','open').order('posted_at',{ascending:false}).limit(8);
+      if(error){ wrap.innerHTML=`<div class="slide">Load failed: ${error.message}</div>`; return; }
+      if(!jobs?.length){ wrap.innerHTML='<div class="slide">No open roles right now.</div>'; return; }
+      wrap.innerHTML=jobs.map(j=>`
         <article class="slide">
           <div class="row"><span class="badge status-open">open</span><span class="badge">${j.is_paid?'paid':'unpaid'}</span></div>
           <h3 style="margin:.2rem 0">${j.title}</h3>
@@ -275,44 +269,45 @@
           <div class="row"><a class="btn" href="/job.html?id=${j.id}">View</a><a class="btn primary" href="/apply.html?id=${j.id}">Apply</a></div>
         </article>
       `).join('');
-      // Open roles counter
-      const openCount = jobs.length;
-      const oc = document.getElementById('openRolesCount'); if (oc) oc.textContent = openCount;
-      const kpi = document.getElementById('kpiOpen'); if (kpi) kpi.setAttribute('data-count', String(openCount));
+      const oc=document.getElementById('openRolesCount'); if(oc) oc.textContent=jobs.length;
+      const kpi=document.getElementById('kpiOpen'); if(kpi) kpi.setAttribute('data-count', String(jobs.length));
     }
 
-    /* ===== Neon system ticker ===== */
     function startSystemTicker(){
-      const el = document.getElementById('systemTicker'); if (!el) return;
-      const msgs = [
+      const el=document.getElementById('systemTicker'); if(!el) return;
+      const msgs=[
         "System nominal · Recruiting across all divisions · Hello Tomorrow",
         "Tip: Create an account to track your application status in real time",
         "Dubai HQ online · OCC monitoring schedules · Safety first",
         "Careers at EGR: Operations · Cabin · Ground · IT · University"
       ];
-      let i=0; el.textContent = msgs[0];
-      setInterval(()=>{ i=(i+1)%msgs.length; el.textContent = msgs[i]; }, 6000);
+      let i=0; el.textContent=msgs[0]; setInterval(()=>{ i=(i+1)%msgs.length; el.textContent=msgs[i]; },6000);
     }
 
-    /* ===== Soft particles in hero (lightweight) ===== */
     function startParticles(){
-      const c = document.getElementById('fx'); if (!c) return;
-      const ctx = c.getContext('2d'); let w=0,h=0, dots=[];
-      const R=1.2, N=70; function resize(){ w=c.width=window.innerWidth; h=c.height=document.getElementById('hero').offsetHeight; }
-      function init(){ dots = Array.from({length:N},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*R,vy:(Math.random()-.5)*R})); }
-      function step(){ ctx.clearRect(0,0,w,h); ctx.globalAlpha=.8; for(const d of dots){ d.x+=d.vx; d.y+=d.vy;
-        if(d.x<0||d.x>w) d.vx*=-1; if(d.y<0||d.y>h) d.vy*=-1;
-        ctx.fillStyle='rgba(158,196,255,0.12)'; ctx.beginPath(); ctx.arc(d.x,d.y,1.1,0,6.283); ctx.fill();
-      } requestAnimationFrame(step); }
+      const c=document.getElementById('fx'); if(!c) return; const ctx=c.getContext('2d'); let w=0,h=0,dots=[];
+      const R=1.2,N=70; function resize(){ w=c.width=window.innerWidth; h=c.height=document.getElementById('hero').offsetHeight; }
+      function init(){ dots=Array.from({length:N},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*R,vy:(Math.random()-.5)*R})); }
+      function step(){ ctx.clearRect(0,0,w,h); ctx.globalAlpha=.8; for(const d of dots){ d.x+=d.vx; d.y+=d.vy; if(d.x<0||d.x>w) d.vx*=-1; if(d.y<0||d.y>h) d.vy*=-1; ctx.fillStyle='rgba(158,196,255,0.12)'; ctx.beginPath(); ctx.arc(d.x,d.y,1.1,0,6.283); ctx.fill(); } requestAnimationFrame(step); }
       resize(); init(); step(); window.addEventListener('resize',()=>{ resize(); init(); });
     }
 
-    /* ===== Auth (simple modal; optional) ===== */
+    // Photo mosaic using your 6 images (shows even if rotator fails)
+    function mountMosaic(){
+      const names=[
+        "EGR Headquarters Pic.png","meeting room hq.png","occ office.png","occ.png","office 1.png","office hq.png"
+      ];
+      const m=document.getElementById('mosaic'); if(!m) return;
+      m.innerHTML = names.map(n=>{
+        const url = n.split('/').map(encodeURIComponent).join('/');
+        return `<img src="${url}" alt="">`;
+      }).join('');
+    }
+
+    // Basic auth modal (optional)
     function wireAuth(){
-      if (!hasSupabase) return;
-      const email = document.getElementById('authEmail');
-      const pass  = document.getElementById('authPass');
-      const msg   = document.getElementById('authMsg');
+      if(!hasSupabase) return;
+      const email=document.getElementById('authEmail'); const pass=document.getElementById('authPass'); const msg=document.getElementById('authMsg');
       document.getElementById('loginBtn')?.addEventListener('click', async ()=>{
         const { error } = await supabase.auth.signInWithPassword({ email: email.value.trim(), password: pass.value.trim() });
         msg.textContent = error ? error.message : 'Signed in — reload to continue';
@@ -323,24 +318,17 @@
       });
     }
 
-    /* ===== Boot ===== */
     (async function boot(){
-      // clocks
       startClocks();
-      // banner
       startHeroRotator();
-      // fx
       startParticles();
-      // ui
       startSystemTicker();
       animateCounters();
-      // data-driven
-      if (hasSupabase) { await loadLatestRoles(); }
-      else {
-        // no supabase: fill placeholders
-        const oc = document.getElementById('openRolesCount'); if (oc) oc.textContent = '—';
-        const kpi = document.getElementById('kpiOpen'); if (kpi) kpi.setAttribute('data-count','0');
-        document.getElementById('latestRoles').innerHTML = '<div class="slide">Connect Supabase to show live roles.</div>';
+      mountMosaic();
+      if(hasSupabase){ await loadLatestRoles(); } else {
+        const oc=document.getElementById('openRolesCount'); if(oc) oc.textContent='—';
+        const kpi=document.getElementById('kpiOpen'); if(kpi) kpi.setAttribute('data-count','0');
+        document.getElementById('latestRoles').innerHTML='<div class="slide">Connect Supabase to show live roles.</div>';
       }
       wireAuth();
     })();
