@@ -1,62 +1,104 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/><title>HR Portal — EGR Careers</title>
+  <meta charset="utf-8"/>
+  <title>EGR Careers — HR Portal</title>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <link rel="stylesheet" href="/css/careers.css?v=1"/>
+  <link rel="stylesheet" href="/css/careers.css?v=hr-gate"/>
   <script defer src="https://unpkg.com/@supabase/supabase-js@2"></script>
-  <script defer src="/js/supabaseClient.js?v=1"></script>
-  <script defer src="/js/careers.js?v=1"></script>
+  <script defer src="/js/supabaseClient.js?v=hr-gate"></script>
+  <style>
+    .center{min-height:70vh;display:grid;place-items:center}
+    .card{max-width:720px;width:100%}
+    .ok{border:1px solid #2a7240;background:#0e2a18;color:#c9f5d2;border-radius:12px;padding:14px}
+    .no{border:1px solid #6b1a3a;background:#2b1324;color:#ffd7e6;border-radius:12px;padding:14px}
+    .row{display:flex;gap:10px;flex-wrap:wrap}
+    input,button{padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:#fff}
+    button.btn{cursor:pointer}
+  </style>
 </head>
-<body>
-<header class="nav"><div class="container">
-  <div class="brand">EGR Careers</div>
-  <nav class="links">
-    <a href="/jobs.html">Jobs</a><a href="/dashboard.html">My Applications</a><a href="/hr.html" aria-current="page">HR Portal</a>
-    <div class="clock" id="clock">--:--</div><button id="authBtn" class="btn">Sign In</button>
-  </nav>
-</div></header>
+<body class="container" style="padding-top:18px">
+  <h1>HR Portal</h1>
+  <p class="meta">You must be signed in and have the <strong>HR</strong> role to continue.</p>
 
-<section class="hero"><div class="hero-bg" id="heroBg"></div><div class="container"><h1 class="title">HR Portal</h1></div></section>
-
-<main class="container grid two" id="hrWrap" style="margin-top:18px">
-  <div class="card">
-    <h2>Jobs</h2>
-    <div id="jobList" class="list"><p class="meta">Loading…</p></div>
-    <div id="appsBox" style="margin-top:14px"></div>
+  <div id="box" class="center">
+    <div class="card">Checking access…</div>
   </div>
 
-  <form class="card" id="jobForm">
-    <h2>Create / Edit Position</h2>
-    <input type="hidden" id="jobId">
-    <label>Title</label><input id="title" required>
-    <label>Department</label><select id="dept"></select>
-    <label>Division</label><input id="division" placeholder="Emirates Airlines / Fly Dubai / EGR HQ / University / Falcon LTD">
-    <label>Location</label><input id="location" placeholder="Remote / Varies">
-    <label>Paid Role?</label><select id="paid"><option value="false">Unpaid</option><option value="true">Paid</option></select>
-    <label>Email to apply (optional)</label><input id="emailToApply" type="email" placeholder="hr@...">
-    <label>Close Date (optional)</label><input id="closeDate" type="date">
-    <label>Description</label><textarea id="desc"></textarea>
-    <label>Requirements</label><textarea id="reqs"></textarea>
-    <div class="row"><button class="btn primary" type="submit">Save</button><button class="btn ghost" type="reset">Reset</button></div>
-  </form>
-</main>
+  <!-- Sign-in modal -->
+  <dialog id="authModal" class="modal">
+    <form method="dialog" class="card" onsubmit="return false;">
+      <h3>Sign in required</h3>
+      <input type="email" id="authEmail" placeholder="Email address" required />
+      <input type="password" id="authPass" placeholder="Password" required />
+      <div class="row">
+        <button class="btn" id="loginBtn">Sign In</button>
+        <button class="btn ghost" id="signupBtn">Create Account</button>
+        <button class="btn red" onclick="document.getElementById('authModal').close()">Close</button>
+      </div>
+      <p id="authMsg" class="meta"></p>
+    </form>
+  </dialog>
 
-<footer class="footer"><div class="container"><div>© 2025 EGR</div></div></footer>
+  <script>
+    async function checkAccess(){
+      const box = document.getElementById('box');
+      // 1) Are you signed in?
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        box.innerHTML = `
+          <div class="card no">
+            <p><strong>Not signed in.</strong> You must sign in to access the HR Portal.</p>
+            <button class="btn" id="openLogin">Sign In</button>
+          </div>`;
+        document.getElementById('openLogin').onclick = () => document.getElementById('authModal').showModal();
+        wireAuth();
+        return;
+      }
 
-<!-- AUTH MODAL -->
-<dialog id="authModal" class="modal"><form method="dialog" class="card" id="loginForm">
-  <h3>Sign in / Create account</h3>
-  <input type="email" id="authEmail" placeholder="Email address" required>
-  <input type="password" id="authPass" placeholder="Password" required>
-  <div class="row"><button class="btn" type="submit">Sign In</button><button class="btn ghost" id="signupBtn">Create Account</button><button class="btn red" id="closeAuth">Close</button></div>
-</form></dialog>
-<div id="toast"></div>
-<script>
-  document.addEventListener('DOMContentLoaded', async ()=>{
-    await CAREERS.bootCommon();
-    CAREERS.pageHR();
-  });
-</script>
+      // 2) Do you have the HR role?
+      const user = session.user;
+      const { data: roles, error } = await supabase.from('user_roles').select('role').eq('user_id', user.id);
+      if (error) {
+        box.innerHTML = `<div class="card no">Role check failed: ${error.message}</div>`;
+        return;
+      }
+      const isHR = roles?.some(r => r.role === 'hr');
+      if (!isHR) {
+        box.innerHTML = `<div class="card no"><strong>Access denied.</strong> Your account does not have the HR role.</div>`;
+        return;
+      }
+
+      // 3) Access granted
+      box.innerHTML = `
+        <div class="ok">
+          <p><strong>Access granted.</strong> Signed in as ${user.email} (HR)</p>
+          <div class="row" style="margin-top:10px">
+            <a class="btn" href="/hr-dashboard.html">Go to HR Dashboard</a>
+            <a class="btn ghost" href="/jobs.html">View public jobs</a>
+          </div>
+        </div>
+      `;
+    }
+
+    function wireAuth(){
+      const email = document.getElementById('authEmail');
+      const pass  = document.getElementById('authPass');
+      const msg   = document.getElementById('authMsg');
+
+      document.getElementById('loginBtn')?.addEventListener('click', async ()=>{
+        const { error } = await supabase.auth.signInWithPassword({ email: email.value.trim(), password: pass.value.trim() });
+        msg.textContent = error ? error.message : 'Signed in — reloading…';
+        if (!error) location.reload();
+      });
+
+      document.getElementById('signupBtn')?.addEventListener('click', async ()=>{
+        const { error } = await supabase.auth.signUp({ email: email.value.trim(), password: pass.value.trim() });
+        msg.textContent = error ? error.message : 'Account created — check email, then Sign In.';
+      });
+    }
+
+    checkAccess();
+  </script>
 </body>
 </html>
