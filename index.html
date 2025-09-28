@@ -26,22 +26,33 @@
     </div>
   </header>
 
-  <!-- HERO with rotating background -->
-  <section class="hero">
-    <div class="hero-bg" id="heroBg" aria-hidden="true"></div>
-    <div class="container">
-      <h1 class="title">Join the Future of Virtual Aviation</h1>
-      <p class="sub">Roles across Emirates Airlines, Fly Dubai, EGR HQ, University, and Falcon LTD.</p>
-      <div class="ticker">
-        <span>We’re hiring for:</span>
-        <span class="type" id="typeTicker">Operations · Cabin · Ground · Engineering</span>
-      </div>
-      <div class="row" style="margin-top:12px">
-        <a class="btn primary" href="/jobs.html">Browse Open Roles</a>
-        <a class="btn ghost" href="https://emiratesgrouproblox.link/" target="_blank" rel="noopener">Main Site</a>
-      </div>
+<section
+  class="hero"
+  data-hero-path="assets/hero/"
+  data-hero-images="EGR HQ Banner.JPG, a359-hero.png, A359 hero 3.jpg, terminal-night.JPG, lobby.png, runway dusk.jpg"
+>
+  <div class="hero-bg" id="heroBg" aria-hidden="true"></div>
+
+  <!-- NEW: the visible <img> we rotate -->
+  <img id="heroImg" alt="" style="
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover; z-index:-2; filter:brightness(.78);
+  ">
+
+  <div class="container">
+    <h1 class="title">Join the Future of Virtual Aviation</h1>
+    <p class="sub">Roles across Emirates Airlines, Fly Dubai, EGR HQ, University, and Falcon LTD.</p>
+    <div class="ticker">
+      <span>We’re hiring for:</span>
+      <span class="type" id="typeTicker">Operations · Cabin · Ground · Engineering</span>
     </div>
-  </section>
+    <div class="row" style="margin-top:12px">
+      <a class="btn primary" href="/jobs.html">Browse Open Roles</a>
+      <a class="btn ghost" href="https://emiratesgrouproblox.link/" target="_blank" rel="noopener">Main Site</a>
+    </div>
+  </div>
+</section>
+
 
   <!-- QUICK NUMBERS (EGR in numbers) -->
   <section class="container" style="margin-top:22px">
