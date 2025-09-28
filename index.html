@@ -4,79 +4,222 @@
   <meta charset="utf-8"/>
   <title>EGR Careers — Join the Future</title>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <link rel="stylesheet" href="/css/careers.css?v=1"/>
+  <meta name="theme-color" content="#0f1629"/>
+  <link rel="stylesheet" href="/css/careers.css?v=2"/>
+  <link rel="preconnect" href="https://unpkg.com">
   <script defer src="https://unpkg.com/@supabase/supabase-js@2"></script>
-  <script defer src="/js/supabaseClient.js?v=1"></script>
-  <script defer src="/js/careers.js?v=1"></script>
+  <script defer src="/js/supabaseClient.js?v=2"></script>
+  <script defer src="/js/careers.js?v=2"></script>
 </head>
 <body>
-<header class="nav">
-  <div class="container">
-    <div class="brand">EGR Careers</div>
-    <nav class="links">
-      <a href="/jobs.html">Jobs</a>
-      <a href="/dashboard.html">My Applications</a>
-      <a href="/hr.html">HR Portal</a>
-      <div class="clock" id="clock">--:--</div>
-      <button id="authBtn" class="btn">Sign In</button>
-    </nav>
-  </div>
-</header>
-
-<section class="hero">
-  <div class="hero-bg" id="heroBg" aria-hidden="true"></div>
-  <div class="container">
-    <h1 class="title">Join the Future of Virtual Aviation</h1>
-    <p class="sub">Roles across Emirates Airlines, Fly Dubai, EGR HQ, University, and Falcon LTD.</p>
-    <div class="ticker">
-      <span>We’re hiring for:</span> <span class="type" id="typeTicker">Operations · Cabin · Ground · Engineering</span>
+  <!-- NAV -->
+  <header class="nav">
+    <div class="container">
+      <div class="brand">EGR Careers</div>
+      <nav class="links">
+        <a href="/jobs.html">Jobs</a>
+        <a href="/dashboard.html">My Applications</a>
+        <a href="/hr.html">HR Portal</a>
+        <div class="clock" id="clock">--:--</div>
+        <button id="authBtn" class="btn">Sign In</button>
+      </nav>
     </div>
-    <div class="row" style="margin-top:10px">
-      <a class="btn primary" href="/jobs.html">Browse Open Roles</a>
-      <a class="btn ghost" href="https://emiratesgrouproblox.link/" target="_blank">Main Site</a>
+  </header>
+
+  <!-- HERO with rotating background -->
+  <section class="hero">
+    <div class="hero-bg" id="heroBg" aria-hidden="true"></div>
+    <div class="container">
+      <h1 class="title">Join the Future of Virtual Aviation</h1>
+      <p class="sub">Roles across Emirates Airlines, Fly Dubai, EGR HQ, University, and Falcon LTD.</p>
+      <div class="ticker">
+        <span>We’re hiring for:</span>
+        <span class="type" id="typeTicker">Operations · Cabin · Ground · Engineering</span>
+      </div>
+      <div class="row" style="margin-top:12px">
+        <a class="btn primary" href="/jobs.html">Browse Open Roles</a>
+        <a class="btn ghost" href="https://emiratesgrouproblox.link/" target="_blank" rel="noopener">Main Site</a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<main class="container grid two" style="margin-top:18px">
-  <div class="card">
-    <h2>Why EGR?</h2>
-    <p class="meta">Professional standards, structured growth, and a friendly community. Save time with your account and track your application status.</p>
-  </div>
-  <div class="card">
-    <h2>Get Started</h2>
-    <p class="meta">Go to Jobs, pick a role, and apply in minutes. You can come back to check your status anytime.</p>
-  </div>
-</main>
-
-<footer class="footer">
-  <div class="container">
-    <div>© 2025 Emirates Group Roblox — Careers</div>
-    <div class="links">
-      <a href="https://emiratesgrouproblox.link/">Main Site</a>
-      <a href="https://emiratesgrouproblox.link/terms.html">Terms</a>
-      <a href="https://emiratesgrouproblox.link/privacy.html">Privacy</a>
+  <!-- QUICK NUMBERS (EGR in numbers) -->
+  <section class="container" style="margin-top:22px">
+    <div class="grid two">
+      <div class="card">
+        <h2>EGR in numbers</h2>
+        <div class="list">
+          <div class="item"><div class="row"><strong style="font-size:22px">2023</strong></div><div class="meta">Founded</div></div>
+          <div class="item"><div class="row"><strong id="stat-open" style="font-size:22px">—</strong></div><div class="meta">Open roles right now</div></div>
+          <div class="item"><div class="row"><strong style="font-size:22px">6</strong></div><div class="meta">Departments</div></div>
+          <div class="item"><div class="row"><strong style="font-size:22px">4</strong></div><div class="meta">Divisions</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Explore opportunities</h2>
+        <div class="list">
+          <div class="item"><strong>Operations</strong><div class="meta">Pilots, dispatch, OCC & scheduling</div><a class="btn" href="/jobs.html">View roles</a></div>
+          <div class="item"><strong>Cabin Services</strong><div class="meta">Cabin crew & inflight service</div><a class="btn" href="/jobs.html">View roles</a></div>
+          <div class="item"><strong>Ground Services</strong><div class="meta">Check-in, gates, ramp & airport ops</div><a class="btn" href="/jobs.html">View roles</a></div>
+          <div class="item"><strong>IT & Engineering</strong><div class="meta">Developers, systems & tooling</div><a class="btn" href="/jobs.html">View roles</a></div>
+        </div>
+      </div>
     </div>
-  </div>
-</footer>
+  </section>
 
-<!-- AUTH MODAL -->
-<dialog id="authModal" class="modal">
-  <form method="dialog" class="card" id="loginForm">
-    <h3>Sign in / Create account</h3>
-    <input type="email" id="authEmail" placeholder="Email address" required>
-    <input type="password" id="authPass" placeholder="Password" required>
-    <div class="row">
-      <button class="btn" type="submit">Sign In</button>
-      <button class="btn ghost" id="signupBtn">Create Account</button>
-      <button class="btn red" id="closeAuth">Close</button>
+  <!-- FOCUS AREAS (mirrors “Our key employee focus areas”) -->
+  <section class="container" style="margin-top:22px">
+    <div class="card">
+      <h2>Our key focus areas</h2>
+      <div class="grid two">
+        <div class="item">
+          <strong>Safety & Wellbeing</strong>
+          <p class="meta">We look out for each other and maintain high standards in training, procedures, and event safety across all divisions. </p>
+        </div>
+        <div class="item">
+          <strong>Learning & Growth</strong>
+          <p class="meta">From University programmes to on-the-job coaching, we help you grow your skills and responsibilities.</p>
+        </div>
+        <div class="item">
+          <strong>Operational Excellence</strong>
+          <p class="meta">Consistent flight quality, realistic procedures, and a great passenger experience—every session.</p>
+        </div>
+        <div class="item">
+          <strong>Community & Culture</strong>
+          <p class="meta">A respectful, friendly environment where teamwork and professionalism come first.</p>
+        </div>
+      </div>
+      <p class="meta" style="margin-top:10px">Modeled after how major airlines present employee focus areas. :contentReference[oaicite:1]{index=1}</p>
     </div>
-  </form>
-</dialog>
+  </section>
 
-<div id="toast"></div>
-<script>
-  document.addEventListener('DOMContentLoaded', async ()=>{ await CAREERS.bootCommon(); });
-</script>
+  <!-- BENEFITS (inspired by “Working with us”) -->
+  <section class="container" style="margin-top:22px">
+    <div class="card">
+      <h2>Benefits & perks</h2>
+      <div class="grid two">
+        <div class="item">
+          <strong>Structured Pathways</strong>
+          <p class="meta">Clear pathways from trainee to senior roles, plus cross-division opportunities.</p>
+        </div>
+        <div class="item">
+          <strong>Recognition Culture</strong>
+          <p class="meta">We celebrate contribution and service with badges, features, and role progression.</p>
+        </div>
+        <div class="item">
+          <strong>Flexible Participation</strong>
+          <p class="meta">Balanced schedules that fit school and life—join flights and events when you can.</p>
+        </div>
+        <div class="item">
+          <strong>Tools & Training</strong>
+          <p class="meta">Access guides, procedures, and modern tools to perform at your best. (Inspired by real-world airline benefits pages.) :contentReference[oaicite:2]{index=2}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIVISIONS SHOWCASE -->
+  <section class="container" style="margin-top:22px">
+    <div class="card">
+      <h2>Our divisions</h2>
+      <div class="grid two">
+        <div class="item">
+          <strong>Emirates Airlines</strong>
+          <p class="meta">Flagship airline division operating events, routes, and premium service experiences.</p>
+          <a class="btn" href="/jobs.html">See roles</a>
+        </div>
+        <div class="item">
+          <strong>Fly Dubai</strong>
+          <p class="meta">Dynamic subsidiary with agile ops and community-led events.</p>
+          <a class="btn" href="/jobs.html">See roles</a>
+        </div>
+        <div class="item">
+          <strong>EGR HQ</strong>
+          <p class="meta">Corporate functions: HR, finance, policy, marketing, partnerships.</p>
+          <a class="btn" href="/jobs.html">See roles</a>
+        </div>
+        <div class="item">
+          <strong>University & Falcon LTD</strong>
+          <p class="meta">Training programmes and engineering/tech initiatives supporting the group.</p>
+          <a class="btn" href="/jobs.html">See roles</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW WE HIRE -->
+  <section class="container" style="margin-top:22px">
+    <div class="card">
+      <h2>How we hire</h2>
+      <div class="list">
+        <div class="item"><strong>1) Apply online</strong><div class="meta">Create an account and submit your application in minutes.</div></div>
+        <div class="item"><strong>2) Review & shortlist</strong><div class="meta">HR screens for fit and may request a quick chat or follow-ups.</div></div>
+        <div class="item"><strong>3) Tryouts or interview</strong><div class="meta">For some roles we run short tryouts or scenario questions.</div></div>
+        <div class="item"><strong>4) Offer & onboarding</strong><div class="meta">Get set up with tools, SOPs and training—then you’re ready to fly.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQs (simple) -->
+  <section class="container" style="margin-top:22px">
+    <div class="card">
+      <h2>FAQs</h2>
+      <div class="list">
+        <div class="item">
+          <strong>Do I need prior experience?</strong>
+          <p class="meta">No—many roles include training. Show motivation and we’ll help you grow.</p>
+        </div>
+        <div class="item">
+          <strong>How long do applications take?</strong>
+          <p class="meta">Varies by role and volume. You can track your status on “My Applications”.</p>
+        </div>
+        <div class="item">
+          <strong>Can I move across divisions?</strong>
+          <p class="meta">Yes—internal mobility is encouraged based on performance and need.</p>
+        </div>
+      </div>
+      <p class="meta" style="margin-top:10px">Section structure modeled on airline careers pages (benefits, process, FAQs). :contentReference[oaicite:3]{index=3}</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div>© 2025 Emirates Group Roblox — Careers</div>
+      <div class="links">
+        <a href="/">Home</a>
+        <a href="/jobs.html">Jobs</a>
+        <a href="https://emiratesgrouproblox.link/terms.html" target="_blank" rel="noopener">Website Terms</a>
+        <a href="https://emiratesgrouproblox.link/privacy.html" target="_blank" rel="noopener">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- AUTH MODAL (shared) -->
+  <dialog id="authModal" class="modal">
+    <form method="dialog" class="card" id="loginForm">
+      <h3>Sign in / Create account</h3>
+      <input type="email" id="authEmail" placeholder="Email address" required />
+      <input type="password" id="authPass" placeholder="Password" required />
+      <div class="row">
+        <button class="btn" type="submit">Sign In</button>
+        <button class="btn ghost" id="signupBtn">Create Account</button>
+        <button class="btn red" id="closeAuth">Close</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast"></div>
+  <script>
+    // Boot common JS (clock, banner rotator, auth wiring, diagnostics)
+    document.addEventListener('DOMContentLoaded', async ()=>{
+      await CAREERS.bootCommon();
+      // update the "Open roles" number
+      try {
+        const { count } = await supabase.from('jobs').select('*', { count:'exact', head:true }).eq('status','open');
+        const el = document.getElementById('stat-open'); if (el) el.textContent = count ?? '—';
+      } catch(e){}
+    });
+  </script>
 </body>
 </html>
