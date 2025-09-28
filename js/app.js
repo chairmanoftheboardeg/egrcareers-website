@@ -565,3 +565,55 @@ async function saveJob(e){
 function debounce(fn, ms=300){
   let t; return (...args)=>{ clearTimeout(t); t=setTimeout(()=>fn(...args), ms); };
 }
+
+<script>
+  // Show/Hide password
+  (function(){
+    const eye = document.getElementById('togglePass');
+    const pass = document.getElementById('authPass');
+    if (eye && pass) {
+      eye.addEventListener('click', ()=>{
+        const isPwd = pass.type === 'password';
+        pass.type = isPwd ? 'text' : 'password';
+        eye.textContent = isPwd ? '🙈' : '👁';
+        eye.setAttribute('aria-label', isPwd ? 'Hide password' : 'Show password');
+      });
+    }
+  })();
+
+  // Wire up Sign In / Sign Up (uses your existing Supabase client)
+  (function(){
+    const email = document.getElementById('authEmail');
+    const pass  = document.getElementById('authPass');
+    const msg   = document.getElementById('authMsg');
+    const login = document.getElementById('loginBtn');
+    const signup= document.getElementById('signupBtn');
+
+    function setMsg(text, ok=false){ msg.textContent = text || ''; msg.className = 'auth-msg ' + (ok ? 'ok' : (text?'error':'')); }
+
+    if (login) login.addEventListener('click', async ()=>{
+      setMsg('Signing in…');
+      try{
+        const { error } = await supabase.auth.signInWithPassword({
+          email: (email.value||'').trim(),
+          password: (pass.value||'').trim()
+        });
+        if (error) return setMsg(error.message);
+        setMsg('Signed in — reloading…', true);
+        location.reload();
+      }catch(e){ setMsg('Unexpected error.'); }
+    });
+
+    if (signup) signup.addEventListener('click', async ()=>{
+      setMsg('Creating account…');
+      try{
+        const { error } = await supabase.auth.signUp({
+          email: (email.value||'').trim(),
+          password: (pass.value||'').trim()
+        });
+        if (error) return setMsg(error.message);
+        setMsg('Account created — check your email, then Sign In.', true);
+      }catch(e){ setMsg('Unexpected error.'); }
+    });
+  })();
+</script>
