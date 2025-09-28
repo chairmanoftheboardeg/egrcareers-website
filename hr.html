@@ -25,20 +25,47 @@
     <div class="card">Checking access…</div>
   </div>
 
-  <!-- Sign-in modal -->
-  <dialog id="authModal" class="modal">
-    <form method="dialog" class="card" onsubmit="return false;">
-      <h3>Sign in required</h3>
-      <input type="email" id="authEmail" placeholder="Email address" required />
-      <input type="password" id="authPass" placeholder="Password" required />
-      <div class="row">
-        <button class="btn" id="loginBtn">Sign In</button>
-        <button class="btn ghost" id="signupBtn">Create Account</button>
-        <button class="btn red" onclick="document.getElementById('authModal').close()">Close</button>
+<!-- AUTH MODAL (New) -->
+<dialog id="authModal" class="modal">
+  <form method="dialog" class="auth-card" onsubmit="return false;">
+    <h3 class="auth-title">Sign in to EGR Careers</h3>
+    <p class="auth-sub">Use your email and password. New here? Create an account.</p>
+
+    <div class="field">
+      <label class="label" for="authEmail">Email</label>
+      <div class="input-wrap">
+        <span class="ico">✉️</span>
+        <input class="input" id="authEmail" type="email" placeholder="you@example.com" autocomplete="email" required />
       </div>
-      <p id="authMsg" class="meta"></p>
-    </form>
-  </dialog>
+    </div>
+
+    <div class="field">
+      <label class="label" for="authPass">Password</label>
+      <div class="input-wrap">
+        <span class="ico">🔒</span>
+        <input class="input" id="authPass" type="password" placeholder="Your password" autocomplete="current-password" required />
+        <button class="eye" type="button" id="togglePass" aria-label="Show password">👁</button>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn primary" id="loginBtn">Sign In</button>
+      <button class="btn ghost" id="signupBtn">Create Account</button>
+      <button class="btn red" onclick="document.getElementById('authModal').close()">Close</button>
+    </div>
+
+    <div class="divider">or</div>
+
+    <div class="btn-row">
+      <!-- Optional future OAuth buttons (disabled by default) -->
+      <button class="btn ghost" type="button" disabled title="Coming soon">Sign in with Discord</button>
+      <button class="btn ghost" type="button" disabled title="Coming soon">Sign in with Google</button>
+    </div>
+
+    <p id="authMsg" class="auth-msg"></p>
+  </form>
+</dialog>
+
 
   <script>
     async function checkAccess(){
