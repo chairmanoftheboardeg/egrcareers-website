@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>EGR Careers — Join the Future of Virtual Aviation</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0f1629" />
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="stylesheet" href="/css/careers.css?v=5" />
+  <script defer src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script defer src="/js/supabaseClient.js?v=5"></script>
+  <script defer src="/js/app.js?v=5"></script>
+</head>
+<body>
+  <!-- NAV -->
+  <header class="nav">
+    <div class="container">
+      <a class="brand" href="#/jobs" aria-label="EGR Careers Home">
+        <span class="plane" aria-hidden="true">✈</span>
+        <strong>EGR Careers</strong>
+      </a>
+      <nav class="links">
+        <a href="#/jobs">Jobs</a>
+        <a href="#/dashboard">My Applications</a>
+        <a href="#/hr">HR Portal</a>
+        <div class="clock" id="clock" title="Your local time">--:--</div>
+        <button id="authBtn" class="btn small">Sign In</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <div class="eyebrow">Hello Tomorrow</div>
+        <h1 class="title glow">Join the Future of Virtual Aviation</h1>
+        <p class="sub">Roles across Emirates Airlines, Fly Dubai, EGR HQ, University, and Falcon LTD.</p>
+        <div class="ticker">
+          <span class="label">We’re hiring for:</span>
+          <span class="type" id="typeTicker" aria-live="polite"></span>
+        </div>
+        <div class="cta">
+          <a class="btn primary" href="#/jobs">Browse Open Roles</a>
+          <a class="btn ghost" href="https://emiratesgrouproblox.link/" target="_blank" rel="noopener">Main Site</a>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="orb o1"></div>
+        <div class="orb o2"></div>
+        <div class="gridlines"></div>
+      </div>
+    </div>
+    <div class="gradient"></div>
+  </section>
+
+  <!-- QUICK STATS (static UI, can make dynamic later) -->
+  <section class="stats">
+    <div class="container stats-grid">
+      <div class="stat card a-fade"><div class="num">2023</div><div class="label">Founded</div></div>
+      <div class="stat card a-fade"><div class="num" id="stat-open">—</div><div class="label">Open Roles</div></div>
+      <div class="stat card a-fade"><div class="num">6</div><div class="label">Departments</div></div>
+      <div class="stat card a-fade"><div class="num">4</div><div class="label">Divisions</div></div>
+    </div>
+  </section>
+
+  <!-- ROUTER OUTLET -->
+  <main id="app" class="container" aria-live="polite"></main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container foot-grid">
+      <div>© 2025 Emirates Group Roblox — Careers</div>
+      <div class="links">
+        <a href="https://emiratesgrouproblox.link/" target="_blank" rel="noopener">Main Site</a>
+        <a href="https://emiratesgrouproblox.link/terms.html" target="_blank" rel="noopener">Website Terms</a>
+        <a href="https://emiratesgrouproblox.link/privacy.html" target="_blank" rel="noopener">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- AUTH MODAL -->
+  <dialog id="authModal" class="modal">
+    <form method="dialog" class="card">
+      <h3 class="modal-title">Sign in / Create account</h3>
+      <p class="hint">Use your email to sign in. New users are created automatically.</p>
+      <input type="email" id="authEmail" placeholder="Email address" required autocomplete="username">
+      <input type="password" id="authPass" placeholder="Password" required autocomplete="current-password">
+      <div class="row">
+        <button class="btn" id="loginBtn">Sign In</button>
+        <button class="btn ghost" id="signupBtn">Create Account</button>
+        <button class="btn red" value="cancel">Close</button>
+      </div>
+      <p id="authMsg" class="msg"></p>
+    </form>
+  </dialog>
+</body>
+</html>
