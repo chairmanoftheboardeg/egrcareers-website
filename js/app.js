@@ -9,49 +9,6 @@ const clock = $('#clock');
 let sessionUser = null;
 let userProfile = null;
 
-/* ========= Hero background rotator ========= */
-const heroImages = [
-  "/assets/hero/hq-1.jpg",
-  "/assets/hero/hq-2.jpg",
-  "/assets/hero/hq-3.jpg",
-  "/assets/hero/hq-4.jpg",
-  "/assets/hero/hq-5.jpg",
-  "/assets/hero/hq-6.jpg",
-];
-
-function startHeroRotator(){
-  const bg = document.getElementById('heroBg');
-  if (!bg) return;
-  // preload
-  heroImages.forEach(src => { const i = new Image(); i.src = src; });
-  let i = 0;
-  const swap = () => {
-    const a = bg; // we’ll use ::before and ::after
-    a.style.setProperty('--imgA', `url("${heroImages[i % heroImages.length]}")`);
-    a.style.setProperty('--imgB', `url("${heroImages[(i+1) % heroImages.length]}")`);
-    // set backgrounds by toggling a class
-    a.classList.toggle('flip');
-    i++;
-  };
-  // initial paint
-  const first = heroImages[0], second = heroImages[1] || heroImages[0];
-  bg.style.setProperty('--imgA', `url("${first}")`);
-  bg.style.setProperty('--imgB', `url("${second}")`);
-  // bind CSS vars to pseudo elements
-  const style = document.createElement('style');
-  style.textContent = `
-    #heroBg::before{ background-image: var(--imgA); }
-    #heroBg::after { background-image: var(--imgB); }
-    #heroBg.flip::before{ opacity:0; transform: scale(1.04); }
-    #heroBg.flip::after { opacity:1; transform: scale(1.02); }
-  `;
-  document.head.appendChild(style);
-
-  // start cycling every 7s
-  setInterval(swap, 7000);
-}
-
-
 /* ========= Live local time ========= */
 function startClock(){
   const upd = () => {
@@ -89,7 +46,46 @@ const io = new IntersectionObserver((entries)=>{
 },{threshold:.2});
 function armAnimations(){ $$('.a-fade').forEach(el=>io.observe(el)); }
 
-/* ========= Auth ========= */
+/* ========= Hero background rotator ========= */
+const heroImages = [
+  "/assets/hero/hq-1.jpg",
+  "/assets/hero/hq-2.jpg",
+  "/assets/hero/hq-3.jpg",
+  "/assets/hero/hq-4.jpg",
+  "/assets/hero/hq-5.jpg",
+  "/assets/hero/hq-6.jpg",
+];
+function startHeroRotator(){
+  const bg = document.getElementById('heroBg');
+  if (!bg) return;
+  heroImages.forEach(src => { const i = new Image(); i.src = src; }); // preload
+
+  // initial pair
+  const first = heroImages[0], second = heroImages[1] || heroImages[0];
+  bg.style.setProperty('--imgA', `url("${first}")`);
+  bg.style.setProperty('--imgB', `url("${second}")`);
+
+  // bind CSS vars to pseudo elements
+  const style = document.createElement('style');
+  style.textContent = `
+    #heroBg::before{ background-image: var(--imgA); }
+    #heroBg::after { background-image: var(--imgB); }
+    #heroBg.flip::before{ opacity:0; transform: scale(1.04); }
+    #heroBg.flip::after { opacity:1; transform: scale(1.02); }
+  `;
+  document.head.appendChild(style);
+
+  let i = 0;
+  const swap = () => {
+    bg.style.setProperty('--imgA', `url("${heroImages[i % heroImages.length]}")`);
+    bg.style.setProperty('--imgB', `url("${heroImages[(i+1) % heroImages.length]}")`);
+    bg.classList.toggle('flip');
+    i++;
+  };
+  setInterval(swap, 7000);
+}
+
+/* ========= Auth & session ========= */
 async function loadSession(){
   const { data: { user } } = await supabase.auth.getUser();
   sessionUser = user || null;
@@ -103,15 +99,26 @@ async function loadSession(){
   }
 }
 
+async function ensureProfile(){
+  if (!sessionUser) return;
+  const { data } = await supabase.from('profiles').select('user_id').eq('user_id', sessionUser.id).maybeSingle();
+  if (!data){
+    await supabase.from('profiles').insert({ user_id: sessionUser.id, role: 'applicant' });
+  }
+}
+
 supabase.auth.onAuthStateChange(async ()=>{
   await loadSession();
+  await ensureProfile();
   router();
 });
 
 document.addEventListener('DOMContentLoaded', async ()=>{
   startClock();
   startTicker();
+  startHeroRotator();
   await loadSession();
+  await ensureProfile();
   router();
   armAnimations();
   updateOpenRolesStat();
@@ -129,7 +136,12 @@ $('#loginBtn').addEventListener('click', async (e)=>{
   const pass  = $('#authPass').value.trim();
   const { error } = await supabase.auth.signInWithPassword({ email, password: pass });
   $('#authMsg').textContent = error ? error.message : 'Signed in!';
-  if (!error) authModal.close();
+  if (!error){
+    await loadSession();
+    await ensureProfile();
+    authModal.close();
+    router();
+  }
 });
 
 $('#signupBtn').addEventListener('click', async (e)=>{
@@ -140,7 +152,7 @@ $('#signupBtn').addEventListener('click', async (e)=>{
   $('#authMsg').textContent = error ? error.message : 'Account created. You can sign in now.';
 });
 
-/* ========= Simple router ========= */
+/* ========= Router ========= */
 window.addEventListener('hashchange', router);
 function router(){
   const r = location.hash.replace('#','') || '/jobs';
@@ -152,21 +164,18 @@ function router(){
   return viewJobs();
 }
 
-/* ========= Helper UIs ========= */
+/* ========= Helpers ========= */
 function skel(h=60){ return `<div class="skel" style="height:${h}px"></div>`; }
 function chips(job){
   const chips = [];
-  chips.push(`<span class="badge">${job.departments?.name || 'General'}</span>`);
+  chips.push(`<span class="badge">${job.departments?.name || 'General'}</span>);
   chips.push(`<span class="badge ${job.status==='open'?'status-open':'status-closed'}">${job.status}</span>`);
   chips.push(`<span class="badge">${job.is_paid ? 'Paid' : 'Unpaid'}</span>`);
   return chips.join('');
 }
 
-/* ========= Stats: open roles count ========= */
+/* ========= Stats: open roles ========= */
 async function updateOpenRolesStat(){
-  const { data, error } = await supabase.from('jobs').select('id', { count: 'exact', head: true }).eq('status','open');
-  const n = (data===null && !error && typeof arguments[0]==='number') ? arguments[0] : (error ? '—' : (supabase.getPagination?.count || ''));
-  // simpler: query again with count
   const { count } = await supabase.from('jobs').select('*', { count: 'exact', head: true }).eq('status','open');
   $('#stat-open').textContent = (count ?? '—');
 }
@@ -197,7 +206,7 @@ async function viewJobs(){
       </aside>
     </section>`;
 
-  // load departments for filter
+  // load departments
   const { data: depts } = await supabase.from('departments').select('id,name').order('name');
   $('#fDept').innerHTML = `<option value="">All Departments</option>` + (depts||[]).map(d=>`<option value="${d.id}">${d.name}</option>`).join('');
 
@@ -213,8 +222,7 @@ async function viewJobs(){
     if (dept) req = req.eq('department_id', dept);
     if (paid) req = req.eq('is_paid', paid === 'true');
 
-    // Non-HR: only open jobs are readable (policy), HR: can see all
-    const { data: jobs, error } = await req;
+    const { data: jobs } = await req;
     const list = $('#jobsList');
     list.setAttribute('aria-busy','false');
 
@@ -233,7 +241,7 @@ async function viewJobs(){
 
     armAnimations();
 
-    // simple saved-jobs via localStorage
+    // quick saved jobs via localStorage
     list.addEventListener('click', (e)=>{
       const id = e.target.dataset.save;
       if (!id) return;
@@ -247,7 +255,6 @@ async function viewJobs(){
   $('#q').addEventListener('input', debounce(fetchAndRender, 250));
   $('#fDept').addEventListener('change', fetchAndRender);
   $('#fPaid').addEventListener('change', fetchAndRender);
-
   fetchAndRender();
 }
 
@@ -464,7 +471,6 @@ async function viewHR(){
         .eq('job_id', e.target.dataset.viewapps)
         .order('created_at', { ascending:false });
 
-      // Build with signed URLs (private bucket)
       const rows = await Promise.all((apps||[]).map(async a=>{
         let link = '';
         if (a.resume_path){
