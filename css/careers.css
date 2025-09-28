@@ -98,3 +98,27 @@ textarea{min-height:120px;resize:vertical}
 .skel{background:linear-gradient(90deg, rgba(255,255,255,.06), rgba(255,255,255,.1), rgba(255,255,255,.06));
   background-size:200% 100%;animation:sweep 1.2s ease-in-out infinite;border-radius:12px}
 @keyframes sweep{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* Rotating hero background */
+.hero {
+  position: relative;
+  overflow: clip;
+  isolation: isolate;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  z-index: -1;
+}
+.hero-bg::before, .hero-bg::after {
+  content: ""; position: absolute; inset: 0;
+  background-position: center; background-size: cover; background-repeat: no-repeat;
+  transition: opacity 900ms ease-in-out, transform 1200ms ease-in-out;
+}
+.hero-bg::before { opacity: 1; transform: scale(1.02); }
+.hero-bg::after  { opacity: 0; transform: scale(1.04); }
+.hero::after {
+  /* darken overlay for text legibility */
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,.55));
+  z-index: -1;
+}
