@@ -108,3 +108,47 @@ textarea{min-height:120px;resize:vertical}
 .skel{background:linear-gradient(90deg, rgba(255,255,255,.06), rgba(255,255,255,.1), rgba(255,255,255,.06));
   background-size:200% 100%;animation:sweep 1.2s ease-in-out infinite;border-radius:12px}
 @keyframes sweep{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* === Futuristic enhancements === */
+.hero-inner{padding:48px 0}
+.eyebrow{letter-spacing:.18em;text-transform:uppercase;font-size:.8rem;color:#9fb0d1}
+.glow{animation:shine 3.5s ease-in-out infinite;background:linear-gradient(90deg,#fff,#d9e6ff,#fff);-webkit-background-clip:text;background-clip:text;color:transparent}
+@keyframes shine{0%,100%{filter:drop-shadow(0 0 0 rgba(158,196,255,.0))}50%{filter:drop-shadow(0 0 18px rgba(158,196,255,.35))}}
+.orbs{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(12px) saturate(120%);opacity:.5}
+.orb-a{width:280px;height:280px;background:radial-gradient(circle at 30% 30%,#7eb2ff,transparent 60%);top:-40px;right:8%;animation:float 16s ease-in-out infinite}
+.orb-b{width:220px;height:220px;background:radial-gradient(circle at 30% 30%,#ff2d55,transparent 60%);bottom:-20px;left:12%;animation:float 20s ease-in-out infinite}
+.orb-c{width:180px;height:180px;background:radial-gradient(circle at 30% 30%,#6bffb3,transparent 60%);top:30%;left:38%;animation:float 22s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+
+.neon{border:1px solid rgba(158,196,255,.25); background:rgba(158,196,255,.08); padding:10px 12px; border-radius:12px; box-shadow:0 0 28px rgba(158,196,255,.15) inset}
+.under{position:relative;display:inline-block}
+.under::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:linear-gradient(90deg,transparent,#9ec4ff,transparent);opacity:.7}
+
+.band{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 0;margin-top:-1px}
+.band-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:900px){.band-grid{grid-template-columns:1fr}}
+.glass{background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.03));backdrop-filter:blur(6px)}
+.time-tile{display:grid;gap:6px;place-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px}
+.time{font:700 28px/1.1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace}
+.mini{font-size:12px;color:#a9b8d6}
+
+.grid.four{grid-template-columns:repeat(4,1fr)}
+@media (max-width:900px){.grid.four{grid-template-columns:1fr 1fr}}
+.stat-neo{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.04));border:1px solid var(--line);border-radius:16px;padding:18px;text-align:center;transition:transform .2s ease, box-shadow .2s ease}
+.stat-neo:hover{transform:translateY(-2px);box-shadow:0 18px 46px rgba(0,0,0,.28)}
+.kpi{font-size:34px;font-weight:900;letter-spacing:.5px}
+.label{color:#a9b8d6}
+
+.carousel{display:grid;grid-auto-flow:column;grid-auto-columns:calc(25% - 12px);gap:16px;overflow:auto;scroll-snap-type:x mandatory;padding-bottom:6px}
+@media (max-width:900px){.carousel{grid-auto-columns:80%}}
+.slide{scroll-snap-align:start;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.04));border:1px solid var(--line);border-radius:14px;padding:14px;display:grid;gap:6px;min-height:120px}
+.slide .meta{font-size:13px}
+.slide .row{display:flex;gap:8px;flex-wrap:wrap}
+
+.tilt{transform-style:preserve-3d;transition:transform .15s ease}
+.tilt:hover{transform:perspective(900px) rotateX(2deg) rotateY(-2deg)}
+
+.skel{background:linear-gradient(90deg, rgba(255,255,255,.06), rgba(255,255,255,.1), rgba(255,255,255,.06));background-size:200% 100%;animation:sweep 1.2s ease-in-out infinite;border-radius:12px}
+@keyframes sweep{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
