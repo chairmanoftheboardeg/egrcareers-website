@@ -30,7 +30,7 @@ a{color:#fff;text-decoration:none}
 .clock{font-variant-numeric:tabular-nums;color:#cfe2ff;opacity:.9;border:1px solid var(--line);padding:6px 10px;border-radius:10px}
 
 /* ===== Hero ===== */
-.hero{position:relative;border-bottom:1px solid var(--line);overflow:clip}
+.hero{position:relative;border-bottom:1px solid var(--line);overflow:clip;isolation:isolate}
 .hero-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center;padding:46px 0}
 @media (max-width:900px){.hero-inner{grid-template-columns:1fr}}
 .eyebrow{letter-spacing:.18em;text-transform:uppercase;font-size:.8rem;color:#9fb0d1}
@@ -52,6 +52,16 @@ a{color:#fff;text-decoration:none}
   repeating-linear-gradient(0deg, rgba(255,255,255,.06), rgba(255,255,255,.06) 1px, transparent 1px, transparent 40px);
 mix-blend-mode:soft-light;opacity:.35}
 .gradient{position:absolute;inset:auto 0 0 0;height:80px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.35),transparent)}
+
+/* Rotating hero background */
+.hero-bg{position:absolute;inset:0;z-index:-1}
+.hero-bg::before,.hero-bg::after{
+  content:"";position:absolute;inset:0;background-position:center;background-size:cover;background-repeat:no-repeat;
+  transition:opacity 900ms ease-in-out, transform 1200ms ease-in-out;
+}
+.hero-bg::before{opacity:1;transform:scale(1.02)}
+.hero-bg::after{opacity:0;transform:scale(1.04)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,.55));z-index:-1}
 
 /* ===== Stats ===== */
 .stats{padding:22px 0}
@@ -98,27 +108,3 @@ textarea{min-height:120px;resize:vertical}
 .skel{background:linear-gradient(90deg, rgba(255,255,255,.06), rgba(255,255,255,.1), rgba(255,255,255,.06));
   background-size:200% 100%;animation:sweep 1.2s ease-in-out infinite;border-radius:12px}
 @keyframes sweep{0%{background-position:200% 0}100%{background-position:-200% 0}}
-
-/* Rotating hero background */
-.hero {
-  position: relative;
-  overflow: clip;
-  isolation: isolate;
-}
-.hero-bg {
-  position: absolute; inset: 0;
-  z-index: -1;
-}
-.hero-bg::before, .hero-bg::after {
-  content: ""; position: absolute; inset: 0;
-  background-position: center; background-size: cover; background-repeat: no-repeat;
-  transition: opacity 900ms ease-in-out, transform 1200ms ease-in-out;
-}
-.hero-bg::before { opacity: 1; transform: scale(1.02); }
-.hero-bg::after  { opacity: 0; transform: scale(1.04); }
-.hero::after {
-  /* darken overlay for text legibility */
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,.55));
-  z-index: -1;
-}
