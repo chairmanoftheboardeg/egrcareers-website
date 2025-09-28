@@ -9,6 +9,49 @@ const clock = $('#clock');
 let sessionUser = null;
 let userProfile = null;
 
+/* ========= Hero background rotator ========= */
+const heroImages = [
+  "/assets/hero/hq-1.jpg",
+  "/assets/hero/hq-2.jpg",
+  "/assets/hero/hq-3.jpg",
+  "/assets/hero/hq-4.jpg",
+  "/assets/hero/hq-5.jpg",
+  "/assets/hero/hq-6.jpg",
+];
+
+function startHeroRotator(){
+  const bg = document.getElementById('heroBg');
+  if (!bg) return;
+  // preload
+  heroImages.forEach(src => { const i = new Image(); i.src = src; });
+  let i = 0;
+  const swap = () => {
+    const a = bg; // we’ll use ::before and ::after
+    a.style.setProperty('--imgA', `url("${heroImages[i % heroImages.length]}")`);
+    a.style.setProperty('--imgB', `url("${heroImages[(i+1) % heroImages.length]}")`);
+    // set backgrounds by toggling a class
+    a.classList.toggle('flip');
+    i++;
+  };
+  // initial paint
+  const first = heroImages[0], second = heroImages[1] || heroImages[0];
+  bg.style.setProperty('--imgA', `url("${first}")`);
+  bg.style.setProperty('--imgB', `url("${second}")`);
+  // bind CSS vars to pseudo elements
+  const style = document.createElement('style');
+  style.textContent = `
+    #heroBg::before{ background-image: var(--imgA); }
+    #heroBg::after { background-image: var(--imgB); }
+    #heroBg.flip::before{ opacity:0; transform: scale(1.04); }
+    #heroBg.flip::after { opacity:1; transform: scale(1.02); }
+  `;
+  document.head.appendChild(style);
+
+  // start cycling every 7s
+  setInterval(swap, 7000);
+}
+
+
 /* ========= Live local time ========= */
 function startClock(){
   const upd = () => {
