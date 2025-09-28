@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/><title>Apply — EGR Careers</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <link rel="stylesheet" href="/css/careers.css?v=1"/>
+  <script defer src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script defer src="/js/supabaseClient.js?v=1"></script>
+  <script defer src="/js/careers.js?v=1"></script>
+</head>
+<body>
+<header class="nav"><div class="container">
+  <div class="brand">EGR Careers</div>
+  <nav class="links">
+    <a href="/jobs.html">Jobs</a><a href="/dashboard.html">My Applications</a>
+    <div class="clock" id="clock">--:--</div><button id="authBtn" class="btn">Sign In</button>
+  </nav>
+</div></header>
+
+<section class="hero"><div class="hero-bg" id="heroBg"></div><div class="container"><h1 class="title" id="jobTitle">Apply</h1></div></section>
+
+<main class="container" style="margin-top:18px">
+  <form class="card" id="applyForm">
+    <label>Full Name</label><input id="fullName" required placeholder="Your name">
+    <label>Cover Letter</label><textarea id="cover" placeholder="Brief message…"></textarea>
+    <label>Resume (PDF)</label><input id="resume" type="file" accept="application/pdf">
+    <div class="row"><button class="btn primary" type="submit">Submit Application</button><a class="btn ghost" href="/jobs.html">Cancel</a></div>
+  </form>
+</main>
+
+<footer class="footer"><div class="container"><div>© 2025 EGR</div></div></footer>
+
+<!-- AUTH MODAL -->
+<dialog id="authModal" class="modal"><form method="dialog" class="card" id="loginForm">
+  <h3>Sign in / Create account</h3>
+  <input type="email" id="authEmail" placeholder="Email address" required>
+  <input type="password" id="authPass" placeholder="Password" required>
+  <div class="row"><button class="btn" type="submit">Sign In</button><button class="btn ghost" id="signupBtn">Create Account</button><button class="btn red" id="closeAuth">Close</button></div>
+</form></dialog>
+<div id="toast"></div>
+<script>
+  document.addEventListener('DOMContentLoaded', async ()=>{
+    await CAREERS.bootCommon();
+    CAREERS.pageApply();
+  });
+</script>
+</body>
+</html>
