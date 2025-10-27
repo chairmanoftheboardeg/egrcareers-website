@@ -1,213 +1,130 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Apply — Emirates Group Roblox Careers</title>
-  <link rel="stylesheet" href="/css/careers.css?v=4">
-  <script defer src="https://unpkg.com/@supabase/supabase-js@2"></script>
-  <script defer src="/js/supabaseClient.js?v=4"></script>
-  <script defer src="/js/careers.js?v=4"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    /* COLORS */
-    :root {
-      --primary-red: #E3000F;
-      --dark-grey: #333333;
-      --light-grey: #F5F5F5;
-      --white: #FFFFFF;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      background-color: var(--light-grey);
-      color: var(--dark-grey);
-    }
-
-    /* HEADER */
-    header.nav {
-      background-color: var(--white);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-      padding: 0.5rem 2rem;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .nav-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .brand {
-      font-weight: 700;
-      font-size: 1.5rem;
-      color: var(--primary-red);
-    }
-    nav.links a {
-      margin-left: 1.5rem;
-      text-decoration: none;
-      color: var(--dark-grey);
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-    nav.links a:hover { color: var(--primary-red); }
-    .btn-primary { background-color: var(--primary-red); color: var(--white); border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; }
-    .btn-primary:hover { background-color: #C2000D; }
-
-    /* HERO */
-    .hero-modern {
-      background: var(--white);
-      padding: 3rem 1rem;
-      text-align: center;
-      border-bottom: 1px solid #ddd;
-    }
-    .hero-modern h1 { font-size: 2.5rem; color: var(--primary-red); margin-bottom: 0.5rem; }
-    .hero-modern p { color: var(--dark-grey); font-size: 1.1rem; }
-
-    /* FORM */
-    .form-modern {
-      background: var(--white);
-      padding: 2rem;
-      border-radius: 10px;
-      max-width: 700px;
-      margin: 2rem auto;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    }
-    .form-modern h2 { color: var(--primary-red); margin-bottom: 1rem; }
-    .form-modern label { display: block; margin-top: 1rem; margin-bottom: 0.3rem; font-weight: 500; }
-    .form-modern input, .form-modern textarea, .form-modern select {
-      width: 100%;
-      padding: 0.6rem;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 1rem;
-    }
-    .form-actions { display: flex; justify-content: flex-start; margin-top: 1.5rem; gap: 1rem; }
-    .btn-ghost { background: transparent; border: 1px solid var(--primary-red); color: var(--primary-red); padding: 0.5rem 1rem; border-radius: 4px; text-decoration: none; display: inline-block; }
-    .btn-ghost:hover { background: var(--primary-red); color: var(--white); }
-
-    /* FOOTER */
-    .footer-modern {
-      background-color: var(--white);
-      color: var(--dark-grey);
-      padding: 2rem 1rem;
-      border-top: 1px solid #ddd;
-      text-align: center;
-      font-size: 0.95rem;
-    }
-    .footer-links a {
-      color: var(--primary-red);
-      margin: 0 0.5rem;
-      text-decoration: none;
-      font-weight: 500;
-    }
-    .footer-links a:hover { text-decoration: underline; }
-  </style>
+  <meta charset="utf-8"/>
+  <title>Apply — EGR Careers</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <link href="/css/careers.css" rel="stylesheet">
+  <script> const API_BASE = 'https://script.google.com/macros/s/PUT_YOUR_SCRIPT_ID/exec'; </script>
 </head>
 <body>
-  <!-- HEADER -->
-  <header class="nav">
-    <div class="container nav-container">
-      <div class="brand">Emirates Group Roblox</div>
-      <nav class="links">
-        <a href="/index.html">Home</a>
-        <a href="/jobs.html">Jobs</a>
-        <a href="/dashboard.html">My Applications</a>
-        <div class="clock" id="clock">--:--</div>
-        <button id="authBtn" class="btn-primary">Sign In</button>
-      </nav>
-    </div>
-  </header>
+  <header class="nav"><div class="container nav-container">
+    <div class="brand">Emirates Group Roblox</div>
+    <nav class="links">
+      <a href="/index.html">Home</a>
+      <a href="/jobs.html">Jobs</a>
+      <a href="/dashboard.html">My Applications</a>
+      <div id="localTime">--:--</div>
+      <button id="authBtn" class="btn btn-primary">HR Sign In</button>
+    </nav>
+  </div></header>
 
-  <!-- HERO -->
-  <section class="hero-modern">
-    <div class="container hero-container">
-      <h1>Apply to Join EGR</h1>
-      <p>Your application is secure and reviewed by our HR team. Complete all fields to ensure consideration.</p>
-    </div>
-  </section>
+  <section class="hero-modern"><div class="container"><h1>Application</h1><p class="small">Complete the form below to apply.</p></div></section>
 
-  <!-- MAIN FORM -->
-  <main class="container main-content">
-    <form class="card form-modern" id="applyForm" enctype="multipart/form-data">
-      <h2 class="form-title">Application Form</h2>
+  <main class="container" style="max-width:800px;margin:1.5rem auto;">
+    <form id="applyForm" class="card form-modern">
+      <label>Position</label>
+      <input id="jobTitle" name="jobTitle" readonly>
 
-      <label for="fullName">Full Name</label>
-      <input id="fullName" name="fullName" type="text" placeholder="Your full name" required>
+      <label>Full Name</label>
+      <input id="fullName" required>
 
-      <label for="age">Age</label>
-      <input id="age" name="age" type="number" placeholder="Your age" required>
+      <label>Age</label>
+      <input id="age" type="number" required>
 
-      <label for="email">Email Address</label>
-      <input id="email" name="email" type="email" placeholder="you@example.com" required>
+      <label>Email</label>
+      <input id="email" type="email" required>
 
-      <label for="discordUsername">Discord Username</label>
-      <input id="discordUsername" name="discordUsername" placeholder="Username#1234" required>
+      <label>Discord Username (username#1234)</label>
+      <input id="discordUsername" required>
 
-      <label for="discordId">Discord ID</label>
-      <input id="discordId" name="discordId" placeholder="Numeric Discord ID" required>
+      <label>Discord ID (numeric)</label>
+      <input id="discordId" required>
 
-      <label for="robloxUsername">Roblox Username</label>
-      <input id="robloxUsername" name="robloxUsername" placeholder="Roblox username" required>
+      <label>Roblox Username</label>
+      <input id="robloxUsername" required>
 
-      <label for="country">Country</label>
-      <input id="country" name="country" placeholder="Your country" required>
+      <label>Country</label>
+      <input id="country" required>
 
-      <label for="region">Region</label>
-      <input id="region" name="region" placeholder="Region / City" required>
+      <label>Region / City</label>
+      <input id="region" required>
 
-      <label for="cover">Cover Letter / Message</label>
-      <textarea id="cover" name="cover" placeholder="Tell us about yourself…" required></textarea>
+      <label>Cover / Message</label>
+      <textarea id="cover" required></textarea>
 
-      <label for="resume">Upload CV (PDF)</label>
-      <input id="resume" name="resume" type="file" accept="application/pdf" required>
+      <label>Upload CV (PDF)</label>
+      <input id="resume" type="file" accept="application/pdf" required>
 
-      <label for="jobSelect">Select Position</label>
-      <select id="jobSelect" name="jobSelect" required>
-        <option value="">-- Choose a Job --</option>
-      </select>
-
-      <div class="form-actions">
-        <button type="submit" class="btn-primary">Submit Application</button>
-        <a class="btn-ghost" href="/jobs.html">Cancel</a>
+      <div class="form-actions" style="margin-top:1rem">
+        <button class="btn btn-primary" type="submit">Submit Application</button>
+        <a class="btn btn-ghost" href="/jobs.html">Cancel</a>
       </div>
     </form>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="footer-modern">
-    <div class="container footer-container">
-      <div>© 2025 Emirates Group Roblox — All Rights Reserved</div>
-      <div class="footer-links">
-        <a href="/org-terms.html">Terms of Service</a>
-        <a href="/support/index.html">Support Center</a>
-      </div>
-    </div>
-  </footer>
+  <footer class="footer-modern"><div class="container footer-container">
+    <div>© 2025 Emirates Group Roblox — All Rights Reserved</div>
+    <div class="footer-links"><a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a></div>
+  </div></footer>
 
-  <!-- AUTH MODAL -->
-  <dialog id="authModal" class="modal-modern">
-    <form method="dialog" class="card form-modern" id="loginForm">
-      <h3>Sign in / Create Account</h3>
-      <input type="email" id="authEmail" placeholder="Email address" required>
-      <input type="password" id="authPass" placeholder="Password" required>
-      <div class="form-actions">
-        <button class="btn-primary" type="submit">Sign In</button>
-        <button class="btn-ghost" id="signupBtn">Create Account</button>
-        <button class="btn btn-red" id="closeAuth">Close</button>
-      </div>
-    </form>
-  </dialog>
+<script>
+function qs(name) {
+  const url = new URL(location.href);
+  return url.searchParams.get(name);
+}
+document.getElementById('jobTitle').value = qs('job') || 'General Application';
+const jobId = qs('jobId') || '';
 
-  <div id="toast"></div>
+async function toBase64(file){
+  return new Promise((res,rej)=>{
+    const reader=new FileReader();
+    reader.onload=()=> res(reader.result.split(',')[1]);
+    reader.onerror=rej;
+    reader.readAsDataURL(file);
+  });
+}
 
-  <script>
-    document.addEventListener('DOMContentLoaded', async ()=>{
-      await CAREERS.bootCommon();
-      CAREERS.pageApply();
-      CAREERS.loadJobOptions();
+document.getElementById('applyForm').addEventListener('submit', async (ev)=>{
+  ev.preventDefault();
+  const fullName = document.getElementById('fullName').value.trim();
+  const age = document.getElementById('age').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const discordUsername = document.getElementById('discordUsername').value.trim();
+  const discordId = document.getElementById('discordId').value.trim();
+  const robloxUsername = document.getElementById('robloxUsername').value.trim();
+  const country = document.getElementById('country').value.trim();
+  const region = document.getElementById('region').value.trim();
+  const cover = document.getElementById('cover').value.trim();
+  const resumeInput = document.getElementById('resume');
+  if(!resumeInput.files.length){ alert('Upload your CV (PDF).'); return; }
+  const resumeFile = resumeInput.files[0];
+  const resumeBase64 = await toBase64(resumeFile);
+  const payload = {
+    path: 'submitApplication',
+    jobId: jobId,
+    jobTitle: document.getElementById('jobTitle').value,
+    fullName, age, email, discordUsername, discordId, robloxUsername, country, region, cover,
+    resumeBase64, resumeName: resumeFile.name
+  };
+  try {
+    const r = await fetch(API_BASE, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(payload)
     });
-  </script>
+    const json = await r.json();
+    if(json.ok){
+      alert('Application submitted — thank you!');
+      location.href = '/dashboard.html';
+    } else {
+      alert('Could not submit: ' + (json.err||'unknown error'));
+    }
+  } catch(err){
+    console.error(err);
+    alert('Failed to submit. Check console.');
+  }
+});
+</script>
 </body>
 </html>
