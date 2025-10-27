@@ -1,53 +1,73 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <title>Apply — EGR Careers</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <link rel="stylesheet" href="/css/careers.css?v=2"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apply — Emirates Group Roblox Careers</title>
+  <link rel="stylesheet" href="/css/careers.css?v=3">
   <script defer src="https://unpkg.com/@supabase/supabase-js@2"></script>
-  <script defer src="/js/supabaseClient.js?v=2"></script>
-  <script defer src="/js/careers.js?v=2"></script>
+  <script defer src="/js/supabaseClient.js?v=3"></script>
+  <script defer src="/js/careers.js?v=3"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <!-- HEADER -->
   <header class="nav">
-    <div class="container">
+    <div class="container nav-container">
       <div class="brand">EGR Careers</div>
       <nav class="links">
+        <a href="/index.html">Home</a>
         <a href="/jobs.html">Jobs</a>
         <a href="/dashboard.html">My Applications</a>
         <div class="clock" id="clock">--:--</div>
-        <button id="authBtn" class="btn">Sign In</button>
+        <button id="authBtn" class="btn btn-primary">Sign In</button>
       </nav>
     </div>
   </header>
 
   <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg" id="heroBg"></div>
-    <div class="container">
-      <h1 class="title" id="jobTitle">Apply to Join EGR</h1>
-      <p class="subtitle">Complete your application below. Your information is secure and reviewed by our HR team.</p>
+  <section class="hero hero-modern">
+    <div class="container hero-container">
+      <h1>Apply to Join EGR</h1>
+      <p class="subtitle">Complete the application below. Your information is secure and reviewed by our HR team.</p>
     </div>
   </section>
 
   <!-- MAIN FORM -->
-  <main class="container" style="margin-top:20px">
-    <form class="card modern-form" id="applyForm">
+  <main class="container main-content">
+    <form class="card form-modern" id="applyForm" enctype="multipart/form-data">
+      <h2 class="form-title">Application Form</h2>
+
       <label for="fullName">Full Name</label>
-      <input id="fullName" name="fullName" required placeholder="Your full name">
+      <input id="fullName" name="fullName" type="text" placeholder="Your full name" required>
+
+      <label for="age">Age</label>
+      <input id="age" name="age" type="number" placeholder="Your age" required>
 
       <label for="email">Email Address</label>
-      <input id="email" name="email" type="email" required placeholder="you@example.com">
+      <input id="email" name="email" type="email" placeholder="you@example.com" required>
+
+      <label for="discordUsername">Discord Username</label>
+      <input id="discordUsername" name="discordUsername" placeholder="Username#1234" required>
 
       <label for="discordId">Discord ID</label>
-      <input id="discordId" name="discordId" required placeholder="Username#1234">
+      <input id="discordId" name="discordId" placeholder="Numeric Discord ID" required>
+
+      <label for="robloxUsername">Roblox Username</label>
+      <input id="robloxUsername" name="robloxUsername" placeholder="Roblox username" required>
+
+      <label for="country">Country</label>
+      <input id="country" name="country" placeholder="Your country" required>
+
+      <label for="region">Region</label>
+      <input id="region" name="region" placeholder="Region / City" required>
 
       <label for="cover">Cover Letter / Message</label>
-      <textarea id="cover" name="cover" placeholder="Brief message…" required></textarea>
+      <textarea id="cover" name="cover" placeholder="Tell us about yourself…" required></textarea>
 
-      <label for="resume">Resume (PDF)</label>
+      <label for="resume">Upload CV (PDF)</label>
       <input id="resume" name="resume" type="file" accept="application/pdf" required>
 
       <label for="jobSelect">Select Position</label>
@@ -55,30 +75,34 @@
         <option value="">-- Choose a Job --</option>
       </select>
 
-      <div class="row" style="margin-top:15px">
-        <button class="btn primary" type="submit">Submit Application</button>
-        <a class="btn ghost" href="/jobs.html">Cancel</a>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Submit Application</button>
+        <a class="btn btn-ghost" href="/jobs.html">Cancel</a>
       </div>
     </form>
   </main>
 
   <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <div>© 2025 EGR — All Rights Reserved</div>
+  <footer class="footer-modern">
+    <div class="container footer-container">
+      <div>© 2025 Emirates Group Roblox — All Rights Reserved</div>
+      <div class="footer-links">
+        <a href="/org-terms.html">Terms of Service</a>
+        <a href="/support/index.html">Support Center</a>
+      </div>
     </div>
   </footer>
 
   <!-- AUTH MODAL -->
-  <dialog id="authModal" class="modal">
-    <form method="dialog" class="card" id="loginForm">
-      <h3>Sign in / Create account</h3>
+  <dialog id="authModal" class="modal-modern">
+    <form method="dialog" class="card form-modern" id="loginForm">
+      <h3>Sign in / Create Account</h3>
       <input type="email" id="authEmail" placeholder="Email address" required>
       <input type="password" id="authPass" placeholder="Password" required>
-      <div class="row">
-        <button class="btn" type="submit">Sign In</button>
-        <button class="btn ghost" id="signupBtn">Create Account</button>
-        <button class="btn red" id="closeAuth">Close</button>
+      <div class="form-actions">
+        <button class="btn btn-primary" type="submit">Sign In</button>
+        <button class="btn btn-ghost" id="signupBtn">Create Account</button>
+        <button class="btn btn-red" id="closeAuth">Close</button>
       </div>
     </form>
   </dialog>
@@ -89,7 +113,7 @@
     document.addEventListener('DOMContentLoaded', async ()=>{
       await CAREERS.bootCommon();
       CAREERS.pageApply();
-      CAREERS.loadJobOptions(); // dynamically populate jobs from HR database
+      CAREERS.loadJobOptions(); // Populate jobs dynamically from HR database
     });
   </script>
 </body>
