@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"/><title>HR Portal — EGR</title><meta name="viewport" content="width=device-width,initial-scale=1"/><link href="/css/careers.css" rel="stylesheet"></head>
+<body>
+<header class="nav"><div class="container nav-container">
+  <div class="brand">EGR HR Portal</div>
+  <nav class="links">
+    <a href="/index.html">Home</a>
+    <a href="/jobs.html">Jobs</a>
+  </nav>
+</div></header>
+
+<main class="container" style="margin:1.25rem auto;max-width:1200px">
+  <div id="authBox" class="card" style="max-width:540px;margin:1rem auto">
+    <h3>HR Sign In</h3>
+    <input id="hrEmail" placeholder="HR email">
+    <input id="hrSecret" placeholder="Secret / password">
+    <div style="margin-top:.75rem"><button id="hrSignIn" class="btn btn-primary">Sign In</button></div>
+  </div>
+
+  <div id="portal" style="display:none">
+    <div class="card">
+      <h3>Jobs Management</h3>
+      <div style="display:flex;gap:1rem">
+        <div style="flex:1">
+          <input id="jobTitle" placeholder="Title">
+          <input id="jobDivision" placeholder="Division">
+          <input id="jobDept" placeholder="Department">
+          <textarea id="jobDesc" placeholder="Description"></textarea>
+          <div style="display:flex;gap:.5rem">
+            <button id="createJob" class="btn btn-primary">Create Job</button>
+          </div>
+        </div>
+        <div style="flex:1">
+          <h4>Active jobs</h4>
+          <div id="hrJobsList"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:1rem">
+      <h3>Applications</h3>
+      <div id="hrApps"></div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer-modern"><div class="container">© 2025 Emirates Group Roblox</div></footer>
+
+<script>
+  const API_BASE = 'https://script.google.com/macros/s/AKfycby-ea7iqH6PTt2ZmZGtf3JQy3uPbeNM31waoUCIuTE4CHqrs2LunRj4xG4O1TcLL4W8GQ/exec';
+  let HR_TOKEN = null;
+
+  document.getElementById('hrSignIn').addEventListener('click', async ()=>{
+    const email = document.getElementById('hrEmail').value;
+    const secret = document.getElementById('hrSecret').value;
+    try{
+      const res = await fetch(API_BASE, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({path:'hrAuth', email, secret})});
+      const json = await res.json();
+      if(json.ok){ HR_TOKEN = json.token; localStorage.setItem('egr_hr_token', HR_TOKEN); showPortal(); loadJobs(); loadApplications(); }
+      else alert('Auth failed');
+    } catch(e){ alert('Auth error'); console.error(e); }
+  });
+
+  function showPortal(){ document.getElementById('authBox').style.display='none'; document.getElementById
