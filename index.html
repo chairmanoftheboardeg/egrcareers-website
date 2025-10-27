@@ -1,106 +1,227 @@
 <!doctype html>
-<html>
+<html lang="en-GB">
 <head>
   <meta charset="utf-8" />
-  <title>EGR Careers</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <style>
-    /* simple styling — adapt to match your main site */
-    body{font-family:system-ui,Segoe UI,Arial;margin:16px;background:#f7f8fb}
-    .job{background:#fff;padding:16px;margin:12px 0;border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
-    .controls{display:flex;gap:8px;margin-bottom:12px}
-    button{padding:8px 12px;border-radius:6px;border:0;cursor:pointer}
-  </style>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Emirates Group Roblox — Careers</title>
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="description" content="Emirates Group Roblox — Careers. Find roles, apply, and track applications. HR portal and applicant dashboard available." />
 </head>
 <body>
-  <h1>Emirates Group Roblox — Careers</h1>
-  <div class="controls">
-    <input id="q" placeholder="Search roles..." />
-    <select id="status">
-      <option value="">All</option><option>Open</option><option>Closed</option>
-    </select>
-    <button id="search">Search</button>
-  </div>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <!-- Replace with your logo file if you have one -->
+        <img src="assets/logo-placeholder.png" alt="Emirates Group Roblox logo" class="logo" />
+        <div>
+          <h1>Emirates Group Roblox</h1>
+          <p class="tag">Careers &amp; Opportunities</p>
+        </div>
+      </div>
 
-  <div id="jobs"></div>
-
-  <!-- Apply modal -->
-  <div id="modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);align-items:center;justify-content:center">
-    <div style="background:#fff;padding:16px;border-radius:8px;max-width:640px;width:95%">
-      <h3 id="modal-title">Apply</h3>
-      <form id="applyForm">
-        <input type="hidden" name="job_id" id="job_id" />
-        <div><label>First name</label><input name="first_name" required /></div>
-        <div><label>Last name</label><input name="last_name" /></div>
-        <div><label>Email</label><input name="email" type="email" required/></div>
-        <div><label>Discord</label><input name="discord_username" /></div>
-        <div><label>Discord ID</label><input name="discord_id" /></div>
-        <div><label>Roblox username</label><input name="roblox_username" /></div>
-        <div><label>Age</label><input name="age" /></div>
-        <div><label>Country</label><input name="country" /></div>
-        <div><label>Region</label><input name="region" /></div>
-        <div><label>Why do you want this role?</label><textarea name="cover_letter"></textarea></div>
-        <div style="margin-top:8px"><button type="submit">Submit application</button> <button type="button" onclick="closeModal()">Cancel</button></div>
-      </form>
+      <nav class="main-nav">
+        <a href="#jobs">Openings</a>
+        <a href="#why">Why Join Us</a>
+        <a href="#divisions">Divisions</a>
+        <a href="#employee-rights">Employee Rights</a>
+        <a href="#contact">Contact</a>
+        <a class="btn btn-outline" id="applicantPortalBtn">Applicant Portal</a>
+        <a class="btn btn-primary" id="hrLoginBtn">HR Login</a>
+      </nav>
     </div>
-  </div>
+  </header>
 
-<script>
-const API = 'https://script.google.com/macros/s/AKfycbzTwLSlOIXxDGVICcIlytL1PSbsaoBlf-TrUZLAYNWei1rqcEIot2O-Wk48QQamKUfq/exec'; // include trailing ?
-async function fetchJobs(q='', status='') {
-  const url = API + 'path=getJobs' + (q ? '&q=' + encodeURIComponent(q) : '') + (status ? '&status=' + encodeURIComponent(status) : '');
-  const res = await fetch(url);
-  const data = await res.json();
-  return data.jobs || [];
-}
-function renderJob(job){
-  return `
-  <div class="job">
-    <h3>${job.title} <small>(${job.location || 'Remote'})</small></h3>
-    <p><strong>Status:</strong> ${job.status} • <strong>Division:</strong> ${job.division}</p>
-    <p>${job.summary || ''}</p>
-    <button onclick="openApply('${job.job_id}','${job.title.replace(/'/g,"\\'")}')">Apply</button>
-  </div>`;
-}
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-left">
+        <h2>Join Emirates Group Roblox</h2>
+        <p class="lead">Be part of a professional, innovative and supportive virtual airline group. Browse careers, submit applications, and track your progress.</p>
+        <div class="hero-ctas">
+          <a href="#jobs" class="btn btn-primary">View Openings</a>
+          <a href="#employee-rights" class="btn btn-outline">Employee Rights & Terms</a>
+        </div>
 
-document.getElementById('search').addEventListener('click', async ()=>{
-  const q = document.getElementById('q').value;
-  const status = document.getElementById('status').value;
-  const jobs = await fetchJobs(q,status);
-  const container = document.getElementById('jobs');
-  container.innerHTML = jobs.map(renderJob).join('');
-});
+        <div class="stats-row">
+          <div class="stat">
+            <div class="stat-value" id="stat-open-positions">—</div>
+            <div class="stat-label">Open Positions</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" id="stat-applications">—</div>
+            <div class="stat-label">Applications Received</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" id="stat-hr-members">—</div>
+            <div class="stat-label">HR Members</div>
+          </div>
+        </div>
+      </div>
 
-async function init() {
-  const jobs = await fetchJobs();
-  document.getElementById('jobs').innerHTML = jobs.map(renderJob).join('');
-}
-init();
+      <div class="hero-right">
+        <div class="panel">
+          <h3>Local time</h3>
+          <div class="time-row">
+            <div>
+              <div class="time-title">Your local time</div>
+              <div id="localTime" class="time-value">--:--</div>
+            </div>
+            <div>
+              <div class="time-title">Dubai time (HR schedule)</div>
+              <div id="dubaiTime" class="time-value">--:--</div>
+            </div>
+          </div>
 
-function openApply(job_id, title){
-  document.getElementById('modal').style.display='flex';
-  document.getElementById('modal-title').textContent = 'Apply for ' + title;
-  document.getElementById('job_id').value = job_id;
-}
-function closeModal(){ document.getElementById('modal').style.display='none'; }
+          <div class="hr-status">
+            <div>HR Office Hours</div>
+            <div class="hr-hours">
+              Mon–Thu: 09:00–19:00 (Asia/Dubai) <br />
+              Fri–Sun: 07:00–22:00 (Asia/Dubai)
+            </div>
+            <div class="hr-active" id="hrActive">Checking...</div>
+            <div class="chro">CHRO: <strong>William Alexander Cross</strong></div>
+          </div>
+        </div>
 
-document.getElementById('applyForm').addEventListener('submit', async (ev)=>{
-  ev.preventDefault();
-  const form = new FormData(ev.target);
-  const body = Object.fromEntries(form.entries());
-  const res = await fetch(API, {
-    method: 'POST',
-    headers: {'Content-Type':'application/json'},
-    body: JSON.stringify(Object.assign({action:'apply'}, body))
-  });
-  const json = await res.json();
-  if (json.ok) {
-    alert('Application received! Application ID: ' + json.application_id);
-    closeModal();
-  } else {
-    alert('Error: ' + (json.error || 'unknown'));
-  }
-});
-</script>
+        <div class="panel small">
+          <h4>Quick links</h4>
+          <ul class="quick-links">
+            <li><a href="https://emiratesgrouproblox.link/org-terms.html" target="_blank" rel="noopener">Terms of Service</a></li>
+            <li><a href="https://emiratesgrouproblox.link/support/index.html" target="_blank" rel="noopener">Support Centre</a></li>
+            <li><a href="https://emiratesgrouproblox.link/" target="_blank" rel="noopener">Main site</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY JOIN US -->
+  <section id="why" class="panel-section container">
+    <h2>Why join Emirates Group Roblox?</h2>
+    <p class="section-lead">We combine real-world standards with community passion. Growth, training and teamwork are at the centre of everything we do.</p>
+
+    <div class="cards">
+      <article class="card">
+        <h3>Innovation & Realism</h3>
+        <p>We value realistic operations, frequent training and continual improvement of our virtual airline systems.</p>
+      </article>
+      <article class="card">
+        <h3>Diversity & Inclusion</h3>
+        <p>We welcome participants from all backgrounds and foster a respectful community culture.</p>
+      </article>
+      <article class="card">
+        <h3>Growth Opportunities</h3>
+        <p>Career progression, leadership roles and development pathways within our Roblox group.</p>
+      </article>
+      <article class="card">
+        <h3>Supportive HR</h3>
+        <p>A professional HR team manages recruitment fairly with clear feedback and records.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- DIVISIONS -->
+  <section id="divisions" class="container panel-section">
+    <h2>Our Divisions</h2>
+    <div class="divisions-grid">
+      <div class="division">
+        <h4>Flight Operations</h4>
+        <p>Scheduling, crew coordination and flight operations for our hosted flights.</p>
+      </div>
+      <div class="division">
+        <h4>Customer Service</h4>
+        <p>Guest relations, onboarding passengers and handling enquiries in a professional manner.</p>
+      </div>
+      <div class="division">
+        <h4>Ground Operations</h4>
+        <p>Ramp, baggage, and ground handling roles that keep the operation running smoothly.</p>
+      </div>
+      <div class="division">
+        <h4>HR & Recruitment</h4>
+        <p>Hiring, staff records, training & welfare — professional HR services for the group.</p>
+      </div>
+      <div class="division">
+        <h4>IT & Systems</h4>
+        <p>Maintain dashboards, automation and server-side systems for flights and community tools.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOBS LISTING -->
+  <section id="jobs" class="container panel-section">
+    <div class="jobs-header">
+      <div>
+        <h2>Current opportunities</h2>
+        <p class="section-lead">Browse open roles and apply online. Use filters to find roles that match you.</p>
+      </div>
+      <div class="job-controls">
+        <input id="searchInput" type="search" placeholder="Search jobs, keywords, division..." />
+        <select id="filterStatus">
+          <option value="">All statuses</option>
+          <option>Open</option><option>Closed</option><option>Draft</option>
+        </select>
+        <button id="searchBtn" class="btn btn-primary">Search</button>
+      </div>
+    </div>
+
+    <div id="jobsList" class="jobs-list">
+      <!-- Job cards injected here by script.js -->
+      <div class="loading">Loading jobs…</div>
+    </div>
+  </section>
+
+  <!-- MAP + DISCORD -->
+  <section id="contact" class="container panel-section">
+    <div class="map-and-discord">
+      <div class="map">
+        <h3>Our virtual HQ location</h3>
+        <p>Primary hub and operations admin location (map for reference only).</p>
+        <!-- Replace MAP_EMBED_SRC in script.js or directly here -->
+        <iframe id="mapEmbed" title="Map" src="" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+
+      <aside class="discord">
+        <h3>Community & support (Discord)</h3>
+        <p>Join our Discord for support, announcements and community events.</p>
+        <div class="discord-ctas">
+          <a id="discordInviteBtn" class="btn btn-primary" target="_blank" rel="noopener">Join our Discord</a>
+          <div class="discord-widget" id="discordWidget">
+            <!-- If you have a Discord widget URL you can embed here — fallback: server invite -->
+            <div class="widget-placeholder">Discord widget will show here.</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- EMPLOYEE RIGHTS & TERMS -->
+  <section id="employee-rights" class="container panel-section">
+    <h2>Employee Rights — Terms & Conditions</h2>
+    <p class="section-lead">These Employee Rights are provided so that every applicant and employee understands the standards, expectations, and protections that apply when working with Emirates Group Roblox. The text below is written to be clear and printable.</p>
+
+    <div class="employee-terms" id="employeeTerms">
+      <!-- Long legal / policy text inserted by script.js to keep HTML lean -->
+    </div>
+
+    <div class="print-controls">
+      <button id="downloadTermsBtn" class="btn btn-outline">Download (PDF)</button>
+      <button id="printTermsBtn" class="btn btn-primary">Print</button>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <p>&copy; <span id="year"></span> Emirates Group Roblox — Careers</p>
+        <p><small>Designed to reflect a realistic careers experience; this site uses Google Sheets for data storage and a Google Apps Script web API. Not affiliated with Emirates Group (real world).</small></p>
+      </div>
+      <div class="footer-links">
+        <a href="https://emiratesgrouproblox.link/org-terms.html" target="_blank" rel="noopener">Terms</a>
+        <a href="https://emiratesgrouproblox.link/support/index.html" target="_blank" rel="noopener">Support</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
