@@ -1,440 +1,186 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <title>EGR Careers — Join the Future</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <meta name="theme-color" content="#0f1629"/>
-  <link rel="stylesheet" href="/css/careers.css?v=7"/>
-  <!-- Inline upgrades + footer styles -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home — Emirates Group Roblox Careers</title>
+  <link rel="stylesheet" href="/css/careers.css?v=5">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script defer src="/js/careers.js?v=5"></script>
   <style>
-    /* ===== HERO / VISUAL ENERGY ===== */
-    .hero{position:relative;overflow:hidden}
-    .hero .container{padding:56px 0}
-    .title{font-size:clamp(28px,5.8vw,56px)}
-    .eyebrow{letter-spacing:.18em;text-transform:uppercase;font-size:.8rem;color:#9fb0d1}
-    .glow{animation:shine 3.5s ease-in-out infinite;background:linear-gradient(90deg,#fff,#d9e6ff,#fff);-webkit-background-clip:text;background-clip:text;color:transparent}
-    @keyframes shine{0%,100%{filter:drop-shadow(0 0 0 rgba(158,196,255,.0))}50%{filter:drop-shadow(0 0 18px rgba(158,196,255,.35))}}
-    #fx{position:absolute;inset:0;z-index:-3}
-    .orbs{position:absolute;inset:0;z-index:-2;pointer-events:none}
-    .orb{position:absolute;border-radius:50%;filter:blur(12px) saturate(120%);opacity:.5}
-    .orb.a{width:280px;height:280px;background:radial-gradient(circle at 30% 30%,#7eb2ff,transparent 60%);top:-40px;right:8%;animation:float 16s ease-in-out infinite}
-    .orb.b{width:220px;height:220px;background:radial-gradient(circle at 30% 30%,#ff2d55,transparent 60%);bottom:-20px;left:12%;animation:float 20s ease-in-out infinite}
-    .orb.c{width:180px;height:180px;background:radial-gradient(circle at 30% 30%,#6bffb3,transparent 60%);top:30%;left:38%;animation:float 22s ease-in-out infinite}
-    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+    :root {
+      --primary-red: #E3000F;
+      --dark-grey: #333333;
+      --light-grey: #F5F5F5;
+      --white: #FFFFFF;
+    }
 
-    /* ===== INFO BAND / COUNTERS / CAROUSEL ===== */
-    .band{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 0;margin-top:-1px;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.03));backdrop-filter:blur(6px)}
-    .band-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-    @media (max-width:900px){.band-grid{grid-template-columns:1fr}}
-    .time-tile{display:grid;gap:6px;place-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px}
-    .time{font:700 28px/1.1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
-    .mini{font-size:12px;color:#9fb0d1}
+    body { font-family: 'Inter', sans-serif; margin:0; background:var(--light-grey); color:var(--dark-grey); }
 
-    .grid.four{grid-template-columns:repeat(4,1fr)}
-    @media (max-width:900px){.grid.four{grid-template-columns:1fr 1fr}}
-    .stat-neo{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.04));border:1px solid var(--line);border-radius:16px;padding:18px;text-align:center;transition:transform .2s ease, box-shadow .2s ease}
-    .stat-neo:hover{transform:translateY(-2px);box-shadow:0 18px 46px rgba(0,0,0,.28)}
-    .kpi{font-size:34px;font-weight:900;letter-spacing:.5px}
-    .under{position:relative;display:inline-block}
-    .under::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:linear-gradient(90deg,transparent,#9ec4ff,transparent);opacity:.7}
+    /* HEADER */
+    header.nav { background-color: var(--white); box-shadow: 0 2px 6px rgba(0,0,0,0.05); padding: 0.5rem 2rem; position: sticky; top:0; z-index:100;}
+    .nav-container { display:flex; justify-content:space-between; align-items:center;}
+    .brand { font-weight:700; font-size:1.5rem; color:var(--primary-red);}
+    nav.links a { margin-left:1.5rem; text-decoration:none; color:var(--dark-grey); font-weight:500; transition: color 0.3s;}
+    nav.links a:hover { color: var(--primary-red);}
+    .btn-primary { background-color: var(--primary-red); color: var(--white); border:none; padding:0.5rem 1rem; border-radius:4px; cursor:pointer;}
+    .btn-primary:hover { background-color:#C2000D; }
 
-    .ticker{margin-top:10px}
-    .neon{border:1px solid rgba(158,196,255,.25);background:rgba(158,196,255,.08);padding:10px 12px;border-radius:12px;box-shadow:0 0 28px rgba(158,196,255,.15) inset}
+    /* HERO */
+    .hero-modern { background: var(--white); padding:3rem 1rem; text-align:center; border-bottom:1px solid #ddd;}
+    .hero-modern h1 { font-size:2.5rem; color: var(--primary-red); margin-bottom:0.5rem; }
+    .hero-modern p { color: var(--dark-grey); font-size:1.1rem; }
 
-    .carousel{display:grid;grid-auto-flow:column;grid-auto-columns:calc(25% - 12px);gap:16px;overflow:auto;scroll-snap-type:x mandatory;padding-bottom:6px}
-    @media (max-width:900px){.carousel{grid-auto-columns:80%}}
-    .slide{scroll-snap-align:start;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.04));border:1px solid var(--line);border-radius:14px;padding:14px;display:grid;gap:6px;min-height:120px}
-    .skel{background:linear-gradient(90deg, rgba(255,255,255,.06), rgba(255,255,255,.1), rgba(255,255,255,.06));background-size:200% 100%;animation:sweep 1.2s ease-in-out infinite;border-radius:12px}
-    @keyframes sweep{0%{background-position:200% 0}100%{background-position:-200% 0}}
+    /* SECTION STYLES */
+    section { padding: 2rem 1rem; max-width: 1200px; margin:0 auto; }
+    h2 { color: var(--primary-red); margin-bottom:1rem; }
+    .card { background: var(--white); padding:1.5rem; border-radius:10px; margin-bottom:1.5rem; box-shadow:0 4px 15px rgba(0,0,0,0.08); }
 
-    /* ===== PHOTO MOSAIC ===== */
-    .mosaic{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px}
-    .mosaic img{width:100%;height:100%;object-fit:cover;border-radius:14px;border:1px solid var(--line);background:#0a0f1f}
-    @media (max-width:900px){.mosaic{grid-template-columns:1fr 1fr}}
+    /* STATISTICS */
+    .stats { display:flex; flex-wrap:wrap; gap:1rem; justify-content:space-around; text-align:center; }
+    .stat-card { flex:1 1 200px; padding:1rem; border-radius:10px; background:var(--white); box-shadow:0 4px 12px rgba(0,0,0,0.05);}
+    .stat-card h3 { font-size:2rem; color:var(--primary-red); margin:0; }
+    .stat-card p { margin:0.5rem 0 0; font-weight:500; }
 
-    /* ===== PROFESSIONAL FOOTER ===== */
-    .site-footer{margin-top:32px;background:linear-gradient(180deg,rgba(10,15,31,.96),rgba(10,15,31,1));border-top:1px solid var(--line);color:#dbe6ff}
-    .footer-top{padding:28px 0}
-    .ft-brand{display:flex;gap:14px;align-items:center;margin-bottom:18px}
-    .ft-logo{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:radial-gradient(120% 120% at 30% 30%, #9ec4ff22, #1b2542);border:1px solid #2a3557;font-size:20px;color:#ffffff}
-    .ft-title{margin:0 0 2px 0}
-    .ft-tag{margin:0;color:#9fb0d1}
+    /* DIVISIONS */
+    .division { display:flex; flex-wrap:wrap; gap:1rem; }
+    .division-card { flex:1 1 300px; background:var(--white); border-radius:10px; padding:1rem; box-shadow:0 4px 12px rgba(0,0,0,0.05);}
+    .division-card h4 { color: var(--primary-red); margin-bottom:0.5rem; }
 
-    .ft-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-    @media (max-width:900px){.ft-cols{grid-template-columns:1fr 1fr}}
-    @media (max-width:560px){.ft-cols{grid-template-columns:1fr}}
-    .ft-col h4{margin:0 0 10px 0}
-    .ft-col ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
-    .ft-col a{color:#dbe6ff;text-decoration:none}
-    .ft-col a:hover{color:#ffffff}
-    .ft-social{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 8px}
-    .ft-social a{display:inline-block;padding:8px 10px;border-radius:10px;border:1px solid #2a3557;background:linear-gradient(180deg,#1b2542,#141a2e);font-size:13px;color:#e9f0ff;text-decoration:none}
-    .ft-social a:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(0,0,0,.25)}
-    .ft-note{color:#9fb0d1;font-size:12px;margin:6px 0 0}
+    /* HR TEAM */
+    .hr-team { display:flex; flex-wrap:wrap; gap:1rem; }
+    .hr-card { flex:1 1 200px; background:var(--white); border-radius:10px; padding:1rem; text-align:center; box-shadow:0 4px 12px rgba(0,0,0,0.05);}
+    .hr-card h5 { color: var(--primary-red); margin:0.5rem 0 0; }
 
-    .footer-bottom{border-top:1px solid #22304f;background:#0a0f1f}
-    .footer-bottom-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;color:#a9b8d6}
-    .footer-bottom-links{display:flex;gap:10px;align-items:center}
-    .footer-bottom a{color:#a9b8d6;text-decoration:none}
-    .footer-bottom a:hover{color:#ffffff}
-    .footer-bottom .dot{opacity:.6}
+    /* FOOTER */
+    .footer-modern { background-color: var(--white); color: var(--dark-grey); padding:2rem 1rem; border-top:1px solid #ddd; text-align:center; font-size:0.95rem;}
+    .footer-links a { color: var(--primary-red); margin:0 0.5rem; text-decoration:none; font-weight:500;}
+    .footer-links a:hover { text-decoration:underline; }
+
+    /* LOCAL TIME */
+    #localTime { font-weight:600; color: var(--primary-red);}
   </style>
-
-  <link rel="preconnect" href="https://unpkg.com">
-  <script defer src="https://unpkg.com/@supabase/supabase-js@2"></script>
-  <script defer src="/js/supabaseClient.js?v=7"></script>
 </head>
 <body>
-  <!-- NAV -->
+  <!-- HEADER -->
   <header class="nav">
-    <div class="container">
-      <a class="brand" href="/"><span class="plane">✈</span><strong>EGR Careers</strong></a>
+    <div class="container nav-container">
+      <div class="brand">Emirates Group Roblox</div>
       <nav class="links">
+        <a href="/index.html">Home</a>
         <a href="/jobs.html">Jobs</a>
         <a href="/dashboard.html">My Applications</a>
-        <a href="/hr.html">HR Portal</a>
-        <div class="clock" id="clock">--:--</div>
-        <button id="authBtn" class="btn" onclick="document.getElementById('authModal').showModal()">Sign In</button>
+        <div id="localTime">--:--</div>
+        <button id="authBtn" class="btn-primary">Sign In</button>
       </nav>
     </div>
   </header>
 
   <!-- HERO -->
-  <section
-    class="hero"
-    data-hero-path=""
-    data-hero-images="EGR Headquarters Pic.png, meeting room hq.png, occ office.png, occ.png, office 1.png, office hq.png"
-    id="hero"
-  >
-    <canvas id="fx"></canvas>
-    <div class="orbs"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div></div>
-    <img id="heroImg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1;filter:brightness(.78)">
-    <div class="container hero-inner">
-      <div>
-        <div class="eyebrow">Hello Tomorrow</div>
-        <h1 class="title glow">Join the Future of Virtual Aviation</h1>
-        <p class="sub">Roles across Emirates Airlines, Fly Dubai, EGR HQ, University, and Falcon LTD.</p>
-        <div class="ticker neon" id="systemTicker">System ready.</div>
-        <div class="row" style="margin-top:14px">
-          <a class="btn primary" href="/jobs.html">Browse Open Roles</a>
-          <a class="btn ghost" href="https://emiratesgrouproblox.link/" target="_blank" rel="noopener">Main Site</a>
-        </div>
+  <section class="hero-modern">
+    <div class="container hero-container">
+      <h1>Welcome to Emirates Group Roblox Careers</h1>
+      <p>Join our team and be part of a professional and innovative environment. Explore opportunities and learn more about our divisions, HR team, and policies below.</p>
+    </div>
+  </section>
+
+  <!-- STATISTICS -->
+  <section>
+    <h2>Our Career Stats</h2>
+    <div class="stats">
+      <div class="stat-card">
+        <h3 id="jobsCount">0</h3>
+        <p>Open Positions</p>
+      </div>
+      <div class="stat-card">
+        <h3 id="applicationsCount">0</h3>
+        <p>Applications Received</p>
+      </div>
+      <div class="stat-card">
+        <h3 id="hrCount">0</h3>
+        <p>HR Team Members</p>
       </div>
     </div>
   </section>
 
-  <!-- TIME STRIP -->
-  <section class="band">
-    <div class="container band-grid">
-      <div class="time-tile"><div class="mini">Your Local Time</div><div class="time" id="timeLocal">--:--</div></div>
-      <div class="time-tile"><div class="mini">Dubai (GST)</div><div class="time" id="timeDubai">--:--</div></div>
-      <div class="time-tile"><div class="mini">Open Roles</div><div class="time" id="openRolesCount">—</div></div>
+  <!-- DIVISIONS -->
+  <section>
+    <h2>Our Divisions</h2>
+    <div class="division">
+      <div class="division-card">
+        <h4>Flight Operations</h4>
+        <p>Responsible for managing all flight-related activities, scheduling, and crew coordination.</p>
+      </div>
+      <div class="division-card">
+        <h4>Customer Service</h4>
+        <p>Handles inquiries, support, and ensures high-quality passenger experiences.</p>
+      </div>
+      <div class="division-card">
+        <h4>Engineering & Maintenance</h4>
+        <p>Maintains all aircraft, performs checks, and ensures operational safety standards.</p>
+      </div>
     </div>
   </section>
 
-  <!-- EGR IN NUMBERS -->
-  <section class="container" style="margin-top:24px">
+  <!-- MESSAGE FROM CHRO -->
+  <section>
+    <h2>Message from the CHRO</h2>
     <div class="card">
-      <h2 class="under">EGR in numbers</h2>
-      <div class="grid four">
-        <div class="stat-neo"><div class="kpi" data-count="2023">0</div><div class="label">Founded</div></div>
-        <div class="stat-neo"><div class="kpi" id="kpiOpen" data-count="0">0</div><div class="label">Open roles right now</div></div>
-        <div class="stat-neo"><div class="kpi" data-count="6">0</div><div class="label">Departments</div></div>
-        <div class="stat-neo"><div class="kpi" data-count="4">0</div><div class="label">Divisions/Subsidiary</div></div>
+      <p>Hello! At Emirates Group Roblox, we value professionalism, teamwork, and innovation. Our HR team is here to support your career growth and ensure a safe and productive work environment. We look forward to welcoming talented individuals to our divisions.</p>
+    </div>
+  </section>
+
+  <!-- HR TEAM -->
+  <section>
+    <h2>Meet Our HR Team</h2>
+    <div class="hr-team">
+      <div class="hr-card">
+        <h5>Tyler Nicholas</h5>
+        <p>Chief Human Resources Officer</p>
+      </div>
+      <div class="hr-card">
+        <h5>Jane Doe</h5>
+        <p>HR Manager</p>
+      </div>
+      <div class="hr-card">
+        <h5>John Smith</h5>
+        <p>Recruitment Specialist</p>
       </div>
     </div>
   </section>
 
-  <!-- LATEST ROLES -->
-  <section class="container" style="margin-top:24px">
+  <!-- EMPLOYEE INFO -->
+  <section>
+    <h2>Employee Information</h2>
     <div class="card">
-      <div class="row" style="justify-content:space-between;align-items:center">
-        <h2 class="under">Latest roles</h2>
-        <a class="btn" href="/jobs.html">View all</a>
-      </div>
-      <div class="carousel" id="latestRoles">
-        <div class="slide skel" style="height:120px"></div>
-        <div class="slide skel" style="height:120px"></div>
-        <div class="slide skel" style="height:120px"></div>
-        <div class="slide skel" style="height:120px"></div>
-      </div>
+      <h4>Rules & Conduct</h4>
+      <p>All employees must follow the EGR Code of Conduct, uphold professionalism, and respect colleagues.</p>
+      <h4>Employee Rights</h4>
+      <p>We provide a safe and fair working environment. All employees have the right to support, feedback, and career development.</p>
+      <h4>Vision & Work Environment</h4>
+      <p>Our vision is to maintain excellence in virtual aviation operations while promoting a positive, collaborative environment.</p>
     </div>
   </section>
 
-  <!-- FOCUS & BENEFITS -->
-  <section class="container" style="margin-top:24px">
-    <div class="grid two">
-      <div class="card">
-        <h2 class="under">Focus areas</h2>
-        <div class="grid two">
-          <div class="item"><strong>Safety & Wellbeing</strong><p class="meta">High standards in training & event safety.</p></div>
-          <div class="item"><strong>Learning & Growth</strong><p class="meta">University & on-the-job coaching.</p></div>
-          <div class="item"><strong>Operational Excellence</strong><p class="meta">Realistic procedures & consistent quality.</p></div>
-          <div class="item"><strong>Community & Culture</strong><p class="meta">Teamwork and professionalism first.</p></div>
-        </div>
-      </div>
-      <div class="card">
-        <h2 class="under">Benefits</h2>
-        <div class="grid two">
-          <div class="item"><strong>Pathways</strong><p class="meta">Clear progressions to senior roles.</p></div>
-          <div class="item"><strong>Recognition</strong><p class="meta">Badges, features & role progression.</p></div>
-          <div class="item"><strong>Flexibility</strong><p class="meta">Schedules that fit school & life.</p></div>
-          <div class="item"><strong>Tools & SOPs</strong><p class="meta">Modern tools & guides to excel.</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER (PROFESSIONAL) -->
-  <footer class="site-footer" role="contentinfo">
-    <div class="container footer-top">
-      <!-- Brand -->
-      <div class="ft-brand">
-        <div class="ft-logo" aria-hidden="true">✈︎</div>
-        <div>
-          <h3 class="ft-title">Emirates Group Roblox — Careers</h3>
-          <p class="ft-tag">Hello Tomorrow. Fly Better.</p>
-        </div>
-      </div>
-
-      <!-- Columns -->
-      <nav class="ft-cols" aria-label="Footer">
-        <div class="ft-col">
-          <h4>Explore</h4>
-          <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/jobs.html">Open Roles</a></li>
-            <li><a href="/dashboard.html">My Applications</a></li>
-            <li><a href="/hr.html">HR Portal</a></li>
-            <li><a href="https://emiratesgrouproblox.link/" target="_blank" rel="noopener">Main Site</a></li>
-          </ul>
-        </div>
-
-        <div class="ft-col">
-          <h4>Divisions</h4>
-          <ul>
-            <li><a href="/jobs.html?division=Emirates%20Airlines">Emirates Airlines</a></li>
-            <li><a href="/jobs.html?division=Fly%20Dubai">Fly Dubai</a></li>
-            <li><a href="/jobs.html?division=EGR%20HQ">EGR HQ</a></li>
-            <li><a href="/jobs.html?division=University">University</a></li>
-            <li><a href="/jobs.html?division=Falcon%20LTD">Falcon LTD</a></li>
-          </ul>
-        </div>
-
-        <div class="ft-col">
-          <h4>Legal</h4>
-          <ul>
-            <li><a href="https://emiratesgrouproblox.link/terms.html" target="_blank" rel="noopener">Website Terms</a></li>
-            <li><a href="https://emiratesgrouproblox.link/privacy.html" target="_blank" rel="noopener">Privacy Policy</a></li>
-            <li><a href="/contact.html">Contact Us</a></li>
-          </ul>
-        </div>
-
-        <div class="ft-col">
-          <h4>Connect</h4>
-          <div class="ft-social">
-            <a href="https://www.instagram.com/emiratesgroup.rbx" aria-label="Instagram" target="_blank" rel="noopener">Instagram</a>
-            <a href="https://x.com/FlyEmiratesRBX" aria-label="X" target="_blank" rel="noopener">X</a>
-            <a href="https://youtube.com/@emirates-group-roblox" aria-label="YouTube" target="_blank" rel="noopener">YouTube</a>
-            <a href="https://www.tiktok.com/@emiratesgroup.rbx" aria-label="TikTok" target="_blank" rel="noopener">TikTok</a>
-            <a href="https://discord.gg/RaudauJNn9" aria-label="Discord" target="_blank" rel="noopener">Discord</a>
-            <a href="https://www.roblox.com/groups/" aria-label="Roblox Group" target="_blank" rel="noopener">Roblox</a>
-          </div>
-          <p class="ft-note">Virtual HQ: Dubai, UAE · Not affiliated with the real Emirates Group.</p>
-        </div>
-      </nav>
-    </div>
-
-    <div class="footer-bottom">
-      <div class="container footer-bottom-row">
-        <div>© <span id="year"></span> Emirates Group Roblox. All rights reserved.</div>
-        <div class="footer-bottom-links">
-          <a href="https://emiratesgrouproblox.link/terms.html" target="_blank" rel="noopener">Terms</a>
-          <span class="dot">•</span>
-          <a href="https://emiratesgrouproblox.link/privacy.html" target="_blank" rel="noopener">Privacy</a>
-        </div>
+  <!-- FOOTER -->
+  <footer class="footer-modern">
+    <div class="container footer-container">
+      <div>© 2025 Emirates Group Roblox — All Rights Reserved</div>
+      <div class="footer-links">
+        <a href="/org-terms.html">Terms of Service</a>
+        <a href="/support/index.html">Support Center</a>
       </div>
     </div>
   </footer>
 
-<!-- AUTH MODAL (New) -->
-<dialog id="authModal" class="modal">
-  <form method="dialog" class="auth-card" onsubmit="return false;">
-    <h3 class="auth-title">Sign in to EGR Careers</h3>
-    <p class="auth-sub">Use your email and password. New here? Create an account.</p>
-
-    <div class="field">
-      <label class="label" for="authEmail">Email</label>
-      <div class="input-wrap">
-        <span class="ico">✉️</span>
-        <input class="input" id="authEmail" type="email" placeholder="you@example.com" autocomplete="email" required />
-      </div>
-    </div>
-
-    <div class="field">
-      <label class="label" for="authPass">Password</label>
-      <div class="input-wrap">
-        <span class="ico">🔒</span>
-        <input class="input" id="authPass" type="password" placeholder="Your password" autocomplete="current-password" required />
-        <button class="eye" type="button" id="togglePass" aria-label="Show password">👁</button>
-      </div>
-    </div>
-
-    <div class="btn-row">
-      <button class="btn primary" id="loginBtn">Sign In</button>
-      <button class="btn ghost" id="signupBtn">Create Account</button>
-      <button class="btn red" onclick="document.getElementById('authModal').close()">Close</button>
-    </div>
-
-    <div class="divider">or</div>
-
-    <div class="btn-row">
-      <!-- Optional future OAuth buttons (disabled by default) -->
-      <button class="btn ghost" type="button" disabled title="Coming soon">Sign in with Discord</button>
-      <button class="btn ghost" type="button" disabled title="Coming soon">Sign in with Google</button>
-    </div>
-
-    <p id="authMsg" class="auth-msg"></p>
-  </form>
-</dialog>
-
-
-  <!-- SCRIPTS -->
   <script>
-    const hasSupabase = !!(window.supabase && typeof window.supabase.from === 'function');
-
-    /* Local + Dubai clocks (with fallback) */
-    function fmtDubaiFallback(){ const now=new Date(); const utc=now.getTime()+now.getTimezoneOffset()*60000; const dubai=new Date(utc+4*3600*1000); return dubai.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}); }
-    function startClocks(){
-      const elLocal=document.getElementById('timeLocal'); const elDubai=document.getElementById('timeDubai');
-      const tick=()=>{
-        if(elLocal) elLocal.textContent=new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
-        try{ const d=new Intl.DateTimeFormat([], {hour:'2-digit',minute:'2-digit',timeZone:'Asia/Dubai'}).format(new Date()); if(elDubai) elDubai.textContent=d; }
-        catch(e){ if(elDubai) elDubai.textContent=fmtDubaiFallback(); }
-      }; tick(); setInterval(tick,15000);
+    // Local time display
+    function updateLocalTime() {
+      const now = new Date();
+      document.getElementById('localTime').textContent = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
     }
-
-    /* Robust hero rotator (filters to images that actually load) */
-    async function startHeroRotator(){
-      const section=document.getElementById('hero'); const imgEl=document.getElementById('heroImg'); if(!section||!imgEl) return;
-      const base=section.getAttribute('data-hero-path')||''; 
-      const names=(section.getAttribute('data-hero-images')||'').split(',').map(s=>s.trim()).filter(Boolean);
-      if(!names.length) return;
-      const urls=names.map(n=>`${base}${n.split('/').map(encodeURIComponent).join('/')}?v=${Date.now()}`);
-
-      const ok=[]; // keep only images that load
-      await Promise.all(urls.map(u=>new Promise(res=>{
-        const p=new Image();
-        p.onload=()=>{ ok.push(u); res(); };
-        p.onerror=()=>{ console.warn('Image not found:', u); res(); };
-        p.src=u;
-      })));
-      if(!ok.length){ console.error('No hero images loaded'); return; }
-      let i=0; imgEl.src=ok[0];
-      setInterval(()=>{ i=(i+1)%ok.length; imgEl.src=ok[i]; }, 7000);
-    }
-
-    /* Animated counters */
-    function animateCounters(){
-      const counters=[...document.querySelectorAll('.kpi')];
-      const io=new IntersectionObserver((entries)=>{
-        entries.forEach(e=>{
-          if(!e.isIntersecting) return;
-          const el=e.target; const target=parseInt(el.getAttribute('data-count')||'0',10);
-          const t0=performance.now(), dur=1200;
-          const step=(t)=>{ const p=Math.min(1,(t-t0)/dur); const v=Math.floor(target*(0.5-Math.cos(p*Math.PI)/2)); el.textContent=v; if(p<1) requestAnimationFrame(step); };
-          requestAnimationFrame(step); io.unobserve(el);
-        });
-      },{threshold:.4});
-      counters.forEach(el=>io.observe(el));
-    }
-
-    /* Latest roles carousel (Supabase optional) */
-    async function loadLatestRoles(){
-      const wrap=document.getElementById('latestRoles'); if(!wrap) return;
-      if(!hasSupabase){ wrap.innerHTML='<div class="slide">Connect Supabase to list live roles.</div>'; return; }
-      const { data:jobs, error }=await supabase.from('jobs').select('id,title,division,posted_at,status,is_paid').eq('status','open').order('posted_at',{ascending:false}).limit(8);
-      if(error){ wrap.innerHTML=`<div class="slide">Load failed: ${error.message}</div>`; return; }
-      if(!jobs?.length){ wrap.innerHTML='<div class="slide">No open roles right now.</div>'; return; }
-      wrap.innerHTML=jobs.map(j=>`
-        <article class="slide">
-          <div class="row"><span class="badge status-open">open</span><span class="badge">${j.is_paid?'paid':'unpaid'}</span></div>
-          <h3 style="margin:.2rem 0">${j.title}</h3>
-          <div class="meta">${j.division||'EGR'} · Posted ${j.posted_at}</div>
-          <div class="row"><a class="btn" href="/job.html?id=${j.id}">View</a><a class="btn primary" href="/apply.html?id=${j.id}">Apply</a></div>
-        </article>
-      `).join('');
-      const oc=document.getElementById('openRolesCount'); if(oc) oc.textContent=jobs.length;
-      const kpi=document.getElementById('kpiOpen'); if(kpi) kpi.setAttribute('data-count', String(jobs.length));
-    }
-
-    /* Neon system ticker */
-    function startSystemTicker(){
-      const el=document.getElementById('systemTicker'); if(!el) return;
-      const msgs=[
-        "System nominal · Recruiting across all divisions · Hello Tomorrow",
-        "Tip: Create an account to track your application status in real time",
-        "Dubai HQ online · OCC monitoring schedules · Safety first",
-        "Careers at EGR: Operations · Cabin · Ground · IT · University"
-      ];
-      let i=0; el.textContent=msgs[0]; setInterval(()=>{ i=(i+1)%msgs.length; el.textContent=msgs[i]; },6000);
-    }
-
-    /* Soft particles in hero */
-    function startParticles(){
-      const c=document.getElementById('fx'); if(!c) return; const ctx=c.getContext('2d'); let w=0,h=0,dots=[];
-      const R=1.2,N=70; function resize(){ w=c.width=window.innerWidth; h=c.height=document.getElementById('hero').offsetHeight; }
-      function init(){ dots=Array.from({length:N},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*R,vy:(Math.random()-.5)*R})); }
-      function step(){ ctx.clearRect(0,0,w,h); ctx.globalAlpha=.8; for(const d of dots){ d.x+=d.vx; d.y+=d.vy; if(d.x<0||d.x>w) d.vx*=-1; if(d.y<0||d.y>h) d.vy*=-1; ctx.fillStyle='rgba(158,196,255,0.12)'; ctx.beginPath(); ctx.arc(d.x,d.y,1.1,0,6.283); ctx.fill(); } requestAnimationFrame(step); }
-      resize(); init(); step(); window.addEventListener('resize',()=>{ resize(); init(); });
-    }
-
-    /* Photo mosaic (uses your 6 images) */
-    function mountMosaic(){
-      const names=[
-        "EGR Headquarters Pic.png","meeting room hq.png","occ office.png","occ.png","office 1.png","office hq.png"
-      ];
-      const m=document.getElementById('mosaic'); if(!m) return;
-      m.innerHTML = names.map(n=>{
-        const url = n.split('/').map(encodeURIComponent).join('/');
-        return `<img src="${url}" alt="">`;
-      }).join('');
-    }
-
-    /* Footer year */
-    function setYear(){ const y=document.getElementById('year'); if(y){ y.textContent=new Date().getFullYear(); } }
-
-    /* Basic auth modal (optional) */
-    function wireAuth(){
-      if(!hasSupabase) return;
-      const email=document.getElementById('authEmail'); const pass=document.getElementById('authPass'); const msg=document.getElementById('authMsg');
-      document.getElementById('loginBtn')?.addEventListener('click', async ()=>{
-        const { error } = await supabase.auth.signInWithPassword({ email: email.value.trim(), password: pass.value.trim() });
-        msg.textContent = error ? error.message : 'Signed in — reload to continue';
-      });
-      document.getElementById('signupBtn')?.addEventListener('click', async ()=>{
-        const { error } = await supabase.auth.signUp({ email: email.value.trim(), password: pass.value.trim() });
-        msg.textContent = error ? error.message : 'Account created — Sign In now';
-      });
-    }
-
-    /* Boot */
-    (async function boot(){
-      startClocks();
-      startHeroRotator();
-      startParticles();
-      startSystemTicker();
-      animateCounters();
-      mountMosaic();
-      setYear();
-      if(hasSupabase){ await loadLatestRoles(); } else {
-        const oc=document.getElementById('openRolesCount'); if(oc) oc.textContent='—';
-        const kpi=document.getElementById('kpiOpen'); if(kpi) kpi.setAttribute('data-count','0');
-        const lr=document.getElementById('latestRoles'); if(lr) lr.innerHTML='<div class="slide">Connect Supabase to show live roles.</div>';
-      }
-      wireAuth();
-    })();
+    setInterval(updateLocalTime, 1000);
+    updateLocalTime();
   </script>
 </body>
 </html>
