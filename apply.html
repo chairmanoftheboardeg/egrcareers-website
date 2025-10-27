@@ -4,34 +4,127 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Apply — Emirates Group Roblox Careers</title>
-  <link rel="stylesheet" href="/css/careers.css?v=3">
+  <link rel="stylesheet" href="/css/careers.css?v=4">
   <script defer src="https://unpkg.com/@supabase/supabase-js@2"></script>
-  <script defer src="/js/supabaseClient.js?v=3"></script>
-  <script defer src="/js/careers.js?v=3"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <script defer src="/js/supabaseClient.js?v=4"></script>
+  <script defer src="/js/careers.js?v=4"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* COLORS */
+    :root {
+      --primary-red: #E3000F;
+      --dark-grey: #333333;
+      --light-grey: #F5F5F5;
+      --white: #FFFFFF;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      background-color: var(--light-grey);
+      color: var(--dark-grey);
+    }
+
+    /* HEADER */
+    header.nav {
+      background-color: var(--white);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      padding: 0.5rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--primary-red);
+    }
+    nav.links a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: var(--dark-grey);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav.links a:hover { color: var(--primary-red); }
+    .btn-primary { background-color: var(--primary-red); color: var(--white); border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; }
+    .btn-primary:hover { background-color: #C2000D; }
+
+    /* HERO */
+    .hero-modern {
+      background: var(--white);
+      padding: 3rem 1rem;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+    .hero-modern h1 { font-size: 2.5rem; color: var(--primary-red); margin-bottom: 0.5rem; }
+    .hero-modern p { color: var(--dark-grey); font-size: 1.1rem; }
+
+    /* FORM */
+    .form-modern {
+      background: var(--white);
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 700px;
+      margin: 2rem auto;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+    .form-modern h2 { color: var(--primary-red); margin-bottom: 1rem; }
+    .form-modern label { display: block; margin-top: 1rem; margin-bottom: 0.3rem; font-weight: 500; }
+    .form-modern input, .form-modern textarea, .form-modern select {
+      width: 100%;
+      padding: 0.6rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+    .form-actions { display: flex; justify-content: flex-start; margin-top: 1.5rem; gap: 1rem; }
+    .btn-ghost { background: transparent; border: 1px solid var(--primary-red); color: var(--primary-red); padding: 0.5rem 1rem; border-radius: 4px; text-decoration: none; display: inline-block; }
+    .btn-ghost:hover { background: var(--primary-red); color: var(--white); }
+
+    /* FOOTER */
+    .footer-modern {
+      background-color: var(--white);
+      color: var(--dark-grey);
+      padding: 2rem 1rem;
+      border-top: 1px solid #ddd;
+      text-align: center;
+      font-size: 0.95rem;
+    }
+    .footer-links a {
+      color: var(--primary-red);
+      margin: 0 0.5rem;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .footer-links a:hover { text-decoration: underline; }
+  </style>
 </head>
 <body>
   <!-- HEADER -->
   <header class="nav">
     <div class="container nav-container">
-      <div class="brand">EGR Careers</div>
+      <div class="brand">Emirates Group Roblox</div>
       <nav class="links">
         <a href="/index.html">Home</a>
         <a href="/jobs.html">Jobs</a>
         <a href="/dashboard.html">My Applications</a>
         <div class="clock" id="clock">--:--</div>
-        <button id="authBtn" class="btn btn-primary">Sign In</button>
+        <button id="authBtn" class="btn-primary">Sign In</button>
       </nav>
     </div>
   </header>
 
   <!-- HERO -->
-  <section class="hero hero-modern">
+  <section class="hero-modern">
     <div class="container hero-container">
       <h1>Apply to Join EGR</h1>
-      <p class="subtitle">Complete the application below. Your information is secure and reviewed by our HR team.</p>
+      <p>Your application is secure and reviewed by our HR team. Complete all fields to ensure consideration.</p>
     </div>
   </section>
 
@@ -76,8 +169,8 @@
       </select>
 
       <div class="form-actions">
-        <button type="submit" class="btn btn-primary">Submit Application</button>
-        <a class="btn btn-ghost" href="/jobs.html">Cancel</a>
+        <button type="submit" class="btn-primary">Submit Application</button>
+        <a class="btn-ghost" href="/jobs.html">Cancel</a>
       </div>
     </form>
   </main>
@@ -100,8 +193,8 @@
       <input type="email" id="authEmail" placeholder="Email address" required>
       <input type="password" id="authPass" placeholder="Password" required>
       <div class="form-actions">
-        <button class="btn btn-primary" type="submit">Sign In</button>
-        <button class="btn btn-ghost" id="signupBtn">Create Account</button>
+        <button class="btn-primary" type="submit">Sign In</button>
+        <button class="btn-ghost" id="signupBtn">Create Account</button>
         <button class="btn btn-red" id="closeAuth">Close</button>
       </div>
     </form>
@@ -113,7 +206,7 @@
     document.addEventListener('DOMContentLoaded', async ()=>{
       await CAREERS.bootCommon();
       CAREERS.pageApply();
-      CAREERS.loadJobOptions(); // Populate jobs dynamically from HR database
+      CAREERS.loadJobOptions();
     });
   </script>
 </body>
