@@ -1,186 +1,167 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home — Emirates Group Roblox Careers</title>
-  <link rel="stylesheet" href="/css/careers.css?v=5">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script defer src="/js/careers.js?v=5"></script>
+  <meta charset="utf-8" />
+  <title>Emirates Group Roblox Careers</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" />
+  <link rel="icon" href="https://emiratesgrouproblox.link/assets/emirates-logo.png">
   <style>
-    :root {
-      --primary-red: #E3000F;
-      --dark-grey: #333333;
-      --light-grey: #F5F5F5;
-      --white: #FFFFFF;
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #ffffff;
+      color: #1a1a1a;
     }
-
-    body { font-family: 'Inter', sans-serif; margin:0; background:var(--light-grey); color:var(--dark-grey); }
-
-    /* HEADER */
-    header.nav { background-color: var(--white); box-shadow: 0 2px 6px rgba(0,0,0,0.05); padding: 0.5rem 2rem; position: sticky; top:0; z-index:100;}
-    .nav-container { display:flex; justify-content:space-between; align-items:center;}
-    .brand { font-weight:700; font-size:1.5rem; color:var(--primary-red);}
-    nav.links a { margin-left:1.5rem; text-decoration:none; color:var(--dark-grey); font-weight:500; transition: color 0.3s;}
-    nav.links a:hover { color: var(--primary-red);}
-    .btn-primary { background-color: var(--primary-red); color: var(--white); border:none; padding:0.5rem 1rem; border-radius:4px; cursor:pointer;}
-    .btn-primary:hover { background-color:#C2000D; }
-
-    /* HERO */
-    .hero-modern { background: var(--white); padding:3rem 1rem; text-align:center; border-bottom:1px solid #ddd;}
-    .hero-modern h1 { font-size:2.5rem; color: var(--primary-red); margin-bottom:0.5rem; }
-    .hero-modern p { color: var(--dark-grey); font-size:1.1rem; }
-
-    /* SECTION STYLES */
-    section { padding: 2rem 1rem; max-width: 1200px; margin:0 auto; }
-    h2 { color: var(--primary-red); margin-bottom:1rem; }
-    .card { background: var(--white); padding:1.5rem; border-radius:10px; margin-bottom:1.5rem; box-shadow:0 4px 15px rgba(0,0,0,0.08); }
-
-    /* STATISTICS */
-    .stats { display:flex; flex-wrap:wrap; gap:1rem; justify-content:space-around; text-align:center; }
-    .stat-card { flex:1 1 200px; padding:1rem; border-radius:10px; background:var(--white); box-shadow:0 4px 12px rgba(0,0,0,0.05);}
-    .stat-card h3 { font-size:2rem; color:var(--primary-red); margin:0; }
-    .stat-card p { margin:0.5rem 0 0; font-weight:500; }
-
-    /* DIVISIONS */
-    .division { display:flex; flex-wrap:wrap; gap:1rem; }
-    .division-card { flex:1 1 300px; background:var(--white); border-radius:10px; padding:1rem; box-shadow:0 4px 12px rgba(0,0,0,0.05);}
-    .division-card h4 { color: var(--primary-red); margin-bottom:0.5rem; }
-
-    /* HR TEAM */
-    .hr-team { display:flex; flex-wrap:wrap; gap:1rem; }
-    .hr-card { flex:1 1 200px; background:var(--white); border-radius:10px; padding:1rem; text-align:center; box-shadow:0 4px 12px rgba(0,0,0,0.05);}
-    .hr-card h5 { color: var(--primary-red); margin:0.5rem 0 0; }
-
-    /* FOOTER */
-    .footer-modern { background-color: var(--white); color: var(--dark-grey); padding:2rem 1rem; border-top:1px solid #ddd; text-align:center; font-size:0.95rem;}
-    .footer-links a { color: var(--primary-red); margin:0 0.5rem; text-decoration:none; font-weight:500;}
-    .footer-links a:hover { text-decoration:underline; }
-
-    /* LOCAL TIME */
-    #localTime { font-weight:600; color: var(--primary-red);}
+    .hero {
+      background: linear-gradient(to right, #b81c2b, #d11f2b);
+      color: white;
+    }
+    .card {
+      border-radius: 1rem;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+      background: #fff;
+    }
+    footer {
+      background: #111;
+      color: #ccc;
+    }
+    footer a {
+      color: #f5f5f5;
+    }
+    footer a:hover {
+      text-decoration: underline;
+      color: #fff;
+    }
   </style>
 </head>
 <body>
+
   <!-- HEADER -->
-  <header class="nav">
-    <div class="container nav-container">
-      <div class="brand">Emirates Group Roblox</div>
-      <nav class="links">
-        <a href="/index.html">Home</a>
-        <a href="/jobs.html">Jobs</a>
-        <a href="/dashboard.html">My Applications</a>
-        <div id="localTime">--:--</div>
-        <button id="authBtn" class="btn-primary">Sign In</button>
+  <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="/" class="flex items-center space-x-2">
+        <img src="https://emiratesgrouproblox.link/assets/emirates-logo.png" alt="EGR Logo" class="w-10">
+        <h1 class="text-xl font-semibold text-gray-900">Emirates Group Roblox Careers</h1>
+      </a>
+      <nav class="hidden md:flex space-x-8 font-medium text-gray-700">
+        <a href="index.html" class="hover:text-red-600">Home</a>
+        <a href="jobs.html" class="hover:text-red-600">Open Positions</a>
+        <a href="apply.html" class="hover:text-red-600">Apply Now</a>
+        <a href="hr-portal.html" class="hover:text-red-600">HR Portal</a>
       </nav>
     </div>
   </header>
 
   <!-- HERO -->
-  <section class="hero-modern">
-    <div class="container hero-container">
-      <h1>Welcome to Emirates Group Roblox Careers</h1>
-      <p>Join our team and be part of a professional and innovative environment. Explore opportunities and learn more about our divisions, HR team, and policies below.</p>
-    </div>
+  <section class="hero py-20 text-center">
+    <h1 class="text-4xl font-bold mb-4">Welcome to Emirates Group Roblox Careers</h1>
+    <p class="text-lg max-w-2xl mx-auto">
+      Join our team and be part of a professional, innovative, and world-class virtual aviation environment.
+      Explore career opportunities, meet our HR team, and learn about our core policies and values.
+    </p>
   </section>
 
-  <!-- STATISTICS -->
-  <section>
-    <h2>Our Career Stats</h2>
-    <div class="stats">
-      <div class="stat-card">
-        <h3 id="jobsCount">0</h3>
-        <p>Open Positions</p>
-      </div>
-      <div class="stat-card">
-        <h3 id="applicationsCount">0</h3>
-        <p>Applications Received</p>
-      </div>
-      <div class="stat-card">
-        <h3 id="hrCount">0</h3>
-        <p>HR Team Members</p>
+  <!-- CAREER STATS -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-10">Our Career Stats</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="card py-10">
+          <h3 class="text-5xl font-extrabold text-red-600 mb-2">0</h3>
+          <p class="text-lg font-medium text-gray-600">Open Positions</p>
+        </div>
+        <div class="card py-10">
+          <h3 class="text-5xl font-extrabold text-red-600 mb-2">0</h3>
+          <p class="text-lg font-medium text-gray-600">Applications Received</p>
+        </div>
+        <div class="card py-10">
+          <h3 class="text-5xl font-extrabold text-red-600 mb-2">0</h3>
+          <p class="text-lg font-medium text-gray-600">HR Team Members</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- DIVISIONS -->
-  <section>
-    <h2>Our Divisions</h2>
-    <div class="division">
-      <div class="division-card">
-        <h4>Flight Operations</h4>
-        <p>Responsible for managing all flight-related activities, scheduling, and crew coordination.</p>
-      </div>
-      <div class="division-card">
-        <h4>Customer Service</h4>
-        <p>Handles inquiries, support, and ensures high-quality passenger experiences.</p>
-      </div>
-      <div class="division-card">
-        <h4>Engineering & Maintenance</h4>
-        <p>Maintains all aircraft, performs checks, and ensures operational safety standards.</p>
+  <section class="py-20">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-12">Our Divisions</h2>
+      <div class="grid md:grid-cols-3 gap-10 text-left">
+        <div class="card p-8">
+          <h3 class="text-2xl font-semibold text-red-600 mb-3">Flight Operations</h3>
+          <p>Responsible for managing all flight-related activities, flight scheduling, and crew coordination to maintain operational excellence.</p>
+        </div>
+        <div class="card p-8">
+          <h3 class="text-2xl font-semibold text-red-600 mb-3">Customer Service</h3>
+          <p>Handles passenger support, inquiries, and service quality across all communication channels to ensure satisfaction.</p>
+        </div>
+        <div class="card p-8">
+          <h3 class="text-2xl font-semibold text-red-600 mb-3">Engineering & Maintenance</h3>
+          <p>Ensures all aircraft are safe, well-maintained, and compliant with aviation standards through rigorous checks and supervision.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- MESSAGE FROM CHRO -->
-  <section>
-    <h2>Message from the CHRO</h2>
-    <div class="card">
-      <p>Hello! At Emirates Group Roblox, we value professionalism, teamwork, and innovation. Our HR team is here to support your career growth and ensure a safe and productive work environment. We look forward to welcoming talented individuals to our divisions.</p>
+  <section class="bg-gray-100 py-20">
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-8">Message from the CHRO</h2>
+      <p class="text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto">
+        Hello! At Emirates Group Roblox, we value professionalism, teamwork, and innovation. 
+        Our HR department is dedicated to supporting every member’s career journey while upholding the highest standards of ethics and excellence.
+        Together, we build a workplace that inspires growth, creativity, and unity across all divisions.
+      </p>
+      <div class="mt-10">
+        <h3 class="text-xl font-semibold">Tyler Nicholas</h3>
+        <p class="text-gray-600">Chief Human Resources Officer</p>
+      </div>
     </div>
   </section>
 
   <!-- HR TEAM -->
-  <section>
-    <h2>Meet Our HR Team</h2>
-    <div class="hr-team">
-      <div class="hr-card">
-        <h5>Tyler Nicholas</h5>
-        <p>Chief Human Resources Officer</p>
-      </div>
-      <div class="hr-card">
-        <h5>Jane Doe</h5>
-        <p>HR Manager</p>
-      </div>
-      <div class="hr-card">
-        <h5>John Smith</h5>
-        <p>Recruitment Specialist</p>
-      </div>
+  <section class="py-20">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-8">Meet Our HR Team</h2>
+      <p class="text-gray-600 text-lg mb-6">Currently not available. Check back soon as our HR team expands.</p>
     </div>
   </section>
 
-  <!-- EMPLOYEE INFO -->
-  <section>
-    <h2>Employee Information</h2>
-    <div class="card">
-      <h4>Rules & Conduct</h4>
-      <p>All employees must follow the EGR Code of Conduct, uphold professionalism, and respect colleagues.</p>
-      <h4>Employee Rights</h4>
-      <p>We provide a safe and fair working environment. All employees have the right to support, feedback, and career development.</p>
-      <h4>Vision & Work Environment</h4>
-      <p>Our vision is to maintain excellence in virtual aviation operations while promoting a positive, collaborative environment.</p>
+  <!-- EMPLOYEE INFORMATION -->
+  <section class="bg-gray-50 py-20">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-12">Employee Information</h2>
+      <div class="grid md:grid-cols-3 gap-10 text-left">
+        <div class="card p-8">
+          <h3 class="text-2xl font-semibold text-red-600 mb-3">Rules & Conduct</h3>
+          <p>All employees must adhere to the EGR Code of Conduct, uphold professionalism, respect others, and act with integrity both on-duty and off-duty.</p>
+        </div>
+        <div class="card p-8">
+          <h3 class="text-2xl font-semibold text-red-600 mb-3">Employee Rights</h3>
+          <p>We ensure a fair, safe, and inclusive work environment for all. You can download our detailed Employee Rights Policy below.</p>
+          <a href="https://emiratesgrouproblox.link/docs/Employee_Rights_Policy.pdf" target="_blank" class="mt-4 inline-block bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-5 rounded-lg shadow-md">
+            Download Employee Rights PDF
+          </a>
+        </div>
+        <div class="card p-8">
+          <h3 class="text-2xl font-semibold text-red-600 mb-3">Vision & Work Environment</h3>
+          <p>Our vision is to maintain operational excellence across all Roblox aviation services while promoting a positive, collaborative, and respectful workplace culture.</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="footer-modern">
-    <div class="container footer-container">
-      <div>© 2025 Emirates Group Roblox — All Rights Reserved</div>
-      <div class="footer-links">
-        <a href="/org-terms.html">Terms of Service</a>
-        <a href="/support/index.html">Support Center</a>
+  <footer class="py-10 mt-20">
+    <div class="max-w-7xl mx-auto text-center space-y-3">
+      <p>&copy; 2025 Emirates Group Roblox. All rights reserved.</p>
+      <div class="space-x-4">
+        <a href="https://emiratesgrouproblox.link/terms.html">Terms of Service</a> |
+        <a href="https://emiratesgrouproblox.link/privacy.html">Privacy Policy</a> |
+        <a href="https://emiratesgrouproblox.link/org-terms.html">Organization Terms</a>
       </div>
     </div>
   </footer>
 
-  <script>
-    // Local time display
-    function updateLocalTime() {
-      const now = new Date();
-      document.getElementById('localTime').textContent = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-    }
-    setInterval(updateLocalTime, 1000);
-    updateLocalTime();
-  </script>
 </body>
 </html>
