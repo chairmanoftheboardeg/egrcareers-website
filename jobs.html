@@ -1,78 +1,128 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/><title>Jobs — EGR Careers</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <link rel="stylesheet" href="/css/careers.css?v=1"/>
-  <script defer src="https://unpkg.com/@supabase/supabase-js@2"></script>
-  <script defer src="/js/supabaseClient.js?v=1"></script>
-  <script defer src="/js/careers.js?v=1"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jobs — Emirates Group Roblox Careers</title>
+  <link rel="stylesheet" href="/css/careers.css?v=7">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script defer src="/js/careers.js?v=7"></script>
+  <style>
+    :root {
+      --primary-red: #E3000F;
+      --dark-grey: #333333;
+      --light-grey: #F5F5F5;
+      --white: #FFFFFF;
+    }
+
+    body { font-family: 'Inter', sans-serif; margin:0; background:var(--light-grey); color:var(--dark-grey); }
+
+    /* HEADER */
+    header.nav { background-color: var(--white); box-shadow: 0 2px 6px rgba(0,0,0,0.05); padding: 0.5rem 2rem; position: sticky; top:0; z-index:100;}
+    .nav-container { display:flex; justify-content:space-between; align-items:center;}
+    .brand { font-weight:700; font-size:1.5rem; color:var(--primary-red);}
+    nav.links a { margin-left:1.5rem; text-decoration:none; color:var(--dark-grey); font-weight:500; transition: color 0.3s;}
+    nav.links a:hover { color: var(--primary-red);}
+    .btn-primary { background-color: var(--primary-red); color: var(--white); border:none; padding:0.5rem 1rem; border-radius:4px; cursor:pointer;}
+    .btn-primary:hover { background-color:#C2000D; }
+    .btn-ghost { background: transparent; border: 1px solid var(--primary-red); color: var(--primary-red); padding: 0.5rem 1rem; border-radius: 4px; text-decoration: none; display: inline-block; }
+    .btn-ghost:hover { background: var(--primary-red); color: var(--white); }
+
+    /* HERO */
+    .hero-modern { background: var(--white); padding:3rem 1rem; text-align:center; border-bottom:1px solid #ddd;}
+    .hero-modern h1 { font-size:2.5rem; color: var(--primary-red); margin-bottom:0.5rem; }
+    .hero-modern p { color: var(--dark-grey); font-size:1.1rem; }
+
+    /* JOB CARDS */
+    .jobs-container { max-width: 1200px; margin: 2rem auto; display:flex; flex-direction:column; gap:1rem; padding:0 1rem;}
+    .job-card { background: var(--white); border-radius:10px; padding:1.5rem; box-shadow:0 4px 12px rgba(0,0,0,0.08); display:flex; flex-direction:column; gap:0.5rem;}
+    .job-card h3 { margin:0; color: var(--primary-red);}
+    .job-card p { margin:0.3rem 0; }
+    .job-actions { margin-top:1rem; display:flex; gap:1rem; }
+  </style>
 </head>
 <body>
-<header class="nav">
-  <div class="container">
-    <div class="brand">EGR Careers</div>
-    <nav class="links">
-      <a href="/jobs.html" aria-current="page">Jobs</a>
-      <a href="/dashboard.html">My Applications</a>
-      <a href="/hr.html">HR Portal</a>
-      <div class="clock" id="clock">--:--</div>
-      <button id="authBtn" class="btn">Sign In</button>
-    </nav>
-  </div>
-</header>
+  <!-- HEADER -->
+  <header class="nav">
+    <div class="container nav-container">
+      <div class="brand">Emirates Group Roblox</div>
+      <nav class="links">
+        <a href="/index.html">Home</a>
+        <a href="/jobs.html">Jobs</a>
+        <a href="/dashboard.html">My Applications</a>
+        <div id="localTime">--:--</div>
+        <button id="authBtn" class="btn-primary">Sign In</button>
+      </nav>
+    </div>
+  </header>
 
-<section class="hero">
-  <div class="hero-bg" id="heroBg" aria-hidden="true"></div>
-  <div class="container">
-    <h1 class="title">Open Positions</h1>
-    <p class="sub">Filter and find your next role.</p>
-  </div>
-</section>
+  <!-- HERO -->
+  <section class="hero-modern">
+    <div class="container hero-container">
+      <h1>Available Positions</h1>
+      <p>Browse all open roles and apply to join our Emirates Group Roblox team.</p>
+    </div>
+  </section>
 
-<main class="container grid two" style="margin-top:18px">
-  <div class="card">
-    <div class="row" style="justify-content:space-between;align-items:center">
-      <input id="q" placeholder="Search title / division" style="min-width:220px">
-      <div class="row">
-        <select id="fDept"><option value="">All Departments</option></select>
-        <select id="fPaid"><option value="">Paid & Unpaid</option><option value="true">Paid</option><option value="false">Unpaid</option></select>
+  <!-- JOB LISTINGS -->
+  <main class="jobs-container" id="jobsContainer">
+    <!-- Job cards will be dynamically loaded here -->
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer-modern">
+    <div class="container footer-container">
+      <div>© 2025 Emirates Group Roblox — All Rights Reserved</div>
+      <div class="footer-links">
+        <a href="/org-terms.html">Terms of Service</a>
+        <a href="/support/index.html">Support Center</a>
       </div>
     </div>
-    <div id="jobsList" class="list" style="margin-top:12px"><p class="meta">Loading…</p></div>
-  </div>
-  <aside class="card">
-    <h3>Divisions</h3>
-    <p class="meta">Emirates Airlines · Fly Dubai · EGR HQ · University · Falcon LTD</p>
-  </aside>
-</main>
+  </footer>
 
-<footer class="footer">
-  <div class="container">
-    <div>© 2025 EGR</div>
-    <div class="links"><a href="/">Home</a></div>
-  </div>
-</footer>
+  <script>
+    // Local time
+    function updateLocalTime() {
+      const now = new Date();
+      document.getElementById('localTime').textContent = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    }
+    setInterval(updateLocalTime, 1000);
+    updateLocalTime();
 
-<!-- AUTH MODAL -->
-<dialog id="authModal" class="modal">
-  <form method="dialog" class="card" id="loginForm">
-    <h3>Sign in / Create account</h3>
-    <input type="email" id="authEmail" placeholder="Email address" required>
-    <input type="password" id="authPass" placeholder="Password" required>
-    <div class="row">
-      <button class="btn" type="submit">Sign In</button>
-      <button class="btn ghost" id="signupBtn">Create Account</button>
-      <button class="btn red" id="closeAuth">Close</button>
-    </div>
-  </form>
-</dialog>
-<div id="toast"></div>
-<script>
-  document.addEventListener('DOMContentLoaded', async ()=>{
-    await CAREERS.bootCommon();
-    CAREERS.pageJobs();
-  });
-</script>
+    // Example HR Manager job for testing
+    const jobs = [
+      {
+        title: "HR Manager",
+        division: "Human Resources",
+        department: "HR Department",
+        description: "Oversee HR operations, manage recruitment, employee relations, and policy implementation.",
+        supervisory: "Yes",
+        paid: "Yes",
+        contract: "6 months",
+        renewable: "Yes"
+      }
+    ];
+
+    const container = document.getElementById('jobsContainer');
+    jobs.forEach(job => {
+      const card = document.createElement('div');
+      card.className = 'job-card';
+      card.innerHTML = `
+        <h3>${job.title}</h3>
+        <p><strong>Division:</strong> ${job.division}</p>
+        <p><strong>Department:</strong> ${job.department}</p>
+        <p><strong>Description:</strong> ${job.description}</p>
+        <p><strong>Supervisory:</strong> ${job.supervisory}</p>
+        <p><strong>Paid:</strong> ${job.paid}</p>
+        <p><strong>Contract:</strong> ${job.contract}</p>
+        <p><strong>Renewable:</strong> ${job.renewable}</p>
+        <div class="job-actions">
+          <a href="/apply.html?job=${encodeURIComponent(job.title)}" class="btn-primary">Apply</a>
+          <a href="/support/index.html" class="btn-ghost">Support</a>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  </script>
 </body>
 </html>
