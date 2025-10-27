@@ -46,7 +46,7 @@
   </div>
 
 <script>
-const API = '<<PASTE_YOUR_APPS_SCRIPT_WEBAPP_URL>>?'; // include trailing ?
+const API = 'https://script.google.com/macros/s/AKfycbzTwLSlOIXxDGVICcIlytL1PSbsaoBlf-TrUZLAYNWei1rqcEIot2O-Wk48QQamKUfq/exec'; // include trailing ?
 async function fetchJobs(q='', status='') {
   const url = API + 'path=getJobs' + (q ? '&q=' + encodeURIComponent(q) : '') + (status ? '&status=' + encodeURIComponent(status) : '');
   const res = await fetch(url);
