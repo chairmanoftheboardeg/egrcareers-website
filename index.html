@@ -1,167 +1,106 @@
 <!doctype html>
-<html lang="en">
+<html>
 <head>
   <meta charset="utf-8" />
-  <title>Emirates Group Roblox Careers</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" />
-  <link rel="icon" href="https://emiratesgrouproblox.link/assets/emirates-logo.png">
+  <title>EGR Careers</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #ffffff;
-      color: #1a1a1a;
-    }
-    .hero {
-      background: linear-gradient(to right, #b81c2b, #d11f2b);
-      color: white;
-    }
-    .card {
-      border-radius: 1rem;
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
-      background: #fff;
-    }
-    footer {
-      background: #111;
-      color: #ccc;
-    }
-    footer a {
-      color: #f5f5f5;
-    }
-    footer a:hover {
-      text-decoration: underline;
-      color: #fff;
-    }
+    /* simple styling — adapt to match your main site */
+    body{font-family:system-ui,Segoe UI,Arial;margin:16px;background:#f7f8fb}
+    .job{background:#fff;padding:16px;margin:12px 0;border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
+    .controls{display:flex;gap:8px;margin-bottom:12px}
+    button{padding:8px 12px;border-radius:6px;border:0;cursor:pointer}
   </style>
 </head>
 <body>
+  <h1>Emirates Group Roblox — Careers</h1>
+  <div class="controls">
+    <input id="q" placeholder="Search roles..." />
+    <select id="status">
+      <option value="">All</option><option>Open</option><option>Closed</option>
+    </select>
+    <button id="search">Search</button>
+  </div>
 
-  <!-- HEADER -->
-  <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="/" class="flex items-center space-x-2">
-        <img src="https://emiratesgrouproblox.link/assets/emirates-logo.png" alt="EGR Logo" class="w-10">
-        <h1 class="text-xl font-semibold text-gray-900">Emirates Group Roblox Careers</h1>
-      </a>
-      <nav class="hidden md:flex space-x-8 font-medium text-gray-700">
-        <a href="index.html" class="hover:text-red-600">Home</a>
-        <a href="jobs.html" class="hover:text-red-600">Open Positions</a>
-        <a href="apply.html" class="hover:text-red-600">Apply Now</a>
-        <a href="hr-portal.html" class="hover:text-red-600">HR Portal</a>
-      </nav>
+  <div id="jobs"></div>
+
+  <!-- Apply modal -->
+  <div id="modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);align-items:center;justify-content:center">
+    <div style="background:#fff;padding:16px;border-radius:8px;max-width:640px;width:95%">
+      <h3 id="modal-title">Apply</h3>
+      <form id="applyForm">
+        <input type="hidden" name="job_id" id="job_id" />
+        <div><label>First name</label><input name="first_name" required /></div>
+        <div><label>Last name</label><input name="last_name" /></div>
+        <div><label>Email</label><input name="email" type="email" required/></div>
+        <div><label>Discord</label><input name="discord_username" /></div>
+        <div><label>Discord ID</label><input name="discord_id" /></div>
+        <div><label>Roblox username</label><input name="roblox_username" /></div>
+        <div><label>Age</label><input name="age" /></div>
+        <div><label>Country</label><input name="country" /></div>
+        <div><label>Region</label><input name="region" /></div>
+        <div><label>Why do you want this role?</label><textarea name="cover_letter"></textarea></div>
+        <div style="margin-top:8px"><button type="submit">Submit application</button> <button type="button" onclick="closeModal()">Cancel</button></div>
+      </form>
     </div>
-  </header>
+  </div>
 
-  <!-- HERO -->
-  <section class="hero py-20 text-center">
-    <h1 class="text-4xl font-bold mb-4">Welcome to Emirates Group Roblox Careers</h1>
-    <p class="text-lg max-w-2xl mx-auto">
-      Join our team and be part of a professional, innovative, and world-class virtual aviation environment.
-      Explore career opportunities, meet our HR team, and learn about our core policies and values.
-    </p>
-  </section>
+<script>
+const API = '<<PASTE_YOUR_APPS_SCRIPT_WEBAPP_URL>>?'; // include trailing ?
+async function fetchJobs(q='', status='') {
+  const url = API + 'path=getJobs' + (q ? '&q=' + encodeURIComponent(q) : '') + (status ? '&status=' + encodeURIComponent(status) : '');
+  const res = await fetch(url);
+  const data = await res.json();
+  return data.jobs || [];
+}
+function renderJob(job){
+  return `
+  <div class="job">
+    <h3>${job.title} <small>(${job.location || 'Remote'})</small></h3>
+    <p><strong>Status:</strong> ${job.status} • <strong>Division:</strong> ${job.division}</p>
+    <p>${job.summary || ''}</p>
+    <button onclick="openApply('${job.job_id}','${job.title.replace(/'/g,"\\'")}')">Apply</button>
+  </div>`;
+}
 
-  <!-- CAREER STATS -->
-  <section class="py-16 bg-gray-50">
-    <div class="max-w-6xl mx-auto text-center">
-      <h2 class="text-3xl font-bold mb-10">Our Career Stats</h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="card py-10">
-          <h3 class="text-5xl font-extrabold text-red-600 mb-2">0</h3>
-          <p class="text-lg font-medium text-gray-600">Open Positions</p>
-        </div>
-        <div class="card py-10">
-          <h3 class="text-5xl font-extrabold text-red-600 mb-2">0</h3>
-          <p class="text-lg font-medium text-gray-600">Applications Received</p>
-        </div>
-        <div class="card py-10">
-          <h3 class="text-5xl font-extrabold text-red-600 mb-2">0</h3>
-          <p class="text-lg font-medium text-gray-600">HR Team Members</p>
-        </div>
-      </div>
-    </div>
-  </section>
+document.getElementById('search').addEventListener('click', async ()=>{
+  const q = document.getElementById('q').value;
+  const status = document.getElementById('status').value;
+  const jobs = await fetchJobs(q,status);
+  const container = document.getElementById('jobs');
+  container.innerHTML = jobs.map(renderJob).join('');
+});
 
-  <!-- DIVISIONS -->
-  <section class="py-20">
-    <div class="max-w-6xl mx-auto text-center">
-      <h2 class="text-3xl font-bold mb-12">Our Divisions</h2>
-      <div class="grid md:grid-cols-3 gap-10 text-left">
-        <div class="card p-8">
-          <h3 class="text-2xl font-semibold text-red-600 mb-3">Flight Operations</h3>
-          <p>Responsible for managing all flight-related activities, flight scheduling, and crew coordination to maintain operational excellence.</p>
-        </div>
-        <div class="card p-8">
-          <h3 class="text-2xl font-semibold text-red-600 mb-3">Customer Service</h3>
-          <p>Handles passenger support, inquiries, and service quality across all communication channels to ensure satisfaction.</p>
-        </div>
-        <div class="card p-8">
-          <h3 class="text-2xl font-semibold text-red-600 mb-3">Engineering & Maintenance</h3>
-          <p>Ensures all aircraft are safe, well-maintained, and compliant with aviation standards through rigorous checks and supervision.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+async function init() {
+  const jobs = await fetchJobs();
+  document.getElementById('jobs').innerHTML = jobs.map(renderJob).join('');
+}
+init();
 
-  <!-- MESSAGE FROM CHRO -->
-  <section class="bg-gray-100 py-20">
-    <div class="max-w-5xl mx-auto text-center">
-      <h2 class="text-3xl font-bold mb-8">Message from the CHRO</h2>
-      <p class="text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto">
-        Hello! At Emirates Group Roblox, we value professionalism, teamwork, and innovation. 
-        Our HR department is dedicated to supporting every member’s career journey while upholding the highest standards of ethics and excellence.
-        Together, we build a workplace that inspires growth, creativity, and unity across all divisions.
-      </p>
-      <div class="mt-10">
-        <h3 class="text-xl font-semibold">Tyler Nicholas</h3>
-        <p class="text-gray-600">Chief Human Resources Officer</p>
-      </div>
-    </div>
-  </section>
+function openApply(job_id, title){
+  document.getElementById('modal').style.display='flex';
+  document.getElementById('modal-title').textContent = 'Apply for ' + title;
+  document.getElementById('job_id').value = job_id;
+}
+function closeModal(){ document.getElementById('modal').style.display='none'; }
 
-  <!-- HR TEAM -->
-  <section class="py-20">
-    <div class="max-w-6xl mx-auto text-center">
-      <h2 class="text-3xl font-bold mb-8">Meet Our HR Team</h2>
-      <p class="text-gray-600 text-lg mb-6">Currently not available. Check back soon as our HR team expands.</p>
-    </div>
-  </section>
-
-  <!-- EMPLOYEE INFORMATION -->
-  <section class="bg-gray-50 py-20">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-3xl font-bold text-center mb-12">Employee Information</h2>
-      <div class="grid md:grid-cols-3 gap-10 text-left">
-        <div class="card p-8">
-          <h3 class="text-2xl font-semibold text-red-600 mb-3">Rules & Conduct</h3>
-          <p>All employees must adhere to the EGR Code of Conduct, uphold professionalism, respect others, and act with integrity both on-duty and off-duty.</p>
-        </div>
-        <div class="card p-8">
-          <h3 class="text-2xl font-semibold text-red-600 mb-3">Employee Rights</h3>
-          <p>We ensure a fair, safe, and inclusive work environment for all. You can download our detailed Employee Rights Policy below.</p>
-          <a href="https://emiratesgrouproblox.link/docs/Employee_Rights_Policy.pdf" target="_blank" class="mt-4 inline-block bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-5 rounded-lg shadow-md">
-            Download Employee Rights PDF
-          </a>
-        </div>
-        <div class="card p-8">
-          <h3 class="text-2xl font-semibold text-red-600 mb-3">Vision & Work Environment</h3>
-          <p>Our vision is to maintain operational excellence across all Roblox aviation services while promoting a positive, collaborative, and respectful workplace culture.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="py-10 mt-20">
-    <div class="max-w-7xl mx-auto text-center space-y-3">
-      <p>&copy; 2025 Emirates Group Roblox. All rights reserved.</p>
-      <div class="space-x-4">
-        <a href="https://emiratesgrouproblox.link/terms.html">Terms of Service</a> |
-        <a href="https://emiratesgrouproblox.link/privacy.html">Privacy Policy</a> |
-        <a href="https://emiratesgrouproblox.link/org-terms.html">Organization Terms</a>
-      </div>
-    </div>
-  </footer>
-
+document.getElementById('applyForm').addEventListener('submit', async (ev)=>{
+  ev.preventDefault();
+  const form = new FormData(ev.target);
+  const body = Object.fromEntries(form.entries());
+  const res = await fetch(API, {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify(Object.assign({action:'apply'}, body))
+  });
+  const json = await res.json();
+  if (json.ok) {
+    alert('Application received! Application ID: ' + json.application_id);
+    closeModal();
+  } else {
+    alert('Error: ' + (json.error || 'unknown'));
+  }
+});
+</script>
 </body>
 </html>
