@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Openings — Emirates Group Roblox</title>
+<meta name="description" content="Open roles — search, filter, and apply."/>
+<style>
+:root{--brand:#c8102e;--bg:#04101a;--muted:#9aa4b2;--text:#e6eef8;--glass:rgba(255,255,255,0.02);--container:1180px}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,Roboto,Arial;background:linear-gradient(180deg,#061423,#031018);color:var(--text)}
+.container{max-width:var(--container);margin:0 auto;padding:22px}
+.header{padding:14px 22px;position:sticky;top:0;background:linear-gradient(90deg,rgba(0,0,0,0.25),rgba(0,0,0,0.15));backdrop-filter:blur(6px);z-index:50;border-bottom:1px solid rgba(255,255,255,0.02)}
+.header .brand{display:flex;gap:8px;align-items:center}
+.header .brand .name{font-weight:800;color:var(--brand)}
+.nav{display:flex;gap:10px;align-items:center}
+.nav a{padding:8px 10px;border-radius:8px}
+.page-header{padding:28px 0;border-bottom:1px solid rgba(255,255,255,0.02)}
+.controls{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.input,select{padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text)}
+.jobs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;margin-top:12px}
+.job-card{padding:14px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.01),rgba(255,255,255,0.005));border:1px solid rgba(255,255,255,0.02)}
+.job-title{font-weight:800}
+.muted{color:var(--muted)}
+.right-panel{width:340px}
+.panel{padding:16px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.02)}
+.footer{padding:28px 0;border-top:1px solid rgba(255,255,255,0.02);margin-top:28px}
+@media(max-width:880px){ .layout{flex-direction:column} .right-panel{width:100%} .nav{display:none} }
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="container" style="display:flex;justify-content:space-between;align-items:center">
+    <div class="brand"><div class="name">Emirates Group Roblox</div><div class="muted" style="font-size:12px">Careers</div></div>
+    <nav class="nav"><a href="index.html">Home</a><a href="jobs.html">Openings</a><a href="employee-rights.html">Employee Rights</a><a href="hr-portal.html">HR Portal</a></nav>
+  </div>
+</header>
+
+<main>
+  <section class="page-header container">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
+      <div>
+        <h1 style="margin:0">Open Roles</h1>
+        <p class="muted">HR has not posted any jobs yet if you see none — check back later or join Discord for announcements.</p>
+      </div>
+      <div style="min-width:240px"><a class="btn-primary" href="apply.html" style="padding:10px 14px;border-radius:8px;background:var(--brand);color:white;text-decoration:none">Apply</a></div>
+    </div>
+  </section>
+
+  <section class="container" style="display:flex;gap:18px;align-items:flex-start" role="region">
+    <div style="flex:1">
+      <div class="controls">
+        <input id="searchInput" class="input" placeholder="Search roles..." />
+        <select id="division" class="input">
+          <option value="">All divisions</option><option>Flight Operations</option><option>Customer Service</option><option>Ground Operations</option><option>HR & Recruitment</option><option>IT & Systems</option>
+        </select>
+        <select id="status" class="input">
+          <option value="">All statuses</option><option>Open</option><option>Closed</option><option>Draft</option>
+        </select>
+        <button id="searchBtn" class="input" style="cursor:pointer">Search</button>
+      </div>
+
+      <div id="jobsGrid" class="jobs-grid" aria-live="polite">
+        <!-- If API has no jobs, show message; otherwise job cards -->
+        <div class="job-card"><div class="job-title">No roles currently posted</div><p class="muted">HR has not added job listings yet. Please check our Discord or return later.</p></div>
+      </div>
+    </div>
+
+    <aside class="right-panel">
+      <div class="panel">
+        <h4 style="margin:0">HR Panel</h4>
+        <p class="muted" style="margin-top:8px"><strong>CHRO:</strong> William Alexander Cross</p>
+        <p class="muted">HR office hours (Dubai): Mon–Thu 09:00–19:00, Fri–Sun 07:00–22:00</p>
+        <div style="margin-top:10px"><a class="btn-ghost" href="hr-portal.html">HR Portal</a> <a class="btn-primary" href="apply.html">Apply Now</a></div>
+      </div>
+      <div style="height:12px"></div>
+      <div class="panel">
+        <h4 style="margin:0">Community</h4>
+        <p class="muted" style="margin-top:8px">Announcements and recruitment are posted on Discord and the main site.</p>
+        <div style="margin-top:10px"><a id="discord" class="btn-primary" href="#" target="_blank">Join Discord</a></div>
+      </div>
+    </aside>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+    <div><strong>Emirates Group Roblox</strong><div class="muted">Careers portal</div></div>
+    <div class="muted">© <span id="yr"></span></div>
+  </div>
+</footer>
+
+<script>
+const API_URL = '<<PASTE_YOUR_APPS_SCRIPT_WEBAPP_URL>>';
+const DISCORD_INVITE = '<<DISCORD_INVITE>>';
+document.getElementById('yr').textContent = new Date().getFullYear();
+document.getElementById('discord').href = DISCORD_INVITE;
+
+/* Fetch jobs: if API_URL missing or API returns no jobs, show "no jobs" message.
+   This ensures that if HR hasn't posted anything, the page shows accurately.
+*/
+async function fetchJobs(q='', status='', division=''){
+  if(!API_URL || API_URL.includes('PASTE_YOUR')) return [];
+  try {
+    const url = new URL(API_URL);
+    url.searchParams.set('path','getJobs');
+    if(q) url.searchParams.set('q',q);
+    if(status) url.searchParams.set('status',status);
+    const res = await fetch(url.toString());
+    const j = await res.json();
+    return j.jobs || [];
+  } catch(e){ console.warn('fetchJobs',e); return [];}
+}
+
+async function render(q='', status='', division=''){
+  const grid = document.getElementById('jobsGrid');
+  grid.innerHTML = '<div class="job-card">Loading…</div>';
+  const jobs = await fetchJobs(q,status,division);
+  if(!jobs || jobs.length===0){
+    grid.innerHTML = '<div class="job-card"><div class="job-title">No roles currently posted</div><p class="muted">HR has not added job listings yet. Please check Discord or return later.</p></div>';
+    return;
+  }
+  grid.innerHTML = jobs.map(job => `<div class="job-card"><div class="job-title">${job.title}</div><div class="muted">${job.division} • ${job.location} • ${job.status}</div><p class="muted">${(job.summary||'')}</p><div style="margin-top:8px"><a class="btn-primary" href="apply.html?job=${encodeURIComponent(job.job_id||'')}">Apply</a> <a class="btn-ghost" href="jobs.html?job=${encodeURIComponent(job.job_id||'')}">View</a></div></div>`).join('');
+}
+
+document.getElementById('searchBtn').addEventListener('click', ()=>{ render(document.getElementById('searchInput').value, document.getElementById('status').value, document.getElementById('division').value);});
+render();
+</script>
+</body>
+</html>
