@@ -8,10 +8,10 @@
   <meta name="description" content="Emirates Group Roblox — Careers. Find roles, apply, and track applications. HR portal and applicant dashboard available." />
 </head>
 <body>
+  <!-- Header (same header used on employee-rights.html) -->
   <header class="site-header">
     <div class="container header-inner">
       <div class="brand">
-        <!-- Replace with your logo file if you have one -->
         <img src="assets/logo-placeholder.png" alt="Emirates Group Roblox logo" class="logo" />
         <div>
           <h1>Emirates Group Roblox</h1>
@@ -20,11 +20,11 @@
       </div>
 
       <nav class="main-nav">
-        <a href="#jobs">Openings</a>
-        <a href="#why">Why Join Us</a>
-        <a href="#divisions">Divisions</a>
-        <a href="#employee-rights">Employee Rights</a>
-        <a href="#contact">Contact</a>
+        <a href="index.html#jobs">Openings</a>
+        <a href="index.html#why">Why Join Us</a>
+        <a href="index.html#divisions">Divisions</a>
+        <a href="employee-rights.html">Employee Rights</a>
+        <a href="index.html#contact">Contact</a>
         <a class="btn btn-outline" id="applicantPortalBtn">Applicant Portal</a>
         <a class="btn btn-primary" id="hrLoginBtn">HR Login</a>
       </nav>
@@ -39,7 +39,7 @@
         <p class="lead">Be part of a professional, innovative and supportive virtual airline group. Browse careers, submit applications, and track your progress.</p>
         <div class="hero-ctas">
           <a href="#jobs" class="btn btn-primary">View Openings</a>
-          <a href="#employee-rights" class="btn btn-outline">Employee Rights & Terms</a>
+          <a href="employee-rights.html" class="btn btn-outline">View Employee Rights</a>
         </div>
 
         <div class="stats-row">
@@ -60,7 +60,7 @@
 
       <div class="hero-right">
         <div class="panel">
-          <h3>Local time</h3>
+          <h3>Local & Dubai time</h3>
           <div class="time-row">
             <div>
               <div class="time-title">Your local time</div>
@@ -165,53 +165,41 @@
     </div>
 
     <div id="jobsList" class="jobs-list">
-      <!-- Job cards injected here by script.js -->
       <div class="loading">Loading jobs…</div>
     </div>
   </section>
 
-  <!-- MAP + DISCORD -->
-<a href="https://www.roblox.com/games/85410611756192/Emirates-Group-Roblox-Headquarters" 
-   target="_blank" 
-   class="roblox-embed">
-  <img src="https://thumbnails.roblox.com/v1/assets?assetIds=85410611756192&size=768x432&format=Png&isCircular=false" 
-       alt="Emirates Group Roblox Headquarters" 
-       style="width:100%;border-radius:10px;">
-  <div style="padding:10px;">
-    <h3>Emirates Group Roblox Headquarters</h3>
-    <p>Visit our official headquarters on Roblox — explore our operations and divisions in-game.</p>
-    <button style="background:#c8102e;color:white;padding:8px 16px;border:none;border-radius:6px;cursor:pointer;">
-      Play on Roblox
-    </button>
-  </div>
-</a>
+  <!-- ROBLOX EMBED + MAP + DISCORD -->
+  <section id="contact" class="container panel-section">
+    <div class="contact-grid">
+      <div class="roblox-card panel">
+        <a class="roblox-embed" target="_blank" href="https://www.roblox.com/games/85410611756192/Emirates-Group-Roblox-Headquarters" rel="noopener">
+          <img src="https://thumbnails.roblox.com/v1/assets?assetIds=85410611756192&size=768x432&format=Png&isCircular=false" alt="Emirates Group Roblox Headquarters" />
+          <div class="roblox-meta">
+            <h3>Emirates Group Roblox Headquarters</h3>
+            <p>Explore our HQ on Roblox — operations, lounges, and training spaces.</p>
+            <div><button class="btn btn-primary">Play on Roblox</button></div>
+          </div>
+        </a>
+      </div>
 
-      <aside class="discord">
-        <h3>Community & support (Discord)</h3>
-        <p>Join our Discord for support, announcements and community events.</p>
-        <div class="discord-ctas">
-          <a id="discordInviteBtn" class="btn btn-primary" target="_blank" rel="noopener">Join our Discord</a>
-          <div class="discord-widget" id="discordWidget">
-            <!-- If you have a Discord widget URL you can embed here — fallback: server invite -->
-            <div class="widget-placeholder">Discord widget will show here.</div>
+      <div class="map-discord">
+        <div class="panel map">
+          <h4>Virtual HQ location</h4>
+          <iframe id="mapEmbed" title="Map" src="" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+
+        <div class="panel discord">
+          <h4>Community & support (Discord)</h4>
+          <p>Join our Discord for support, announcements and community events.</p>
+          <div class="discord-ctas">
+            <a id="discordInviteBtn" class="btn btn-primary" target="_blank" rel="noopener">Join our Discord</a>
+            <div class="discord-widget" id="discordWidget">
+              <div class="widget-placeholder">Discord widget will show here.</div>
+            </div>
           </div>
         </div>
-      </aside>
-    </div>
-  </section>
-
-  <!-- EMPLOYEE RIGHTS & TERMS -->
-  <section id="employee-rights" class="container panel-section">
-    <h2>Employee Rights — Terms & Conditions</h2>
-    <p class="section-lead">These Employee Rights are provided so that every applicant and employee understands the standards, expectations, and protections that apply when working with Emirates Group Roblox. The text below is written to be clear and printable.</p>
-
-    <div class="employee-terms" id="employeeTerms">
-      <!-- Long legal / policy text inserted by script.js to keep HTML lean -->
-    </div>
-
-    <div class="print-controls">
-      <button id="downloadTermsBtn" class="btn btn-outline">Download (PDF)</button>
-      <button id="printTermsBtn" class="btn btn-primary">Print</button>
+      </div>
     </div>
   </section>
 
