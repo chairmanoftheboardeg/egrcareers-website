@@ -1,7 +1,7 @@
 // script.js - site wiring (jobs + clocks + hr status + employee rights content)
 // --- CONFIG: replace placeholders below ---
-const API_URL = '<<PASTE_YOUR_APPS_SCRIPT_WEBAPP_URL>>'; // e.g. https://script.google.com/macros/s/xxx/exec
-const DISCORD_INVITE = 'https://discord.gg/your-invite'; // replace
+const API_URL = 'https://script.google.com/macros/s/AKfycbzTwLSlOIXxDGVICcIlytL1PSbsaoBlf-TrUZLAYNWei1rqcEIot2O-Wk48QQamKUfq/exec'; // e.g. https://script.google.com/macros/s/xxx/exec
+const DISCORD_INVITE = 'https://discord.com/invite/dZaJqdTyGd'; // replace
 const DISCORD_WIDGET_ID = ''; // optional
 const MAP_EMBED_SRC = ''; // set a Google Maps embed URL or leave blank
 // --- END CONFIG ---
