@@ -2,209 +2,429 @@
 <html lang="en-GB">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Emirates Group Roblox — Careers</title>
-  <meta name="description" content="Emirates Group Roblox — Careers. Find roles, apply, and track applications. HR portal and applicant dashboard available." />
+  <meta name="description" content="Emirates Group Roblox Careers — View opportunities, apply, and connect with HR. Professional virtual airline careers experience." />
+  <meta name="theme-color" content="#c8102e" />
   <style>
-    /* ====== RESET & BASE ====== */
-    * { margin:0; padding:0; box-sizing:border-box; font-family:Arial, sans-serif; }
-    body { background:#f9f9f9; color:#333; line-height:1.6; }
-    a { text-decoration:none; color:inherit; }
-    img { max-width:100%; display:block; }
-    h1,h2,h3,h4,h5,h6 { margin-bottom:0.5rem; color:#111; }
-    p { margin-bottom:1rem; }
-
-    /* ====== HEADER ====== */
-    .site-header { background:#c8102e; color:white; padding:1rem 0; }
-    .site-header .container { display:flex; justify-content:space-between; align-items:center; max-width:1200px; margin:0 auto; padding:0 1rem; }
-    .logo { height:60px; margin-right:1rem; }
-    .main-nav a { margin-left:1rem; color:white; font-weight:bold; padding:0.5rem 1rem; border-radius:4px; transition:0.3s; }
-    .main-nav a:hover { background:white; color:#c8102e; }
-    .btn-primary { background:#ffc72c; color:#111; padding:0.5rem 1rem; border:none; border-radius:4px; cursor:pointer; }
-    .btn-outline { border:2px solid white; color:white; padding:0.5rem 1rem; border-radius:4px; }
-
-    /* ====== HERO ====== */
-    .hero { background:#c8102e url('assets/hero-bg.jpg') center/cover no-repeat; color:white; padding:3rem 0; }
-    .hero .container { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; max-width:1200px; margin:0 auto; }
-    .hero-left { max-width:600px; }
-    .hero h2 { font-size:2.5rem; margin-bottom:1rem; }
-    .hero p.lead { font-size:1.2rem; margin-bottom:1.5rem; }
-    .hero-ctas a { margin-right:1rem; display:inline-block; margin-bottom:0.5rem; }
-    .stats-row { display:flex; margin-top:2rem; gap:2rem; }
-    .stat { text-align:center; }
-    .stat-value { font-size:1.8rem; font-weight:bold; }
-    .stat-label { font-size:0.9rem; }
-
-    .hero-right { max-width:300px; background:white; color:#111; padding:1rem; border-radius:10px; }
-    .panel h3,h4 { margin-bottom:0.5rem; }
-    .time-row { display:flex; justify-content:space-between; margin-bottom:1rem; }
-    .time-title { font-size:0.8rem; color:#555; }
-    .time-value { font-size:1.2rem; font-weight:bold; }
-    .hr-status { font-size:0.9rem; color:#333; margin-top:1rem; }
-    .chro { margin-top:0.5rem; font-weight:bold; }
-
-    /* ====== SECTIONS ====== */
-    .panel-section { padding:3rem 1rem; max-width:1200px; margin:0 auto; }
-    .section-lead { margin-bottom:2rem; color:#555; font-size:1.1rem; }
-
-    .cards { display:flex; flex-wrap:wrap; gap:1rem; }
-    .card { flex:1 1 220px; background:white; padding:1rem; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
-    .divisions-grid { display:flex; flex-wrap:wrap; gap:1rem; }
-    .division { flex:1 1 200px; background:white; padding:1rem; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
-
-    /* ====== JOBS ====== */
-    .jobs-header { display:flex; justify-content:space-between; flex-wrap:wrap; margin-bottom:1.5rem; }
-    .job-controls input, .job-controls select { padding:0.5rem; margin-right:0.5rem; border-radius:4px; border:1px solid #ccc; }
-    .jobs-list { display:flex; flex-direction:column; gap:1rem; }
-    .job-card { background:white; padding:1rem; border-radius:6px; box-shadow:0 1px 3px rgba(0,0,0,0.1); }
-
-    /* ====== ROBLOX + DISCORD ====== */
-    .roblox-embed { display:block; background:white; margin:2rem 0; border-radius:10px; overflow:hidden; text-align:center; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
-    .roblox-embed h3 { margin-top:0.5rem; }
-    .discord { margin-top:2rem; background:white; padding:1rem; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
-
-    /* ====== EMPLOYEE RIGHTS BUTTON ====== */
-    .btn-employee-rights { display:inline-block; margin-top:1rem; background:#111; color:white; padding:0.5rem 1rem; border-radius:4px; }
-
-    /* ====== FOOTER ====== */
-    .site-footer { background:#111; color:white; padding:2rem 1rem; }
-    .site-footer a { color:#ffc72c; margin-right:1rem; }
-    .footer-inner { max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; }
-    @media(max-width:768px){ .hero .container { flex-direction:column; } .hero-right { margin-top:2rem; } }
+    /*
+      Embedded corporate, modern, slightly futuristic theme.
+      All CSS inline so it loads even if stylesheets fail.
+    */
+    :root{
+      --brand:#c8102e;    /* Emirates-like deep red */
+      --accent:#ffd24a;   /* gold accent */
+      --bg:#0f1720;       /* dark background for futuristic look */
+      --panel:#0b1220;
+      --muted:#9aa4b2;
+      --card:#0d1624;
+      --glass: rgba(255,255,255,0.03);
+      --radius:12px;
+      --container:1180px;
+      --text:#e6eef8;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial; background:linear-gradient(180deg,#071123 0%, #061423 100%); color:var(--text); -webkit-font-smoothing:antialiased}
+    .container{max-width:var(--container);margin:0 auto;padding:22px}
+    a{color:inherit}
+    /* Header */
+    header.site-header{position:sticky;top:0;z-index:50;background:linear-gradient(90deg, rgba(0,0,0,0.25), rgba(0,0,0,0.15));backdrop-filter: blur(6px);border-bottom:1px solid rgba(255,255,255,0.03)}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:var(--container);margin:0 auto;padding:14px 22px}
+    .brand {display:flex;align-items:center;gap:12px}
+    .brand .name{font-weight:700;font-size:18px;letter-spacing:0.2px}
+    nav.main-nav{display:flex;align-items:center;gap:10px}
+    nav.main-nav a{color:var(--text);padding:8px 12px;border-radius:8px;font-weight:600;font-size:14px}
+    nav.main-nav a:hover{background:var(--glass)}
+    .nav-cta{display:flex;gap:8px}
+    .btn{border:0;padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:700}
+    .btn-primary{background:var(--brand);color:white;box-shadow:0 6px 18px rgba(200,20,40,0.12)}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text)}
+    /* Hero */
+    .hero{padding:48px 0;background:linear-gradient(180deg, rgba(6,18,36,0.6), rgba(3,8,16,0.9));border-bottom:1px solid rgba(255,255,255,0.02)}
+    .hero-grid{display:flex;gap:28px;align-items:stretch;flex-wrap:wrap}
+    .hero-left{flex:1;min-width:320px}
+    .kicker{display:inline-block;padding:6px 10px;background:rgba(255,255,255,0.02);border-radius:999px;color:var(--accent);font-weight:700;margin-bottom:12px;font-size:13px}
+    .hero h1{font-size:34px;margin:0 0 12px 0;line-height:1.05}
+    .hero p.lead{color:var(--muted);max-width:62ch;font-size:16px;margin-bottom:18px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .stats-row{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+    .stat{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:12px;border-radius:10px;min-width:140px;border:1px solid rgba(255,255,255,0.02)}
+    .stat .value{font-size:20px;font-weight:800}
+    .stat .label{color:var(--muted);font-size:13px}
+    /* Hero right */
+    .hero-right{width:360px;min-width:280px}
+    .panel{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+    .time-row{display:flex;justify-content:space-between;gap:12px}
+    .time-block{flex:1;text-align:center}
+    .time-title{color:var(--muted);font-size:12px}
+    .time-value{font-weight:800;font-size:18px;margin-top:6px}
+    .hr-active{margin-top:10px;font-weight:700}
+    /* Sections */
+    section.panel-section{padding:40px 0}
+    .section-title{font-size:22px;margin-bottom:8px}
+    .section-lead{color:var(--muted);margin-bottom:18px;max-width:70ch}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));padding:16px;border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
+    /* Jobs area */
+    .jobs-wrap{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap}
+    .jobs-left{flex:1;min-width:300px}
+    .jobs-controls{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+    .search{flex:1;min-width:220px;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text)}
+    .select{padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text)}
+    .jobs-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+    .job-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
+    .job-title{font-weight:800}
+    .job-meta{color:var(--muted);font-size:13px;margin:8px 0}
+    .job-actions{display:flex;gap:8px;margin-top:8px}
+    /* CHRO section */
+    .chro-panel{display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap}
+    .chro-photo{width:160px;height:160px;border-radius:12px;background:linear-gradient(180deg,var(--brand),#8b0a1a);display:flex;align-items:center;justify-content:center;font-weight:800}
+    .chro-content{flex:1;min-width:220px}
+    .chro-quote{font-style:italic;color:var(--accent);margin-top:6px}
+    .chro-list{margin-top:8px;color:var(--muted)}
+    /* Roblox / Discord card */
+    .mini-card{padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.02);background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005))}
+    .roblox-card img{border-radius:8px}
+    /* Footer */
+    footer.site-footer{padding:28px 0;border-top:1px solid rgba(255,255,255,0.02);margin-top:28px}
+    .footer-inner{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+    .muted{color:var(--muted)}
+    /* Responsive */
+    @media(max-width:880px){
+      .hero-grid{flex-direction:column}
+      .hero-right{width:100%}
+      .chro-panel{flex-direction:column}
+      .header-inner{padding:12px}
+      nav.main-nav{display:none}
+    }
   </style>
 </head>
 <body>
-  <!-- HEADER -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="brand">
-        <img src="assets/logo-placeholder.png" alt="Emirates Group Roblox logo" class="logo">
+  <!-- HEADER (consistent across site) -->
+  <header class="site-header" role="banner">
+    <div class="header-inner container">
+      <div class="brand" aria-label="Emirates Group Roblox brand">
+        <!-- No picture icon as requested — just brand text -->
+        <div class="name" style="font-size:18px;color:var(--accent);">Emirates Group Roblox</div>
+        <div class="muted" style="font-size:12px;margin-left:6px">Careers | Professional & Community</div>
       </div>
-      <nav class="main-nav">
-        <a href="#jobs">Openings</a>
-        <a href="#why">Why Join Us</a>
-        <a href="#divisions">Divisions</a>
-        <a href="employee-rights.html" class="btn-employee-rights">Employee Rights</a>
-        <a href="#contact">Contact</a>
-        <a class="btn btn-outline" id="applicantPortalBtn">Applicant Portal</a>
-        <a class="btn btn-primary" id="hrLoginBtn">HR Login</a>
+
+      <nav class="main-nav" role="navigation" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="job-listings.html">Openings</a>
+        <a href="about.html">About</a>
+        <a href="employee-rights.html">Employee Rights</a>
+        <a href="applicant.html">Applicant Portal</a>
+        <span class="nav-cta">
+          <a class="btn btn-ghost" href="hr.html">HR Portal</a>
+          <a class="btn btn-primary" href="job-listings.html">Apply Now</a>
+        </span>
       </nav>
     </div>
   </header>
 
   <!-- HERO -->
-  <section class="hero">
-    <div class="container hero-inner">
-      <div class="hero-left">
-        <h2>Join Emirates Group Roblox</h2>
-        <p class="lead">Be part of a professional, innovative, and supportive virtual airline group. Browse careers, submit applications, and track your progress.</p>
-        <div class="hero-ctas">
-          <a href="#jobs" class="btn btn-primary">View Openings</a>
-          <a href="employee-rights.html" class="btn btn-outline">Employee Rights & Terms</a>
-        </div>
-      </div>
+  <main>
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="container hero-grid">
+        <div class="hero-left">
+          <span class="kicker">Careers • Emirates Group Roblox</span>
+          <h1 id="hero-heading">We hire for professionalism, realism and community leadership.</h1>
+          <p class="lead">Join a high-quality virtual airline environment that models real-world standards. Find roles across Flight Ops, Customer Service, Ground Ops, HR and IT.</p>
 
-      <div class="hero-right">
-        <div class="panel">
-          <h3>Local time</h3>
-          <div class="time-row">
-            <div>
-              <div class="time-title">Your local time</div>
-              <div id="localTime" class="time-value">--:--</div>
-            </div>
-            <div>
-              <div class="time-title">Dubai time</div>
-              <div id="dubaiTime" class="time-value">--:--</div>
-            </div>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="job-listings.html">View current openings</a>
+            <a class="btn btn-ghost" href="employee-rights.html">Employee Rights</a>
+            <a class="btn btn-ghost" href="about.html">Message from the Founder</a>
           </div>
-          <div class="hr-status">
-            <div>HR Office Hours</div>
-            <div>Mon–Thu: 09:00–19:00, Fri–Sun: 07:00–22:00 (Dubai)</div>
-            <div id="hrActive">Checking...</div>
-            <div class="chro">CHRO: <strong>William Alexander Cross</strong></div>
+
+          <div class="stats-row" role="status" aria-live="polite" style="margin-top:18px">
+            <div class="stat"><div class="value" id="stat-open">—</div><div class="label muted">Open positions</div></div>
+            <div class="stat"><div class="value" id="stat-apps">—</div><div class="label muted">Applications</div></div>
+            <div class="stat"><div class="value" id="stat-hr">—</div><div class="label muted">HR staff</div></div>
           </div>
         </div>
+
+        <aside class="hero-right" aria-label="Quick panel">
+          <div class="panel">
+            <div class="time-row">
+              <div class="time-block">
+                <div class="time-title">Your local time</div>
+                <div id="localTime" class="time-value" aria-live="polite">--:--</div>
+              </div>
+              <div class="time-block">
+                <div class="time-title">Dubai (HR Time)</div>
+                <div id="dubaiTime" class="time-value" aria-live="polite">--:--</div>
+              </div>
+            </div>
+            <div class="hr-active muted" id="hrActive" aria-live="polite" style="margin-top:10px">Checking HR status…</div>
+            <div style="margin-top:12px;font-size:13px;color:var(--muted)"><strong>CHRO:</strong> William Alexander Cross</div>
+          </div>
+
+          <div style="height:12px"></div>
+
+          <div class="mini-card">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div>
+                <div style="font-size:13px;color:var(--muted)">Community</div>
+                <div style="font-weight:800;margin-top:6px">Discord & Events</div>
+              </div>
+              <div>
+                <a class="btn btn-primary" id="discordBtn" href="#" target="_blank" rel="noopener">Join Discord</a>
+              </div>
+            </div>
+            <div style="margin-top:10px;color:var(--muted);font-size:13px">Announcements, flight events and HR support happen on Discord. Join to stay informed.</div>
+          </div>
+        </aside>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- WHY JOIN US -->
-  <section id="why" class="panel-section">
-    <h2>Why join Emirates Group Roblox?</h2>
-    <p class="section-lead">We combine real-world standards with community passion. Growth, training, and teamwork are at the centre of everything we do.</p>
-    <div class="cards">
-      <div class="card"><h3>Innovation & Realism</h3><p>We value realistic operations, frequent training and continual improvement of our virtual airline systems.</p></div>
-      <div class="card"><h3>Diversity & Inclusion</h3><p>We welcome participants from all backgrounds and foster a respectful community culture.</p></div>
-      <div class="card"><h3>Growth Opportunities</h3><p>Career progression, leadership roles and development pathways within our Roblox group.</p></div>
-      <div class="card"><h3>Supportive HR</h3><p>A professional HR team manages recruitment fairly with clear feedback and records.</p></div>
-    </div>
-  </section>
+    <!-- WHY JOIN US -->
+    <section class="panel-section" aria-labelledby="why-heading">
+      <div class="container">
+        <h2 id="why-heading" class="section-title">Why join Emirates Group Roblox?</h2>
+        <p class="section-lead">We combine structure with community. We provide realistic operations and an environment that rewards leadership, dependability and growth.</p>
 
-  <!-- DIVISIONS -->
-  <section id="divisions" class="panel-section">
-    <h2>Our Divisions</h2>
-    <div class="divisions-grid">
-      <div class="division"><h4>Flight Operations</h4><p>Scheduling, crew coordination and flight operations for our hosted flights.</p></div>
-      <div class="division"><h4>Customer Service</h4><p>Guest relations, onboarding passengers and handling enquiries in a professional manner.</p></div>
-      <div class="division"><h4>Ground Operations</h4><p>Ramp, baggage, and ground handling roles that keep the operation running smoothly.</p></div>
-      <div class="division"><h4>HR & Recruitment</h4><p>Hiring, staff records, training & welfare — professional HR services for the group.</p></div>
-      <div class="division"><h4>IT & Systems</h4><p>Maintain dashboards, automation and server-side systems for flights and community tools.</p></div>
-    </div>
-  </section>
+        <div class="cards" role="list">
+          <div class="card" role="listitem">
+            <h3>Realistic Operations</h3>
+            <p class="muted">We operate with procedural realism — training, SOPs and performance standards are central to our groups.</p>
+          </div>
+          <div class="card" role="listitem">
+            <h3>Structured Progression</h3>
+            <p class="muted">Clear role paths, training milestones, and recognition for committed staff and volunteers.</p>
+          </div>
+          <div class="card" role="listitem">
+            <h3>Professional HR</h3>
+            <p class="muted">A dedicated HR team manages recruitment, records and clear feedback for applicants.</p>
+          </div>
+          <div class="card" role="listitem">
+            <h3>Community & Events</h3>
+            <p class="muted">Regular operations, events and community activities run through our Discord and group platforms.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <!-- JOBS LISTING -->
-  <section id="jobs" class="panel-section">
-    <h2>Current opportunities</h2>
-    <p class="section-lead">Browse open roles and apply online.</p>
-    <div class="jobs-list" id="jobsList">
-      <!-- Job cards from Google Sheets will appear here -->
-      <div class="loading">Loading jobs…</div>
-    </div>
-  </section>
+    <!-- JOBS + SEARCH -->
+    <section class="panel-section" aria-labelledby="jobs-heading">
+      <div class="container">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+          <div>
+            <h2 id="jobs-heading" class="section-title">Open roles</h2>
+            <p class="section-lead">Filter, search and apply to positions. Roles are created and managed by HR through a secure portal.</p>
+          </div>
+          <div style="min-width:260px" aria-hidden="true"></div>
+        </div>
 
-  <!-- ROBLOX EMBED -->
-  <a href="https://www.roblox.com/games/85410611756192/Emirates-Group-Roblox-Headquarters" target="_blank" class="roblox-embed">
-    <img src="https://thumbnails.roblox.com/v1/assets?assetIds=85410611756192&size=768x432&format=Png&isCircular=false" alt="Emirates Group Roblox Headquarters">
-    <div style="padding:10px;">
-      <h3>Emirates Group Roblox Headquarters</h3>
-      <p>Visit our official headquarters on Roblox — explore our operations and divisions in-game.</p>
-      <button class="btn-primary">Play on Roblox</button>
-    </div>
-  </a>
+        <div class="jobs-wrap" style="margin-top:14px">
+          <div class="jobs-left">
+            <div class="jobs-controls" role="search">
+              <input id="searchInput" class="search" type="search" placeholder="Search jobs, keywords, division..." aria-label="Search jobs" />
+              <select id="statusFilter" class="select" aria-label="Filter by status">
+                <option value="">All statuses</option>
+                <option value="Open">Open</option>
+                <option value="Closed">Closed</option>
+                <option value="Draft">Draft</option>
+              </select>
+              <button class="btn btn-ghost" id="searchBtn" aria-label="Search">Search</button>
+            </div>
+
+            <div id="jobsList" class="jobs-list" role="list" aria-live="polite">
+              <!-- Job cards injected here -->
+              <div class="job-card">Loading roles…</div>
+            </div>
+          </div>
+
+          <aside style="width:320px;min-width:260px">
+            <div class="mini-card" style="margin-bottom:12px">
+              <h4 style="margin:0 0 6px 0">CHRO — Vision</h4>
+              <div style="display:flex;gap:12px;align-items:flex-start">
+                <div class="chro-photo" aria-hidden="true">WA</div>
+                <div class="chro-content">
+                  <strong>William Alexander Cross</strong>
+                  <div class="chro-quote">"Our people are our operation — fairness, clarity and training are the pillars of our HR mission."</div>
+                  <ul class="chro-list">
+                    <li>Lead HR strategy & recruitment</li>
+                    <li>Implement fair application processes</li>
+                    <li>Oversee staff development & welfare</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="mini-card">
+              <h4 style="margin:0 0 6px 0">Roblox HQ</h4>
+              <div class="roblox-card">
+                <a href="https://www.roblox.com/games/85410611756192/Emirates-Group-Roblox-Headquarters" target="_blank" rel="noopener">
+                  <img src="https://thumbnails.roblox.com/v1/assets?assetIds=85410611756192&size=768x432&format=Png&isCircular=false" alt="Roblox HQ">
+                  <div style="padding:8px"><strong>Emirates Group Roblox HQ</strong><div class="muted" style="font-size:13px">Click to open on Roblox</div></div>
+                </a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT / CALL TO ACTION -->
+    <section class="panel-section" aria-labelledby="about-heading">
+      <div class="container">
+        <h2 id="about-heading" class="section-title">Message from the Founder</h2>
+        <p class="section-lead muted">A short message introducing the group's mission, achievements, and why candidates should join our team. (Detailed founder message is on the About page.)</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+          <a class="btn btn-primary" href="about.html">Read founder message</a>
+          <a class="btn btn-ghost" href="job-listings.html">Browse roles</a>
+          <a class="btn btn-ghost" href="employee-rights.html">Read Employee Rights</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <!-- FOOTER -->
-  <footer class="site-footer">
-    <div class="footer-inner">
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
       <div>
-        <p>&copy; <span id="year"></span> Emirates Group Roblox — Careers</p>
-        <p><small>Designed to reflect a realistic careers experience; this site uses Google Sheets for data storage and a Google Apps Script web API. Not affiliated with Emirates Group (real world).</small></p>
+        <div style="font-weight:700">Emirates Group Roblox</div>
+        <div class="muted" style="font-size:13px">Careers portal — professional community operations</div>
+        <div style="margin-top:8px;font-size:13px;color:var(--muted)">© <span id="footerYear"></span></div>
       </div>
-      <div>
-        <a href="employee-rights.html">Employee Rights</a>
-        <a href="https://emiratesgrouproblox.link/support/index.html">Support</a>
+      <div style="display:flex;gap:12px;align-items:center">
+        <a class="muted" href="employee-rights.html">Employee Rights</a>
+        <a class="muted" href="about.html">About</a>
+        <a id="discordFooter" class="btn btn-ghost" href="#" target="_blank" rel="noopener">Discord</a>
       </div>
     </div>
   </footer>
 
+  <!-- SCRIPT (embedded) -->
   <script>
-    // ====== DATE & TIME ======
-    function updateTime(){
-      const local = new Date();
-      document.getElementById('localTime').textContent = local.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
-      const dubai = new Date().toLocaleString("en-US", {timeZone:"Asia/Dubai"});
-      document.getElementById('dubaiTime').textContent = new Date(dubai).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
-      // HR Active Status
-      const day = new Date(dubai).getDay(); // 0=Sun, 6=Sat
-      const hours = new Date(dubai).getHours();
-      let active = false;
-      if(day>=1 && day<=4 && hours>=9 && hours<19) active=true;
-      if(day===5||day===6||day===0 && hours>=7 && hours<22) active=true;
-      document.getElementById('hrActive').textContent = active ? "HR is Online" : "HR is Offline";
+    /* CONFIG: set your Apps Script / API URL and discord invite below */
+    const API_URL = '<<PASTE_YOUR_APPS_SCRIPT_WEBAPP_URL_OR_LEAVE_BLANK_FOR_DEV>>';
+    const DISCORD_INVITE = 'https://discord.gg/your-invite-here';
+
+    // Utility: safe text
+    function esc(s){ return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+    // Live clocks: local and Dubai. Use Intl for timezone correctness
+    function updateClocks(){
+      const now = new Date();
+      const localFormatted = now.toLocaleString(undefined, {weekday:'short', day:'numeric', month:'short', hour:'2-digit', minute:'2-digit', hour12:false});
+      document.getElementById('localTime').textContent = localFormatted;
+
+      try {
+        const parts = new Intl.DateTimeFormat('en-GB', {timeZone:'Asia/Dubai', hour12:false, weekday:'short', day:'numeric', month:'short', hour:'2-digit', minute:'2-digit'}).formatToParts(new Date());
+        let weekday='', hour=0, minute=0;
+        parts.forEach(p => { if (p.type==='weekday') weekday=p.value; if (p.type==='hour') hour=parseInt(p.value,10); if (p.type==='minute') minute=parseInt(p.value,10); });
+        const dubaiStr = weekday + ' ' + String(hour).padStart(2,'0') + ':' + String(minute).padStart(2,'0');
+        document.getElementById('dubaiTime').textContent = dubaiStr;
+
+        // Determine HR availability:
+        // Mon–Thu 09:00–19:00, Fri–Sun 07:00–22:00 (Dubai)
+        const wk = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+        let dayIndex = wk.indexOf(weekday);
+        if (dayIndex < 0) {
+          // fallback: build a Date in Dubai and getDay
+          const dubStr = new Intl.DateTimeFormat('en-GB', {timeZone:'Asia/Dubai'}).format();
+          dayIndex = new Date(dubStr).getDay();
+        }
+        let active=false;
+        if (dayIndex >=1 && dayIndex <=4) active = (hour >=9 && hour <19);
+        else active = (hour >=7 && hour <22);
+        const hrEl = document.getElementById('hrActive');
+        hrEl.textContent = active ? 'HR is Online' : 'HR is Offline';
+        hrEl.style.color = active ? 'var(--brand)' : 'var(--muted)';
+      } catch(e){
+        console.warn('Dubai time error', e);
+      }
     }
-    setInterval(updateTime,1000);
-    updateTime();
+    setInterval(updateClocks, 1000);
+    updateClocks();
+
+    // Discord link
+    document.getElementById('discordBtn').href = DISCORD_INVITE;
+    document.getElementById('discordFooter').href = DISCORD_INVITE;
+
+    // Stats + Jobs fetch (from Google Apps Script API)
+    async function fetchAPI(path, params = {}) {
+      if (!API_URL || API_URL.includes('PASTE_YOUR')) {
+        return null; // dev fallback will be handled separately
+      }
+      try {
+        const url = new URL(API_URL);
+        url.searchParams.set('path', path);
+        for (const k in params) url.searchParams.set(k, params[k]);
+        const res = await fetch(url.toString());
+        return await res.json();
+      } catch(e){ console.error('API fetch error', e); return null; }
+    }
+
+    // Render sample jobs if no API configured
+    const SAMPLE_JOBS = [
+      {job_id:'JOB-001', title:'Customer Service Agent (Virtual)', division:'Customer Service', location:'Remote', status:'Open', summary:'Handle customer queries, de-escalation, and passenger care.'},
+      {job_id:'JOB-002', title:'Flight Operations Coordinator', division:'Flight Operations', location:'Virtual Hub', status:'Open', summary:'Coordinate flights, create schedules, maintain paperwork.'},
+      {job_id:'JOB-003', title:'Ground Ops Assistant', division:'Ground Operations', location:'Virtual Hub', status:'Closed', summary:'Support ramp and baggage processes.'}
+    ];
+
+    async function loadJobs(q='', status='') {
+      const jobsContainer = document.getElementById('jobsList');
+      jobsContainer.innerHTML = '<div class="job-card">Loading roles…</div>';
+      // If no API, render sample
+      if (!API_URL || API_URL.includes('PASTE_YOUR')) {
+        renderJobs(SAMPLE_JOBS.filter(j => (!q || (j.title+j.summary+j.division).toLowerCase().includes(q.toLowerCase())) && (!status || j.status===status)));
+        updateStats(SAMPLE_JOBS);
+        return;
+      }
+      const resp = await fetchAPI('getJobs', {q, status});
+      if (resp && resp.ok) {
+        renderJobs(resp.jobs || []);
+        // Get applications and hr list too
+        const appsResp = await fetchAPI('getApplications');
+        const hrResp = await fetchAPI('getHRList');
+        updateStats(resp.jobs || [], (appsResp && appsResp.applications) || [], (hrResp && hrResp.hr) || []);
+      } else {
+        // fallback sample
+        renderJobs(SAMPLE_JOBS);
+        updateStats(SAMPLE_JOBS);
+      }
+    }
+
+    function renderJobs(jobs) {
+      const out = (jobs || []).map(j => `
+        <div class="job-card" role="listitem">
+          <div class="job-title">${esc(j.title)}</div>
+          <div class="job-meta">${esc(j.division)} • ${esc(j.location)} • <span style="font-weight:700">${esc(j.status)}</span></div>
+          <div class="muted" style="margin-top:8px">${esc(j.summary || '')}</div>
+          <div class="job-actions" style="margin-top:10px">
+            <a class="btn btn-primary" href="job-listings.html?job=${encodeURIComponent(j.job_id||'')}" aria-label="Apply to ${esc(j.title)}">Apply</a>
+            <a class="btn btn-ghost" href="job-listings.html?job=${encodeURIComponent(j.job_id||'')}" aria-label="View details">View</a>
+          </div>
+        </div>
+      `).join('');
+      document.getElementById('jobsList').innerHTML = out || '<div class="job-card">No roles found.</div>';
+    }
+
+    function updateStats(jobs = [], apps = [], hr = []) {
+      document.getElementById('stat-open').textContent = (jobs.filter(j => (j.status||'').toLowerCase()==='open')).length;
+      document.getElementById('stat-apps').textContent = (apps.length || '—');
+      document.getElementById('stat-hr').textContent = (hr.length || '—');
+    }
+
+    // Init and search wiring
+    document.getElementById('searchBtn').addEventListener('click', ()=> {
+      const q = document.getElementById('searchInput').value.trim();
+      const status = document.getElementById('statusFilter').value;
+      loadJobs(q, status);
+    });
+
+    // Load initial jobs
+    loadJobs();
+
     // Footer year
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+    // Accessibility: focus outline highlight for keyboard users
+    document.addEventListener('keyup', e => { if (e.key === 'Tab') document.body.classList.add('show-focus'); });
   </script>
 </body>
 </html>
