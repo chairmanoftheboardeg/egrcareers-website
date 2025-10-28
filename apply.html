@@ -1,129 +1,77 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-  <meta charset="utf-8"/>
-  <title>Apply — EGR Careers</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <link href="/css/careers.css" rel="stylesheet">
-  <script> const API_BASE = 'https://script.google.com/macros/s/PUT_YOUR_SCRIPT_ID/exec'; </script>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Apply — Emirates Group Roblox</title>
+<meta name="description" content="Application form for Emirates Group Roblox roles."/>
+<style>
+:root{--brand:#c8102e;--muted:#9aa4b2;--text:#e6eef8}
+body{margin:0;font-family:Inter,system-ui,Roboto,Arial;background:linear-gradient(180deg,#061423,#031018);color:var(--text)}
+.container{max-width:900px;margin:40px auto;padding:22px}
+.card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+.input,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text);margin-top:8px}
+.btn-primary{background:var(--brand);color:white;padding:10px 14px;border-radius:8px;border:0;margin-top:10px}
+.muted{color:var(--muted)}
+</style>
 </head>
 <body>
-  <header class="nav"><div class="container nav-container">
-    <div class="brand">Emirates Group Roblox</div>
-    <nav class="links">
-      <a href="/index.html">Home</a>
-      <a href="/jobs.html">Jobs</a>
-      <a href="/dashboard.html">My Applications</a>
-      <div id="localTime">--:--</div>
-      <button id="authBtn" class="btn btn-primary">HR Sign In</button>
-    </nav>
-  </div></header>
+<div class="container">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+    <div><h1 style="margin:0">Apply for role</h1><div class="muted">Complete and submit your application</div></div>
+    <div><a href="jobs.html" style="color:var(--muted)">Back to jobs</a></div>
+  </div>
 
-  <section class="hero-modern"><div class="container"><h1>Application</h1><p class="small">Complete the form below to apply.</p></div></section>
-
-  <main class="container" style="max-width:800px;margin:1.5rem auto;">
-    <form id="applyForm" class="card form-modern">
-      <label>Position</label>
-      <input id="jobTitle" name="jobTitle" readonly>
-
-      <label>Full Name</label>
-      <input id="fullName" required>
-
-      <label>Age</label>
-      <input id="age" type="number" required>
-
-      <label>Email</label>
-      <input id="email" type="email" required>
-
-      <label>Discord Username (username#1234)</label>
-      <input id="discordUsername" required>
-
-      <label>Discord ID (numeric)</label>
-      <input id="discordId" required>
-
-      <label>Roblox Username</label>
-      <input id="robloxUsername" required>
-
-      <label>Country</label>
-      <input id="country" required>
-
-      <label>Region / City</label>
-      <input id="region" required>
-
-      <label>Cover / Message</label>
-      <textarea id="cover" required></textarea>
-
-      <label>Upload CV (PDF)</label>
-      <input id="resume" type="file" accept="application/pdf" required>
-
-      <div class="form-actions" style="margin-top:1rem">
-        <button class="btn btn-primary" type="submit">Submit Application</button>
-        <a class="btn btn-ghost" href="/jobs.html">Cancel</a>
+  <div class="card">
+    <form id="applyForm">
+      <input type="hidden" name="job_id" id="job_id" value="">
+      <label>Role</label>
+      <input class="input" id="roleTitle" disabled />
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div><label>First name</label><input class="input" name="first_name" required /></div>
+        <div><label>Last name</label><input class="input" name="last_name" /></div>
       </div>
+      <label>Email</label><input class="input" type="email" name="email" required />
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div><label>Discord username</label><input class="input" name="discord_username" /></div>
+        <div><label>Discord ID</label><input class="input" name="discord_id" /></div>
+      </div>
+      <label>Roblox username</label><input class="input" name="roblox_username" />
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div><label>Age</label><input class="input" name="age" type="number" /></div>
+        <div><label>Country</label><input class="input" name="country" /></div>
+      </div>
+      <label>Why do you want this role?</label>
+      <textarea class="input" name="cover_letter" rows="6"></textarea>
+      <button type="submit" class="btn-primary">Submit Application</button>
     </form>
-  </main>
-
-  <footer class="footer-modern"><div class="container footer-container">
-    <div>© 2025 Emirates Group Roblox — All Rights Reserved</div>
-    <div class="footer-links"><a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a></div>
-  </div></footer>
+  </div>
+  <div style="margin-top:12px;color:var(--muted)">Note: applications are handled by HR. You will receive a confirmation email if contact info is provided.</div>
+</div>
 
 <script>
-function qs(name) {
-  const url = new URL(location.href);
-  return url.searchParams.get(name);
-}
-document.getElementById('jobTitle').value = qs('job') || 'General Application';
-const jobId = qs('jobId') || '';
+const API_URL = '<<PASTE_YOUR_APPS_SCRIPT_WEBAPP_URL>>';
+/* Pre-fill job ID if passed in query */
+function qs(name){ return new URLSearchParams(location.search).get(name); }
+const jobId = qs('job');
+if(jobId){ document.getElementById('job_id').value = jobId; document.getElementById('roleTitle').value = 'Selected role: ' + jobId; }
 
-async function toBase64(file){
-  return new Promise((res,rej)=>{
-    const reader=new FileReader();
-    reader.onload=()=> res(reader.result.split(',')[1]);
-    reader.onerror=rej;
-    reader.readAsDataURL(file);
-  });
-}
-
-document.getElementById('applyForm').addEventListener('submit', async (ev)=>{
-  ev.preventDefault();
-  const fullName = document.getElementById('fullName').value.trim();
-  const age = document.getElementById('age').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const discordUsername = document.getElementById('discordUsername').value.trim();
-  const discordId = document.getElementById('discordId').value.trim();
-  const robloxUsername = document.getElementById('robloxUsername').value.trim();
-  const country = document.getElementById('country').value.trim();
-  const region = document.getElementById('region').value.trim();
-  const cover = document.getElementById('cover').value.trim();
-  const resumeInput = document.getElementById('resume');
-  if(!resumeInput.files.length){ alert('Upload your CV (PDF).'); return; }
-  const resumeFile = resumeInput.files[0];
-  const resumeBase64 = await toBase64(resumeFile);
-  const payload = {
-    path: 'submitApplication',
-    jobId: jobId,
-    jobTitle: document.getElementById('jobTitle').value,
-    fullName, age, email, discordUsername, discordId, robloxUsername, country, region, cover,
-    resumeBase64, resumeName: resumeFile.name
-  };
-  try {
-    const r = await fetch(API_BASE, {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify(payload)
-    });
-    const json = await r.json();
-    if(json.ok){
-      alert('Application submitted — thank you!');
-      location.href = '/dashboard.html';
-    } else {
-      alert('Could not submit: ' + (json.err||'unknown error'));
-    }
-  } catch(err){
-    console.error(err);
-    alert('Failed to submit. Check console.');
+document.getElementById('applyForm').addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const fm = new FormData(e.target);
+  const data = Object.fromEntries(fm.entries());
+  // Basic validation
+  if(!data.job_id){ alert('No job selected.'); return; }
+  if(!data.first_name || !data.email){ alert('Please complete required fields.'); return; }
+  if(!API_URL || API_URL.includes('PASTE_YOUR')){
+    alert('Application simulated (no API configured). Thank you!');
+    return;
   }
+  try{
+    const res = await fetch(API_URL, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.assign({action:'apply'},data))});
+    const j = await res.json();
+    if(j && j.ok){ alert('Application submitted. ID: ' + (j.application_id||'—')); location.href='jobs.html'; }
+    else alert('Error: ' + (j.error||'unknown'));
+  }catch(err){ console.error(err); alert('Network error sending application.'); }
 });
 </script>
 </body>
