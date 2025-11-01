@@ -1,77 +1,75 @@
 <!doctype html>
 <html lang="en-GB">
 <head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Apply — Emirates Group Roblox</title>
-<meta name="description" content="Application form for Emirates Group Roblox roles."/>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Apply — Emirates Group Roblox</title>
 <style>
-:root{--brand:#c8102e;--muted:#9aa4b2;--text:#e6eef8}
-body{margin:0;font-family:Inter,system-ui,Roboto,Arial;background:linear-gradient(180deg,#061423,#031018);color:var(--text)}
-.container{max-width:900px;margin:40px auto;padding:22px}
-.card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+:root{--bg:#041018;--panel:#071425;--text:#e6eef8;--muted:#9aa4b2;--brand:#c8102e}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,Arial;background:linear-gradient(180deg,#031018,#041018);color:var(--text)}
+.header{background:linear-gradient(90deg,rgba(0,0,0,0.25),rgba(0,0,0,0.15));padding:12px;position:sticky;top:0;z-index:60}
+.header .inner{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:8px 18px}
+.container{max-width:900px;margin:28px auto;padding:0 18px}
+.card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:18px;border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
 .input,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text);margin-top:8px}
-.btn-primary{background:var(--brand);color:white;padding:10px 14px;border-radius:8px;border:0;margin-top:10px}
+.btn-primary{background:var(--brand);color:white;padding:10px 14px;border-radius:8px;border:0;cursor:pointer;margin-top:12px}
 .muted{color:var(--muted)}
 </style>
 </head>
 <body>
-<div class="container">
-  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-    <div><h1 style="margin:0">Apply for role</h1><div class="muted">Complete and submit your application</div></div>
-    <div><a href="jobs.html" style="color:var(--muted)">Back to jobs</a></div>
-  </div>
+  <header class="header"><div class="inner"><div style="display:flex;align-items:center;gap:12px"><img src="logo.png" alt="logo" height="34"><strong>Emirates Group Roblox</strong></div><nav><a href="jobs.html" style="color:var(--text);text-decoration:none">Back to jobs</a></nav></div></header>
 
-  <div class="card">
-    <form id="applyForm">
-      <input type="hidden" name="job_id" id="job_id" value="">
-      <label>Role</label>
-      <input class="input" id="roleTitle" disabled />
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-        <div><label>First name</label><input class="input" name="first_name" required /></div>
-        <div><label>Last name</label><input class="input" name="last_name" /></div>
-      </div>
-      <label>Email</label><input class="input" type="email" name="email" required />
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-        <div><label>Discord username</label><input class="input" name="discord_username" /></div>
-        <div><label>Discord ID</label><input class="input" name="discord_id" /></div>
-      </div>
-      <label>Roblox username</label><input class="input" name="roblox_username" />
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-        <div><label>Age</label><input class="input" name="age" type="number" /></div>
-        <div><label>Country</label><input class="input" name="country" /></div>
-      </div>
-      <label>Why do you want this role?</label>
-      <textarea class="input" name="cover_letter" rows="6"></textarea>
-      <button type="submit" class="btn-primary">Submit Application</button>
-    </form>
-  </div>
-  <div style="margin-top:12px;color:var(--muted)">Note: applications are handled by HR. You will receive a confirmation email if contact info is provided.</div>
-</div>
+  <main class="container">
+    <div class="card">
+      <h1 style="margin:0">Apply for role</h1>
+      <p class="muted" id="selectedRoleNote">Please select a role from the jobs page or enter the role ID below.</p>
+
+      <form id="applyForm">
+        <label>Role ID (auto) </label>
+        <input name="job_id" id="job_id" class="input" readonly>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div><label>First name</label><input class="input" name="first_name" required></div>
+          <div><label>Last name</label><input class="input" name="last_name"></div>
+        </div>
+
+        <label>Email</label><input type="email" class="input" name="email" required>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div><label>Discord username</label><input class="input" name="discord_username"></div>
+          <div><label>Discord ID</label><input class="input" name="discord_id"></div>
+        </div>
+        <label>Roblox username</label><input class="input" name="roblox_username">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div><label>Age</label><input class="input" name="age" type="number"></div>
+          <div><label>Country</label><input class="input" name="country"></div>
+        </div>
+        <label>Why do you want this role? (brief)</label>
+        <textarea name="cover_letter" class="input" rows="5"></textarea>
+
+        <button class="btn-primary" type="submit">Submit application</button>
+      </form>
+      <div id="applyMsg" style="margin-top:10px" class="muted"></div>
+    </div>
+  </main>
 
 <script>
-const API_URL = '<<PASTE_YOUR_APPS_SCRIPT_WEBAPP_URL>>';
-/* Pre-fill job ID if passed in query */
-function qs(name){ return new URLSearchParams(location.search).get(name); }
-const jobId = qs('job');
-if(jobId){ document.getElementById('job_id').value = jobId; document.getElementById('roleTitle').value = 'Selected role: ' + jobId; }
+const API_URL = 'https://script.google.com/macros/s/AKfycbzTwLSlOIXxDGVICcIlytL1PSbsaoBlf-TrUZLAYNWei1rqcEIot2O-Wk48QQamKUfq/exec';
 
-document.getElementById('applyForm').addEventListener('submit', async (e)=>{
-  e.preventDefault();
-  const fm = new FormData(e.target);
-  const data = Object.fromEntries(fm.entries());
-  // Basic validation
-  if(!data.job_id){ alert('No job selected.'); return; }
-  if(!data.first_name || !data.email){ alert('Please complete required fields.'); return; }
-  if(!API_URL || API_URL.includes('PASTE_YOUR')){
-    alert('Application simulated (no API configured). Thank you!');
-    return;
-  }
+/* Read job param from querystring */
+function qs(n){ return new URLSearchParams(location.search).get(n); }
+const jobId = qs('job');
+if(jobId){ document.getElementById('job_id').value = jobId; document.getElementById('selectedRoleNote').textContent = 'Applying for role ID: ' + jobId; }
+
+document.getElementById('applyForm').addEventListener('submit', async (ev)=>{
+  ev.preventDefault();
+  const fm = new FormData(ev.target);
+  const body = Object.fromEntries(fm.entries());
+  if(!body.job_id){ alert('Please provide a job ID or select a job from the jobs page.'); return; }
+  document.getElementById('applyMsg').textContent = 'Submitting…';
   try{
-    const res = await fetch(API_URL, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.assign({action:'apply'},data))});
+    const res = await fetch(API_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(Object.assign({action:'apply'}, body))});
     const j = await res.json();
-    if(j && j.ok){ alert('Application submitted. ID: ' + (j.application_id||'—')); location.href='jobs.html'; }
-    else alert('Error: ' + (j.error||'unknown'));
-  }catch(err){ console.error(err); alert('Network error sending application.'); }
+    if(j && j.ok){ document.getElementById('applyMsg').textContent = 'Application submitted — ID: ' + (j.application_id || '—'); ev.target.reset(); }
+    else { document.getElementById('applyMsg').textContent = 'Error: ' + (j && j.error ? j.error : 'Server error'); }
+  }catch(e){ console.error(e); document.getElementById('applyMsg').textContent = 'Network error submitting application.';}
 });
 </script>
 </body>
