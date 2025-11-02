@@ -131,12 +131,31 @@
 const API_URL = 'https://script.google.com/macros/s/AKfycbzgsKI-ob7TGzjl_pDecy5Pt0rVpppFKlk6E_mIuHfWoIETeqMkwPXfTdgqEcmXmldJBQ/exec';
 const API_KEY = 'e3e90690365585f23c7b9fcb601cb07db1fb45edbf11249f618baac513e97e10'; // replace if you rotated
 
-/* Auth: check sessionStorage */
+/* Auth: check localStorage first (new login), fallback to sessionStorage (old login) */
 function requireAuth(){
+  // If the new login (localStorage) is set
+  if(localStorage.getItem('hrLoggedIn') === 'true'){
+    const email = localStorage.getItem('hrEmail') || sessionStorage.getItem('egr_hr_email') || '';
+    const name = localStorage.getItem('hrName') || sessionStorage.getItem('egr_hr_name') || '';
+    const role = localStorage.getItem('hrRole') || sessionStorage.getItem('egr_hr_role') || 'HR';
+
+    // Mirror into sessionStorage so existing code can continue to use sessionStorage values
+    if(email) sessionStorage.setItem('egr_hr_email', email);
+    if(name) sessionStorage.setItem('egr_hr_name', name);
+    if(role) sessionStorage.setItem('egr_hr_role', role);
+
+    return { email, name, role };
+  }
+
+  // Fallback: check older sessionStorage keys
   const email = sessionStorage.getItem('egr_hr_email');
-  const name = sessionStorage.getItem('egr_hr_name');
-  const role = sessionStorage.getItem('egr_hr_role');
-  if(!email) { location.href = 'hrlogin.html'; return null; }
+  const name = sessionStorage.getItem('egr_hr_name') || '';
+  const role = sessionStorage.getItem('egr_hr_role') || 'HR';
+  if(!email){
+    // If not logged in, redirect to login page (update this filename if your login file is hrlogin.html)
+    location.href = 'login.html';
+    return null;
+  }
   return { email, name, role };
 }
 const auth = requireAuth();
@@ -146,12 +165,21 @@ document.getElementById('hrName').textContent = auth.name || auth.email;
 document.getElementById('hrRole').textContent = auth.role || 'HR';
 document.getElementById('apiUrlShort').textContent = API_URL.replace(/^https?:\/\//,'').slice(0,40);
 
-/* Sign out */
+/* Sign out: clear both sessionStorage and localStorage */
 document.getElementById('signOut').addEventListener('click', ()=>{
+  // Clear localStorage keys used for login
+  localStorage.removeItem('hrLoggedIn');
+  localStorage.removeItem('hrEmail');
+  localStorage.removeItem('hrName');
+  localStorage.removeItem('hrRole');
+
+  // Clear legacy sessionStorage keys
   sessionStorage.removeItem('egr_hr_email');
   sessionStorage.removeItem('egr_hr_name');
   sessionStorage.removeItem('egr_hr_role');
-  location.href = 'hrlogin.html';
+
+  // Redirect to login (update filename if needed)
+  location.href = 'login.html';
 });
 
 /* Utility: fetch helpers */
