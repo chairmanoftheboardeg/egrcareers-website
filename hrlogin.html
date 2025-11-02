@@ -1,61 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HR Login | Emirates Group Roblox Careers</title>
-<style>
-  body { font-family: 'Poppins', sans-serif; background:#0a0a0a; color:#fff; display:flex; justify-content:center; align-items:center; height:100vh; }
-  .login-box { background:#111; padding:40px; border-radius:12px; width:350px; }
-  h2 { text-align:center; color:#c69c6d; margin-bottom:20px; }
-  input { width:100%; padding:12px; margin:10px 0; border-radius:6px; border:none; }
-  button { width:100%; padding:12px; background:#c69c6d; color:#000; font-weight:bold; border:none; border-radius:6px; cursor:pointer; }
-  button:hover { background:#e0b87c; }
-  .error { color:red; text-align:center; margin-top:10px; }
-  .note { font-size:0.8rem; color:#999; text-align:center; margin-top:10px; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HR Login | Emirates Group Roblox Careers</title>
+  <style>
+    /* Global Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to bottom, #f0f8ff, #d0e7ff);
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: #003366;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      letter-spacing: 1px;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .login-card {
+      background-color: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .login-card h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #003366;
+    }
+
+    .login-card label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .login-card input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    .login-card button {
+      width: 100%;
+      padding: 12px;
+      background-color: #003366;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .login-card button:hover {
+      background-color: #0055a5;
+    }
+
+    .note {
+      font-size: 0.85rem;
+      color: #555;
+      margin-top: 15px;
+      line-height: 1.4;
+    }
+
+    footer {
+      background-color: #003366;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      font-size: 0.8rem;
+    }
+
+    footer a {
+      color: #ffd700;
+      text-decoration: none;
+    }
+
+  </style>
 </head>
 <body>
 
-<div class="login-box">
-  <h2>HR Staff Login</h2>
-  <form id="hrLoginForm">
-    <input type="email" id="email" placeholder="Email" required>
-    <input type="password" id="password" placeholder="Password" required>
-    <button type="submit">Login</button>
-    <div class="error" id="errorMsg"></div>
-    <div class="note">Do not share your password under any circumstances. This account is sensitive and secured under Emirates Group Roblox staff agreement.</div>
-  </form>
-</div>
+<header>
+  <h1>Emirates Group Roblox | HR Login</h1>
+  <p><a href="index.html" style="color: #ffd700;">Home</a></p>
+</header>
+
+<main>
+  <div class="login-card">
+    <h2>HR Staff Login</h2>
+    <form id="loginForm">
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Enter your HR email" required>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Enter your password" required>
+
+      <button type="submit">Login</button>
+    </form>
+    <p class="note">
+      ⚠️ Do not share your login credentials under any circumstances. All HR logins are monitored and protected under Emirates Group Roblox staff sensitive security agreement.
+    </p>
+  </div>
+</main>
+
+<footer>
+  &copy; 2025 Emirates Group Roblox. All Rights Reserved. 
+  <br>For legal, contact, and privacy info, see <a href="https://emiratesgrouproblox.link">emiratesgrouproblox.link</a>.
+</footer>
 
 <script>
-  const form = document.getElementById('hrLoginForm');
-  const errorMsg = document.getElementById('errorMsg');
+  const loginForm = document.getElementById('loginForm');
 
-  form.addEventListener('submit', e => {
+  loginForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    errorMsg.textContent = '';
 
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
 
-    fetch('https://script.google.com/macros/s/AKfycbzgsKI-ob7TGzjl_pDecy5Pt0rVpppFKlk6E_mIuHfWoIETeqMkwPXfTdgqEcmXmldJBQ/exec', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'login', email, password })
-    })
-    .then(response => response.json())
-    .then(data => {
-      if(data.success){
+    if (!email || !password) {
+      alert('Please enter both email and password.');
+      return;
+    }
+
+    try {
+      const response = await fetch('https://script.google.com/macros/s/AKfycbzgsKI-ob7TGzjl_pDecy5Pt0rVpppFKlk6E_mIuHfWoIETeqMkwPXfTdgqEcmXmldJBQ/exec', {
+        method: 'POST',
+        body: JSON.stringify({ email, password }),
+        headers: { 'Content-Type': 'application/json' }
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        // Redirect to HR Dashboard
         window.location.href = 'hr-dashboard.html';
       } else {
-        errorMsg.textContent = data.message || 'Invalid login credentials';
+        alert(result.message || 'Invalid email or password.');
       }
-    })
-    .catch(err => {
-      errorMsg.textContent = 'Server error. Please try again later.';
+    } catch (err) {
       console.error(err);
-    });
+      alert('Server error. Please try again later.');
+    }
   });
 </script>
 
