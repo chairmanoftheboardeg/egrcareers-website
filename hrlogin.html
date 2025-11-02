@@ -1,90 +1,63 @@
-<!doctype html>
-<html lang="en-GB">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>HR Login — Emirates Group Roblox</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HR Login | Emirates Group Roblox Careers</title>
 <style>
-  :root{--bg:#031018;--panel:rgba(255,255,255,0.03);--text:#e8f1f8;--muted:#9aa4b2;--brand:#c8102e}
-  *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,Arial;background:linear-gradient(180deg,#031018,#04121a);color:var(--text)}
-  .wrap{max-width:720px;margin:72px auto;padding:20px}
-  .card{background:var(--panel);padding:22px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
-  label{display:block;margin-top:12px;color:var(--muted);font-size:13px}
-  input{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text);margin-top:6px}
-  .btn{margin-top:14px;padding:10px 14px;border-radius:8px;border:0;background:var(--brand);color:white;font-weight:700;cursor:pointer}
-  .muted{color:var(--muted);margin-top:8px;font-size:13px}
-  header{padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
-  header a{color:var(--text);text-decoration:none;font-weight:700}
+  body { font-family: 'Poppins', sans-serif; background:#0a0a0a; color:#fff; display:flex; justify-content:center; align-items:center; height:100vh; }
+  .login-box { background:#111; padding:40px; border-radius:12px; width:350px; }
+  h2 { text-align:center; color:#c69c6d; margin-bottom:20px; }
+  input { width:100%; padding:12px; margin:10px 0; border-radius:6px; border:none; }
+  button { width:100%; padding:12px; background:#c69c6d; color:#000; font-weight:bold; border:none; border-radius:6px; cursor:pointer; }
+  button:hover { background:#e0b87c; }
+  .error { color:red; text-align:center; margin-top:10px; }
+  .note { font-size:0.8rem; color:#999; text-align:center; margin-top:10px; }
 </style>
 </head>
 <body>
-  <header>
-    <a href="index.html">← Home</a>
-    <div style="font-weight:800">Emirates Group Roblox — HR</div>
-  </header>
 
-  <main class="wrap">
-    <div class="card" role="main" aria-labelledby="h1">
-      <h1 id="h1" style="margin:0 0 6px 0">HR Sign in</h1>
-      <div class="muted">This portal is for authorised HR staff only. Your credentials are strictly confidential under the Emirates Group Roblox Staff Sensitive Security Agreement.</div>
-
-      <label for="email">Email</label>
-      <input id="email" type="email" placeholder="you@emiratesgrouproblox.link" autocomplete="username">
-
-      <label for="password">Password</label>
-      <input id="password" type="password" placeholder="Enter password" autocomplete="current-password">
-
-      <button id="signin" class="btn">Sign in</button>
-      <div id="msg" class="muted" role="status" aria-live="polite"></div>
-    </div>
-  </main>
+<div class="login-box">
+  <h2>HR Staff Login</h2>
+  <form id="hrLoginForm">
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <button type="submit">Login</button>
+    <div class="error" id="errorMsg"></div>
+    <div class="note">Do not share your password under any circumstances. This account is sensitive and secured under Emirates Group Roblox staff agreement.</div>
+  </form>
+</div>
 
 <script>
-/* CONFIG — your Apps Script URL */
-const API_URL = 'https://script.google.com/macros/s/AKfycbzgsKI-ob7TGzjl_pDecy5Pt0rVpppFKlk6E_mIuHfWoIETeqMkwPXfTdgqEcmXmldJBQ/exec';
+  const form = document.getElementById('hrLoginForm');
+  const errorMsg = document.getElementById('errorMsg');
 
-const signinBtn = document.getElementById('signin');
-const msg = document.getElementById('msg');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    errorMsg.textContent = '';
 
-async function hrLogin(email, password){
-  try {
-    const res = await fetch(API_URL, {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    fetch('https://script.google.com/macros/s/AKfycbzgsKI-ob7TGzjl_pDecy5Pt0rVpppFKlk6E_mIuHfWoIETeqMkwPXfTdgqEcmXmldJBQ/exec', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'hrLogin', email, password })
+      body: JSON.stringify({ action: 'login', email, password })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if(data.success){
+        window.location.href = 'hr-dashboard.html';
+      } else {
+        errorMsg.textContent = data.message || 'Invalid login credentials';
+      }
+    })
+    .catch(err => {
+      errorMsg.textContent = 'Server error. Please try again later.';
+      console.error(err);
     });
-    return await res.json();
-  } catch (e) {
-    console.error('Login fetch error', e);
-    return { ok:false, error:'network' };
-  }
-}
-
-signinBtn.addEventListener('click', async ()=>{
-  msg.textContent = '';
-  const email = document.getElementById('email').value.trim();
-  const password = document.getElementById('password').value;
-  if(!email || !password){ msg.textContent = 'Please enter email and password.'; return; }
-  msg.textContent = 'Signing in…';
-  signinBtn.disabled = true;
-  const r = await hrLogin(email, password);
-  signinBtn.disabled = false;
-  if(r && r.ok){
-    // store small session-state in sessionStorage (front-end only)
-    sessionStorage.setItem('egr_hr_email', r.email || email);
-    sessionStorage.setItem('egr_hr_name', r.name || '');
-    sessionStorage.setItem('egr_hr_role', r.role || '');
-    sessionStorage.setItem('egr_hr_logged_at', new Date().toISOString());
-    msg.textContent = 'Sign in successful — redirecting to HR dashboard…';
-    setTimeout(()=> location.href = 'hr-dashboard.html', 700);
-  } else {
-    if(r && r.error === 'account_suspended') msg.textContent = 'Account suspended. Contact CHRO.';
-    else if(r && r.error==='invalid_credentials') msg.textContent = 'Invalid credentials.';
-    else if(r && r.error==='sheet_hr_missing') msg.textContent = 'Internal error: HR table missing.';
-    else msg.textContent = 'Sign in failed. (Network or server error)';
-    console.warn('Login response', r);
-  }
-});
+  });
 </script>
+
 </body>
 </html>
