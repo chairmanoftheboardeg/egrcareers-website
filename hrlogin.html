@@ -1,99 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en-GB">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EGR HR Login</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HR Login — Emirates Group Roblox</title>
 <style>
-  body {
-    font-family: Arial, sans-serif;
-    background: #f0f4f8;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-  }
-  .login-container {
-    background: #ffffff;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
-  }
-  h1 {
-    margin-bottom: 20px;
-    color: #0077c8;
-  }
-  input[type="email"], input[type="password"] {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0 20px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-  }
-  button {
-    background: #0077c8;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-    font-size: 16px;
-  }
-  button:hover {
-    background: #005fa3;
-  }
-  .error {
-    color: red;
-    margin-bottom: 10px;
-  }
-  .note {
-    font-size: 12px;
-    color: #555;
-    margin-top: 15px;
-  }
+:root{--bg:#031018;--panel:rgba(255,255,255,0.05);--text:#e8f1f8;--brand:#c8102e}
+body{margin:0;background:linear-gradient(180deg,#031018,#04121a);font-family:Inter,Arial;color:var(--text);display:flex;align-items:center;justify-content:center;min-height:100vh}
+.card{background:var(--panel);padding:32px;border-radius:14px;max-width:420px;width:100%;border:1px solid rgba(255,255,255,0.08)}
+h1{margin-top:0;text-align:center}
+label{display:block;margin-top:12px;font-size:14px;color:#9aa4b2}
+input{width:100%;padding:10px;margin-top:6px;border-radius:8px;border:1px solid rgba(255,255,255,0.08);background:transparent;color:var(--text)}
+button{margin-top:18px;width:100%;padding:10px;border:0;border-radius:8px;background:var(--brand);color:white;font-weight:700;cursor:pointer}
+#msg{margin-top:12px;font-size:13px;color:#aaa;text-align:center}
 </style>
 </head>
 <body>
-
-<div class="login-container">
-  <h1>HR Login</h1>
-  <div class="error" id="error-msg"></div>
-  <input type="email" id="email" placeholder="Email">
-  <input type="password" id="password" placeholder="Password">
-  <button onclick="login()">Login</button>
-  <div class="note">
-    This login is for HR staff only. Do not share your credentials under any circumstances.
-  </div>
+<div class="card">
+  <h1>HR Access Login</h1>
+  <label>Email</label>
+  <input id="email" placeholder="you@example.com" type="email" required>
+  <label>Password</label>
+  <input id="password" type="password" placeholder="********" required>
+  <button id="loginBtn">Sign in</button>
+  <div id="msg"></div>
 </div>
 
 <script>
-  // TEMPORARY TEST CREDENTIALS
-  const testEmail = "tyler.nicholasefs@gmail.com";
-  const testPassword = "$2a$12$CGo6oplk5LjdzNCR65.DFuF.LHjvvQLOXWX4vNvWCtI99kIzguOxC"; // just for testing
+const API_URL = 'https://script.google.com/macros/s/AKfycbzgsKI-ob7TGzjl_pDecy5Pt0rVpppFKlk6E_mIuHfWoIETeqMkwPXfTdgqEcmXmldJBQ/exec';
 
-  function login() {
-    const email = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value.trim();
-    const errorMsg = document.getElementById('error-msg');
+document.getElementById('loginBtn').addEventListener('click', async ()=>{
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value.trim();
+  if(!email || !password){ document.getElementById('msg').textContent = "Please fill in both fields."; return; }
 
-    if (email === testEmail && password === testPassword) {
-      errorMsg.style.color = "green";
-      errorMsg.textContent = "Login successful! Redirecting...";
-      setTimeout(() => {
-        window.location.href = "hr-dashboard.html"; // redirect to HR dashboard page
-      }, 1000);
+  document.getElementById('msg').textContent = "Signing in…";
+
+  try {
+    const res = await fetch(API_URL, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ action:'loginHR', email, password })
+    });
+    const data = await res.json();
+
+    if(data.ok){
+      // Save both modern and legacy keys
+      localStorage.setItem('hrLoggedIn','true');
+      localStorage.setItem('hrEmail',data.email);
+      localStorage.setItem('hrName',data.name);
+      localStorage.setItem('hrRole',data.role);
+
+      sessionStorage.setItem('egr_hr_email',data.email);
+      sessionStorage.setItem('egr_hr_name',data.name);
+      sessionStorage.setItem('egr_hr_role',data.role);
+
+      document.getElementById('msg').textContent = "Login successful. Redirecting…";
+      setTimeout(()=> location.href='hrdashboard.html', 800);
     } else {
-      errorMsg.style.color = "red";
-      errorMsg.textContent = "Invalid email or password.";
+      document.getElementById('msg').textContent = "Invalid login credentials.";
     }
+  } catch(err){
+    console.error(err);
+    document.getElementById('msg').textContent = "Network or server error.";
   }
+});
 </script>
-
 </body>
 </html>
