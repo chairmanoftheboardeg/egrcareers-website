@@ -1,70 +1,41 @@
-<!doctype html>
-<html lang="en-GB">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>HR Login — Emirates Group Roblox</title>
-<style>
-:root{--bg:#031018;--panel:rgba(255,255,255,0.05);--text:#e8f1f8;--brand:#c8102e}
-body{margin:0;background:linear-gradient(180deg,#031018,#04121a);font-family:Inter,Arial;color:var(--text);display:flex;align-items:center;justify-content:center;min-height:100vh}
-.card{background:var(--panel);padding:32px;border-radius:14px;max-width:420px;width:100%;border:1px solid rgba(255,255,255,0.08)}
-h1{margin-top:0;text-align:center}
-label{display:block;margin-top:12px;font-size:14px;color:#9aa4b2}
-input{width:100%;padding:10px;margin-top:6px;border-radius:8px;border:1px solid rgba(255,255,255,0.08);background:transparent;color:var(--text)}
-button{margin-top:18px;width:100%;padding:10px;border:0;border-radius:8px;background:var(--brand);color:white;font-weight:700;cursor:pointer}
-#msg{margin-top:12px;font-size:13px;color:#aaa;text-align:center}
-</style>
+  <meta charset="UTF-8">
+  <title>HR Login</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-<div class="card">
-  <h1>HR Access Login</h1>
-  <label>Email</label>
-  <input id="email" placeholder="you@example.com" type="email" required>
-  <label>Password</label>
-  <input id="password" type="password" placeholder="********" required>
-  <button id="loginBtn">Sign in</button>
-  <div id="msg"></div>
-</div>
+<body class="flex items-center justify-center h-screen bg-gray-100">
+  <div class="bg-white p-8 rounded-2xl shadow-md w-96 text-center">
+    <h1 class="text-2xl font-bold mb-6">HR Login</h1>
+    <form id="loginForm">
+      <input type="email" id="email" placeholder="Email" required class="w-full p-3 mb-3 border rounded-xl">
+      <input type="password" id="password" placeholder="Password" required class="w-full p-3 mb-3 border rounded-xl">
+      <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-xl">Login</button>
+    </form>
+    <p id="error" class="text-red-600 mt-3 hidden">Invalid email or password</p>
+  </div>
 
-<script>
-const API_URL = 'https://script.google.com/macros/s/AKfycbzgsKI-ob7TGzjl_pDecy5Pt0rVpppFKlk6E_mIuHfWoIETeqMkwPXfTdgqEcmXmldJBQ/exec';
+  <script>
+    const validUser = {
+      email: "tyler.nicholasefs@gmail.com",
+      // We'll compare the password in plaintext since bcrypt isn't available client-side.
+      password: "tyler123" // replace with your real password if testing locally only
+    };
 
-document.getElementById('loginBtn').addEventListener('click', async ()=>{
-  const email = document.getElementById('email').value.trim();
-  const password = document.getElementById('password').value.trim();
-  if(!email || !password){ document.getElementById('msg').textContent = "Please fill in both fields."; return; }
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const error = document.getElementById("error");
 
-  document.getElementById('msg').textContent = "Signing in…";
-
-  try {
-    const res = await fetch(API_URL, {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({ action:'loginHR', email, password })
+      if (email === validUser.email && password === validUser.password) {
+        sessionStorage.setItem("hr_logged_in", "true");
+        window.location.href = "dashboard.html";
+      } else {
+        error.classList.remove("hidden");
+      }
     });
-    const data = await res.json();
-
-    if(data.ok){
-      // Save both modern and legacy keys
-      localStorage.setItem('hrLoggedIn','true');
-      localStorage.setItem('hrEmail',data.email);
-      localStorage.setItem('hrName',data.name);
-      localStorage.setItem('hrRole',data.role);
-
-      sessionStorage.setItem('egr_hr_email',data.email);
-      sessionStorage.setItem('egr_hr_name',data.name);
-      sessionStorage.setItem('egr_hr_role',data.role);
-
-      document.getElementById('msg').textContent = "Login successful. Redirecting…";
-      setTimeout(()=> location.href='hrdashboard.html', 800);
-    } else {
-      document.getElementById('msg').textContent = "Invalid login credentials.";
-    }
-  } catch(err){
-    console.error(err);
-    document.getElementById('msg').textContent = "Network or server error.";
-  }
-});
-</script>
+  </script>
 </body>
 </html>
