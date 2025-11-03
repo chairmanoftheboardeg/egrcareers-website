@@ -157,30 +157,35 @@ function requireAuth(){
     return null;
   }
   return { email, name, role };
-}
-const auth = requireAuth();
-if(!auth) throw 'not authenticated';
-document.getElementById('hrWelcome').textContent = `Welcome — ${auth.name || auth.email}`;
-document.getElementById('hrName').textContent = auth.name || auth.email;
-document.getElementById('hrRole').textContent = auth.role || 'HR';
-document.getElementById('apiUrlShort').textContent = API_URL.replace(/^https?:\/\//,'').slice(0,40);
+function requireAuth(){
+  // Check new localStorage login
+  const loggedIn = localStorage.getItem('hrLoggedIn');
+  const email = localStorage.getItem('hrEmail');
+  const name = localStorage.getItem('hrName');
+  const role = localStorage.getItem('hrRole') || 'HR';
 
-/* Sign out: clear both sessionStorage and localStorage */
-document.getElementById('signOut').addEventListener('click', ()=>{
-  // Clear localStorage keys used for login
-  localStorage.removeItem('hrLoggedIn');
-  localStorage.removeItem('hrEmail');
-  localStorage.removeItem('hrName');
-  localStorage.removeItem('hrRole');
+  if(loggedIn === 'true' && email){
+    // Sync to sessionStorage (for compatibility)
+    sessionStorage.setItem('egr_hr_email', email);
+    sessionStorage.setItem('egr_hr_name', name || '');
+    sessionStorage.setItem('egr_hr_role', role);
+    return { email, name, role };
+  }
 
-  // Clear legacy sessionStorage keys
-  sessionStorage.removeItem('egr_hr_email');
-  sessionStorage.removeItem('egr_hr_name');
-  sessionStorage.removeItem('egr_hr_role');
+  // Fallback: check legacy sessionStorage
+  const sEmail = sessionStorage.getItem('egr_hr_email');
+  if(sEmail){
+    return {
+      email: sEmail,
+      name: sessionStorage.getItem('egr_hr_name') || '',
+      role: sessionStorage.getItem('egr_hr_role') || 'HR'
+    };
+  }
 
-  // Redirect to login (update filename if needed)
+  // Otherwise redirect to login
   location.href = 'login.html';
-});
+  return null;
+}
 
 /* Utility: fetch helpers */
 async function apiGet(params = {}) {
