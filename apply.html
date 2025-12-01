@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apply Now — Emirates Careers</title>
+
+<style>
+    :root {
+        --primary-red: #d71920;
+        --dark: #222;
+        --light: #ffffff;
+        --gray: #f5f5f5;
+        --radius: 10px;
+        --shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    body {
+        margin: 0;
+        background: var(--gray);
+        color: var(--dark);
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    nav {
+        background: var(--light);
+        padding: 15px 40px;
+        border-bottom: 3px solid var(--primary-red);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: var(--shadow);
+    }
+    nav .logo { font-size: 22px; font-weight: bold; color: var(--primary-red); }
+    nav ul { display: flex; list-style: none; gap: 25px; padding: 0; margin: 0; }
+    nav ul li a { color: var(--dark); text-decoration: none; }
+    nav ul li a:hover { color: var(--primary-red); }
+
+    .container {
+        max-width: 900px;
+        margin: 40px auto;
+        background: var(--light);
+        padding: 30px;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+    }
+
+    label { display: block; margin-top: 15px; font-weight: bold; }
+    input, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: var(--radius);
+        margin-top: 6px;
+        font-size: 16px;
+    }
+
+    textarea { min-height: 120px; }
+
+    .btn {
+        margin-top: 25px;
+        padding: 12px 20px;
+        border-radius: var(--radius);
+        background: var(--primary-red);
+        color: var(--light);
+        cursor: pointer;
+        border: none;
+        font-size: 16px;
+    }
+
+    footer {
+        background: var(--dark);
+        color: var(--light);
+        padding: 35px;
+        text-align: center;
+        margin-top: 60px;
+    }
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">Emirates Careers</div>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="working-with-us.html">Working With Us</a></li>
+        <li><a href="open-roles.html">Open Roles</a></li>
+        <li><a href="tandc.html">Employee T&amp;C</a></li>
+        <li><a href="apply.html">Apply Now</a></li>
+        <li><a href="hr-login.html">HR Login</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <h1 style="color: var(--primary-red);">Apply for a Position</h1>
+
+    <form id="applyForm">
+        <label>Applying For (Role Title)</label>
+        <input type="text" id="roleTitle" required>
+
+        <label>Role ID</label>
+        <input type="text" id="roleId" required>
+
+        <label>Why are you applying for this position?</label>
+        <textarea id="whyApply" required></textarea>
+
+        <label>What makes you interested in this position?</label>
+        <textarea id="interest" required></textarea>
+
+        <label>Why are you a good suit for this position?</label>
+        <textarea id="goodFit" required></textarea>
+
+        <label>Any past experience?</label>
+        <textarea id="experience" required></textarea>
+
+        <label>Full Name</label>
+        <input type="text" id="fullName" required>
+
+        <label>Discord Username</label>
+        <input type="text" id="discordUser" required>
+
+        <label>Roblox Username</label>
+        <input type="text" id="robloxUser" required>
+
+        <label>Discord ID</label>
+        <input type="text" id="discordId" required>
+
+        <label>Age</label>
+        <input type="number" id="age" required>
+
+        <label>Email</label>
+        <input type="email" id="email" required>
+
+        <button type="submit" class="btn">Submit Application</button>
+    </form>
+</div>
+
+<footer>
+    © Emirates Group Roblox Careers — Not affiliated with Emirates Airline.
+</footer>
+
+<script>
+// Autofill Role Title + ID from URL
+const params = new URLSearchParams(window.location.search);
+if (params.get("role")) document.getElementById("roleTitle").value = params.get("role");
+if (params.get("id")) document.getElementById("roleId").value = params.get("id");
+
+// Webhook
+const WEBHOOK_URL = "https://discord.com/api/webhooks/1445069253572034765/rsN_sroaQSbqmHywuRbAWLn1jjOVz75VdQs72TlnS5VAatDMU8NfEdCZmJEvOCHfLxdC";
+
+document.getElementById("applyForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const data = {
+        content: "**New Job Application Submitted**",
+        embeds: [{
+            title: "Application Details",
+            color: 15158332,
+            fields: [
+                { name: "Role Title", value: roleTitle.value },
+                { name: "Role ID", value: roleId.value },
+                { name: "Why Applying", value: whyApply.value },
+                { name: "Interest", value: interest.value },
+                { name: "Good Fit", value: goodFit.value },
+                { name: "Experience", value: experience.value },
+                { name: "Full Name", value: fullName.value },
+                { name: "Discord User", value: discordUser.value },
+                { name: "Roblox User", value: robloxUser.value },
+                { name: "Discord ID", value: discordId.value },
+                { name: "Age", value: age.value },
+                { name: "Email", value: email.value }
+            ]
+        }]
+    };
+
+    await fetch(WEBHOOK_URL, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" }
+    });
+
+    alert("Your application has been submitted successfully.");
+    window.location.href = "index.html";
+});
+</script>
+
+</body>
+</html>
