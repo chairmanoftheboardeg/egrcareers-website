@@ -1,116 +1,140 @@
-<!doctype html>
-<html lang="en-GB">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Open Roles — Emirates Group Roblox</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Open Roles — Emirates Careers</title>
+
 <style>
-:root{--bg:#031018;--panel:rgba(255,255,255,0.03);--text:#e8f1f8;--muted:#9aa4b2;--brand:#c8102e;--maxw:1180px}
-*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial;background:linear-gradient(180deg,var(--bg),#04121a);color:var(--text)}
-.header{position:sticky;top:0;background:linear-gradient(90deg,rgba(255,255,255,0.02),transparent);border-bottom:1px solid rgba(255,255,255,0.02)}
-.header .inner{max-width:var(--maxw);margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between}
-.nav a{color:var(--text);text-decoration:none;margin-left:8px;font-weight:700}
-.container{max-width:var(--maxw);margin:28px auto;padding:0 20px}
-.controls{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
-.input{padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text);min-width:200px}
-.select{padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
-.card{background:var(--panel);padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
-.job-meta{color:var(--muted);font-size:13px;margin-top:6px}
-.btn{padding:8px 12px;border-radius:8px;border:0;font-weight:800;cursor:pointer}
-.btn-primary{background:var(--brand);color:white}
-.btn-disabled{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted);cursor:not-allowed}
-.footer{margin-top:28px;padding:18px;border-top:1px solid rgba(255,255,255,0.02);text-align:center;color:var(--muted)}
+    :root {
+        --primary-red: #d71920;
+        --gold: #c5a46d;
+        --dark: #222;
+        --light: #ffffff;
+        --gray: #f5f5f5;
+        --radius: 10px;
+        --shadow: 0 4px 12px rgba(0,0,0,0.08);
+        --transition: 0.3s ease;
+    }
+
+    body {
+        margin: 0;
+        background: var(--gray);
+        color: var(--dark);
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    nav {
+        width: 100%;
+        background: var(--light);
+        border-bottom: 3px solid var(--primary-red);
+        padding: 15px 40px;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: var(--shadow);
+    }
+    nav .logo { font-size: 22px; font-weight: bold; color: var(--primary-red); }
+    nav ul { display: flex; list-style: none; gap: 25px; margin: 0; padding: 0; }
+    nav ul li a { text-decoration: none; color: var(--dark); transition: var(--transition); }
+    nav ul li a:hover { color: var(--primary-red); }
+
+    .container {
+        max-width: 1100px;
+        margin: 40px auto;
+        padding: 20px;
+    }
+
+    .job-card {
+        background: var(--light);
+        padding: 25px;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        margin-bottom: 20px;
+    }
+
+    .btn {
+        padding: 10px 18px;
+        border-radius: var(--radius);
+        background: var(--primary-red);
+        color: var(--light);
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        transition: var(--transition);
+    }
+    .btn:hover { background: #b31318; }
+
+    footer {
+        background: var(--dark);
+        color: var(--light);
+        padding: 40px;
+        text-align: center;
+        margin-top: 60px;
+    }
 </style>
 </head>
+
 <body>
-  <header class="header">
-    <div class="inner">
-      <div style="display:flex;align-items:center;gap:12px"><img src="logo.png" height="40" alt="logo"><strong>Emirates Group Roblox</strong></div>
-      <nav class="nav"><a href="index.html">Home</a> <a href="working.html">Working With Us</a> <a href="openroles.html">Open Roles</a> <a href="employee-terms.html">Employee T&C</a></nav>
-    </div>
-  </header>
 
-  <main class="container">
-    <h1 style="margin:0">Open Roles</h1>
-    <p style="color:var(--muted)">Find current vacancies below. Click a role to view the full description and apply.</p>
+<nav>
+    <div class="logo">Emirates Careers</div>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="working-with-us.html">Working With Us</a></li>
+        <li><a href="open-roles.html">Open Roles</a></li>
+        <li><a href="tandc.html">Employee T&amp;C</a></li>
+        <li><a href="apply.html">Apply Now</a></li>
+        <li><a href="hr-login.html">HR Login</a></li>
+    </ul>
+</nav>
 
-    <div class="controls" style="margin-top:12px">
-      <input id="q" class="input" placeholder="Search jobs, keywords, division..." />
-      <select id="status" class="select"><option value="">All statuses</option><option>Open</option><option>Closed</option><option>Paused</option></select>
-      <select id="division" class="select"><option value="">All divisions</option><option>Flight Operations</option><option>Customer Service</option><option>Ground Operations</option><option>HR & Recruitment</option><option>IT & Systems</option></select>
-      <button id="searchBtn" class="btn btn-primary">Search</button>
-    </div>
+<div class="container">
+    <h1 style="color: var(--primary-red);">Available Positions</h1>
+    <div id="rolesContainer"></div>
+</div>
 
-    <div id="jobsGrid" class="grid" aria-live="polite">
-      <div class="card"><strong>No roles found</strong><p style="color:var(--muted)">If no roles appear, HR has not posted any listings yet. Check back or join our Discord for announcements.</p></div>
-    </div>
-  </main>
-
-  <footer class="footer">© 2025 Emirates Group Roblox • <a href="https://emiratesgrouproblox.link/support/index.html" target="_blank">Contact HR</a> • <a href="https://emiratesgrouproblox.link/org-terms.html" target="_blank">Organization TOS</a></footer>
+<footer>
+    © Emirates Group Roblox Careers — Not affiliated with Emirates Airline.
+</footer>
 
 <script>
-const API_URL = 'https://script.google.com/macros/s/AKfycbzgsKI-ob7TGzjl_pDecy5Pt0rVpppFKlk6E_mIuHfWoIETeqMkwPXfTdgqEcmXmldJBQ/exec';
-const API_KEY = 'e3e90690365585f23c7b9fcb601cb07db1fb45edbf11249f618baac513e97e10'; // replace if you set a different key in Apps Script
+function loadRoles() {
+    let roles = JSON.parse(localStorage.getItem("jobs")) || [];
+    let container = document.getElementById("rolesContainer");
 
-function escapeHtml(s){ return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+    if (roles.length === 0) {
+        container.innerHTML = "<p>No open positions available at the moment.</p>";
+        return;
+    }
 
-async function fetchJobs(q='', status='', division=''){
-  try{
-    const url = new URL(API_URL);
-    url.searchParams.set('path','getJobs');
-    if(q) url.searchParams.set('q', q);
-    const res = await fetch(url.toString());
-    const j = await res.json();
-    return (j.jobs || []);
-  }catch(e){ console.warn('fetchJobs error',e); return []; }
+    roles.forEach(role => {
+        if (role.paused === true) return;
+
+        let card = document.createElement("div");
+        card.className = "job-card";
+
+        card.innerHTML = `
+            <h2>${role.title}</h2>
+            <p><strong>Role ID:</strong> ${role.id}</p>
+            <p><strong>Description:</strong> ${role.description}</p>
+            <p><strong>Requirements:</strong> ${role.requirements}</p>
+            <p><strong>Paid:</strong> ${role.paid}</p>
+            <br>
+            <a class="btn" href="apply.html?role=${encodeURIComponent(role.title)}&id=${role.id}">
+                Apply Now
+            </a>
+        `;
+
+        container.appendChild(card);
+    });
 }
 
-function renderJobs(jobs){
-  const grid = document.getElementById('jobsGrid');
-  if(!jobs || jobs.length===0){ grid.innerHTML = '<div class="card"><strong>No roles found</strong><p style="color:var(--muted)">No open roles at the moment.</p></div>'; return; }
-  grid.innerHTML = jobs.map(job=>{
-    const status = (job['Status']||job.status||'').toString();
-    const isOpen = status.toLowerCase() === 'open';
-    const jobId = job['Job ID'] || job.job_id || job['JobId'] || '';
-    return `
-      <div class="card">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div><div style="font-weight:900">${escapeHtml(job['Job Title']||job.title||'Untitled')}</div><div class="job-meta">${escapeHtml(job['Division']||job.division||'')} • ${escapeHtml(job['Department']||job.department||'')}</div></div>
-          <div style="text-align:right"><div style="font-size:12px;color:${isOpen ? '#bff2d0': '#f0b4b4'}">${escapeHtml(status)}</div><div style="font-size:12px;color:var(--muted);margin-top:6px">${escapeHtml(job['Posted On']||job.postedOn||'')}</div></div>
-        </div>
-        <p class="job-meta" style="margin-top:10px">${escapeHtml(job['Summary']||job.summary||'')}</p>
-        <div style="margin-top:10px;display:flex;gap:8px">
-          <a class="btn ${isOpen? 'btn-primary':'btn-disabled'}" href="${isOpen? 'apply.html?job=' + encodeURIComponent(jobId): '#'}">${isOpen? 'Apply Now':'Closed'}</a>
-          <a class="btn btn-ghost" href="#" onclick="viewDetails('${encodeURIComponent(jobId)}')">View</a>
-        </div>
-      </div>
-    `;
-  }).join('');
-}
-
-function viewDetails(jobId){
-  // Simple modal fallback - open job details page (could be implemented)
-  alert('Open job details for ID: ' + decodeURIComponent(jobId) + '\n(Full details will be added in future.)');
-}
-
-document.getElementById('searchBtn').addEventListener('click', async ()=>{
-  const q = document.getElementById('q').value.trim();
-  const status = document.getElementById('status').value;
-  const division = document.getElementById('division').value;
-  const jobs = await fetchJobs(q, status, division);
-  // optional client-side filter by status/division:
-  const filtered = jobs.filter(j=>{
-    const s = (j['Status']||j.status||'').toString().toLowerCase();
-    const d = (j['Division']||j.division||'').toString().toLowerCase();
-    if(status && s !== status.toLowerCase()) return false;
-    if(division && d.indexOf(division.toLowerCase()) === -1) return false;
-    return true;
-  });
-  renderJobs(filtered);
-});
-
-// initial load
-(async ()=>{ const jobs = await fetchJobs(); renderJobs(jobs); })();
+loadRoles();
 </script>
+
 </body>
 </html>
