@@ -1,286 +1,160 @@
-<!doctype html>
-<html lang="en-GB">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Emirates Group Roblox — Careers</title>
-<meta name="description" content="Emirates Group Roblox — Careers. Browse jobs, learn about working with us and view HR office hours." />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emirates Careers</title>
+
 <style>
-/* Embedded theme aligned to your main site (glass, modern) */
-:root{
-  --bg-1: #031018; --bg-2:#04121a; --panel: rgba(255,255,255,0.03);
-  --muted:#9aa4b2; --text:#e8f1f8; --brand:#c8102e; --accent:#d4af37;
-  --maxw:1180px; --radius:12px;
-}
-*{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,Segoe UI,Arial;background:linear-gradient(180deg,var(--bg-1),var(--bg-2));color:var(--text);-webkit-font-smoothing:antialiased;}
-.header{background:linear-gradient(90deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));backdrop-filter:blur(6px);position:sticky;top:0;z-index:60;border-bottom:1px solid rgba(255,255,255,0.03)}
-.header .inner{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 20px}
-.brand{display:flex;align-items:center;gap:12px}
-.brand img{height:44px;border-radius:8px}
-.nav{display:flex;gap:10px;align-items:center}
-.nav a{color:var(--text);text-decoration:none;padding:8px 10px;border-radius:8px;font-weight:700}
-.nav a:hover{background:rgba(255,255,255,0.02)}
-.container{max-width:var(--maxw);margin:28px auto;padding:0 20px}
-.hero{display:flex;gap:22px;align-items:flex-start;flex-wrap:wrap}
-.hero-left{flex:1;min-width:300px}
-.kicker{display:inline-block;padding:6px 10px;background:rgba(255,255,255,0.02);color:var(--brand);font-weight:800;border-radius:999px;margin-bottom:10px}
-.hero h1{font-size:28px;margin:0 0 8px}
-.lead{color:var(--muted);max-width:62ch}
-.hero-ctas{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap}
-.btn{padding:10px 14px;border-radius:8px;font-weight:800;cursor:pointer;border:0}
-.btn-primary{background:var(--brand);color:white}
-.btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--text)}
+    :root {
+        --primary-red: #d71920;
+        --gold: #c5a46d;
+        --dark: #222;
+        --light: #ffffff;
+        --gray: #f5f5f5;
+        --radius: 10px;
+        --transition: 0.3s ease;
+        --shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
 
-.hero-right{width:360px;min-width:260px}
-.panel{background:var(--panel);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
-.time-row{display:flex;justify-content:space-between;gap:8px}
-.time-block{text-align:center}
-.time-title{color:var(--muted);font-size:12px}
-.time-value{font-weight:800;font-size:18px;margin-top:6px}
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        margin: 0;
+        background: var(--gray);
+        color: var(--dark);
+    }
 
-.stat-grid{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
-.stat{background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.02);min-width:160px}
-.stat .value{font-weight:900;font-size:20px}
-.stat .label{color:var(--muted);font-size:13px}
+    nav {
+        width: 100%;
+        background: var(--light);
+        border-bottom: 3px solid var(--primary-red);
+        padding: 15px 40px;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: var(--shadow);
+    }
+    nav .logo {
+        font-size: 22px;
+        font-weight: bold;
+        color: var(--primary-red);
+    }
+    nav ul {
+        display: flex;
+        list-style: none;
+        gap: 25px;
+        margin: 0;
+        padding: 0;
+    }
+    nav ul li a {
+        text-decoration: none;
+        color: var(--dark);
+        font-size: 16px;
+        transition: var(--transition);
+    }
+    nav ul li a:hover {
+        color: var(--primary-red);
+    }
 
-.section{margin-top:26px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
-.card{background:var(--panel);padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
-.small-muted{color:var(--muted);font-size:13px}
+    .hero {
+        background: var(--primary-red);
+        color: var(--light);
+        padding: 80px 20px;
+        text-align: center;
+    }
+    .hero h1 {
+        font-size: 42px;
+        margin-bottom: 10px;
+    }
+    .hero p {
+        font-size: 18px;
+        opacity: .9;
+    }
 
-/* footer legal */
-.footer{margin-top:36px;padding:26px 20px;background:linear-gradient(180deg,rgba(0,0,0,0.02),transparent);border-top:1px solid rgba(255,255,255,0.02)}
-.footer-inner{max-width:var(--maxw);margin:0 auto;display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}
-.footer .col{max-width:520px}
-.footer a{color:var(--text);text-decoration:underline}
-@media(max-width:920px){ .hero{flex-direction:column} .hero-right{width:100%} .nav{display:none} }
+    .container {
+        max-width: 1100px;
+        margin: 40px auto;
+        padding: 20px;
+    }
+
+    .card {
+        background: var(--light);
+        padding: 25px;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        margin-bottom: 20px;
+    }
+
+    .btn {
+        display: inline-block;
+        background: var(--primary-red);
+        color: var(--light);
+        padding: 12px 22px;
+        border-radius: var(--radius);
+        text-decoration: none;
+        transition: var(--transition);
+    }
+    .btn:hover {
+        background: #b31318;
+    }
+
+    footer {
+        background: var(--dark);
+        color: var(--light);
+        padding: 40px;
+        text-align: center;
+        margin-top: 60px;
+    }
 </style>
 </head>
 <body>
-  <header class="header" role="banner">
-    <div class="inner">
-      <div class="brand">
-        <img src="logo.png" alt="EGR logo" />
-        <div>
-          <div style="font-weight:800">Emirates Group Roblox</div>
-          <div style="font-size:12px;color:var(--muted)">Careers Portal</div>
-        </div>
-      </div>
 
-      <nav class="nav" role="navigation" aria-label="Main">
-        <a href="index.html">Home</a>
-        <a href="working.html">Working With Us</a>
-        <a href="openroles.html">Open Roles</a>
-        <a href="employee-terms.html">Employee T&C</a>
-        <a href="hrlogin.html">HR Login</a>
-      </nav>
-    </div>
-  </header>
+<nav>
+    <div class="logo">Emirates Careers</div>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="working-with-us.html">Working With Us</a></li>
+        <li><a href="open-roles.html">Open Roles</a></li>
+        <li><a href="tandc.html">Employee T&amp;C</a></li>
+        <li><a href="apply.html">Apply Now</a></li>
+        <li><a href="hr-login.html">HR Login</a></li>
+    </ul>
+</nav>
 
-  <main class="container">
-    <section class="hero">
-      <div class="hero-left">
-        <span class="kicker">Hiring • Professional virtual airline</span>
-        <h1>Careers at Emirates Group Roblox</h1>
-        <p class="lead">Join a community built by aviation enthusiasts for aviation enthusiasts — professional standards, clear HR procedures, and real training paths. Browse roles and apply online. All recruitment records are retained for compliance.</p>
-
-        <div class="hero-ctas">
-          <a href="openroles.html" class="btn btn-primary">View Open Roles</a>
-          <a href="working.html" class="btn btn-ghost">Working With Us</a>
-        </div>
-
-        <div class="stat-grid" style="margin-top:18px">
-          <div class="stat"><div class="value" id="stat-open">—</div><div class="label small-muted">Open positions</div></div>
-          <div class="stat"><div class="value" id="stat-employees">—</div><div class="label small-muted">Total employees</div></div>
-          <div class="stat"><div class="value" id="stat-nationalities">—</div><div class="label small-muted">Nationalities</div></div>
-          <div class="stat"><div class="value" id="stat-female">—</div><div class="label small-muted">Female employees</div></div>
-        </div>
-
-      </div>
-
-      <aside class="hero-right">
-        <div class="panel">
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <div><strong>Local time</strong></div>
-            <div style="font-size:12px;color:var(--muted)">Dubai (HR)</div>
-          </div>
-          <div class="time-row" style="margin-top:10px">
-            <div class="time-block"><div class="time-title">Your local time</div><div id="localTime" class="time-value">--:--</div></div>
-            <div class="time-block"><div class="time-title">Dubai time</div><div id="dubaiTime" class="time-value">--:--</div></div>
-          </div>
-          <div style="margin-top:12px;color:var(--muted)">HR availability</div>
-          <div style="margin-top:8px;font-weight:800">Sun–Fri: 09:00 — 22:00 (Asia/Dubai)<br>Fri–Sat: 24/7</div>
-        </div>
-
-        <div style="height:12px"></div>
-
-        <div class="panel">
-          <div style="font-weight:800">Community & Support</div>
-          <div class="small-muted" style="margin-top:8px">Join our Discord, read announcements or contact HR.</div>
-          <div style="margin-top:10px"><a class="btn btn-primary" href="https://discord.gg/nDAZ3p475V" target="_blank">Join Discord</a></div>
-        </div>
-      </aside>
-    </section>
-
-    <section class="section">
-      <h2 style="margin:0 0 10px 0">Key employee focus areas</h2>
-      <div class="grid">
-        <div class="card"><strong>Training & Development</strong><p class="small-muted">Structured training programmes and mentorship.</p></div>
-        <div class="card"><strong>Professional Standards</strong><p class="small-muted">Clear SOPs and role accountability.</p></div>
-        <div class="card"><strong>Wellbeing</strong><p class="small-muted">Supportive environment and respectful conduct.</p></div>
-        <div class="card"><strong>Inclusion</strong><p class="small-muted">Open community for all nationalities and backgrounds.</p></div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Employee benefits</h2>
-      <div class="grid">
-        <div class="card"><strong>Mentorship</strong><p class="small-muted">Senior staff mentorship and training flights.</p></div>
-        <div class="card"><strong>Progression</strong><p class="small-muted">Clear paths to leadership roles.</p></div>
-        <div class="card"><strong>Events</strong><p class="small-muted">Community events, competitions and hosted flights.</p></div>
-        <div class="card"><strong>Recognition</strong><p class="small-muted">Awards & shoutouts for active members.</p></div>
-      </div>
-    </section>
-
-<!-- OUR FAMILY SECTION -->
-<section style="background: linear-gradient(135deg, #0a0d1a, #111833); color: white; padding: 80px 20px; text-align: center;">
-  <div style="max-width: 1000px; margin: auto;">
-    <h2 style="font-size: 2.5em; margin-bottom: 20px; font-weight: 700; letter-spacing: 1px; color: #d9b06c;">Our Family</h2>
-    <p style="font-size: 1.1em; line-height: 1.8; color: #e0e0e0;">
-      At Emirates Group Roblox, every member of our organisation—no matter the role or department—is valued as an integral part of our family. 
-      We believe that respect, diversity, and collaboration are the foundations of our success. 
-      From our cabin crew to our engineers, from customer service to corporate support, each team member contributes to shaping an organisation built on unity, passion, and excellence. 
-      Together, we soar beyond boundaries, creating not only a workplace but a home where everyone belongs.
-    </p>
-  </div>
+<section class="hero">
+    <h1>Welcome to Emirates Group Careers</h1>
+    <p>Shape your future with opportunities across aviation, hospitality, logistics, and more.</p>
 </section>
 
-<!-- LIFE AT EGR SECTION -->
-<section style="background: linear-gradient(135deg, #111833, #0a0d1a); color: white; padding: 80px 20px;">
-  <div style="max-width: 1100px; margin: auto; text-align: center;">
-    <h2 style="font-size: 2.5em; margin-bottom: 50px; font-weight: 700; color: #d9b06c;">Life at Emirates Group Roblox</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
-      
-      <!-- Testimonial 1 -->
-      <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 25px; transition: 0.3s;">
-        <h3 style="color: #d9b06c; font-weight: 600;">Captain James Cole</h3>
-        <p style="font-style: italic; color: #c7c7c7;">Pilot, Fleet Operations</p>
-        <p style="margin-top: 15px; color: #e0e0e0;">
-          “Flying for Emirates Group Roblox is not just about piloting an aircraft—it’s about leading a family in the skies. 
-          Every flight reminds me of the trust and teamwork that drives our operations, both virtually and professionally.”
+<div class="container">
+    <div class="card">
+        <h2>Discover Your Path</h2>
+        <p>
+            Emirates Group Roblox Careers provides realistic, structured opportunities for talent interested 
+            in aviation, operations, management, and customer service roles.
         </p>
-      </div>
-
-      <!-- Testimonial 2 -->
-      <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 25px; transition: 0.3s;">
-        <h3 style="color: #d9b06c; font-weight: 600;">Sophia Martins</h3>
-        <p style="font-style: italic; color: #c7c7c7;">Customer Service Representative</p>
-        <p style="margin-top: 15px; color: #e0e0e0;">
-          “The culture here is inspiring. Every day I help people connect with their dreams and travel experiences, 
-          and the sense of community within our team makes every shift meaningful.”
-        </p>
-      </div>
-
-      <!-- Testimonial 3 -->
-      <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 25px; transition: 0.3s;">
-        <h3 style="color: #d9b06c; font-weight: 600;">Aaliyah Noor</h3>
-        <p style="font-style: italic; color: #c7c7c7;">Flight Attendant</p>
-        <p style="margin-top: 15px; color: #e0e0e0;">
-          “Emirates Group Roblox isn’t just an airline—it’s a journey of passion and precision. 
-          I’ve met incredible people, learned discipline, and developed a deeper love for aviation.”
-        </p>
-      </div>
-
-      <!-- Testimonial 4 -->
-      <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 25px; transition: 0.3s;">
-        <h3 style="color: #d9b06c; font-weight: 600;">Ethan Zhang</h3>
-        <p style="font-style: italic; color: #c7c7c7;">Aircraft Engineer</p>
-        <p style="margin-top: 15px; color: #e0e0e0;">
-          “Engineering at EGR combines the thrill of aviation with precision and innovation. 
-          Our team ensures every aircraft operates at its peak, reflecting the highest standards of safety and excellence.”
-        </p>
-      </div>
-
-      <!-- Testimonial 5 -->
-      <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 25px; transition: 0.3s;">
-        <h3 style="color: #d9b06c; font-weight: 600;">Olivia Bennett</h3>
-        <p style="font-style: italic; color: #c7c7c7;">Human Resources Representative</p>
-        <p style="margin-top: 15px; color: #e0e0e0;">
-          “Working in HR at Emirates Group Roblox means shaping futures. 
-          We see potential in people and help them take flight—literally and figuratively. 
-          Every hire we make is another dream taking off.”
-        </p>
-      </div>
+        <a href="open-roles.html" class="btn">View Open Roles</a>
     </div>
-  </div>
-</section>
 
-<!-- Simple hover animation -->
-<style>
-  section div[style*="border-radius"] {
-    transition: all 0.3s ease;
-  }
-  section div[style*="border-radius"]:hover {
-    transform: translateY(-5px);
-    background: rgba(255,255,255,0.1);
-  }
-</style>
-
-  </main>
-
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="col">
-        <div style="font-weight:800">Emirates Group Roblox</div>
-        <div class="small-muted" style="margin-top:6px">A virtual aviation community. Not affiliated with The Emirates Group or Emirates Careers. Use of this site is governed by our web Terms and Employee Terms.</div>
-        <div style="margin-top:8px;font-size:13px">
-          <a href="https://emiratesgrouproblox.link/org-terms.html" target="_blank">Organization TOS</a> ·
-          <a href="https://emiratesgrouproblox.link/terms.html" target="_blank">Website TOS</a> ·
-          <a href="https://emiratesgrouproblox.link/privacy.html" target="_blank">Privacy Policy</a>
-        </div>
-      </div>
-
-      <div class="col" style="text-align:right">
-        <div>Contact: <a href="mailto:emiratesairlinesgrouproblox@gmail.com">emiratesairlinesgrouproblox@gmail.com</a></div>
-        <div class="small-muted" style="margin-top:8px">Emergency legal contact: WhatsApp +248 2544788 (Tyler Nicholas) — misuse may lead to disciplinary action.</div>
-        <div style="margin-top:8px"><a href="https://www.linkedin.com/company/emirates-group-roblox" target="_blank">LinkedIn</a> · <a href="https://youtube.com/@emirates-group-roblox" target="_blank">YouTube</a></div>
-        <div style="margin-top:10px;font-size:12px;color:var(--muted)">© 2025 Emirates Group Roblox — All rights reserved.</div>
-      </div>
+    <div class="card">
+        <h2>Our Commitment</h2>
+        <p>
+            We strive to simulate a professional, authentic, and growth-focused workplace environment 
+            inspired by the real Emirates Group corporate experience.
+        </p>
     </div>
-  </footer>
+</div>
+
+<footer>
+    © Emirates Group Roblox Careers Portal — Not affiliated with Emirates Airline.
+</footer>
 
 <script>
-const API_URL = 'https://script.google.com/macros/s/AKfycbzgsKI-ob7TGzjl_pDecy5Pt0rVpppFKlk6E_mIuHfWoIETeqMkwPXfTdgqEcmXmldJBQ/exec';
-const DEFAULT_API_KEY = 'e3e90690365585f23c7b9fcb601cb07db1fb45edbf11249f618baac513e97e10'; // replace or store safely
-
-/* Clocks */
-function updateClocks(){
-  const now = new Date();
-  document.getElementById('localTime').textContent = now.toLocaleString(undefined,{weekday:'short',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false});
-  try{
-    const dub = new Date(new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Dubai'}).format());
-    const weekday = new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Dubai',weekday:'short'}).format(new Date());
-    const dh = new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Dubai',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date());
-    document.getElementById('dubaiTime').textContent = `${weekday} ${dh}`;
-  }catch(e){}
-}
-setInterval(updateClocks,1000); updateClocks();
-
-/* Fetch stats (jobs + employees) */
-async function fetchStats(){
-  try{
-    const jobsRes = await fetch(API_URL + '?path=getJobs');
-    const jobsJson = await jobsRes.json();
-    const jobs = jobsJson.jobs || [];
-    document.getElementById('stat-open').textContent = jobs.filter(j=> (String(j['Status']||j.status||'')).toLowerCase()==='open').length;
-  }catch(e){ document.getElementById('stat-open').textContent = '0'; }
-
-  // For employees / nationalities / female - example placeholders (replace with your HR numbers or extra API)
-  document.getElementById('stat-employees').textContent = '25+';
-  document.getElementById('stat-nationalities').textContent = '25+';
-  document.getElementById('stat-female').textContent = '1+';
-}
-fetchStats();
+console.log("Home Page Loaded");
 </script>
+
 </body>
 </html>
