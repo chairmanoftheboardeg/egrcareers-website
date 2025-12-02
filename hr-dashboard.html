@@ -1,403 +1,332 @@
-<!doctype html>
-<html lang="en-GB">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>HR Dashboard — Emirates Group Roblox</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HR Dashboard — Emirates Careers</title>
+
 <style>
-  :root{--bg:#031018;--panel:rgba(255,255,255,0.03);--text:#e8f1f8;--muted:#9aa4b2;--brand:#c8102e}
-  *{box-sizing:border-box} body{margin:0;font-family:Inter,Arial;background:linear-gradient(180deg,#031018,#04121a);color:var(--text)}
-  header{background:linear-gradient(90deg,rgba(255,255,255,0.02),transparent);position:sticky;top:0;padding:12px;z-index:60;border-bottom:1px solid rgba(255,255,255,0.02)}
-  .header-inner{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:6px 18px}
-  .brand{display:flex;align-items:center;gap:12px}
-  .brand img{height:36px}
-  .signout{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:8px 10px;border-radius:8px;color:var(--text);cursor:pointer}
-  .container{max-width:1180px;margin:18px auto;padding:18px}
-  .grid{display:grid;grid-template-columns:1fr 420px;gap:18px}
-  .card{background:var(--panel);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
-  h2{margin:0 0 8px 0}
-  label{display:block;color:var(--muted);font-size:13px;margin-top:8px}
-  input,textarea,select{width:100%;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text);margin-top:6px}
-  textarea{min-height:120px}
-  .btn{padding:8px 12px;border-radius:8px;border:0;cursor:pointer;font-weight:700}
-  .btn-primary{background:var(--brand);color:white}
-  .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--text)}
-  .list{max-height:420px;overflow:auto;margin-top:10px}
-  .row{display:flex;justify-content:space-between;align-items:center;padding:10px;border-bottom:1px solid rgba(255,255,255,0.02)}
-  .muted{color:var(--muted)}
-  .small{font-size:13px}
-  .danger{background:#7a1b1b}
-  .flex{display:flex;gap:8px;align-items:center}
-  .full-width{width:100%}
-  .notice{background:#122; padding:10px;border-radius:8px;color:#f8d7da;margin-top:8px}
-  @media(max-width:980px){ .grid{grid-template-columns:1fr} .header-inner{padding:12px} }
+    :root {
+        --primary-red: #d71920;
+        --gold: #c5a46d;
+        --dark: #222;
+        --light: #ffffff;
+        --gray: #f5f5f5;
+        --radius: 10px;
+        --shadow: 0 4px 12px rgba(0,0,0,0.10);
+        --transition: 0.3s ease;
+    }
+
+    body {
+        margin: 0;
+        background: var(--gray);
+        font-family: 'Segoe UI', sans-serif;
+        color: var(--dark);
+    }
+
+    nav {
+        background: var(--light);
+        padding: 15px 40px;
+        border-bottom: 3px solid var(--primary-red);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: var(--shadow);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    nav .logo {
+        font-size: 22px;
+        font-weight: bold;
+        color: var(--primary-red);
+    }
+    nav ul {
+        list-style: none;
+        display: flex;
+        gap: 25px;
+        margin: 0;
+        padding: 0;
+    }
+    nav ul li a {
+        text-decoration: none;
+        color: var(--dark);
+    }
+    nav ul li a:hover {
+        color: var(--primary-red);
+    }
+
+    .container {
+        max-width: 1100px;
+        margin: 40px auto;
+        padding: 20px;
+    }
+
+    h1 {
+        color: var(--primary-red);
+    }
+
+    .card {
+        background: var(--light);
+        padding: 25px;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        margin-bottom: 25px;
+    }
+
+    label {
+        font-weight: bold;
+        margin-top: 10px;
+        display: block;
+    }
+
+    input, textarea, select {
+        width: 100%;
+        padding: 12px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: var(--radius);
+        font-size: 15px;
+        box-sizing: border-box;
+    }
+
+    textarea {
+        min-height: 100px;
+    }
+
+    .btn {
+        background: var(--primary-red);
+        color: var(--light);
+        padding: 10px 20px;
+        border: none;
+        border-radius: var(--radius);
+        cursor: pointer;
+        margin-top: 15px;
+        font-size: 15px;
+        transition: var(--transition);
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .btn:hover {
+        background: #b31318;
+    }
+
+    .btn-small {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+
+    .btn-edit { background: #1a73e8; }
+    .btn-edit:hover { background: #145bb5; }
+
+    .btn-delete { background: #b00020; }
+    .btn-delete:hover { background: #7a0016; }
+
+    .btn-pause { background: #f9a825; }
+    .btn-pause:hover { background: #c68400; }
+
+    .btn-resume { background: #43a047; }
+    .btn-resume:hover { background: #2e7031; }
+
+    .role-card {
+        border-left: 6px solid var(--primary-red);
+        margin-bottom: 15px;
+    }
+
+    footer {
+        background: var(--dark);
+        color: var(--light);
+        padding: 35px;
+        text-align: center;
+        margin-top: 60px;
+    }
 </style>
 </head>
+
 <body>
-  <header>
-    <div class="header-inner">
-      <div class="brand">
-        <img src="logo.png" alt="logo">
-        <div style="font-weight:800">EGR HR Dashboard</div>
-      </div>
-      <div style="display:flex;gap:12px;align-items:center">
-        <div id="hrWelcome" class="muted small">Welcome — </div>
-        <button id="signOut" class="signout">Sign out</button>
-      </div>
+
+<!-- NAVIGATION -->
+<nav>
+    <div class="logo">HR Dashboard</div>
+    <ul>
+        <li><a href="open-roles.html">View Public Page</a></li>
+        <li><a href="#" onclick="logout()">Logout</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <h1>HR Control Panel</h1>
+
+    <!-- Create Job Form -->
+    <div class="card">
+        <h2>Create New Job Position</h2>
+
+        <label>Role Title</label>
+        <input type="text" id="title">
+
+        <label>Role Description</label>
+        <textarea id="description"></textarea>
+
+        <label>Role Requirements</label>
+        <textarea id="requirements"></textarea>
+
+        <label>Paid / Unpaid</label>
+        <select id="paid">
+            <option value="Paid">Paid</option>
+            <option value="Unpaid">Unpaid</option>
+        </select>
+
+        <label>Department</label>
+        <input type="text" id="department">
+
+        <label>Location</label>
+        <input type="text" id="location">
+
+        <label>Contract Type</label>
+        <input type="text" id="contract">
+
+        <label>Closing Date</label>
+        <input type="date" id="closing">
+
+        <button class="btn" onclick="addJob()">Create Job</button>
     </div>
-  </header>
 
-  <main class="container">
-    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px">
-      <div><h2 style="margin:0">Human Resources Control Panel</h2><div class="muted small">Manage jobs, review applications and post announcements.</div></div>
-      <div class="muted small">Connected to API: <span id="apiUrlShort" style="font-family:monospace"></span></div>
+    <div class="card">
+        <h2>Current Job Listings</h2>
+        <div id="jobList"></div>
     </div>
+</div>
 
-    <div class="grid">
-      <!-- left: job form + apps -->
-      <div>
-        <div class="card">
-          <h3 style="margin-top:0">Create / Edit Job</h3>
-          <div class="muted small">Use Job ID to edit an existing job. Leave blank to create new.</div>
-          <div style="margin-top:10px">
-            <label>Job ID</label><input id="job_id" placeholder="JOB-0001 (leave blank for new)">
-            <label>Job Title</label><input id="title" placeholder="E.g. Customer Service Agent">
-            <label>Department</label><input id="department">
-            <label>Division</label><input id="division">
-            <label>Employment Type</label>
-            <select id="employment_type"><option>Full-time</option><option>Part-time</option><option>Internship</option></select>
-            <label>Salary</label><input id="salary" placeholder="Paid / Unpaid or salary text">
-            <label>Summary</label><input id="summary">
-            <label>Description</label><textarea id="description"></textarea>
-            <label>Responsibilities</label><textarea id="responsibilities"></textarea>
-            <label>Requirements</label><textarea id="requirements"></textarea>
-            <label>Openings</label><input id="openings" type="number" min="0">
-            <label>Trial Period</label><input id="trial_period">
-            <label>Status</label><select id="status"><option>Open</option><option>Closed</option><option>Paused</option></select>
-
-            <div style="display:flex;gap:8px;margin-top:12px">
-              <button id="createJobBtn" class="btn btn-primary">Publish / Create</button>
-              <button id="saveJobBtn" class="btn btn-ghost">Save Edit</button>
-              <button id="deleteJobBtn" class="btn danger" style="color:white">Delete</button>
-            </div>
-            <div id="jobMsg" class="muted small" style="margin-top:10px"></div>
-          </div>
-        </div>
-
-        <div class="card" style="margin-top:14px">
-          <h3 style="margin:0">Applications</h3>
-          <div class="muted small">Review applicant details, accept or deny. Notifications are sent automatically to applicants via Discord webhook.</div>
-
-          <div style="display:flex;gap:8px;margin-top:10px">
-            <input id="appQuery" placeholder="Search name, job id, email..." style="flex:1;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text)">
-            <button id="refreshApps" class="btn btn-ghost">Refresh</button>
-          </div>
-
-          <div id="appsList" class="list" style="margin-top:10px">
-            <div class="muted">Loading applications…</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- right: hr info + jobs list + announcements -->
-      <aside>
-        <div class="card">
-          <h3 style="margin:0">HR Info</h3>
-          <div class="muted small" style="margin-top:8px">Signed in as: <strong id="hrName">—</strong></div>
-          <div class="muted small" style="margin-top:6px">Role: <span id="hrRole">—</span></div>
-          <div style="margin-top:10px">
-            <label>Quick search jobs</label>
-            <input id="jobSearch" placeholder="Search job title or ID" oninput="filterJobsClient()" />
-            <div id="jobsList" class="list" style="margin-top:10px">Loading jobs…</div>
-          </div>
-        </div>
-
-        <div class="card" style="margin-top:12px">
-          <h3 style="margin:0">Announcements</h3>
-          <label>Title</label><input id="annTitle">
-          <label>Message</label><textarea id="annMsg"></textarea>
-          <div style="display:flex;gap:8px;margin-top:8px">
-            <button id="postAnn" class="btn btn-primary">Post Announcement</button>
-            <button id="refreshJobs" class="btn btn-ghost">Refresh Jobs</button>
-          </div>
-          <div id="annMsgOut" class="muted small" style="margin-top:8px"></div>
-        </div>
-      </aside>
-    </div>
-  </main>
+<footer>
+    © Emirates Group Roblox Careers — Not affiliated with Emirates Airline.
+</footer>
 
 <script>
-/* CONFIG: set API URL & API_KEY */
-const API_URL = 'https://script.google.com/macros/s/AKfycbzgsKI-ob7TGzjl_pDecy5Pt0rVpppFKlk6E_mIuHfWoIETeqMkwPXfTdgqEcmXmldJBQ/exec';
-const API_KEY = 'e3e90690365585f23c7b9fcb601cb07db1fb45edbf11249f618baac513e97e10'; // replace if you rotated
-
-/* Auth: check localStorage first (new login), fallback to sessionStorage (old login) */
-function requireAuth(){
-  // If the new login (localStorage) is set
-  if(localStorage.getItem('hrLoggedIn') === 'true'){
-    const email = localStorage.getItem('hrEmail') || sessionStorage.getItem('egr_hr_email') || '';
-    const name = localStorage.getItem('hrName') || sessionStorage.getItem('egr_hr_name') || '';
-    const role = localStorage.getItem('hrRole') || sessionStorage.getItem('egr_hr_role') || 'HR';
-
-    // Mirror into sessionStorage so existing code can continue to use sessionStorage values
-    if(email) sessionStorage.setItem('egr_hr_email', email);
-    if(name) sessionStorage.setItem('egr_hr_name', name);
-    if(role) sessionStorage.setItem('egr_hr_role', role);
-
-    return { email, name, role };
-  }
-
-  // Fallback: check older sessionStorage keys
-  const email = sessionStorage.getItem('egr_hr_email');
-  const name = sessionStorage.getItem('egr_hr_name') || '';
-  const role = sessionStorage.getItem('egr_hr_role') || 'HR';
-  if(!email){
-    // If not logged in, redirect to login page (update this filename if your login file is hrlogin.html)
-    location.href = 'login.html';
-    return null;
-  }
-  return { email, name, role };
-function requireAuth(){
-  // Check new localStorage login
-  const loggedIn = localStorage.getItem('hrLoggedIn');
-  const email = localStorage.getItem('hrEmail');
-  const name = localStorage.getItem('hrName');
-  const role = localStorage.getItem('hrRole') || 'HR';
-
-  if(loggedIn === 'true' && email){
-    // Sync to sessionStorage (for compatibility)
-    sessionStorage.setItem('egr_hr_email', email);
-    sessionStorage.setItem('egr_hr_name', name || '');
-    sessionStorage.setItem('egr_hr_role', role);
-    return { email, name, role };
-  }
-
-  // Fallback: check legacy sessionStorage
-  const sEmail = sessionStorage.getItem('egr_hr_email');
-  if(sEmail){
-    return {
-      email: sEmail,
-      name: sessionStorage.getItem('egr_hr_name') || '',
-      role: sessionStorage.getItem('egr_hr_role') || 'HR'
-    };
-  }
-
-  // Otherwise redirect to login
-  location.href = 'login.html';
-  return null;
+// Redirect if not logged in
+if (localStorage.getItem("hrLoggedIn") !== "true") {
+    window.location.href = "hr-login.html";
 }
 
-/* Utility: fetch helpers */
-async function apiGet(params = {}) {
-  const url = new URL(API_URL);
-  Object.keys(params).forEach(k => url.searchParams.set(k, params[k]));
-  try {
-    const r = await fetch(url.toString());
-    return await r.json();
-  } catch (e) {
-    console.error('apiGet error', e);
-    return { ok:false, error:'network' };
-  }
+// Generate Role ID
+function generateRoleID() {
+    return "EK-" + Math.floor(100000 + Math.random() * 900000);
 }
-async function apiPost(body = {}) {
-  try {
-    const r = await fetch(API_URL, {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify(body)
+
+// Load jobs from storage
+function loadJobs() {
+    let jobs = JSON.parse(localStorage.getItem("jobs")) || [];
+    let container = document.getElementById("jobList");
+
+    container.innerHTML = "";
+
+    jobs.forEach((job, index) => {
+        let pausedText = job.paused ? `<span style='color:#d71920'>(Paused)</span>` : "";
+
+        let card = document.createElement("div");
+        card.className = "card role-card";
+        card.innerHTML = `
+            <h3>${job.title} ${pausedText}</h3>
+            <p><strong>ID:</strong> ${job.id}</p>
+            <p><strong>Description:</strong> ${job.description}</p>
+            <p><strong>Requirements:</strong> ${job.requirements}</p>
+            <p><strong>Paid:</strong> ${job.paid}</p>
+            <p><strong>Department:</strong> ${job.department}</p>
+            <p><strong>Location:</strong> ${job.location}</p>
+            <p><strong>Contract:</strong> ${job.contract}</p>
+            <p><strong>Closing Date:</strong> ${job.closing}</p>
+
+            <button class="btn btn-small btn-edit" onclick="editJob(${index})">Edit</button>
+            <button class="btn btn-small btn-delete" onclick="deleteJob(${index})">Delete</button>
+            ${
+                job.paused
+                ? `<button class="btn btn-small btn-resume" onclick="resumeJob(${index})">Resume</button>`
+                : `<button class="btn btn-small btn-pause" onclick="pauseJob(${index})">Pause</button>`
+            }
+        `;
+
+        container.appendChild(card);
     });
-    return await r.json();
-  } catch (e) {
-    console.error('apiPost error', e);
-    return { ok:false, error:'network' };
-  }
 }
 
-/* Load jobs into right panel and statically into left */
-let JOBS_CACHE = [];
-async function loadJobs(){
-  document.getElementById('jobsList').innerHTML = '<div class="muted">Loading jobs…</div>';
-  const res = await apiGet({ path:'getJobs' });
-  if(!res || !res.jobs){ document.getElementById('jobsList').innerHTML = '<div class="muted">Could not load jobs.</div>'; return; }
-  JOBS_CACHE = res.jobs;
-  renderJobsList(JOBS_CACHE);
-}
-function renderJobsList(jobs){
-  const el = document.getElementById('jobsList');
-  if(!jobs.length) { el.innerHTML = '<div class="muted">No jobs found</div>'; return; }
-  el.innerHTML = jobs.map(j => {
-    const id = encodeURIComponent(j['Job ID'] || j.job_id || '');
-    return `<div class="row"><div style="flex:1"><div style="font-weight:800">${escapeHtml(j['Job Title']||j.title||'Untitled')}</div><div class="muted small">${escapeHtml(j['Division']||j.division||'')} • ${escapeHtml(j['Department']||j.department||'')}</div></div><div style="margin-left:12px"><button class="btn btn-ghost" onclick="prefillJob('${id}')">Edit</button></div></div>`;
-  }).join('');
-}
+// Add a job
+function addJob() {
+    let jobs = JSON.parse(localStorage.getItem("jobs")) || [];
 
-/* escape */
-function escapeHtml(s){ return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+    let job = {
+        title: title.value,
+        description: description.value,
+        requirements: requirements.value,
+        paid: paid.value,
+        department: department.value,
+        location: location.value,
+        contract: contract.value,
+        closing: closing.value,
+        id: generateRoleID(),
+        paused: false
+    };
 
-/* Prefill job into form for editing */
-function prefillJob(jobIdEncoded){
-  const jobId = decodeURIComponent(jobIdEncoded);
-  const job = JOBS_CACHE.find(j => (j['Job ID']||j.job_id||'') === jobId);
-  if(!job) { alert('Job not found in cache'); return; }
-  document.getElementById('job_id').value = job['Job ID'] || job.job_id || '';
-  document.getElementById('title').value = job['Job Title'] || job.title || '';
-  document.getElementById('department').value = job['Department'] || job.department || '';
-  document.getElementById('division').value = job['Division'] || job.division || '';
-  document.getElementById('employment_type').value = job['Employment Type'] || job.employment_type || '';
-  document.getElementById('salary').value = job['Salary'] || job.salary || '';
-  document.getElementById('summary').value = job['Summary'] || job.summary || '';
-  document.getElementById('description').value = job['Description'] || job.description || '';
-  document.getElementById('responsibilities').value = job['Responsibilities'] || job.responsibilities || '';
-  document.getElementById('requirements').value = job['Requirements'] || job.requirements || '';
-  document.getElementById('openings').value = job['Openings'] || job.openings || '';
-  document.getElementById('trial_period').value = job['Trial Period'] || job.trial_period || '';
-  document.getElementById('status').value = job['Status'] || job.status || 'Open';
-  window.scrollTo({ top:0, behavior:'smooth' });
+    jobs.push(job);
+    localStorage.setItem("jobs", JSON.stringify(jobs));
+
+    alert("Job created successfully!");
+    loadJobs();
 }
 
-/* Create job */
-document.getElementById('createJobBtn').addEventListener('click', async ()=>{
-  const job = gatherJobForm();
-  const body = { action:'createJob', api_key: API_KEY, hr_email: auth.email, job };
-  document.getElementById('jobMsg').textContent = 'Publishing…';
-  const r = await apiPost(body);
-  if(r && r.ok){ document.getElementById('jobMsg').textContent = `Job created: ${r.job_id}`; clearJobForm(); await loadJobs(); }
-  else document.getElementById('jobMsg').textContent = 'Error creating job: ' + (r.error||'unknown');
-});
-
-/* Save edit */
-document.getElementById('saveJobBtn').addEventListener('click', async ()=>{
-  const job = gatherJobForm();
-  if(!job.job_id && !job['Job ID']) { alert('Provide job_id to edit'); return; }
-  // send edit
-  const normalized = {
-    job_id: job.job_id || job['Job ID'],
-    title: job.title, department: job.department, division: job.division,
-    employment_type: job.employment_type, salary: job.salary, summary: job.summary,
-    description: job.description, responsibilities: job.responsibilities, requirements: job.requirements,
-    openings: job.openings, trial_period: job.trial_period, status: job.status
-  };
-  document.getElementById('jobMsg').textContent = 'Saving…';
-  const r = await apiPost({ action:'editJob', api_key: API_KEY, job: normalized });
-  if(r && r.ok){ document.getElementById('jobMsg').textContent = 'Job updated.'; await loadJobs(); }
-  else document.getElementById('jobMsg').textContent = 'Error saving job: ' + (r.error||'unknown');
-});
-
-/* Delete job */
-document.getElementById('deleteJobBtn').addEventListener('click', async ()=>{
-  const id = document.getElementById('job_id').value.trim();
-  if(!id) return alert('Provide job id to delete');
-  if(!confirm('Delete job ' + id + '?')) return;
-  const r = await apiPost({ action:'deleteJob', api_key: API_KEY, job_id: id });
-  if(r && r.ok){ alert('Deleted'); clearJobForm(); await loadJobs(); } else alert('Delete error: ' + (r.error||'unknown'));
-});
-
-function gatherJobForm(){
-  return {
-    job_id: document.getElementById('job_id').value.trim(),
-    title: document.getElementById('title').value.trim(),
-    department: document.getElementById('department').value.trim(),
-    division: document.getElementById('division').value.trim(),
-    employment_type: document.getElementById('employment_type').value,
-    salary: document.getElementById('salary').value.trim(),
-    summary: document.getElementById('summary').value.trim(),
-    description: document.getElementById('description').value.trim(),
-    responsibilities: document.getElementById('responsibilities').value.trim(),
-    requirements: document.getElementById('requirements').value.trim(),
-    openings: document.getElementById('openings').value,
-    trial_period: document.getElementById('trial_period').value.trim(),
-    status: document.getElementById('status').value
-  };
-}
-function clearJobForm(){
-  ['job_id','title','department','division','employment_type','salary','summary','description','responsibilities','requirements','openings','trial_period','status'].forEach(id=>{ if(document.getElementById(id)) document.getElementById(id).value = ''; });
+// Delete job
+function deleteJob(index) {
+    let jobs = JSON.parse(localStorage.getItem("jobs"));
+    jobs.splice(index, 1);
+    localStorage.setItem("jobs", JSON.stringify(jobs));
+    loadJobs();
 }
 
-/* Applications */
-async function loadApplications(){
-  const out = document.getElementById('appsList');
-  out.innerHTML = '<div class="muted">Loading applications…</div>';
-  const res = await apiGet({ path:'getApplications' });
-  if(!res || !res.applications){ out.innerHTML = '<div class="muted">Cannot load applications.</div>'; return; }
-  const apps = res.applications;
-  renderApplications(apps);
-}
-function renderApplications(apps){
-  const el = document.getElementById('appsList');
-  if(!apps.length){ el.innerHTML = '<div class="muted">No applications yet.</div>'; return; }
-  const q = document.getElementById('appQuery').value.trim().toLowerCase();
-  const filtered = apps.filter(a => {
-    if(!q) return true;
-    return (String(a['Full Name'] || a.full_name || '').toLowerCase().includes(q) ||
-            String(a['Application ID'] || a.application_id || '').toLowerCase().includes(q) ||
-            String(a['Job Title'] || a.job_title || '').toLowerCase().includes(q) ||
-            String(a['Email Address'] || a.email || '').toLowerCase().includes(q));
-  });
-  el.innerHTML = filtered.map(a => {
-    const id = a['Application ID'] || a.application_id || '';
-    const name = escapeHtml(a['Full Name'] || a.full_name || '');
-    const job = escapeHtml(a['Job Title'] || a.job_title || '');
-    const email = escapeHtml(a['Email Address'] || a.email || '');
-    const status = escapeHtml(a['Status'] || a.status || 'Pending');
-    const discordId = escapeHtml(a['Discord ID'] || a.discord_id || '');
-    return `<div style="padding:8px;border-bottom:1px solid rgba(255,255,255,0.02)">
-      <div style="display:flex;justify-content:space-between;align-items:center">
-        <div>
-          <div style="font-weight:800">${name} <span class="muted" style="font-weight:600">(${id})</span></div>
-          <div class="muted small">${job} • ${email} • Discord: ${discordId}</div>
-        </div>
-        <div style="display:flex;gap:8px;align-items:center">
-          <div class="muted small">${status}</div>
-          <button class="btn btn-primary" onclick="acceptApp('${id}')">Accept</button>
-          <button class="btn btn-ghost" onclick="denyApp('${id}')">Deny</button>
-        </div>
-      </div>
-      <div style="margin-top:8px;color:var(--muted);font-size:13px">Motivation: ${escapeHtml(a['Motivation Statement'] || a.motivation || a['Motivation'] || '')}</div>
-    </div>`;
-  }).join('');
+// Pause job
+function pauseJob(index) {
+    let jobs = JSON.parse(localStorage.getItem("jobs"));
+    jobs[index].paused = true;
+    localStorage.setItem("jobs", JSON.stringify(jobs));
+    loadJobs();
 }
 
-/* Accept / Deny */
-async function acceptApp(appId){
-  if(!confirm('Accept application ' + appId + '?')) return;
-  const r = await apiPost({ action:'acceptApplication', api_key: API_KEY, application_id: appId, hr_email: auth.email });
-  if(r && r.ok){ alert('Accepted'); await loadApplications(); } else alert('Error: ' + (r.error||'unknown'));
-}
-async function denyApp(appId){
-  if(!confirm('Deny application ' + appId + '?')) return;
-  const r = await apiPost({ action:'denyApplication', api_key: API_KEY, application_id: appId, hr_email: auth.email });
-  if(r && r.ok){ alert('Denied'); await loadApplications(); } else alert('Error: ' + (r.error||'unknown'));
+// Resume job
+function resumeJob(index) {
+    let jobs = JSON.parse(localStorage.getItem("jobs"));
+    jobs[index].paused = false;
+    localStorage.setItem("jobs", JSON.stringify(jobs));
+    loadJobs();
 }
 
-/* Announcements */
-document.getElementById('postAnn').addEventListener('click', async ()=>{
-  const title = document.getElementById('annTitle').value.trim();
-  const message = document.getElementById('annMsg').value.trim();
-  if(!title || !message){ document.getElementById('annMsgOut').textContent = 'Provide title and message.'; return; }
-  document.getElementById('annMsgOut').textContent = 'Posting…';
-  const r = await apiPost({ action:'createAnnouncement', api_key: API_KEY, announcement: { title, message }, hr_email: auth.email });
-  if(r && r.ok){ document.getElementById('annMsgOut').textContent = 'Announcement posted.'; document.getElementById('annTitle').value=''; document.getElementById('annMsg').value=''; }
-  else document.getElementById('annMsgOut').textContent = 'Error: ' + (r.error||'unknown');
-});
+// Edit job
+function editJob(index) {
+    let jobs = JSON.parse(localStorage.getItem("jobs"));
+    let job = jobs[index];
 
-/* Refresh controls */
-document.getElementById('refreshJobs').addEventListener('click', loadJobs);
-document.getElementById('refreshApps').addEventListener('click', loadApplications);
+    let newTitle = prompt("Edit Title:", job.title);
+    if (newTitle !== null) job.title = newTitle;
 
-/* Job search filter client-side */
-function filterJobsClient(){
-  const q = document.getElementById('jobSearch').value.trim().toLowerCase();
-  renderJobsList(JOBS_CACHE.filter(j => {
-    if(!q) return true;
-    return (String(j['Job Title']||j.title||'').toLowerCase().includes(q) ||
-            String(j['Job ID']||j.job_id||'').toLowerCase().includes(q));
-  }));
+    let newDesc = prompt("Edit Description:", job.description);
+    if (newDesc !== null) job.description = newDesc;
+
+    let newReq = prompt("Edit Requirements:", job.requirements);
+    if (newReq !== null) job.requirements = newReq;
+
+    let newPaid = prompt("Paid/Unpaid:", job.paid);
+    if (newPaid !== null) job.paid = newPaid;
+
+    localStorage.setItem("jobs", JSON.stringify(jobs));
+    loadJobs();
 }
 
-/* Init load */
-(async function init(){
-  await loadJobs();
-  await loadApplications();
-})();
+// Logout
+function logout() {
+    localStorage.removeItem("hrLoggedIn");
+    window.location.href = "hr-login.html";
+}
+
+loadJobs();
 </script>
+
 </body>
 </html>
