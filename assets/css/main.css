@@ -1,0 +1,8 @@
+
+body { font-family: Arial, sans-serif; background:#0b1c2d; color:#fff; margin:0; padding:40px; }
+header { text-align:center; }
+.logo { width:120px; }
+.btn { background:#0059ff; color:#fff; padding:15px 25px; text-decoration:none; border-radius:6px; }
+input, textarea, button { width:100%; margin:10px 0; padding:10px; }
+table { width:100%; border-collapse:collapse; }
+td, th { border:1px solid #444; padding:10px; }
