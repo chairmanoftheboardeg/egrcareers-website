@@ -20,6 +20,6 @@ EGR.escape = function(str){
 };
 EGR.getConfig = function(){
   const cfg = window.EGR_CONFIG || {};
-  if(!cfg.SUPABASE_URL || cfg.SUPABASE_URL.includes("YOUR_PROJECT_REF")) return { ok:false, cfg };
+  if(!cfg.SUPABASE_URL || !cfg.SUPABASE_ANON_KEY) return { ok:false, cfg };
   return { ok:true, cfg };
 };

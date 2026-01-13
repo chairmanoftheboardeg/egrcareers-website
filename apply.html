@@ -15,14 +15,14 @@
   <div class="card"><div class="pad">
     <div class="pill">Application</div>
     <h1 class="h1" style="font-size:36px">Submit your application</h1>
-    <p class="lead">Applications are reviewed by HR. If accepted, onboarding is issued via Discord (role + onboarding pack).</p>
+    <p class="lead">Applications are reviewed by HR. If accepted, onboarding is issued via Discord (role assignment + onboarding pack).</p>
   </div></div>
 </div>
 
 <div class="container section">
   <div id="configWarn" class="card" style="display:none"><div class="pad">
     <b>Configuration required</b>
-    <p class="small">Set SUPABASE_URL and SUPABASE_ANON_KEY in <span class="mono">/assets/js/config.js</span> then redeploy.</p>
+    <p class="small">If submission fails, confirm schema.sql ran, and RLS policy allows insert into <span class="mono">applications</span>.</p>
   </div></div>
 
   <div class="grid cols-2">

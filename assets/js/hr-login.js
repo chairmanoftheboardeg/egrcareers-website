@@ -1,10 +1,26 @@
 (function(){
   const form = document.getElementById("hrLoginForm");
-  form.addEventListener("submit", (e)=>{
-    e.preventDefault();
-    const pass = document.getElementById("hrPass").value.trim();
-    if(pass.length < 8){ EGR.toast("Password too short (min 8 chars)."); return; }
-    sessionStorage.setItem("EGR_HR_PASSWORD", pass);
-    location.href = "/hr/dashboard.html";
-  });
+  const passEl = document.getElementById("hrPass");
+
+  function setPass(p){
+    sessionStorage.setItem("EGR_HR_PASS", p);
+  }
+  function getPass(){
+    return sessionStorage.getItem("EGR_HR_PASS") || "";
+  }
+
+  if(getPass()){
+    // already signed in
+    // do nothing; user can go to dashboard directly
+  }
+
+  if(form){
+    form.addEventListener("submit", (e)=>{
+      e.preventDefault();
+      const p = (passEl?.value || "").trim();
+      if(!p){ EGR.toast("Enter HR password."); return; }
+      setPass(p);
+      location.href = "/hr/dashboard.html";
+    });
+  }
 })();

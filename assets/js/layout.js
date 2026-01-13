@@ -12,10 +12,10 @@
       </a>
       <div class="nav-links">
         <a href="/jobs.html">Open Roles</a>
+        <a href="/why-work-with-us.html">Why Work With Us</a>
         <a href="/departments.html">Departments</a>
         <a href="/process.html">Hiring Process</a>
         <a href="/hr-team.html">HR Team</a>
-        <a href="/legal.html">Legal</a>
       </div>
       <div class="nav-cta">
         <a class="btn" href="/jobs.html">Browse Jobs</a>
@@ -36,6 +36,7 @@
           <b>Quick Links</b>
           <div class="small" style="display:grid; gap:8px; margin-top:8px">
             <a href="/jobs.html">Open Roles</a>
+            <a href="/why-work-with-us.html">Why Work With Us</a>
             <a href="/departments.html">Departments</a>
             <a href="/process.html">Hiring Process</a>
             <a href="/hr-team.html">HR Team</a>

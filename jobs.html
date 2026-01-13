@@ -44,13 +44,16 @@
         <a class="btn primary" href="/process.html">How we hire</a>
       </div>
     </div>
+
+    <div class="small" style="margin-top:10px">Tip: If you see “No roles found”, HR may have temporarily paused hiring for that department.</div>
   </div></div>
 </div>
 
 <div class="container section" id="apply">
   <div id="configWarn" class="card" style="display:none"><div class="pad">
     <b>Configuration required</b>
-    <p class="small">Set SUPABASE_URL and SUPABASE_ANON_KEY in <span class="mono">/assets/js/config.js</span> then redeploy.</p>
+    <p class="small">If jobs do not load, verify the database setup and RLS policies, then check browser console for errors.</p>
+    <p class="small mono">Common cause: schema.sql not run, or jobs table missing.</p>
   </div></div>
   <div id="jobsGrid" class="grid cols-2"></div>
 </div>

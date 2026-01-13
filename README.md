@@ -1,45 +1,57 @@
-EGR Careers Site (careers.emiratesgrouproblox.link)
+# Emirates Group Roblox — Careers Site (v3)
 
-This ZIP includes:
-- Full public Careers website (Home, Jobs, Role details, Apply, Departments, Hiring Process, HR Team, Legal)
-- HR Portal (password login + dashboard) that manages jobs + applications
-- Supabase SQL schema and RLS policies
-- Supabase Edge Functions (HR APIs + Discord onboarding)
+This package contains:
+- Static website (GitHub Pages / any static host)
+- Supabase SQL schema + RLS policies
+- Supabase Edge Functions for HR-only management
 
-IMPORTANT: A fully static site cannot securely protect HR database access by itself.
-To keep HR private WITHOUT Supabase Auth, this build uses:
-- Public pages: Supabase anon key (safe) to read OPEN jobs + submit applications only
-- HR pages: call Supabase Edge Functions that require a shared HR password (server-side check)
-- HR Edge Functions use SERVICE ROLE key stored only in Supabase env vars
+## 1) Deploy the database
+Open Supabase → SQL Editor → run:
+- `supabase/sql/schema.sql`
 
-Setup steps (required)
-1) Supabase SQL
-- Run: /supabase/sql/schema.sql
+Then confirm tables exist:
+- `public.jobs`
+- `public.applications`
 
-2) Edge Functions (in Supabase Function Editor)
-- Create: hr-jobs (paste /supabase/functions/hr-jobs/index.ts)
-- Create: hr-applications (paste /supabase/functions/hr-applications/index.ts)
-- Also include helper: /supabase/functions/_shared.ts (inline it if your editor doesn’t support shared imports)
+## 2) Deploy Edge Functions (HR endpoints)
+In Supabase → Edge Functions:
+- Create `hr-jobs` and paste `supabase/functions/hr-jobs/index.ts`
+- Create `hr-applications` and paste `supabase/functions/hr-applications/index.ts`
+Deploy both.
 
-3) Supabase environment variables (Dashboard → Settings → Environment Variables)
-Required:
-- SUPABASE_URL
-- SUPABASE_SERVICE_ROLE_KEY
-- HR_DASH_PASSWORD
+### Required Function Secrets / Env Vars
+Set these in Supabase project settings (Edge Functions → Secrets):
+- `SUPABASE_URL` = your project URL
+- `SUPABASE_SERVICE_ROLE_KEY` = service role key (KEEP PRIVATE)
+- `HR_PASSWORD` = your HR dashboard password
 
-Discord onboarding (optional, only if you want automatic role + DM):
-- DISCORD_BOT_TOKEN
-- DISCORD_GUILD_ID
-- DISCORD_STAFF_ROLE_ID
-- ONBOARDING_PDF_URL
+Optional:
+- `DISCORD_WEBHOOK_URL` = Discord webhook to notify accept/reject decisions
+- `ALLOWED_ORIGINS` = comma-separated allowed site origins (e.g., https://careers.example.com)
 
-4) Frontend config
-- Edit: /assets/js/config.js
-- Set:
-  - SUPABASE_URL
-  - SUPABASE_ANON_KEY
-  - FUNCTIONS_BASE  (https://<project-ref>.supabase.co/functions/v1)
+## 3) Host the website
+Upload the website files (everything in the root of this folder) to your static host.
 
-Logo paths
-- This ZIP includes /image/logo.png AND /images/logo.png.
-Replace them with your real logo.
+Ensure paths are root-based (e.g. `/assets/...`), so host at domain root.
+
+## 4) Configure website Supabase keys
+Edit:
+- `assets/js/config.js`
+
+You should ONLY use the anon key in the frontend. Never expose your service role key publicly.
+
+## 5) Test (Public)
+- Open `/jobs.html` → you should see seeded jobs.
+- Open `/apply.html?id=<job_id>` → submit application.
+- Verify in Supabase Table Editor: applications inserted with `status=pending`.
+
+## 6) Test (HR)
+- Open `/hr/login.html` → enter HR password → dashboard loads.
+- Add/edit/pause jobs.
+- Accept/reject applications.
+
+## Common failure causes
+1. RLS not enabled / policies not applied (jobs not visible, applications cannot insert)
+2. Edge functions missing env vars (HR dashboard fails to load)
+3. Wrong `FUNCTIONS_BASE` (should be `https://<project>.supabase.co/functions/v1`)
+4. Browser console shows 401/500 from edge functions (password mismatch or missing service role key)

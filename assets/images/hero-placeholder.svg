@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="700" viewBox="0 0 1600 700">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1c2d"/>
+      <stop offset="1" stop-color="#071525"/>
+    </linearGradient>
+    <radialGradient id="r" cx="25%" cy="20%" r="70%">
+      <stop offset="0" stop-color="#0059ff" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#0059ff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="700" fill="url(#g)"/>
+  <rect width="1600" height="700" fill="url(#r)"/>
+  <g fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="2">
+    <path d="M0,520 C260,410 430,410 640,520 C860,640 1040,640 1600,420" />
+    <path d="M0,590 C290,470 480,470 720,590 C920,690 1120,690 1600,480" />
+  </g>
+  <g fill="rgba(255,255,255,0.8)" font-family="Arial, Helvetica, sans-serif">
+    <text x="70" y="110" font-size="34">Hero Image Placeholder</text>
+    <text x="70" y="150" font-size="18" fill="rgba(255,255,255,0.65)">Replace this with a banner image that matches your main EGR brand.</text>
+  </g>
+</svg>

@@ -1,103 +1,107 @@
-import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+/**
+ * Supabase Edge Function: hr-applications
+ * HR-only access to applications using service role key.
+ *
+ * Required env vars:
+ *  - SUPABASE_URL
+ *  - SUPABASE_SERVICE_ROLE_KEY
+ *  - HR_PASSWORD
+ *
+ * Optional:
+ *  - DISCORD_WEBHOOK_URL (notify on accept/reject)
+ *  - ALLOWED_ORIGINS
+ */
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
-import { corsHeaders, json, requireHr } from "../_shared.ts";
 
-async function discordOnboard(discordId: string, roleTitle: string) {
-  const token = Deno.env.get("DISCORD_BOT_TOKEN") || "";
-  const guildId = Deno.env.get("DISCORD_GUILD_ID") || "";
-  const roleId = Deno.env.get("DISCORD_STAFF_ROLE_ID") || "";
-  const onboardingPdf = Deno.env.get("ONBOARDING_PDF_URL") || "";
-
-  if (!token || !guildId || !roleId || !onboardingPdf) {
-    return { ok: false, warning: "Discord onboarding variables not configured." };
-  }
-
-  const headers = { "Authorization": `Bot ${token}`, "Content-Type": "application/json" };
-
-  // Add role
-  const addRoleRes = await fetch(
-    `https://discord.com/api/v10/guilds/${guildId}/members/${discordId}/roles/${roleId}`,
-    { method: "PUT", headers }
-  );
-
-  // DM channel
-  const dmChannelRes = await fetch(
-    `https://discord.com/api/v10/users/@me/channels`,
-    { method: "POST", headers, body: JSON.stringify({ recipient_id: discordId }) }
-  );
-
-  if (!dmChannelRes.ok) {
-    return { ok: addRoleRes.ok, warning: `Role assigned. DM failed (${dmChannelRes.status}) — user may have DMs disabled.` };
-  }
-
-  const dm = await dmChannelRes.json();
-  const msgRes = await fetch(
-    `https://discord.com/api/v10/channels/${dm.id}/messages`,
-    {
-      method: "POST",
-      headers,
-      body: JSON.stringify({
-        content:
-          `Welcome to Emirates Group Roblox.\n\n` +
-          `You have been accepted as **${roleTitle}**.\n\n` +
-          `Onboarding pack:\n${onboardingPdf}`
-      }),
-    }
-  );
-
-  if (!msgRes.ok) {
-    return { ok: addRoleRes.ok, warning: `Role assigned. DM message failed (${msgRes.status}).` };
-  }
-
-  return { ok: addRoleRes.ok, warning: null };
+function corsHeaders(req: Request) {
+  const allow = Deno.env.get("ALLOWED_ORIGINS");
+  const origin = req.headers.get("origin") || "*";
+  const allowed = allow ? allow.split(",").map(s => s.trim()).filter(Boolean) : ["*"];
+  const ok = allowed.includes("*") || allowed.includes(origin);
+  return {
+    "Access-Control-Allow-Origin": ok ? origin : allowed[0] || "*",
+    "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, X-HR-PASSWORD",
+    "Access-Control-Allow-Methods": "GET,PATCH,OPTIONS",
+    "Vary": "Origin"
+  };
 }
 
-serve(async (req) => {
-  if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
+function json(data: any, req: Request, status = 200) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: { "Content-Type": "application/json", ...corsHeaders(req) }
+  });
+}
 
-  const deny = requireHr(req);
-  if (deny) return deny;
+function requireHr(req: Request) {
+  const pass = req.headers.get("X-HR-PASSWORD") || "";
+  const expected = Deno.env.get("HR_PASSWORD") || "";
+  if (!expected || pass !== expected) {
+    return json({ error: "Unauthorized" }, req, 401);
+  }
+  return null;
+}
 
-  const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-  const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-  const sb = createClient(supabaseUrl, serviceKey);
+async function notifyDiscord(text: string) {
+  const hook = Deno.env.get("DISCORD_WEBHOOK_URL");
+  if (!hook) return;
+  try {
+    await fetch(hook, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ content: text })
+    });
+  } catch {}
+}
+
+Deno.serve(async (req) => {
+  if (req.method === "OPTIONS") {
+    return new Response("ok", { headers: corsHeaders(req) });
+  }
+
+  const authFail = requireHr(req);
+  if (authFail) return authFail;
+
+  const url = Deno.env.get("SUPABASE_URL") || "";
+  const key = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "";
+  if (!url || !key) return json({ error: "Missing env vars" }, req, 500);
+
+  const sb = createClient(url, key);
+
+  const u = new URL(req.url);
+  const id = u.searchParams.get("id");
+  const statusFilter = u.searchParams.get("status");
 
   try {
-    const url = new URL(req.url);
-    const status = url.searchParams.get("status");
-
     if (req.method === "GET") {
+      if (id) {
+        const { data, error } = await sb.from("applications").select("*").eq("id", id).maybeSingle();
+        if (error) throw error;
+        return json({ application: data }, req);
+      }
       let q = sb.from("applications").select("*").order("created_at", { ascending: false });
-      if (status) q = q.eq("status", status);
+      if (statusFilter) q = q.eq("status", statusFilter);
       const { data, error } = await q;
-      if (error) return json({ error: error.message }, 400);
-      return json({ applications: data ?? [] });
+      if (error) throw error;
+      return json({ applications: data || [] }, req);
     }
 
     if (req.method === "PATCH") {
       const body = await req.json();
-      const id = body.id;
-      const nextStatus = body.status;
+      if (!body.id || !body.status) return json({ error: "Missing id/status" }, req, 400);
+      const { data, error } = await sb.from("applications").update({ status: body.status }).eq("id", body.id).select("*").single();
+      if (error) throw error;
 
-      if (!id || !nextStatus) return json({ error: "Missing id or status" }, 400);
-      if (!["pending", "accepted", "rejected"].includes(nextStatus)) return json({ error: "Invalid status" }, 400);
-
-      const { data: app, error: fetchErr } = await sb.from("applications").select("*").eq("id", id).single();
-      if (fetchErr || !app) return json({ error: fetchErr?.message || "Not found" }, 404);
-
-      const { error: updErr } = await sb.from("applications").update({ status: nextStatus }).eq("id", id);
-      if (updErr) return json({ error: updErr.message }, 400);
-
-      if (nextStatus === "accepted") {
-        const onboard = await discordOnboard(app.discord_id, app.role_title);
-        return json({ ok: true, message: "Accepted. Discord onboarding attempted.", warning: onboard.warning });
+      if (body.status === "accepted") {
+        await notifyDiscord(`✅ Application accepted: ${data.full_name} for ${data.role_title} (Discord: ${data.discord_username} / ${data.discord_id})`);
+      } else if (body.status === "rejected") {
+        await notifyDiscord(`❌ Application rejected: ${data.full_name} for ${data.role_title} (Discord: ${data.discord_username} / ${data.discord_id})`);
       }
-
-      return json({ ok: true });
+      return json({ application: data }, req);
     }
 
-    return json({ error: "Method not allowed" }, 405);
+    return json({ error: "Method not allowed" }, req, 405);
   } catch (e) {
-    return json({ error: (e as Error).message }, 500);
+    return json({ error: String(e) }, req, 500);
   }
 });
