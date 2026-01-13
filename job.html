@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>EGR Careers — Role Details</title>
+  <meta name="description" content="EGR Careers — recruitment portal for Emirates Group Roblox under Vision 2026."/>
+  <link rel="icon" href="/image/logo.png"/>
+  <link rel="stylesheet" href="/assets/css/main.css"/>
+</head>
+<body>
+  <div id="egr-header"></div>
+  
+<div class="container hero" style="padding-top:30px">
+  <div class="card"><div class="pad">
+    <div class="pill">Role Details</div>
+    <h1 class="h1" style="font-size:36px" id="jobTitle">Loading...</h1>
+    <p class="lead" id="jobMeta"></p>
+    <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:10px">
+      <a class="btn primary" id="applyBtn" href="/apply.html">Apply for this role</a>
+      <a class="btn" href="/jobs.html">Back to roles</a>
+    </div>
+  </div></div>
+</div>
+
+<div class="container section">
+  <div class="grid cols-2">
+    <div class="card"><div class="pad"><h2>Description</h2><div class="small" id="jobDesc"></div></div></div>
+    <div class="card"><div class="pad"><h2>Responsibilities</h2><div class="small" id="jobResp"></div></div></div>
+    <div class="card"><div class="pad"><h2>Requirements</h2><div class="small" id="jobReq"></div></div></div>
+    <div class="card"><div class="pad">
+      <h2>Next steps</h2>
+      <p class="small">Submit your application. HR will review and respond. If accepted, onboarding is issued via Discord.</p>
+      <p class="small">Ensure your Discord ID is correct. Incorrect IDs delay role assignment.</p>
+    </div></div>
+  </div>
+</div>
+
+  <div id="egr-footer"></div>
+  <div id="toast" class="toast"></div>
+
+  <script src="/assets/js/config.js"></script>
+  <script src="/assets/js/layout.js"></script>
+  <script src="/assets/js/ui.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/assets/js/supabase-client.js"></script>
+  <script src="/assets/js/job.js"></script>
+</body>
+</html>

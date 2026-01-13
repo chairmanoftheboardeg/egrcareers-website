@@ -1,18 +1,68 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Open Positions – EGR</title>
-  <link rel="icon" href="/images/logo.png">
-  <link rel="stylesheet" href="assets/css/main.css">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>EGR Careers — Open Roles</title>
+  <meta name="description" content="EGR Careers — recruitment portal for Emirates Group Roblox under Vision 2026."/>
+  <link rel="icon" href="/image/logo.png"/>
+  <link rel="stylesheet" href="/assets/css/main.css"/>
 </head>
 <body>
-  <header>
-    <h1>Open Positions</h1>
-    <input id="search" placeholder="Search jobs...">
-  </header>
-  <main id="jobs"></main>
-  <script src="assets/js/supabase.js"></script>
-  <script src="assets/js/jobs.js"></script>
+  <div id="egr-header"></div>
+  
+<div class="container hero" style="padding-top:30px">
+  <div class="card"><div class="pad">
+    <div class="pill">Open Roles</div>
+    <h1 class="h1" style="font-size:36px">Search and filter staff opportunities</h1>
+    <p class="lead">Search matches titles, descriptions, requirements, and responsibilities. Select a role to view details and apply.</p>
+
+    <div class="row">
+      <div>
+        <label>Search</label>
+        <input class="input" id="jobSearch" placeholder="Search by title, department, description, requirements, responsibilities..." />
+      </div>
+      <div>
+        <label>Department</label>
+        <select id="deptFilter" class="input"><option value="">All departments</option></select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label>Employment type</label>
+        <select id="typeFilter" class="input">
+          <option value="">All types</option>
+          <option value="Direct Entry">Direct Entry</option>
+          <option value="Training">Training</option>
+          <option value="Internship">Internship</option>
+          <option value="Volunteer">Volunteer</option>
+        </select>
+      </div>
+      <div style="display:flex; gap:10px; align-items:flex-end; justify-content:flex-end">
+        <button class="btn" id="refreshBtn" type="button">Refresh</button>
+        <a class="btn primary" href="/process.html">How we hire</a>
+      </div>
+    </div>
+  </div></div>
+</div>
+
+<div class="container section" id="apply">
+  <div id="configWarn" class="card" style="display:none"><div class="pad">
+    <b>Configuration required</b>
+    <p class="small">Set SUPABASE_URL and SUPABASE_ANON_KEY in <span class="mono">/assets/js/config.js</span> then redeploy.</p>
+  </div></div>
+  <div id="jobsGrid" class="grid cols-2"></div>
+</div>
+
+  <div id="egr-footer"></div>
+  <div id="toast" class="toast"></div>
+
+  <script src="/assets/js/config.js"></script>
+  <script src="/assets/js/layout.js"></script>
+  <script src="/assets/js/ui.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/assets/js/supabase-client.js"></script>
+  <script src="/assets/js/jobs.js"></script>
 </body>
 </html>

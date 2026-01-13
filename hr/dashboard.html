@@ -1,15 +1,79 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>HR Dashboard – EGR</title>
-  <link rel="icon" href="/images/logo.png">
-  <link rel="stylesheet" href="../assets/css/main.css">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>EGR Careers — HR Dashboard</title>
+  <meta name="description" content="EGR Careers — recruitment portal for Emirates Group Roblox under Vision 2026."/>
+  <link rel="icon" href="/image/logo.png"/>
+  <link rel="stylesheet" href="/assets/css/main.css"/>
 </head>
 <body>
-  <h1>HR Dashboard</h1>
-  <table id="apps"></table>
-  <script src="../assets/js/supabase.js"></script>
-  <script src="../assets/js/hr.js"></script>
+  <div id="egr-header"></div>
+  
+<div class="container hero" style="padding-top:30px">
+  <div class="card"><div class="pad">
+    <div style="display:flex; justify-content:space-between; gap:12px; align-items:flex-start; flex-wrap:wrap">
+      <div>
+        <div class="pill">HR Dashboard</div>
+        <h1 class="h1" style="font-size:34px">Manage jobs and applications</h1>
+        <p class="lead">Password-gated HR APIs prevent public access to HR records.</p>
+      </div>
+      <div style="display:flex; gap:10px; align-items:center">
+        <button class="btn" id="logoutBtn" type="button">Sign out</button>
+        <button class="btn primary" id="reloadBtn" type="button">Reload</button>
+      </div>
+    </div>
+  </div></div>
+</div>
+
+<div class="container section">
+  <div class="grid cols-2">
+    <div class="card"><div class="pad">
+      <div style="display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; align-items:center">
+        <h2 style="margin:0">Jobs</h2>
+        <button class="btn primary" id="newJobBtn" type="button">Add job</button>
+      </div>
+      <div class="small" style="margin-top:10px">Create, edit, pause, close, reopen, and delete jobs. Public listings show open roles only.</div>
+      <div style="margin-top:12px; overflow:auto"><table class="table" id="jobsTable"></table></div>
+    </div></div>
+
+    <div class="card"><div class="pad">
+      <div style="display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; align-items:center">
+        <h2 style="margin:0">Applications</h2>
+        <select id="appStatusFilter" class="input" style="max-width:220px">
+          <option value="">All statuses</option>
+          <option value="pending">Pending</option>
+          <option value="accepted">Accepted</option>
+          <option value="rejected">Rejected</option>
+        </select>
+      </div>
+      <div class="small" style="margin-top:10px">Accepting triggers Discord onboarding (role assignment + onboarding pack link).</div>
+      <div style="margin-top:12px; overflow:auto"><table class="table" id="appsTable"></table></div>
+    </div></div>
+  </div>
+</div>
+
+<div id="modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:999">
+  <div class="card" style="max-width:760px; margin:40px auto; border-radius:22px">
+    <div class="pad">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:10px">
+        <b id="modalTitle">Job</b>
+        <button class="btn" id="modalClose" type="button">Close</button>
+      </div>
+      <div id="modalBody" style="margin-top:14px"></div>
+    </div>
+  </div>
+</div>
+
+  <div id="egr-footer"></div>
+  <div id="toast" class="toast"></div>
+
+  <script src="/assets/js/config.js"></script>
+  <script src="/assets/js/layout.js"></script>
+  <script src="/assets/js/ui.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/assets/js/supabase-client.js"></script>
+  <script src="/assets/js/hr-dashboard.js"></script>
 </body>
 </html>

@@ -1,27 +1,73 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Apply – EGR</title>
-  <link rel="icon" href="/images/logo.png">
-  <link rel="stylesheet" href="assets/css/main.css">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>EGR Careers — Apply</title>
+  <meta name="description" content="EGR Careers — recruitment portal for Emirates Group Roblox under Vision 2026."/>
+  <link rel="icon" href="/image/logo.png"/>
+  <link rel="stylesheet" href="/assets/css/main.css"/>
 </head>
 <body>
-  <h1>Application Form</h1>
-  <form id="appForm">
-    <input name="full_name" placeholder="Full Name" required>
-    <input name="discord_username" placeholder="Discord Username" required>
-    <input name="discord_id" placeholder="Discord ID" required>
-    <input name="roblox_username" placeholder="Roblox Username" required>
-    <input name="resume_link" placeholder="Resume Link (optional)">
-    <input name="role_title" id="role_title" readonly>
-    <textarea name="motivation" placeholder="Why do you want to join?" required></textarea>
-    <textarea name="why_chosen" placeholder="Why should you be chosen?" required></textarea>
-    <textarea name="past_experience" placeholder="Past experience" required></textarea>
-    <label><input type="checkbox" name="terms" required> I agree to Legal Terms</label>
-    <button type="submit">Submit Application</button>
-  </form>
-  <script src="assets/js/supabase.js"></script>
-  <script src="assets/js/apply.js"></script>
+  <div id="egr-header"></div>
+  
+<div class="container hero" style="padding-top:30px">
+  <div class="card"><div class="pad">
+    <div class="pill">Application</div>
+    <h1 class="h1" style="font-size:36px">Submit your application</h1>
+    <p class="lead">Applications are reviewed by HR. If accepted, onboarding is issued via Discord (role + onboarding pack).</p>
+  </div></div>
+</div>
+
+<div class="container section">
+  <div id="configWarn" class="card" style="display:none"><div class="pad">
+    <b>Configuration required</b>
+    <p class="small">Set SUPABASE_URL and SUPABASE_ANON_KEY in <span class="mono">/assets/js/config.js</span> then redeploy.</p>
+  </div></div>
+
+  <div class="grid cols-2">
+    <div class="card"><div class="pad">
+      <h2 style="margin-top:0">Selected role</h2>
+      <div class="small" id="selectedRole">Loading...</div>
+      <div class="small" style="margin-top:10px">Role ID and title are filled automatically when you apply from the job listing.</div>
+    </div></div>
+
+    <div class="card"><div class="pad">
+      <h2 style="margin-top:0">Application form</h2>
+      <form class="form" id="appForm">
+        <input class="input" name="full_name" placeholder="Full Name" required>
+        <div class="row">
+          <input class="input" name="discord_username" placeholder="Discord Username" required>
+          <input class="input" name="discord_id" placeholder="Discord ID" required>
+        </div>
+        <input class="input" name="roblox_username" placeholder="Roblox Username" required>
+        <input class="input" name="resume_link" placeholder="Resume Link (optional — paste URL)" type="url">
+        <div class="row">
+          <input class="input" name="job_id" id="job_id" placeholder="Role ID" readonly required>
+          <input class="input" name="role_title" id="role_title" placeholder="Role Title" readonly required>
+        </div>
+        <textarea class="input" name="motivation" placeholder="Why do you want to join Emirates Group Roblox?" required></textarea>
+        <textarea class="input" name="why_chosen" placeholder="Why do you think you should be chosen for this position?" required></textarea>
+        <textarea class="input" name="past_experience" placeholder="Do you have past experience? If yes, explain briefly." required></textarea>
+        <label style="display:flex; gap:10px; align-items:flex-start">
+          <input type="checkbox" id="terms" required style="margin-top:4px">
+          <span>I agree to comply with all our <a href="/legal.html" style="text-decoration:underline">Legal Terms</a>.</span>
+        </label>
+        <button class="btn primary" type="submit">Submit Application</button>
+        <div class="small">Do not submit false information. Applications may be rejected for inaccurate details.</div>
+      </form>
+    </div></div>
+  </div>
+</div>
+
+  <div id="egr-footer"></div>
+  <div id="toast" class="toast"></div>
+
+  <script src="/assets/js/config.js"></script>
+  <script src="/assets/js/layout.js"></script>
+  <script src="/assets/js/ui.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/assets/js/supabase-client.js"></script>
+  <script src="/assets/js/apply.js"></script>
 </body>
 </html>
