@@ -1,6 +1,6 @@
 
 async function acceptApplication(app) {
-  await fetch("https://YOUR_PROJECT_ID.supabase.co/functions/v1/discord-onboard", {
+  await fetch("https://dvcbbvvxbpxzpxaadoco.supabase.co/functions/v1/discord-onboard", {
     method:"POST",
     headers:{
       "Content-Type":"application/json",
