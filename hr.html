@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>EGR Careers | Home</title>
+  <title>EGR Careers | HR Login</title>
   <meta name="description" content="Emirates Group Roblox Careers. Explore open positions and apply to join our teams."/>
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg"/>
   <link rel="stylesheet" href="assets/css/styles.css"/>
@@ -71,90 +71,51 @@
 
   
 <main class="container">
-  <section class="hero">
-    <div class="kicker">EGR Careers</div>
-    <div class="h1">Professionalism, structure, and high fidelity operations.</div>
+  <section class="hero" style="padding-top:30px;">
+    <div class="kicker">HR Access</div>
+    <div class="h1">HR Dashboard login</div>
     <div class="lead">
-      Emirates Group Roblox is a structured virtual aviation organisation built for realism and teamwork.
-      Explore open volunteer roles across our departments and apply to join the team.
-    </div>
-    <div class="hero-actions">
-      <a class="btn primary" href="open-positions.html">Explore Open Positions</a>
-      <a class="btn" href="why-work-with-us.html">Why Work With Us</a>
-      <a class="btn" href="departments.html">Discover Departments</a>
+      Authorised Human Resources staff can sign in to manage announcements, job postings, and applications.
     </div>
   </section>
 
   <section class="section">
-    <h2>Key employee focus areas</h2>
-    <div class="grid cols-3">
-      <div class="card">
-        <div class="card-title">Operational integrity</div>
-        <div class="card-sub">Clear SOPs, training standards, and accountability across divisions.</div>
-      </div>
-      <div class="card">
-        <div class="card-title">Quality & realism</div>
-        <div class="card-sub">High-fidelity flight operations, customer experience, and structured teamwork.</div>
-      </div>
-      <div class="card">
-        <div class="card-title">Leadership development</div>
-        <div class="card-sub">We invest in mentors, trainers, and managers who build others up.</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2>Careers statistics</h2>
-    <div class="grid cols-3">
-      <div class="card stat">
-        <div>
-          <div class="num" id="statOpenRoles">—</div>
-          <div class="lbl">Open roles (published)</div>
-        </div>
-        <span class="badge">Live from backend</span>
-      </div>
-      <div class="card stat">
-        <div>
-          <div class="num" id="statDepartments">—</div>
-          <div class="lbl">Active departments</div>
-        </div>
-        <span class="badge">Live from backend</span>
-      </div>
-      <div class="card stat">
-        <div>
-          <div class="num">24/7</div>
-          <div class="lbl">Operations mindset</div>
-        </div>
-        <span class="badge">Vision 2026</span>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2>Employee benefits</h2>
-    <p>
-      We offer structured leadership, training, responsibility, and recognition.
-      Roles are volunteer-based. In special circumstances, payments may be provided by orders of the Board of Directors.
-    </p>
     <div class="grid cols-2">
-      <div class="card">
-        <div class="card-title">Structured progression</div>
-        <div class="card-sub">Training, performance reviews, and realistic responsibilities.</div>
-      </div>
-      <div class="card">
-        <div class="card-title">Community & culture</div>
-        <div class="card-sub">A professional environment with strong standards and respect.</div>
-      </div>
-    </div>
-  </section>
+      <div class="card" id="loginCard">
+        <div style="font-weight:900; font-size:18px;">Sign in</div>
+        <p style="margin-top:8px;">Use your HR email and password (Supabase Auth).</p>
 
-  <section class="section">
-    <div class="card" style="display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;">
-      <div>
-        <div style="font-weight:900; font-size:18px;">Ready to apply?</div>
-        <div style="color:var(--muted); margin-top:6px;">Browse open roles by department and submit your application in minutes.</div>
+        <form id="loginForm" style="margin-top:12px;">
+          <div>
+            <label>Email</label>
+            <input class="input" id="email" type="email" required />
+          </div>
+          <div style="margin-top:12px;">
+            <label>Password</label>
+            <input class="input" id="password" type="password" required />
+          </div>
+          <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="btn primary" id="loginBtn" type="submit">Sign in</button>
+            <a class="btn" href="legal/terms.html">Legal policies</a>
+          </div>
+        </form>
+
+        <div class="notice" style="margin-top:14px;">
+          If you can sign in but are denied access, your Auth user must be linked in <b>staff_profiles</b>.
+        </div>
       </div>
-      <a class="btn primary" href="open-positions.html">View Open Positions</a>
+
+      <div class="card hidden" id="alreadySignedIn">
+        <div style="font-weight:900; font-size:18px;">Session</div>
+        <div style="color:var(--muted); margin-top:10px;">
+          Signed in as: <b id="signinEmail"></b><br/>
+          HR status: <b id="hrStatus"></b>
+        </div>
+        <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn primary hidden" id="goDashboard" href="dashboard.html">Open HR Dashboard</a>
+          <button class="btn" id="signOutBtn" type="button">Sign out</button>
+        </div>
+      </div>
     </div>
   </section>
 </main>
@@ -191,6 +152,6 @@
     </div>
   </footer>
 
-  <script type="module" src="assets/js/pages/home.js"></script>
+  <script type="module" src="assets/js/pages/hr.js"></script>
 </body>
 </html>

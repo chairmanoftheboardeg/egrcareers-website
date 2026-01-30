@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>EGR Careers | Home</title>
+  <title>EGR Careers | Open Positions</title>
   <meta name="description" content="Emirates Group Roblox Careers. Explore open positions and apply to join our teams."/>
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg"/>
   <link rel="stylesheet" href="assets/css/styles.css"/>
@@ -71,91 +71,37 @@
 
   
 <main class="container">
-  <section class="hero">
-    <div class="kicker">EGR Careers</div>
-    <div class="h1">Professionalism, structure, and high fidelity operations.</div>
-    <div class="lead">
-      Emirates Group Roblox is a structured virtual aviation organisation built for realism and teamwork.
-      Explore open volunteer roles across our departments and apply to join the team.
+  <section class="hero" style="padding-top:30px;">
+    <div class="kicker">Open Positions</div>
+    <div class="h1">Find your department. Choose your role.</div>
+    <div class="lead">Each role has a shareable link and a single application form with the position pre-filled.</div>
+
+    <div class="hero-actions" style="align-items:center;">
+      <select class="input" id="deptSelect" style="max-width:320px;">
+        <option value="">All departments</option>
+      </select>
+      <input class="input" id="searchInput" placeholder="Search by title, department, or position ID…" style="max-width:420px;"/>
     </div>
-    <div class="hero-actions">
-      <a class="btn primary" href="open-positions.html">Explore Open Positions</a>
-      <a class="btn" href="why-work-with-us.html">Why Work With Us</a>
-      <a class="btn" href="departments.html">Discover Departments</a>
-    </div>
+
+    <div style="margin-top:14px;" id="deptChips"></div>
   </section>
 
   <section class="section">
-    <h2>Key employee focus areas</h2>
-    <div class="grid cols-3">
-      <div class="card">
-        <div class="card-title">Operational integrity</div>
-        <div class="card-sub">Clear SOPs, training standards, and accountability across divisions.</div>
-      </div>
-      <div class="card">
-        <div class="card-title">Quality & realism</div>
-        <div class="card-sub">High-fidelity flight operations, customer experience, and structured teamwork.</div>
-      </div>
-      <div class="card">
-        <div class="card-title">Leadership development</div>
-        <div class="card-sub">We invest in mentors, trainers, and managers who build others up.</div>
-      </div>
-    </div>
-  </section>
+    <h2>Published roles</h2>
+    <div class="notice hidden" id="emptyState">No published roles found for this filter.</div>
 
-  <section class="section">
-    <h2>Careers statistics</h2>
-    <div class="grid cols-3">
-      <div class="card stat">
-        <div>
-          <div class="num" id="statOpenRoles">—</div>
-          <div class="lbl">Open roles (published)</div>
-        </div>
-        <span class="badge">Live from backend</span>
-      </div>
-      <div class="card stat">
-        <div>
-          <div class="num" id="statDepartments">—</div>
-          <div class="lbl">Active departments</div>
-        </div>
-        <span class="badge">Live from backend</span>
-      </div>
-      <div class="card stat">
-        <div>
-          <div class="num">24/7</div>
-          <div class="lbl">Operations mindset</div>
-        </div>
-        <span class="badge">Vision 2026</span>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2>Employee benefits</h2>
-    <p>
-      We offer structured leadership, training, responsibility, and recognition.
-      Roles are volunteer-based. In special circumstances, payments may be provided by orders of the Board of Directors.
-    </p>
-    <div class="grid cols-2">
-      <div class="card">
-        <div class="card-title">Structured progression</div>
-        <div class="card-sub">Training, performance reviews, and realistic responsibilities.</div>
-      </div>
-      <div class="card">
-        <div class="card-title">Community & culture</div>
-        <div class="card-sub">A professional environment with strong standards and respect.</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="card" style="display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;">
-      <div>
-        <div style="font-weight:900; font-size:18px;">Ready to apply?</div>
-        <div style="color:var(--muted); margin-top:6px;">Browse open roles by department and submit your application in minutes.</div>
-      </div>
-      <a class="btn primary" href="open-positions.html">View Open Positions</a>
-    </div>
+    <table class="table" aria-label="Open positions table">
+      <thead>
+        <tr>
+          <th style="width:38%">Role</th>
+          <th>Description</th>
+          <th style="width:170px">Action</th>
+        </tr>
+      </thead>
+      <tbody id="jobsTbody">
+        <tr><td colspan="3" style="color:var(--muted)">Loading roles…</td></tr>
+      </tbody>
+    </table>
   </section>
 </main>
 
@@ -191,6 +137,6 @@
     </div>
   </footer>
 
-  <script type="module" src="assets/js/pages/home.js"></script>
+  <script type="module" src="assets/js/pages/openPositions.js"></script>
 </body>
 </html>

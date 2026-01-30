@@ -1,73 +1,204 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>EGR Careers — Apply</title>
-  <meta name="description" content="EGR Careers — recruitment portal for Emirates Group Roblox under Vision 2026."/>
-  <link rel="icon" href="/image/logo.png"/>
-  <link rel="stylesheet" href="/assets/css/main.css"/>
+  <title>EGR Careers | Apply</title>
+  <meta name="description" content="Emirates Group Roblox Careers. Explore open positions and apply to join our teams."/>
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg"/>
+  <link rel="stylesheet" href="assets/css/styles.css"/>
 </head>
 <body>
-  <div id="egr-header"></div>
+  <header class="topbar">
+    <div class="container">
+      <div class="nav">
+        <div class="brand">
+          <img src="assets/img/egr-mark.svg" alt="Emirates Group Roblox"/>
+          <div class="brand-text">
+            <div class="brand-title">Emirates Group Roblox</div>
+            <div class="brand-sub">Careers · Owned & Operated by The Tyler Nicholas Group</div>
+          </div>
+        </div>
+
+        
+      <div class="navlinks" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="open-positions.html">Open Positions</a>
+        <a href="why-work-with-us.html">Why Work With Us</a>
+        <a href="departments.html">Departments</a>
+        <a href="hr.html">HR</a>
+        <a href="legal/terms.html">Legal</a>
+      </div>
+    
+
+        <div class="navright">
+          <button class="hamburger" id="hamburger" aria-label="Open menu">☰</button>
+          <div class="toggle" id="themeToggle" role="button" aria-label="Toggle theme">
+            <span class="dot" id="themeDot"></span>
+            <span class="label" id="themeLabel">Dark</span>
+          </div>
+        </div>
+      </div>
+      
+      <div id="mobilemenu" class="mobilemenu">
+        <a href="index.html">Home</a>
+        <a href="open-positions.html">Open Positions</a>
+        <a href="why-work-with-us.html">Why Work With Us</a>
+        <a href="departments.html">Departments</a>
+        <a href="hr.html">HR</a>
+        <a href="legal/terms.html">Legal</a>
+      </div>
+    
+    </div>
+  </header>
+
   
-<div class="container hero" style="padding-top:30px">
-  <div class="card"><div class="pad">
-    <div class="pill">Application</div>
-    <h1 class="h1" style="font-size:36px">Submit your application</h1>
-    <p class="lead">Applications are reviewed by HR. If accepted, onboarding is issued via Discord (role assignment + onboarding pack).</p>
-  </div></div>
-</div>
-
-<div class="container section">
-  <div id="configWarn" class="card" style="display:none"><div class="pad">
-    <b>Configuration required</b>
-    <p class="small">If submission fails, confirm schema.sql ran, and RLS policy allows insert into <span class="mono">applications</span>.</p>
-  </div></div>
-
-  <div class="grid cols-2">
-    <div class="card"><div class="pad">
-      <h2 style="margin-top:0">Selected role</h2>
-      <div class="small" id="selectedRole">Loading...</div>
-      <div class="small" style="margin-top:10px">Role ID and title are filled automatically when you apply from the job listing.</div>
-    </div></div>
-
-    <div class="card"><div class="pad">
-      <h2 style="margin-top:0">Application form</h2>
-      <form class="form" id="appForm">
-        <input class="input" name="full_name" placeholder="Full Name" required>
-        <div class="row">
-          <input class="input" name="discord_username" placeholder="Discord Username" required>
-          <input class="input" name="discord_id" placeholder="Discord ID" required>
+        <div class="announcement-wrap" id="announcementWrap">
+          <div class="container">
+            <div class="announcement">
+              <div class="announce-left">
+                <div class="pill">ANNOUNCEMENT</div>
+                <div class="announce-text">
+                  <p class="title">Careers Updates</p>
+                  <p class="sub" id="announcementMessage">Loading announcements…</p>
+                </div>
+              </div>
+              <a class="btn small" href="open-positions.html">View Open Positions</a>
+            </div>
+          </div>
         </div>
-        <input class="input" name="roblox_username" placeholder="Roblox Username" required>
-        <input class="input" name="resume_link" placeholder="Resume Link (optional — paste URL)" type="url">
-        <div class="row">
-          <input class="input" name="job_id" id="job_id" placeholder="Role ID" readonly required>
-          <input class="input" name="role_title" id="role_title" placeholder="Role Title" readonly required>
+        
+
+  
+<main class="container">
+  <section class="hero" style="padding-top:30px;">
+    <div class="kicker">Application</div>
+    <div class="h1">Apply to join Emirates Group Roblox</div>
+    <div class="lead">Your selected position is pre-filled. Submit accurate details so HR can contact you.</div>
+  </section>
+
+  <section class="section" id="applyWrap">
+    <div class="card">
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;">
+        <div>
+          <div style="font-weight:900; font-size:18px;" id="jobTitle">Loading role…</div>
+          <div id="jobMeta" style="margin-top:8px;"></div>
         </div>
-        <textarea class="input" name="motivation" placeholder="Why do you want to join Emirates Group Roblox?" required></textarea>
-        <textarea class="input" name="why_chosen" placeholder="Why do you think you should be chosen for this position?" required></textarea>
-        <textarea class="input" name="past_experience" placeholder="Do you have past experience? If yes, explain briefly." required></textarea>
-        <label style="display:flex; gap:10px; align-items:flex-start">
-          <input type="checkbox" id="terms" required style="margin-top:4px">
-          <span>I agree to comply with all our <a href="/legal.html" style="text-decoration:underline">Legal Terms</a>.</span>
-        </label>
-        <button class="btn primary" type="submit">Submit Application</button>
-        <div class="small">Do not submit false information. Applications may be rejected for inaccurate details.</div>
+        <a class="btn" href="open-positions.html">Back to roles</a>
+      </div>
+
+      <div class="notice hidden" id="successBox" style="margin-top:14px;">
+        Your application has been submitted. Please allow time for HR review. You may be contacted via email or Discord.
+      </div>
+
+      <hr class="sep"/>
+
+      <form id="applyForm">
+        <input type="hidden" id="job_id" />
+        <input type="hidden" id="position_name" />
+        <input type="hidden" id="position_id" />
+
+        <div class="form-row">
+          <div>
+            <label>Full Name</label>
+            <input class="input" id="full_name" required />
+          </div>
+          <div>
+            <label>Email</label>
+            <input class="input" id="email" type="email" required />
+          </div>
+        </div>
+
+        <div class="form-row" style="margin-top:12px;">
+          <div>
+            <label>Discord Username</label>
+            <input class="input" id="discord_username" placeholder="example: Tyler#0001 or tyler" required />
+          </div>
+          <div>
+            <label>Discord ID</label>
+            <input class="input" id="discord_id" placeholder="Numeric ID" required />
+          </div>
+        </div>
+
+        <div class="form-row" style="margin-top:12px;">
+          <div id="robloxRow">
+            <label>Roblox Username <span style="color:var(--muted); font-size:12px;" id="robloxHint"></span></label>
+            <input class="input" id="roblox_username" />
+          </div>
+          <div id="cvRow">
+            <label>CV/Resume link (no uploads) <span style="color:var(--muted); font-size:12px;">Optional</span></label>
+            <input class="input" id="cv_link" placeholder="https://..." />
+          </div>
+        </div>
+
+        <div style="margin-top:12px;">
+          <label>Why are you interested in joining Emirates Group Roblox?</label>
+          <textarea class="input" id="interest_org" required></textarea>
+        </div>
+
+        <div style="margin-top:12px;">
+          <label>Why are you interested in this position?</label>
+          <textarea class="input" id="interest_position" required></textarea>
+        </div>
+
+        <div style="margin-top:12px;">
+          <label>Do you have prior experience? <span style="color:var(--muted); font-size:12px;">Optional</span></label>
+          <textarea class="input" id="prior_experience"></textarea>
+        </div>
+
+        <div style="margin-top:14px;">
+          <label style="display:flex; gap:10px; align-items:flex-start;">
+            <input type="checkbox" id="tos_agree" style="margin-top:4px;" />
+            <span>
+              I agree to comply with all Terms of Service (TOS), Compliance Regulations, and Legal Frameworks.
+              <span style="display:block; margin-top:6px;">
+                Read: <a href="legal/terms.html">Terms</a> · <a href="legal/compliance.html">Compliance</a> · <a href="legal/privacy.html">Privacy</a>
+              </span>
+            </span>
+          </label>
+        </div>
+
+        <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
+          <button class="btn primary" id="submitBtn" type="submit">Submit Application</button>
+          <a class="btn" href="open-positions.html">Browse roles</a>
+        </div>
       </form>
-    </div></div>
-  </div>
-</div>
+    </div>
+  </section>
+</main>
 
-  <div id="egr-footer"></div>
-  <div id="toast" class="toast"></div>
 
-  <script src="/assets/js/config.js"></script>
-  <script src="/assets/js/layout.js"></script>
-  <script src="/assets/js/ui.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="/assets/js/supabase-client.js"></script>
-  <script src="/assets/js/apply.js"></script>
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div style="max-width:62ch">
+          <div style="font-weight:900; color:var(--text);">Emirates Group Roblox Careers</div>
+          <div style="margin-top:8px; line-height:1.6;">
+            Disclaimer: Emirates Group Roblox (EGR) is a virtual aviation organisation on Roblox and is not affiliated with The Emirates Group or dnata.
+          </div>
+        </div>
+        <div>
+          <div style="font-weight:900; color:var(--text); margin-bottom:8px;">Quick Links</div>
+          <div style="display:grid; gap:8px;">
+            <a href="open-positions.html">Open Positions</a>
+            <a href="why-work-with-us.html">Why Work With Us</a>
+            <a href="departments.html">Departments</a>
+            <a href="legal/terms.html">Legal</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-weight:900; color:var(--text); margin-bottom:8px;">Legal</div>
+          <div style="display:grid; gap:8px;">
+            <a href="legal/terms.html">Terms of Service</a>
+            <a href="legal/privacy.html">Privacy Policy</a>
+            <a href="legal/compliance.html">Compliance Framework</a>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:18px; color:var(--muted-2);">© <span id="year"></span> Emirates Group Roblox. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script type="module" src="assets/js/pages/apply.js"></script>
 </body>
 </html>

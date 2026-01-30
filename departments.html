@@ -1,67 +1,220 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>EGR Careers — Departments</title>
-  <meta name="description" content="EGR Careers — recruitment portal for Emirates Group Roblox under Vision 2026."/>
-  <link rel="icon" href="/image/logo.png"/>
-  <link rel="stylesheet" href="/assets/css/main.css"/>
+  <title>EGR Careers | Departments</title>
+  <meta name="description" content="Emirates Group Roblox Careers. Explore open positions and apply to join our teams."/>
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg"/>
+  <link rel="stylesheet" href="assets/css/styles.css"/>
 </head>
 <body>
-  <div id="egr-header"></div>
+  <header class="topbar">
+    <div class="container">
+      <div class="nav">
+        <div class="brand">
+          <img src="assets/img/egr-mark.svg" alt="Emirates Group Roblox"/>
+          <div class="brand-text">
+            <div class="brand-title">Emirates Group Roblox</div>
+            <div class="brand-sub">Careers · Owned & Operated by The Tyler Nicholas Group</div>
+          </div>
+        </div>
+
+        
+      <div class="navlinks" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="open-positions.html">Open Positions</a>
+        <a href="why-work-with-us.html">Why Work With Us</a>
+        <a href="departments.html">Departments</a>
+        <a href="hr.html">HR</a>
+        <a href="legal/terms.html">Legal</a>
+      </div>
+    
+
+        <div class="navright">
+          <button class="hamburger" id="hamburger" aria-label="Open menu">☰</button>
+          <div class="toggle" id="themeToggle" role="button" aria-label="Toggle theme">
+            <span class="dot" id="themeDot"></span>
+            <span class="label" id="themeLabel">Dark</span>
+          </div>
+        </div>
+      </div>
+      
+      <div id="mobilemenu" class="mobilemenu">
+        <a href="index.html">Home</a>
+        <a href="open-positions.html">Open Positions</a>
+        <a href="why-work-with-us.html">Why Work With Us</a>
+        <a href="departments.html">Departments</a>
+        <a href="hr.html">HR</a>
+        <a href="legal/terms.html">Legal</a>
+      </div>
+    
+    </div>
+  </header>
+
   
-<div class="container hero" style="padding-top:30px">
-  <div class="card"><div class="pad">
-    <div class="pill">Departments</div>
-    <h1 class="h1" style="font-size:36px">A multi-divisional operating model</h1>
-    <p class="lead">EGR operates as a unified group with specialised divisions. Each department has defined responsibilities and operational standards.</p>
-  </div></div>
-</div>
+        <div class="announcement-wrap" id="announcementWrap">
+          <div class="container">
+            <div class="announcement">
+              <div class="announce-left">
+                <div class="pill">ANNOUNCEMENT</div>
+                <div class="announce-text">
+                  <p class="title">Careers Updates</p>
+                  <p class="sub" id="announcementMessage">Loading announcements…</p>
+                </div>
+              </div>
+              <a class="btn small" href="open-positions.html">View Open Positions</a>
+            </div>
+          </div>
+        </div>
+        
 
-<div class="container section">
-  <div class="grid cols-2">
-    <div class="card"><div class="pad">
-      <h2>Airline Operations</h2>
-      <p class="small">Flight deck, cabin operations, dispatch coordination, and service consistency across scheduled operations.</p>
-      <div class="small">Typical roles: Captain, First Officer, Cabin Crew, Dispatcher.</div>
-    </div></div>
-    <div class="card"><div class="pad">
-      <h2>Ground & Airport Services</h2>
-      <p class="small">Gate, check-in, ramp support, turnaround coordination, and passenger handling.</p>
-      <div class="small">Typical roles: Airport Staff, Ground Crew, Gate Agent, Customer Service.</div>
-    </div></div>
-    <div class="card"><div class="pad">
-      <h2>Hub Operations</h2>
-      <p class="small">Operational oversight to keep flights reliable: coordination, reporting, and escalation under standards.</p>
-      <div class="small">Typical roles: OCC Staff, Hub Coordinator, Ops Controller.</div>
-    </div></div>
-    <div class="card"><div class="pad">
-      <h2>Training (Aviation University)</h2>
-      <p class="small">Structured training programmes for flight, cabin, and ground roles. Progression is performance-driven.</p>
-      <div class="small">Typical roles: Instructor, Evaluator, Training Coordinator.</div>
-    </div></div>
-    <div class="card"><div class="pad">
-      <h2>Safety & Compliance</h2>
-      <p class="small">Professional conduct, compliance-led culture, incident reporting and enforcement of standards.</p>
-      <div class="small">Typical roles: Safety Officer, Compliance Reviewer, Security.</div>
-    </div></div>
-    <div class="card"><div class="pad">
-      <h2>IT & Systems</h2>
-      <p class="small">Internal platforms and tooling that supports operations, HR workflows, and reliability.</p>
-      <div class="small">Typical roles: Web Developer, Systems Admin, Support Engineer.</div>
-    </div></div>
-  </div>
-</div>
-
-  <div id="egr-footer"></div>
-  <div id="toast" class="toast"></div>
-
-  <script src="/assets/js/config.js"></script>
-  <script src="/assets/js/layout.js"></script>
-  <script src="/assets/js/ui.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="/assets/js/supabase-client.js"></script>
   
+<main class="container">
+  <section class="hero" style="padding-top:30px;">
+    <div class="kicker">Departments</div>
+    <div class="h1">Discover our departments</div>
+    <div class="lead">
+      Our organisation is structured into specialised departments with clear responsibilities,
+      leadership, and standards.
+    </div>
+    <div class="hero-actions">
+      <a class="btn primary" href="open-positions.html">View Open Positions</a>
+      <a class="btn" href="why-work-with-us.html">Why Work With Us</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="grid cols-2">
+      <div class="card">
+        <div class="card-title">Board of Directors</div>
+        <div class="card-sub">Strategic oversight, governance, and executive accountability.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Executive Board (C-Suite)</div>
+        <div class="card-sub">Organisation-wide leadership across operations, people, technology, and compliance.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Human Resources & Talent</div>
+        <div class="card-sub">Recruitment, staff welfare, discipline, and compliance with internal frameworks.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Flight Operations</div>
+        <div class="card-sub">
+          Flight Deck Operations · Cabin Services Operations
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Airport & Ground Operations</div>
+        <div class="card-sub">Ground handling, safety, passenger services, and turnaround coordination.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Operations Control Center (OCC)</div>
+        <div class="card-sub">Operational planning, dispatch coordination, and network oversight.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">EGR Aviation University</div>
+        <div class="card-sub">Administration · Training Leadership · Instructors & Examination</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Technology & Development</div>
+        <div class="card-sub">Systems, websites, automation, dashboards, and infrastructure.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Finance & Investment</div>
+        <div class="card-sub">Budgeting, resource planning, and investment decisions (as applicable).</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Commercial & Corporate Affairs</div>
+        <div class="card-sub">Sales & Marketing · Alliances & Partnerships · Customer Experience</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Legal, Safety & Compliance</div>
+        <div class="card-sub">Internal regulations, safety reporting, compliance controls, and governance.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">HR Department leadership structure</div>
+        <div class="card-sub">
+          Chief Human Resources & Legal Officer · HR Director · HR Manager · Talent Acquisition Leadership ·
+          Recruiters · Employee Relations · Staff Welfare
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Meet the Human Resources Department</h2>
+    <p>
+      Human Resources manages recruitment, discipline, staff welfare, and compliance with EGR frameworks.
+      HR ensures professional conduct, maintains standards, and protects the culture of the organisation.
+    </p>
+
+    <div class="grid cols-3">
+      <div class="card">
+        <div class="card-title">Chief Human Resources & Legal Officer</div>
+        <div class="card-sub">Executive HR authority and legal oversight (top leadership).</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Talent Acquisition leadership</div>
+        <div class="card-sub">Talent Acquisition Manager · Assistant TA Manager</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Recruitment & discipline</div>
+        <div class="card-sub">HR Compliance & Discipline Officer · Senior Recruiter · Junior Recruiter</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Employee relations</div>
+        <div class="card-sub">Employee Relations Officer · HR Generalist</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Staff welfare</div>
+        <div class="card-sub">Staff Welfare Officer</div>
+      </div>
+      <div class="card">
+        <div class="card-title">HR operations</div>
+        <div class="card-sub">Processes, onboarding, documentation, and internal controls.</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div style="max-width:62ch">
+          <div style="font-weight:900; color:var(--text);">Emirates Group Roblox Careers</div>
+          <div style="margin-top:8px; line-height:1.6;">
+            Disclaimer: Emirates Group Roblox (EGR) is a virtual aviation organisation on Roblox and is not affiliated with The Emirates Group or dnata.
+          </div>
+        </div>
+        <div>
+          <div style="font-weight:900; color:var(--text); margin-bottom:8px;">Quick Links</div>
+          <div style="display:grid; gap:8px;">
+            <a href="open-positions.html">Open Positions</a>
+            <a href="why-work-with-us.html">Why Work With Us</a>
+            <a href="departments.html">Departments</a>
+            <a href="legal/terms.html">Legal</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-weight:900; color:var(--text); margin-bottom:8px;">Legal</div>
+          <div style="display:grid; gap:8px;">
+            <a href="legal/terms.html">Terms of Service</a>
+            <a href="legal/privacy.html">Privacy Policy</a>
+            <a href="legal/compliance.html">Compliance Framework</a>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:18px; color:var(--muted-2);">© <span id="year"></span> Emirates Group Roblox. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script type="module" src="assets/js/app.js"></script>
 </body>
 </html>
