@@ -1,211 +1,629 @@
+<!-- why-work-with-us.html (REGENERATED) -->
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>EGR Careers | Why Work With Us</title>
-  <meta name="description" content="Emirates Group Roblox Careers. Explore open positions and apply to join our teams."/>
-  <link rel="icon" type="image/png" href="assets/img/favicon.png"/>
-  <link rel="stylesheet" href="assets/css/styles.css"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Why Work With Us | Emirates Group Roblox Careers</title>
+  <meta name="description" content="Why work with Emirates Group Roblox? Our culture, initiatives, and what it feels like to build something meaningful together." />
+
+  <!-- If your project already has these, keep your originals -->
+  <link rel="icon" href="https://emiratesgrouproblox.link/images/logo.png" />
+  <link rel="preconnect" href="https://tylernicholasgroup.com" crossorigin>
+  <link rel="preconnect" href="https://emiratesgrouproblox.link" crossorigin>
+
+  <style>
+    :root{
+      --bg:#070b12;
+      --bg2:#0b1220;
+      --card:#0f172a;
+      --card2:#0b1326;
+      --text:#e5e7eb;
+      --muted:#9ca3af;
+      --line:rgba(255,255,255,.10);
+      --brand:#e11d2e;
+      --brand2:#ff3b4a;
+      --shadow: 0 18px 50px rgba(0,0,0,.45);
+      --radius:18px;
+      --max: 1140px;
+    }
+    [data-theme="light"]{
+      --bg:#f6f8fb;
+      --bg2:#eef2f7;
+      --card:#ffffff;
+      --card2:#ffffff;
+      --text:#0b1220;
+      --muted:#4b5563;
+      --line:rgba(15,23,42,.10);
+      --shadow: 0 18px 50px rgba(2,6,23,.12);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(900px 420px at 10% 0%, rgba(225,29,46,.18), transparent 60%),
+        radial-gradient(900px 420px at 90% 10%, rgba(255,59,74,.12), transparent 60%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+      overflow-x:hidden;
+    }
+
+    a{color:inherit; text-decoration:none}
+    .container{width:min(var(--max), calc(100% - 40px)); margin:0 auto}
+
+    /* Topbar / Nav */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      border-bottom:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(4,7,13,.92), rgba(4,7,13,.70));
+    }
+    [data-theme="light"] .topbar{
+      background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.70));
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px; min-width: 260px;
+    }
+    .brand img{
+      width:44px; height:44px; border-radius:12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,.25);
+      background: rgba(255,255,255,.06);
+      padding:6px;
+    }
+    .brand .title{
+      display:flex; flex-direction:column; line-height:1.15;
+    }
+    .brand .title b{
+      font-size:18px; letter-spacing:.2px;
+      color: var(--brand2);
+    }
+    .brand .title span{
+      font-size:12.5px; color: var(--muted);
+    }
+    .navlinks{
+      display:flex; align-items:center; gap:18px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+    .navlinks a{
+      font-size:14px; color: var(--text);
+      opacity:.85;
+      padding:8px 10px;
+      border-radius:10px;
+      transition: .15s ease;
+    }
+    .navlinks a:hover{opacity:1; background: rgba(255,255,255,.06)}
+    [data-theme="light"] .navlinks a:hover{background: rgba(2,6,23,.06)}
+
+    .right{
+      display:flex; align-items:center; gap:10px;
+      min-width: 260px; justify-content:flex-end;
+    }
+    .themeBtn{
+      display:flex; align-items:center; gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      cursor:pointer;
+      user-select:none;
+      transition: .15s ease;
+      font-weight:600;
+      font-size:14px;
+    }
+    [data-theme="light"] .themeBtn{background: rgba(2,6,23,.03)}
+    .dot{
+      width:10px; height:10px; border-radius:99px;
+      background: var(--brand);
+      box-shadow: 0 0 0 4px rgba(225,29,46,.18);
+    }
+
+    /* Header hero */
+    .hero{
+      padding: 42px 0 18px;
+    }
+    .heroCard{
+      border:1px solid var(--line);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      background:
+        radial-gradient(900px 300px at 20% 0%, rgba(225,29,46,.18), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+    }
+    [data-theme="light"] .heroCard{
+      background:
+        radial-gradient(900px 300px at 20% 0%, rgba(225,29,46,.12), transparent 55%),
+        linear-gradient(180deg, rgba(2,6,23,.02), rgba(2,6,23,.01));
+    }
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      font-size:12px; letter-spacing:.18em;
+      text-transform:uppercase;
+      color: var(--muted);
+    }
+    .kicker::before{
+      content:"";
+      width:34px; height:10px;
+      border-radius:999px;
+      background: linear-gradient(90deg, var(--brand), transparent);
+      opacity:.9;
+    }
+    h1{
+      margin: 14px 0 8px;
+      font-size: clamp(34px, 4.2vw, 54px);
+      line-height:1.05;
+      letter-spacing:-.02em;
+    }
+    .lead{
+      max-width: 75ch;
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+    .heroActions{
+      display:flex; flex-wrap:wrap;
+      gap:12px;
+      margin-top:18px;
+      align-items:center;
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding: 11px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      cursor:pointer;
+      transition:.15s ease;
+      font-weight:700;
+      font-size:14px;
+    }
+    [data-theme="light"] .btn{background: rgba(2,6,23,.03)}
+    .btn:hover{transform: translateY(-1px)}
+    .btn.primary{
+      border-color: rgba(225,29,46,.35);
+      background: linear-gradient(180deg, rgba(225,29,46,.28), rgba(225,29,46,.16));
+    }
+    .btn.primary:hover{
+      border-color: rgba(225,29,46,.55);
+    }
+
+    /* Founder message (image + message together in ONE card) */
+    .founder{
+      padding: 24px 0 10px;
+    }
+    .founderCard{
+      display:grid;
+      grid-template-columns: 150px 1fr;
+      gap:18px;
+      align-items:center;
+      border:1px solid var(--line);
+      border-radius: 24px;
+      padding: 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      box-shadow: var(--shadow);
+    }
+    [data-theme="light"] .founderCard{
+      background: linear-gradient(180deg, rgba(2,6,23,.02), rgba(2,6,23,.01));
+    }
+    .founderImg{
+      width:150px; height:150px; border-radius: 22px;
+      object-fit: cover;
+      border: 1px solid var(--line);
+      box-shadow: 0 16px 40px rgba(0,0,0,.25);
+      background: rgba(255,255,255,.06);
+    }
+    .founderText h2{
+      margin:0 0 8px;
+      font-size: 22px;
+      letter-spacing:-.01em;
+    }
+    .founderText p{
+      margin:0;
+      color: var(--muted);
+      line-height:1.75;
+      font-size: 15px;
+    }
+    .sig{
+      margin-top: 12px;
+      display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .pill{
+      padding: 7px 10px;
+      border-radius: 999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+    }
+    [data-theme="light"] .pill{background: rgba(2,6,23,.03)}
+
+    /* Flight ops hero image */
+    .showcase{
+      padding: 18px 0 4px;
+    }
+    .showcaseCard{
+      border-radius: 24px;
+      overflow:hidden;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      background: var(--card);
+    }
+    .showcaseCard img{
+      width:100%;
+      height: 320px;
+      object-fit: cover;
+      display:block;
+      filter: saturate(1.05) contrast(1.05);
+    }
+    .showcaseMeta{
+      padding: 16px 18px 18px;
+      display:flex; flex-wrap:wrap;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .showcaseMeta .left{
+      display:flex; flex-direction:column; gap:4px;
+    }
+    .showcaseMeta .left b{font-size:16px}
+    .showcaseMeta .left span{font-size:13px; color: var(--muted)}
+    .showcaseMeta .right{min-width:auto}
+
+    /* Testimonials grid (fills screen nicely) */
+    .testimonials{
+      padding: 18px 0 40px;
+    }
+    .sectionTitle{
+      margin: 26px 0 12px;
+      display:flex; align-items:flex-end; justify-content:space-between; gap:10px;
+    }
+    .sectionTitle h2{
+      margin:0;
+      font-size: 22px;
+      letter-spacing:-.01em;
+    }
+    .sectionTitle p{
+      margin:0;
+      color: var(--muted);
+      font-size: 13px;
+      max-width: 58ch;
+      line-height: 1.6;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .tcard{
+      grid-column: span 4;
+      border:1px solid var(--line);
+      border-radius: 20px;
+      padding: 16px;
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015));
+      box-shadow: 0 10px 26px rgba(0,0,0,.18);
+      position:relative;
+      overflow:hidden;
+    }
+    [data-theme="light"] .tcard{
+      background: linear-gradient(180deg, rgba(2,6,23,.02), rgba(2,6,23,.01));
+      box-shadow: 0 10px 26px rgba(2,6,23,.10);
+    }
+    .tcard::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(420px 220px at 0% 0%, rgba(225,29,46,.18), transparent 60%);
+      pointer-events:none;
+      opacity:.9;
+    }
+    .tname{
+      display:flex; flex-direction:column; gap:2px;
+      position:relative;
+    }
+    .tname b{font-size:14.5px}
+    .tname span{font-size:12.5px; color: var(--muted)}
+    .tmsg{
+      position:relative;
+      margin: 10px 0 0;
+      color: var(--text);
+      opacity:.92;
+      line-height:1.7;
+      font-size: 14px;
+    }
+
+    /* Footer */
+    footer{
+      border-top:1px solid var(--line);
+      padding: 22px 0 30px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .foot{
+      display:flex; flex-wrap:wrap;
+      justify-content:space-between; gap:12px;
+      align-items:center;
+    }
+    .foot a{opacity:.9}
+    .foot a:hover{opacity:1}
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .tcard{grid-column: span 6}
+      .brand{min-width:auto}
+      .right{min-width:auto}
+      .navlinks{display:none}
+    }
+    @media (max-width: 720px){
+      .founderCard{grid-template-columns: 1fr; text-align:left}
+      .founderImg{width:100%; height:220px}
+      .showcaseCard img{height:240px}
+      .tcard{grid-column: span 12}
+    }
+
+    /* Fix select option background in dark mode */
+    select, option{
+      color: var(--text);
+      background: var(--card);
+    }
+    [data-theme="light"] select, [data-theme="light"] option{
+      background: #fff;
+      color: #0b1220;
+    }
+  </style>
 </head>
+
 <body>
-  <header class="topbar">
+  <!-- Topbar -->
+  <div class="topbar">
     <div class="container">
       <div class="nav">
-        <div class="brand">
-          <img src="assets/img/logo.png" alt="Emirates Group Roblox"/>
-          <div class="brand-text">
-            <div class="brand-title">Emirates Group Roblox</div>
-            <div class="brand-sub">Careers · Owned & Operated by <a class="inline-link" href="https://tylernicholasgroup.com" target="_blank" rel="noopener">The Tyler Nicholas Group</a> · <a class="inline-link" href="https://emiratesgrouproblox.link" target="_blank" rel="noopener">Main Site</a></div>
+        <a class="brand" href="./index.html">
+          <img src="https://emiratesgrouproblox.link/images/logo.png" alt="Emirates Group Roblox" />
+          <div class="title">
+            <b>Emirates Group Roblox</b>
+            <span>Careers · Owned & Operated by The Tyler Nicholas Group</span>
           </div>
+        </a>
+
+        <div class="navlinks" aria-label="Primary">
+          <a href="./index.html">Home</a>
+          <a href="./open-positions.html">Open Positions</a>
+          <a href="./why-work-with-us.html" style="opacity:1;background:rgba(255,255,255,.06)">Why Work With Us</a>
+          <a href="./departments.html">Departments</a>
+          <a href="./hr.html">HR</a>
+          <a href="./legal/terms.html">Legal</a>
         </div>
 
-        
-      <div class="navlinks" aria-label="Primary">
-        <a href="index.html">Home</a>
-        <a href="open-positions.html">Open Positions</a>
-        <a href="why-work-with-us.html">Why Work With Us</a>
-        <a href="departments.html">Departments</a>
-        <a href="hr.html">HR</a>
-        <a href="legal/terms.html">Legal</a>
-      </div>
-    
-
-        <div class="navright">
-          <button class="hamburger" id="hamburger" aria-label="Open menu">☰</button>
-          <div class="toggle" id="themeToggle" role="button" aria-label="Toggle theme">
-            <span class="dot" id="themeDot"></span>
-            <span class="label" id="themeLabel">Dark</span>
-          </div>
+        <div class="right">
+          <button id="themeBtn" class="themeBtn" type="button" aria-label="Toggle theme">
+            <span class="dot" aria-hidden="true"></span>
+            <span id="themeLabel">Dark</span>
+          </button>
         </div>
       </div>
-      
-      <div id="mobilemenu" class="mobilemenu">
-        <a href="index.html">Home</a>
-        <a href="open-positions.html">Open Positions</a>
-        <a href="why-work-with-us.html">Why Work With Us</a>
-        <a href="departments.html">Departments</a>
-        <a href="hr.html">HR</a>
-        <a href="legal/terms.html">Legal</a>
-      </div>
-    
     </div>
-  </header>
+  </div>
 
-  
-        <div class="announcement-wrap" id="announcementWrap">
-          <div class="container">
-            <div class="announcement">
-              <div class="announce-left">
-                <div class="pill">ANNOUNCEMENT</div>
-                <div class="announce-text">
-                  <p class="title">Careers Updates</p>
-                  <p class="sub" id="announcementMessage">Loading announcements…</p>
-                </div>
-              </div>
-              <a class="btn small" href="open-positions.html">View Open Positions</a>
-            </div>
-          </div>
-        </div>
-        
-
-  
-<main class="container">
-  <section class="hero" style="padding-top:30px;">
-    <div class="kicker">Why Work With Us</div>
-    <div class="h1">A professional environment, built for growth.</div>
-    <div class="lead">
-      We operate like a real organisation: structure, standards, training, and accountability.
-      If you want responsibility and a team that takes realism seriously, you’ll fit right in.
-    </div>
-    <div class="hero-actions">
-      <a class="btn primary" href="open-positions.html">View Open Positions</a>
-      <a class="btn" href="departments.html">Explore Departments</a>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2>Culture & diversity</h2>
-    <div class="grid cols-2">
-      <div class="card">
-        <div class="card-title">Respect-first teamwork</div>
-        <div class="card-sub">We value professionalism, clear communication, and a safe, welcoming culture.</div>
-      </div>
-      <div class="card">
-        <div class="card-title">Merit-based progression</div>
-        <div class="card-sub">Responsibility and leadership are earned through consistency and standards.</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2>Our initiatives</h2>
-    <div class="grid cols-3">
-      <div class="card">
-        <div class="card-title">Training & certification</div>
-        <div class="card-sub">Department onboarding, SOP checks, and continuous improvement.</div>
-      </div>
-      <div class="card">
-        <div class="card-title">Operational excellence</div>
-        <div class="card-sub">OCC coordination, realistic flight events, and performance expectations.</div>
-      </div>
-      <div class="card">
-        <div class="card-title">Community impact</div>
-        <div class="card-sub">Events, engagement, and structured opportunities for members to contribute.</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2>Meet our people (gallery)</h2>
-    <p>Placeholder blocks for staff photos. Replace with real images later.</p>
-    <div class="grid cols-3">
-      <div class="card" style="padding:0; overflow:hidden;">
-        <div style="height:160px; background: radial-gradient(700px 220px at 20% 30%, rgba(224,26,43,.26), rgba(0,0,0,0)), linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));"></div>
-        <div style="padding:14px; color:var(--muted);">Flight Operations team</div>
-      </div>
-      <div class="card" style="padding:0; overflow:hidden;">
-        <div style="height:160px; background: radial-gradient(700px 220px at 80% 40%, rgba(10,60,110,.28), rgba(0,0,0,0)), linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));"></div>
-        <div style="padding:14px; color:var(--muted);">Airport & Ground Operations</div>
-      </div>
-      <div class="card" style="padding:0; overflow:hidden;">
-        <div style="height:160px; background: radial-gradient(700px 220px at 30% 60%, rgba(255,255,255,.12), rgba(0,0,0,0)), linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));"></div>
-        <div style="padding:14px; color:var(--muted);">Human Resources & Talent</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2>A message from Tyler Nicholas</h2>
-    <div class="grid cols-2" style="align-items:stretch;">
-      <div class="card" style="display:flex; align-items:center; justify-content:center;">
-        <div style="width:100%; max-width:320px; aspect-ratio: 1/1; border-radius:22px; border:1px solid var(--border);
-          background: radial-gradient(900px 420px at 30% 30%, rgba(224,26,43,.22), rgba(0,0,0,0)),
-                      radial-gradient(900px 420px at 70% 70%, rgba(10,60,110,.22), rgba(0,0,0,0)),
-                      rgba(255,255,255,.06);">
-        </div>
-      </div>
-      <div class="card">
-        <div style="font-weight:900; font-size:18px;">Building a world-class virtual organisation</div>
-        <p style="margin-top:10px;">
-          Emirates Group Roblox is built on structure, discipline, and a commitment to realism.
-          Every role matters. If you join, you’re joining a team that values standards, growth, and professionalism.
-        </p>
-        <p>
-          Thank you for considering a role with us. I look forward to welcoming new talent into our departments.
-        </p>
-        <div style="margin-top:12px; color:var(--muted); font-weight:800;">Tyler Nicholas · Founder & Chairman</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2>Discover Emirates Group Roblox brands</h2>
-    <div class="grid cols-2">
-      <div class="card">
-        <div class="card-title">Emirates Group Roblox Foundation</div>
-        <div class="card-sub">Community initiatives and long-term development projects under the EGR umbrella.</div>
-      </div>
-      <div class="card">
-        <div class="card-title">EGR Airport Services (dnata)</div>
-        <div class="card-sub">Ground handling, ramp, passenger services, and operational coordination.</div>
-      </div>
-    </div>
-  </section>
-</main>
-
-
-  <footer class="footer">
+  <!-- Hero -->
+  <section class="hero">
     <div class="container">
-      <div class="row">
-        <div style="max-width:62ch">
-          <div style="font-weight:900; color:var(--text);">Emirates Group Roblox Careers</div>
-          <div style="margin-top:8px; line-height:1.6;">
-            Disclaimer: Emirates Group Roblox (EGR) is a virtual aviation organisation on Roblox and is not affiliated with The Emirates Group or dnata.
-          </div>
+      <div class="heroCard">
+        <div class="kicker">Why Work With Us</div>
+        <h1>Professionalism, purpose, and a team that actually moves. </h1>
+        <p class="lead">
+          Emirates Group Roblox is built like a real organisation: clear standards, serious operations, and a culture
+          where your time matters. If you want to learn, contribute, and grow with a structured team, this is the place.
+        </p>
+
+        <div class="heroActions">
+          <a class="btn primary" href="./open-positions.html">View Open Positions</a>
+          <a class="btn" href="https://emiratesgrouproblox.link/about/divisions/" target="_blank" rel="noopener">
+            Discover Our Divisions
+          </a>
         </div>
-        <div>
-          <div style="font-weight:900; color:var(--text); margin-bottom:8px;">Quick Links</div>
-          <div style="display:grid; gap:8px;">
-            <a href="open-positions.html">Open Positions</a>
-            <a href="why-work-with-us.html">Why Work With Us</a>
-            <a href="departments.html">Departments</a>
-            <a href="legal/terms.html">Legal</a>
-          </div>
-        </div>
-        <div>
-          <div style="font-weight:900; color:var(--text); margin-bottom:8px;">Legal</div>
-          <div style="display:grid; gap:8px;">
-            <a href="legal/terms.html">Terms of Service</a>
-            <a href="legal/privacy.html">Privacy Policy</a>
-            <a href="legal/compliance.html">Compliance Framework</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founder Message (image + message together in ONE card) -->
+  <section class="founder">
+    <div class="container">
+      <div class="founderCard">
+        <img
+          class="founderImg"
+          src="https://tylernicholasgroup.com/image/tyler-nicholas.png"
+          alt="Tyler Nicholas"
+          loading="lazy"
+        />
+        <div class="founderText">
+          <h2>A message from Tyler Nicholas</h2>
+          <p>
+            I built Emirates Group Roblox to be more than a “server with roles”.
+            This is a structured virtual aviation organisation where standards come first, teamwork is non negotiable,
+            and every department is designed to feel purposeful.
+            <br><br>
+            As the Owner and Founder, my focus is simple: build a place where serious people can learn real habits,
+            develop leadership, and operate with pride, not shortcuts. If you join us, you are not just filling a slot.
+            You are helping shape a system that aims for operational integrity in everything we do.
+          </p>
+
+          <div class="sig">
+            <span class="pill">Owner & Founder</span>
+            <span class="pill">Emirates Group Roblox</span>
+            <span class="pill">The Tyler Nicholas Group</span>
           </div>
         </div>
       </div>
-      <div style="margin-top:18px; color:var(--muted-2);">© <span id="year"></span> Emirates Group Roblox. All rights reserved.</div>
+    </div>
+  </section>
+
+  <!-- Flight Operations Image Showcase -->
+  <section class="showcase">
+    <div class="container">
+      <div class="showcaseCard">
+        <img
+          src="https://lh3.googleusercontent.com/gg-dl/AOI_d_8qpRXxnruMqynap-vJyr17jQbndZ-39zS_4tRkpWn2WcOIosC_I7MhRf6OJ2xDC2VW0cDTw0Mdn60HBYBOkLDGn3gJwphId1Kblejh97dEY1WzwfOUzmnpn0xc7YaD1Jl3ug-hOFFTa6hAOp8FFQ2UuhXjAwzk2YrGupsym9OnVJAQDw=s1024-rj"
+          alt="Flight Operations"
+          loading="lazy"
+        />
+        <div class="showcaseMeta">
+          <div class="left">
+            <b>Flight Operations</b>
+            <span>High-fidelity experiences powered by structured planning and discipline.</span>
+          </div>
+          <div class="right">
+            <a class="btn" href="https://emiratesgrouproblox.link/about/divisions/" target="_blank" rel="noopener">
+              Explore divisions
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials (replaces Flight Ops/Airport Ops/HR cards section entirely) -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="sectionTitle">
+        <div>
+          <h2>What our staff say</h2>
+          <p>
+            Placeholder testimonials for now. You can swap these with the real names, positions, and messages later.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <!-- Row 1 -->
+        <div class="tcard">
+          <div class="tname">
+            <b>Full Name</b>
+            <span>Position Title</span>
+          </div>
+          <p class="tmsg">“Short message about teamwork, professionalism, and the environment.”</p>
+        </div>
+
+        <div class="tcard">
+          <div class="tname">
+            <b>Full Name</b>
+            <span>Position Title</span>
+          </div>
+          <p class="tmsg">“Short message about leadership opportunities and learning real structure.”</p>
+        </div>
+
+        <div class="tcard">
+          <div class="tname">
+            <b>Full Name</b>
+            <span>Position Title</span>
+          </div>
+          <p class="tmsg">“Short message about quality standards and how the team supports each other.”</p>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="tcard">
+          <div class="tname">
+            <b>Full Name</b>
+            <span>Position Title</span>
+          </div>
+          <p class="tmsg">“Short message about feeling valued and having clear responsibilities.”</p>
+        </div>
+
+        <div class="tcard">
+          <div class="tname">
+            <b>Full Name</b>
+            <span>Position Title</span>
+          </div>
+          <p class="tmsg">“Short message about the culture, discipline, and professionalism.”</p>
+        </div>
+
+        <div class="tcard">
+          <div class="tname">
+            <b>Full Name</b>
+            <span>Position Title</span>
+          </div>
+          <p class="tmsg">“Short message about community impact and building something meaningful.”</p>
+        </div>
+
+        <!-- Row 3 -->
+        <div class="tcard">
+          <div class="tname">
+            <b>Full Name</b>
+            <span>Position Title</span>
+          </div>
+          <p class="tmsg">“Short message about growth, mentoring, and structured operations.”</p>
+        </div>
+
+        <div class="tcard">
+          <div class="tname">
+            <b>Full Name</b>
+            <span>Position Title</span>
+          </div>
+          <p class="tmsg">“Short message about the organisation’s standards and long-term vision.”</p>
+        </div>
+
+        <div class="tcard">
+          <div class="tname">
+            <b>Full Name</b>
+            <span>Position Title</span>
+          </div>
+          <p class="tmsg">“Short message about collaboration across departments.”</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="foot">
+        <div>© <span id="year"></span> Emirates Group Roblox Careers · Owned & Operated by The Tyler Nicholas Group</div>
+        <div style="display:flex; gap:14px; flex-wrap:wrap;">
+          <a href="https://tylernicholasgroup.com" target="_blank" rel="noopener">The Tyler Nicholas Group</a>
+          <a href="https://emiratesgrouproblox.link" target="_blank" rel="noopener">Main Website</a>
+          <a href="./legal/terms.html">Terms</a>
+          <a href="./legal/privacy.html">Privacy</a>
+          <a href="./legal/compliance.html">Compliance</a>
+        </div>
+      </div>
     </div>
   </footer>
 
-  <script type="module" src="assets/js/app.js"></script>
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Theme toggle (localStorage)
+    const root = document.documentElement;
+    const btn = document.getElementById('themeBtn');
+    const label = document.getElementById('themeLabel');
+
+    function applyTheme(theme){
+      if(theme === 'light'){
+        root.setAttribute('data-theme','light');
+        label.textContent = 'Light';
+      } else {
+        root.removeAttribute('data-theme');
+        label.textContent = 'Dark';
+      }
+      localStorage.setItem('egr_theme', theme);
+    }
+
+    const saved = localStorage.getItem('egr_theme') || 'dark';
+    applyTheme(saved);
+
+    btn.addEventListener('click', () => {
+      const current = localStorage.getItem('egr_theme') || 'dark';
+      applyTheme(current === 'dark' ? 'light' : 'dark');
+    });
+  </script>
 </body>
 </html>
