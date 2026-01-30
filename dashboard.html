@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>EGR Careers | HR Dashboard</title>
   <meta name="description" content="Emirates Group Roblox Careers. Explore open positions and apply to join our teams."/>
-  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg"/>
+  <link rel="icon" type="image/png" href="assets/img/favicon.png"/>
   <link rel="stylesheet" href="assets/css/styles.css"/>
 </head>
 <body>
@@ -13,10 +13,10 @@
     <div class="container">
       <div class="nav">
         <div class="brand">
-          <img src="assets/img/egr-mark.svg" alt="Emirates Group Roblox"/>
+          <img src="assets/img/logo.png" alt="Emirates Group Roblox"/>
           <div class="brand-text">
             <div class="brand-title">Emirates Group Roblox</div>
-            <div class="brand-sub">Careers · Owned & Operated by The Tyler Nicholas Group</div>
+            <div class="brand-sub">Careers · Owned & Operated by <a class="inline-link" href="https://tylernicholasgroup.com" target="_blank" rel="noopener">The Tyler Nicholas Group</a> · <a class="inline-link" href="https://emiratesgrouproblox.link" target="_blank" rel="noopener">Main Site</a></div>
           </div>
         </div>
 
@@ -215,32 +215,7 @@
     </table>
   </section>
 
-  <section class="section">
-    <h2>Discord notifications (optional)</h2>
-    <div class="notice">
-      This stores your Discord webhook URL in the database. To actually send messages automatically,
-      connect a Supabase Edge Function later (recommended) so the webhook URL stays private from the client.
-    </div>
-    <div class="card" style="margin-top:10px;">
-      <input type="hidden" id="webhook_id"/>
-      <div class="form-row">
-        <div>
-          <label>Webhook URL</label>
-          <input class="input" id="webhook_url" placeholder="https://discord.com/api/webhooks/..." />
-        </div>
-        <div>
-          <label style="display:block;">Active</label>
-          <label style="display:flex; align-items:center; gap:10px; margin-top:8px;">
-            <input type="checkbox" id="webhook_active" checked/>
-            <span style="color:var(--muted);">Enable notifications</span>
-          </label>
-        </div>
-      </div>
-      <div style="margin-top:14px;">
-        <button class="btn primary" id="webhookSave" type="button">Save webhook settings</button>
-      </div>
-    </div>
-  </section>
+  <!-- Notifications removed: HR reviews applications manually -->
 </main>
 
 

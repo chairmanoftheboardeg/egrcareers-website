@@ -304,47 +304,6 @@ async function deleteApplication(id){
   await loadApplications();
 }
 
-async function loadWebhook(){
-  const { data, error } = await supabase
-    .from("webhook_config")
-    .select("id,webhook_url,is_active")
-    .order("created_at", { ascending: false })
-    .limit(1);
-  if(error) return;
-
-  const row = (data||[])[0];
-  if(row){
-    qs("#webhook_id").value = row.id;
-    qs("#webhook_url").value = row.webhook_url;
-    qs("#webhook_active").checked = !!row.is_active;
-  }
-}
-
-async function saveWebhook(){
-  const id = qs("#webhook_id").value || null;
-  const webhook_url = qs("#webhook_url").value.trim();
-  const is_active = qs("#webhook_active").checked;
-
-  if(webhook_url && !/^https?:\/\//i.test(webhook_url)){
-    toast("Webhook URL must start with http:// or https://", "error");
-    return;
-  }
-
-  let res;
-  if(id){
-    res = await supabase.from("webhook_config").update({ webhook_url, is_active }).eq("id", id);
-  }else{
-    if(!webhook_url){
-      toast("Enter a webhook URL first.", "error");
-      return;
-    }
-    res = await supabase.from("webhook_config").insert({ name: "HR notifications", webhook_url, is_active });
-  }
-  if(res.error) return toast("Could not save webhook config.", "error");
-  toast("Webhook settings saved.", "success");
-  await loadWebhook();
-}
-
 async function main(){
   await initCommon({ loadAnnouncement:false });
 
@@ -388,8 +347,6 @@ async function main(){
   qs("#appsRefresh").addEventListener("click", ()=> loadApplications().catch(console.error));
   qs("#appFilter").addEventListener("change", ()=> loadApplications().catch(console.error));
 
-  qs("#webhookSave").addEventListener("click", ()=> saveWebhook().catch(console.error));
-
   // Load data
   setLoading("#dashLoading", true);
   try{
@@ -397,7 +354,6 @@ async function main(){
     await loadAnnouncement();
     await loadJobs();
     await loadApplications();
-    await loadWebhook();
   }catch(err){
     console.error(err);
     toast(err.message || "Dashboard failed to load.", "error");
