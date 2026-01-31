@@ -77,15 +77,18 @@ a:hover{opacity:.92}
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:18px;
+  gap:14px;
   padding:14px 0;
+  flex-wrap:nowrap;
+  overflow:hidden;
 }
 
 .brand{
   display:flex;
   align-items:center;
   gap:12px;
-  min-width: 260px;
+  min-width:0;
+  flex:0 1 auto;
 }
 .brand img{
   width:38px;height:38px;border-radius:12px;
@@ -95,6 +98,7 @@ a:hover{opacity:.92}
   display:flex;
   flex-direction:column;
   line-height:1.05;
+  min-width:0;
 }
 .brand .brand-title{
   font-weight:800;
@@ -104,18 +108,27 @@ a:hover{opacity:.92}
 .brand .brand-sub{
   font-size:13px;
   color:var(--muted);
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
 
 .navlinks{
-  white-space: nowrap;
+  white-space:nowrap;
   display:flex;
   align-items:center;
-  gap:18px;
-  flex-wrap:wrap;
+  gap:14px;
+  flex-wrap:nowrap;
   justify-content:center;
+  flex:1 1 auto;
+  min-width:0;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
 }
+.navlinks::-webkit-scrollbar{display:none}
+.navlinks{scrollbar-width:none}
 .navlinks a{
-  font-size:14px;
+  font-size:13.5px;
   padding:8px 10px;
   border-radius:12px;
   border: 1px solid transparent;
@@ -129,8 +142,9 @@ a:hover{opacity:.92}
   display:flex;
   align-items:center;
   gap:10px;
-  min-width: 260px;
+  min-width:0;
   justify-content:flex-end;
+  flex:0 0 auto;
 }
 
 .btn{
