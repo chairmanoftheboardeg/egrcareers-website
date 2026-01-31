@@ -11,7 +11,7 @@ function fmtBlock(title, content){
   `;
 }
 
-await initCommon({ loadAnnouncement:true });
+await initCommon({ loadAnnouncement:false });
 
 const slug = getQueryParam("slug");
 if(!slug){

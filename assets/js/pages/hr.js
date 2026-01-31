@@ -1,7 +1,7 @@
 import { initCommon, qs, toast } from "../app.js";
 import { signIn, signOut, getSession, isHrUser } from "../supabaseClient.js";
 
-await initCommon({ loadAnnouncement:true });
+await initCommon({ loadAnnouncement:false });
 
 async function refresh(){
   const session = await getSession();

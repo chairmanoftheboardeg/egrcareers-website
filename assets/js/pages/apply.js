@@ -6,7 +6,7 @@ function show(el, on=true){
   el.classList.toggle("hidden", !on);
 }
 
-await initCommon({ loadAnnouncement:true });
+await initCommon({ loadAnnouncement:false });
 
 const slug = getQueryParam("slug");
 if(!slug){

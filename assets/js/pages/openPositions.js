@@ -95,7 +95,7 @@ function wire(){
   search?.addEventListener("input", ()=> loadJobs().catch(console.warn));
 }
 
-await initCommon({ loadAnnouncement:true });
+await initCommon({ loadAnnouncement:false });
 
 try{
   await loadDepartments();

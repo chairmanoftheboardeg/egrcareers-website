@@ -71,7 +71,6 @@ export function toast(message, type="info"){
   item.style.borderRadius = "16px";
   item.style.border = "1px solid var(--border)";
   item.style.background = "rgba(0,0,0,.35)";
-  item.style.backdropFilter = "blur(10px)";
   item.style.color = "var(--text)";
   item.style.boxShadow = "var(--shadow-soft)";
   if(document.documentElement.getAttribute("data-theme")==="light"){
