@@ -57,145 +57,19 @@
 <main class="container">
   <section class="hero">
     <div class="kicker">Human Resources</div>
-    <div class="h1">Meet the Human Resources Department</div>
+    <div class="h1">HR Dashboard login</div>
     <div class="lead">
-      Human Resources oversees recruitment, onboarding, staff support, and organisational standards.
-      The department coordinates talent acquisition, ensures professionalism, and manages fair processes across all divisions.
+      Authorised HR staff can sign in to manage job postings and review applications.
     </div>
   </section>
 
-  <section class="section">
-    <h2>Leadership</h2>
-    <div class="card">
-      <div class="profile-card">
-        <img src="assets/img/avatar.svg" alt="Profile" loading="lazy"/>
-        <div class="meta">
-          <b>Isabella Clarke</b>
-          <span>Chief Human Resources & Legal Officer</span>
-          <p>Sets department strategy, approves HR decisions, and ensures alignment with legal, safety, and compliance standards.</p>
-        </div>
-      </div>
-    </div>
-
-    <div style="margin-top:16px;" class="grid cols-3">
-      <div class="card">
-        <div class="profile-card">
-          <img src="assets/img/avatar.svg" alt="Profile" loading="lazy"/>
-          <div class="meta">
-            <b>Daniel Moreau</b>
-            <span>Human Resources Director</span>
-            <p>Leads HR operations, policies, and department planning across all teams.</p>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="profile-card">
-          <img src="assets/img/avatar.svg" alt="Profile" loading="lazy"/>
-          <div class="meta">
-            <b>Amina Hassan</b>
-            <span>Human Resources Manager</span>
-            <p>Manages day-to-day HR workflows, onboarding, and internal coordination.</p>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="profile-card">
-          <img src="assets/img/avatar.svg" alt="Profile" loading="lazy"/>
-          <div class="meta">
-            <b>Ryan Patel</b>
-            <span>Talent Acquisition Manager</span>
-            <p>Oversees recruitment strategy, vacancy planning, and hiring quality control.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div style="margin-top:16px;" class="grid cols-3">
-      <div class="card">
-        <div class="profile-card">
-          <img src="assets/img/avatar.svg" alt="Profile" loading="lazy"/>
-          <div class="meta">
-            <b>Chloé Bernard</b>
-            <span>Assistant Talent Acquisition Manager</span>
-            <p>Supports recruiters, tracks pipelines, and keeps candidates informed and organised.</p>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="profile-card">
-          <img src="assets/img/avatar.svg" alt="Profile" loading="lazy"/>
-          <div class="meta">
-            <b>Jayden Lim</b>
-            <span>HR Compliance & Discipline Officer</span>
-            <p>Ensures staff behaviour standards, investigates issues, and supports fair discipline processes.</p>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="profile-card">
-          <img src="assets/img/avatar.svg" alt="Profile" loading="lazy"/>
-          <div class="meta">
-            <b>Eva Dubois</b>
-            <span>Employee Relations Officer</span>
-            <p>Supports staff well-being, conflict resolution, and a healthy internal culture.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div style="margin-top:16px;" class="grid cols-3">
-      <div class="card">
-        <div class="profile-card">
-          <img src="assets/img/avatar.svg" alt="Profile" loading="lazy"/>
-          <div class="meta">
-            <b>Lucas Martin</b>
-            <span>Senior Recruiter</span>
-            <p>Conducts interviews, reviews applications, and ensures role-fit and professionalism.</p>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="profile-card">
-          <img src="assets/img/avatar.svg" alt="Profile" loading="lazy"/>
-          <div class="meta">
-            <b>Naomi Sato</b>
-            <span>Junior Recruiter</span>
-            <p>Assists with application screening, candidate communication, and onboarding preparation.</p>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="profile-card">
-          <img src="assets/img/avatar.svg" alt="Profile" loading="lazy"/>
-          <div class="meta">
-            <b>Owen Richards</b>
-            <span>HR Generalist</span>
-            <p>Handles general HR support, documentation, and cross-team coordination tasks.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div style="margin-top:16px;">
-      <div class="card">
-        <div class="profile-card">
-          <img src="assets/img/avatar.svg" alt="Profile" loading="lazy"/>
-          <div class="meta">
-            <b>Lina Pereira</b>
-            <span>Staff Welfare Officer</span>
-            <p>Focuses on staff support, recognition, and maintaining a positive volunteer experience.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2>HR Dashboard login</h2>
-    <div class="grid cols-2">
+  <section class="section center-wrap">
+    <div class="center-card">
       <div class="card" id="loginCard">
         <div style="font-weight:900; font-size:18px;">Sign in</div>
-        <p style="margin-top:8px;">Authorised HR staff can sign in to manage announcements, job postings, and applications.</p>
+        <p style="margin-top:8px; color:var(--muted); line-height:1.6;">
+          Use your HR email and password. Access is restricted to approved staff.
+        </p>
 
         <form id="loginForm" style="margin-top:12px;">
           <div>
@@ -208,16 +82,16 @@
           </div>
           <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
             <button class="btn primary" id="loginBtn" type="submit">Sign in</button>
-            <a class="btn" href="legal/terms.html">Legal policies</a>
+            <a class="btn" href="legal/terms.html">Legal</a>
           </div>
         </form>
 
         <div class="notice" style="margin-top:14px;">
-          Access is restricted. If you believe you should have access, contact the HR leadership team.
+          If you believe you should have access, contact HR leadership.
         </div>
       </div>
 
-      <div class="card hidden" id="alreadySignedIn">
+      <div class="card hidden" id="alreadySignedIn" style="margin-top:14px;">
         <div style="font-weight:900; font-size:18px;">Session</div>
         <div style="color:var(--muted); margin-top:10px;">
           Signed in as: <b id="signinEmail"></b><br/>
