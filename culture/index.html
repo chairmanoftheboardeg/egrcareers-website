@@ -3,63 +3,247 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Culture | Emirates Group Roblox</title>
+  <title>Life at EGR | Emirates Group Roblox Careers</title>
   <link rel="icon" href="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
-    body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; }
-    .fade-in { animation: fadeIn 0.5s ease-in forwards; }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    body { font-family: 'Inter', sans-serif; background-color: #f9fafb; }
+    .fade-in { animation: fadeIn 0.8s ease-in forwards; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
 <body class="flex flex-col min-h-screen">
 
-  <nav class="bg-white py-4 px-6 md:px-12 flex justify-between items-center shadow-sm sticky top-0 z-50 border-b-4 border-[#D71A21]">
-    <a href="/" class="flex items-center">
-      <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="EGR" class="h-10">
-      <span class="ml-4 font-bold text-lg tracking-widest uppercase text-[#111827] border-l-2 border-gray-200 pl-4">Careers</span>
+  <nav class="bg-white text-gray-900 py-4 px-6 md:px-12 flex justify-between items-center shadow-md sticky top-0 z-40 border-b-4 border-[#D71A21]">
+    <a href="/" class="flex items-center group">
+      <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="EGR Careers" class="h-10 object-contain group-hover:opacity-80 transition-opacity">
+      <span class="ml-4 font-bold text-lg tracking-widest uppercase hidden sm:block border-l-2 border-gray-200 pl-4 text-gray-800">Careers</span>
     </a>
-    <div class="hidden lg:flex space-x-8 text-sm font-bold uppercase tracking-widest text-gray-500">
-      <a href="/" class="hover:text-[#111827] transition-colors">Job Search</a>
-      <a href="/departments/" class="hover:text-[#111827] transition-colors">Departments</a>
-      <a href="/culture/" class="text-[#D71A21]">Life at EGR</a>
-      <a href="/faq/" class="hover:text-[#111827] transition-colors">FAQ</a>
-      <a href="/status/" class="bg-[#111827] hover:bg-[#D71A21] text-white px-6 py-2 rounded transition-colors">Status</a>
+    <button id="mobile-menu-btn" class="lg:hidden text-gray-800 text-2xl focus:outline-none"><i class="fa-solid fa-bars"></i></button>
+    <div class="hidden lg:flex space-x-6 text-sm font-bold items-center text-gray-700">
+      <a href="/" class="hover:text-[#D71A21] transition-colors">Job Search</a>
+      <a href="/departments/" class="hover:text-[#D71A21] transition-colors">Departments</a>
+      <a href="/culture/" class="text-[#D71A21] transition-colors">Life at EGR</a>
+      <a href="/faq/" class="hover:text-[#D71A21] transition-colors">FAQ</a>
+      <a href="/status/" class="bg-[#111827] hover:bg-gray-800 text-white px-5 py-2 rounded transition-colors shadow flex items-center uppercase tracking-widest text-xs">
+        <i class="fa-solid fa-magnifying-glass-chart mr-2"></i> Application Status
+      </a>
     </div>
   </nav>
 
-  <header class="bg-[#111827] py-20 px-6 text-center border-b border-gray-800">
-    <div class="max-w-4xl mx-auto text-white">
-      <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-xs mb-4 block">The EGR Standard</span>
-      <h1 class="text-4xl md:text-5xl font-bold uppercase tracking-tight">More Than a Role</h1>
+  <div id="mobile-menu-overlay" class="fixed inset-0 bg-[#111827] z-[100] transform translate-x-full transition-transform duration-300 flex flex-col lg:hidden">
+    <div class="p-6 flex justify-between items-center border-b border-gray-800 bg-white">
+      <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="Logo" class="h-10 object-contain">
+      <button id="mobile-menu-close" class="text-gray-800 text-3xl focus:outline-none"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="p-6 overflow-y-auto space-y-6 text-white flex-grow flex flex-col font-bold uppercase tracking-widest text-sm">
+      <a href="/" class="hover:text-gray-300 border-b border-gray-800 pb-4">Job Search</a>
+      <a href="/departments/" class="hover:text-gray-300 border-b border-gray-800 pb-4">Departments</a>
+      <a href="/culture/" class="text-[#D71A21] border-b border-gray-800 pb-4">Life at EGR</a>
+      <a href="/faq/" class="hover:text-gray-300 border-b border-gray-800 pb-4">FAQ</a>
+      <a href="/status/" class="mt-4 bg-[#D71A21] text-white text-center py-4 rounded flex items-center justify-center">
+        <i class="fa-solid fa-magnifying-glass-chart mr-2"></i> Application Status
+      </a>
+    </div>
+  </div>
+
+  <header class="bg-[#111827] text-white py-20 px-6 border-b border-gray-800 text-center">
+    <div class="max-w-4xl mx-auto">
+      <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-xs mb-4 block"><i class="fa-solid fa-star mr-2"></i> The EGR Standard</span>
+      <h1 class="text-4xl md:text-5xl font-bold uppercase tracking-tight mb-4">Life at EGR</h1>
+      <p class="text-gray-400 font-medium max-w-2xl mx-auto">Discover what it means to be part of the most disciplined virtual aviation community in the world.</p>
     </div>
   </header>
 
-  <main class="flex-grow max-w-5xl mx-auto py-16 px-6 w-full fade-in">
+  <main class="flex-grow max-w-7xl mx-auto py-16 px-6 w-full fade-in space-y-16">
     
-    <div class="bg-white p-10 border border-gray-200 mb-10">
-      <h2 class="text-2xl font-bold text-[#111827] uppercase tracking-wide mb-4 border-l-4 border-[#D71A21] pl-4">Unmatched Discipline</h2>
-      <p class="text-gray-600 leading-relaxed">At Emirates Group Roblox, professionalism is non-negotiable. Our staff operates with military-grade discipline, ensuring every flight reflects our commitment to luxury and safety.</p>
-    </div>
+    <section>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <div class="bg-white border-t-4 border-t-[#D71A21] p-8 shadow-sm rounded-xl border border-gray-200">
+          <i class="fa-solid fa-shield-halved text-3xl text-[#111827] mb-4"></i>
+          <h3 class="text-xl font-bold text-[#111827] uppercase tracking-wide mb-3">Unmatched Discipline</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">At Emirates Group Roblox, professionalism is non-negotiable. Our staff operates with strict roleplay standards, ensuring every flight reflects our commitment to luxury and safety.</p>
+        </div>
 
-    <div class="bg-white p-10 border border-gray-200 mb-10">
-      <h2 class="text-2xl font-bold text-[#111827] uppercase tracking-wide mb-4 border-l-4 border-[#111827] pl-4">Career Advancement</h2>
-      <p class="text-gray-600 leading-relaxed">We believe in promoting from within. From Junior Cabin Crew to Senior Executive Board members, your hard work is tracked, recognized, and rewarded with internal promotions.</p>
-    </div>
+        <div class="bg-white border-t-4 border-t-[#111827] p-8 shadow-sm rounded-xl border border-gray-200">
+          <i class="fa-solid fa-chart-line text-3xl text-[#111827] mb-4"></i>
+          <h3 class="text-xl font-bold text-[#111827] uppercase tracking-wide mb-3">Career Advancement</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">We believe in promoting from within. From Junior Cabin Crew to Senior Executive Board members, your hard work is tracked, recognized, and rewarded with internal promotions.</p>
+        </div>
 
-    <div class="bg-[#111827] p-10 border-l-4 border-[#D71A21] text-white">
-      <h2 class="text-2xl font-bold uppercase tracking-wide mb-4">The Training Journey</h2>
-      <p class="text-gray-400 leading-relaxed">Every successful applicant begins their journey at the EGR Aviation University. You will undergo comprehensive classroom sessions, practical flight simulators, and live trials before deployment.</p>
-    </div>
+        <div class="bg-white border-t-4 border-t-[#111827] p-8 shadow-sm rounded-xl border border-gray-200">
+          <i class="fa-solid fa-microchip text-3xl text-[#111827] mb-4"></i>
+          <h3 class="text-xl font-bold text-[#111827] uppercase tracking-wide mb-3">Leading Technology</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">Working here means using the most advanced Roblox aviation tech. From proprietary booking systems to bespoke flight GUIs, we empower our staff with the best tools available.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="bg-[#111827] rounded-xl p-10 md:p-16 shadow-lg border border-gray-800 text-white relative overflow-hidden">
+        <div class="absolute -right-10 -bottom-10 opacity-5">
+            <i class="fa-solid fa-graduation-cap text-9xl"></i>
+        </div>
+        <div class="relative z-10 max-w-3xl">
+            <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-xs mb-4 block">EGR Aviation University</span>
+            <h2 class="text-3xl md:text-4xl font-bold uppercase tracking-tight mb-6">The Journey to Your Wings</h2>
+            <p class="text-gray-400 leading-relaxed mb-10">Every successful applicant begins their journey at the EGRAU. You will undergo comprehensive classroom sessions, practical flight simulators, and live trials. We don't just teach you how to roleplay; we teach you how to excel in a high-pressure environment.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-gray-900 p-6 rounded-lg border border-gray-700">
+                    <span class="w-8 h-8 rounded-full bg-[#D71A21] text-white flex items-center justify-center font-bold mb-4">1</span>
+                    <h4 class="font-bold uppercase tracking-widest text-sm mb-2">Induction</h4>
+                    <p class="text-xs text-gray-400">Basic orientation on group rules, Discord operations, and standard operating procedures.</p>
+                </div>
+                <div class="bg-gray-900 p-6 rounded-lg border border-gray-700">
+                    <span class="w-8 h-8 rounded-full bg-[#D71A21] text-white flex items-center justify-center font-bold mb-4">2</span>
+                    <h4 class="font-bold uppercase tracking-widest text-sm mb-2">Specialization</h4>
+                    <p class="text-xs text-gray-400">Intensive, division-specific training (e.g., flight deck controls, cabin service protocols).</p>
+                </div>
+                <div class="bg-gray-900 p-6 rounded-lg border border-gray-700">
+                    <span class="w-8 h-8 rounded-full bg-[#D71A21] text-white flex items-center justify-center font-bold mb-4">3</span>
+                    <h4 class="font-bold uppercase tracking-widest text-sm mb-2">Examination</h4>
+                    <p class="text-xs text-gray-400">Final live-server evaluation by a certified instructor before official deployment.</p>
+                </div>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white border border-gray-200 rounded-xl p-10 text-center shadow-sm">
+        <h3 class="text-2xl font-bold text-[#111827] uppercase tracking-widest mb-4">Ready to Join the Fleet?</h3>
+        <p class="text-gray-600 mb-8 max-w-lg mx-auto">If you believe you have the dedication and professionalism required to uphold the Emirates Group Roblox standard, we invite you to view our open positions.</p>
+        <a href="/" class="inline-block bg-[#D71A21] hover:bg-red-800 text-white font-bold py-4 px-10 rounded transition-colors uppercase tracking-widest text-sm shadow-md">
+            View Job Openings
+        </a>
+    </section>
 
   </main>
 
-  <footer class="bg-[#111827] text-white py-12 px-6 border-t-4 border-[#D71A21]">
-    <div class="max-w-7xl mx-auto text-center text-xs font-bold uppercase tracking-widest text-gray-400">
+  <footer class="bg-[#111827] text-white py-12 md:py-16 px-6 md:px-12 mt-auto border-t-4 border-[#D71A21]">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12">
+      
+      <div class="md:col-span-1">
+        <h3 class="font-bold text-xl md:text-2xl mb-3 uppercase tracking-widest">EGR Careers</h3>
+        <p class="text-sm text-gray-400 mb-6 leading-relaxed">The premier virtual aviation organization on the Roblox platform. A proud subsidiary of the Tyler Nicholas Group.</p>
+        
+        <div class="flex flex-wrap gap-4 text-xl text-gray-400">
+          <a href="https://discord.gg/nDAZ3p475V" target="_blank" class="hover:text-[#5865F2] transition-colors"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://www.roblox.com/communities/34795673/Emirates-Group-Roblox" target="_blank" class="hover:text-white transition-colors"><i class="fa-solid fa-cube"></i></a>
+          <a href="https://www.instagram.com/emiratesgrouproblox/" target="_blank" class="hover:text-[#E1306C] transition-colors"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://t.me/+QGw6jrQaFn45OGE8" target="_blank" class="hover:text-[#229ED9] transition-colors"><i class="fa-brands fa-telegram"></i></a>
+          <a href="https://www.youtube.com/channel/UC-ec2thID4Fl5ZrXqvoJMog" target="_blank" class="hover:text-[#FF0000] transition-colors"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://www.tiktok.com/@emirates.group.roblox" target="_blank" class="hover:text-white transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="https://trello.com/invite/b/6924057b5f69cfd3900039e5/ATTI687f45aae16291ea7b7bb4aad286254097D7A3DF/emirates-group-roblox" target="_blank" class="hover:text-[#0052CC] transition-colors"><i class="fa-brands fa-trello"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">Careers Portal</h4>
+        <ul class="space-y-3 text-sm text-gray-400 font-semibold">
+          <li><a href="/" class="hover:text-[#D71A21] transition-colors">Job Openings</a></li>
+          <li><a href="/departments/" class="hover:text-[#D71A21] transition-colors">Departments Overview</a></li>
+          <li><a href="/culture/" class="hover:text-[#D71A21] transition-colors">Life at EGR</a></li>
+          <li><a href="/faq/" class="hover:text-[#D71A21] transition-colors">Recruitment FAQ</a></li>
+          <li><a href="/status/" class="hover:text-[#D71A21] transition-colors">Application Status</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">Corporate & Network</h4>
+        <ul class="space-y-3 text-sm text-gray-400 font-semibold">
+          <li><a href="https://emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors">Main EGR Website <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i></a></li>
+          <li><a href="https://emiratesgrouproblox.link/flights/" target="_blank" class="hover:text-[#D71A21] transition-colors">Live Flight Radar</a></li>
+          <li><a href="https://tylernicholasgroup.com" target="_blank" class="hover:text-[#D71A21] transition-colors">Tyler Nicholas Group</a></li>
+          <li><span class="italic text-[10px] mt-4 block text-gray-500">Disclaimer: EGR is a virtual organization and is not affiliated with the real-world Emirates airline.</span></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">HR Operations</h4>
+        <div class="bg-gray-900 p-4 rounded-xl border border-gray-700">
+            <div class="flex items-center mb-3">
+                <span id="hr-status-indicator" class="w-3 h-3 rounded-full bg-gray-500 mr-3"></span>
+                <span id="hr-status-text" class="text-sm font-bold uppercase tracking-widest text-gray-400">Loading...</span>
+            </div>
+            <p class="text-xs text-gray-400 mb-2"><i class="fa-solid fa-clock text-[#D71A21] mr-2"></i> UAE Standard Time</p>
+            <ul class="text-xs text-gray-500 space-y-1 font-mono">
+                <li>Mon-Fri: <span class="text-gray-300">08:00 - 18:00</span></li>
+                <li>Sat-Sun: <span class="text-gray-300">10:00 - 16:00</span></li>
+                <li class="mt-2 pt-2 border-t border-gray-800 text-[10px] text-gray-600">Closed on UAE Public Holidays.</li>
+            </ul>
+        </div>
+      </div>
+
+    </div>
+    
+    <div class="max-w-7xl mx-auto border-t border-gray-800 mt-10 md:mt-12 pt-6 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 text-center md:text-left gap-2 font-bold tracking-wider uppercase">
       <p>&copy; 2026 Emirates Group Roblox. All rights reserved.</p>
+      <p>Powered by Tyler Nicholas Group Network</p>
     </div>
   </footer>
 
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Mobile Menu
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileClose = document.getElementById('mobile-menu-close');
+      const mobileMenu = document.getElementById('mobile-menu-overlay');
+
+      if(mobileBtn && mobileClose && mobileMenu) {
+        mobileBtn.addEventListener('click', () => mobileMenu.classList.remove('translate-x-full'));
+        mobileClose.addEventListener('click', () => mobileMenu.classList.add('translate-x-full'));
+      }
+
+      // --- LIVE HR STATUS LOGIC IN FOOTER ---
+      function updateHRStatus() {
+        const now = new Date();
+        const uaeFormatter = new Intl.DateTimeFormat('en-US', {
+            timeZone: 'Asia/Dubai',
+            hour12: false,
+            hour: 'numeric',
+            weekday: 'short'
+        });
+        
+        const parts = uaeFormatter.formatToParts(now);
+        let currentHour = 0;
+        let currentDay = '';
+        
+        parts.forEach(part => {
+            if (part.type === 'hour') currentHour = parseInt(part.value);
+            if (part.type === 'weekday') currentDay = part.value;
+        });
+
+        let isOpen = false;
+        const weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+        const weekends = ['Sat', 'Sun'];
+
+        if (weekdays.includes(currentDay)) {
+            if (currentHour >= 8 && currentHour < 18) isOpen = true;
+        } else if (weekends.includes(currentDay)) {
+            if (currentHour >= 10 && currentHour < 16) isOpen = true;
+        }
+
+        const indicator = document.getElementById('hr-status-indicator');
+        const text = document.getElementById('hr-status-text');
+
+        if (isOpen) {
+            indicator.className = 'w-3 h-3 rounded-full bg-green-500 animate-pulse mr-3 shadow-[0_0_8px_#22c55e]';
+            text.innerText = 'HR Office is Open';
+            text.className = 'text-sm font-bold uppercase tracking-widest text-white';
+        } else {
+            indicator.className = 'w-3 h-3 rounded-full bg-[#D71A21] mr-3';
+            text.innerText = 'HR Office is Closed';
+            text.className = 'text-sm font-bold uppercase tracking-widest text-gray-500';
+        }
+      }
+      
+      updateHRStatus(); 
+      setInterval(updateHRStatus, 60000); 
+    });
+  </script>
 </body>
 </html>
