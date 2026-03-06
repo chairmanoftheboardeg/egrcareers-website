@@ -4,14 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Application Terminal | Emirates Group Roblox</title>
-  
   <link rel="icon" href="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" />
-  
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
-
   <style>
     body { font-family: 'Inter', sans-serif; background-color: #f9fafb; }
     .fade-in { animation: fadeIn 0.5s ease-in forwards; }
@@ -21,10 +17,20 @@
 </head>
 <body class="flex flex-col min-h-screen">
 
-  <nav class="bg-white py-4 px-6 md:px-12 flex justify-between items-center shadow-sm sticky top-0 z-50 border-b-4 border-[#D71A21]">
-    <a href="/" class="flex items-center">
-      <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="EGR" class="h-10">
-      <span class="ml-4 font-bold text-lg tracking-widest uppercase text-[#111827] border-l-2 border-gray-200 pl-4 hidden sm:block">Careers</span>
+  <div class="bg-[#111827] text-white text-[10px] md:text-xs py-2 px-6 flex flex-col md:flex-row justify-between items-center uppercase tracking-widest font-bold border-b border-gray-800 z-50 relative">
+    <div class="flex items-center mb-2 md:mb-0 text-gray-400">
+      <i class="fa-solid fa-building-user text-[#D71A21] mr-2"></i> HR Hours (UAE Time): Mon-Fri 08:00 - 18:00 | Sat-Sun 10:00 - 16:00
+    </div>
+    <div class="flex items-center bg-gray-900 px-3 py-1 rounded shadow-inner border border-gray-700">
+      <span id="hr-status-indicator" class="w-2 h-2 rounded-full bg-gray-500 mr-2"></span>
+      <span id="hr-status-text">Checking Status...</span>
+    </div>
+  </div>
+
+  <nav class="bg-white text-gray-900 py-4 px-6 md:px-12 flex justify-between items-center shadow-md sticky top-0 z-40 border-b-4 border-[#D71A21]">
+    <a href="/" class="flex items-center group">
+      <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="EGR" class="h-10 object-contain group-hover:opacity-80 transition-opacity">
+      <span class="ml-4 font-bold text-lg tracking-widest uppercase hidden sm:block border-l-2 border-gray-200 pl-4 text-gray-800">Careers</span>
     </a>
     <a href="/" class="text-gray-500 hover:text-[#D71A21] font-bold text-xs uppercase tracking-widest transition-colors">
       <i class="fa-solid fa-xmark mr-2"></i> Cancel Application
@@ -32,103 +38,135 @@
   </nav>
 
   <main class="flex-grow py-12 px-6 fade-in">
-    <div class="max-w-3xl mx-auto">
+    <div class="max-w-4xl mx-auto">
       
       <div class="mb-10 text-center md:text-left">
-        <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-xs mb-2 block">Official Document</span>
+        <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-xs mb-2 block">Official Document (EGR-HR-01)</span>
         <h1 class="text-3xl md:text-4xl font-bold text-[#111827] uppercase tracking-tight mb-2">Employment Application</h1>
-        <div class="inline-flex items-center bg-gray-200 px-4 py-2 rounded mt-2">
-            <span class="text-gray-500 font-bold uppercase text-xs tracking-widest mr-2">Position:</span>
+        <div class="inline-flex items-center bg-gray-200 border border-gray-300 px-4 py-2 rounded mt-2">
+            <span class="text-gray-500 font-bold uppercase text-xs tracking-widest mr-2">Target Position:</span>
             <span id="job-title-display" class="text-[#111827] font-bold text-sm uppercase">Loading...</span>
         </div>
       </div>
 
-      <div class="bg-white shadow-lg border border-gray-200" id="form-container">
+      <div class="bg-white shadow-xl border border-gray-200 rounded-xl overflow-hidden" id="form-container">
         
         <div class="bg-[#111827] p-4 flex justify-between items-center text-white">
             <span class="text-[10px] font-bold uppercase tracking-[0.2em]"><i class="fa-solid fa-lock mr-2"></i> Secure Transmission</span>
-            <span class="text-[10px] font-bold uppercase tracking-[0.2em]">EGR-HR-01 Form</span>
         </div>
 
-        <div class="p-8 md:p-12 space-y-10">
+        <div class="p-8 md:p-12 space-y-12">
             
             <div>
-                <h3 class="text-sm font-bold text-[#D71A21] uppercase tracking-widest mb-6 pb-2 border-b border-gray-100">
-                    Part 1: Candidate Identity
+                <h3 class="text-sm font-bold text-[#D71A21] uppercase tracking-widest mb-6 pb-2 border-b border-gray-200">
+                    Part 1: Personal Information
                 </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Legal Name *</label>
+                        <input type="text" id="f-legal-name" class="w-full px-4 py-3 bg-gray-50 border border-gray-300 font-bold text-[#111827] transition-all rounded-md">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Preferred Name (Optional)</label>
+                        <input type="text" id="f-pref-name" class="w-full px-4 py-3 bg-gray-50 border border-gray-300 font-bold text-[#111827] transition-all rounded-md">
+                    </div>
+                </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Date of Birth *</label>
+                        <input type="date" id="f-dob" class="w-full px-4 py-3 bg-gray-50 border border-gray-300 font-bold text-[#111827] transition-all rounded-md">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Country of Residency *</label>
+                        <input type="text" id="f-country" placeholder="e.g. United Kingdom, USA, UAE" class="w-full px-4 py-3 bg-gray-50 border border-gray-300 font-bold text-[#111827] transition-all rounded-md">
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-sm font-bold text-[#D71A21] uppercase tracking-widest mb-6 pb-2 border-b border-gray-200">
+                    Part 2: Digital Credentials
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div>
                         <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Roblox Username *</label>
-                        <input type="text" id="roblox-user" placeholder="Exact username, no display names" class="w-full px-4 py-3 bg-gray-50 border border-gray-300 font-bold text-[#111827] transition-all">
+                        <input type="text" id="f-roblox" placeholder="Exact username" class="w-full px-4 py-3 bg-gray-50 border border-gray-300 font-bold text-[#111827] transition-all rounded-md">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Discord ID *</label>
-                        <input type="text" id="discord-user" placeholder="e.g. user#0000" class="w-full px-4 py-3 bg-gray-50 border border-gray-300 font-bold text-[#111827] transition-all">
+                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Discord Username *</label>
+                        <input type="text" id="f-discord-user" placeholder="e.g. user#0000" class="w-full px-4 py-3 bg-gray-50 border border-gray-300 font-bold text-[#111827] transition-all rounded-md">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Discord Developer ID *</label>
+                        <input type="text" id="f-discord-id" placeholder="18-digit ID number" class="w-full px-4 py-3 bg-gray-50 border border-gray-300 font-bold text-[#111827] transition-all rounded-md">
                     </div>
                 </div>
             </div>
 
             <div>
-                <h3 class="text-sm font-bold text-[#D71A21] uppercase tracking-widest mb-6 pb-2 border-b border-gray-100">
-                    Part 2: Logistics
-                </h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Primary Device *</label>
-                        <select id="q-device" class="w-full px-4 py-3 bg-gray-50 border border-gray-300 font-bold text-[#111827] transition-all">
-                            <option value="">Select an option...</option>
-                            <option value="PC/Desktop">PC / Desktop</option>
-                            <option value="Laptop">Laptop</option>
-                            <option value="Mobile/Tablet">Mobile / Tablet</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Timezone *</label>
-                        <input type="text" id="q-timezone" placeholder="e.g. EST, GMT, GST" class="w-full px-4 py-3 bg-gray-50 border border-gray-300 font-bold text-[#111827] transition-all">
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <h3 class="text-sm font-bold text-[#D71A21] uppercase tracking-widest mb-6 pb-2 border-b border-gray-100">
+                <h3 class="text-sm font-bold text-[#D71A21] uppercase tracking-widest mb-6 pb-2 border-b border-gray-200">
                     Part 3: Professional Assessment
                 </h3>
                 <div class="space-y-6">
                     <div>
-                        <label class="block text-xs font-bold text-[#111827] uppercase tracking-widest mb-2">1. Detail your past experience in the virtual aviation industry. *</label>
-                        <p class="text-[10px] text-gray-400 mb-2 font-medium">Include any former ranks, groups, and responsibilities. If none, state "N/A".</p>
-                        <textarea id="q-exp" rows="4" class="w-full px-4 py-3 bg-gray-50 border border-gray-300 font-medium text-gray-800 transition-all resize-none"></textarea>
+                        <label class="block text-xs font-bold text-[#111827] uppercase tracking-widest mb-2">How did you hear about Emirates Group Roblox? *</label>
+                        <select id="f-source" class="w-full px-4 py-3 bg-gray-50 border border-gray-300 font-bold text-[#111827] transition-all rounded-md">
+                            <option value="">Select an option...</option>
+                            <option value="Roblox Group/Game">Roblox Group / Game</option>
+                            <option value="Discord Discovery">Discord Discovery</option>
+                            <option value="Social Media (TikTok/YouTube)">Social Media (TikTok/YouTube)</option>
+                            <option value="Friend / Word of Mouth">Friend / Word of Mouth</option>
+                            <option value="Other">Other</option>
+                        </select>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-[#111827] uppercase tracking-widest mb-2">2. Why do you want to join Emirates Group Roblox? *</label>
-                        <textarea id="q-why" rows="4" class="w-full px-4 py-3 bg-gray-50 border border-gray-300 font-medium text-gray-800 transition-all resize-none"></textarea>
+                        <label class="block text-xs font-bold text-[#111827] uppercase tracking-widest mb-2">Why do you believe you are a good fit for this role? *</label>
+                        <p class="text-[10px] text-gray-500 mb-2 font-medium">Detail any relevant past experience, traits, or skills.</p>
+                        <textarea id="f-fit" rows="5" class="w-full px-4 py-3 bg-gray-50 border border-gray-300 font-medium text-gray-800 transition-all resize-none rounded-md"></textarea>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-[#111827] uppercase tracking-widest mb-2">3. Scenario: A passenger is being disruptive during boarding. How do you handle it? *</label>
-                        <textarea id="q-scenario" rows="4" class="w-full px-4 py-3 bg-gray-50 border border-gray-300 font-medium text-gray-800 transition-all resize-none"></textarea>
+                        <label class="block text-xs font-bold text-[#111827] uppercase tracking-widest mb-2">Why do you want to join Emirates Group Roblox? *</label>
+                        <textarea id="f-why-egr" rows="5" class="w-full px-4 py-3 bg-gray-50 border border-gray-300 font-medium text-gray-800 transition-all resize-none rounded-md"></textarea>
                     </div>
                 </div>
             </div>
 
-            <div class="pt-6 border-t border-gray-200">
-                <button onclick="submitApplication()" id="submit-btn" class="w-full bg-[#111827] hover:bg-[#D71A21] text-white font-bold py-5 transition-colors uppercase tracking-[0.2em] text-sm">
+            <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                <h3 class="text-sm font-bold text-[#D71A21] uppercase tracking-widest mb-4 pb-2 border-b border-gray-300">
+                    Part 4: Declarations & Signature
+                </h3>
+                
+                <div class="flex items-start mb-6">
+                    <input type="checkbox" id="f-agreements" class="mt-1 w-5 h-5 text-[#D71A21] border-gray-300 rounded focus:ring-[#D71A21]">
+                    <label class="ml-3 text-xs text-gray-700 leading-relaxed font-medium">
+                        I hereby declare that the information provided is accurate and true. I understand that submitting false information, applying on alternate accounts, or failing to uphold the Emirates Group Roblox standard will result in immediate termination or blacklisting.
+                    </label>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Electronic Signature (Type Full Legal Name) *</label>
+                    <input type="text" id="f-signature" placeholder="Sign here..." class="w-full md:w-1/2 px-4 py-3 bg-white border border-gray-300 font-serif italic text-lg text-[#111827] transition-all rounded-md">
+                </div>
+            </div>
+
+            <div class="pt-4 text-right">
+                <button onclick="submitApplication()" id="submit-btn" class="w-full md:w-auto bg-[#111827] hover:bg-[#D71A21] text-white font-bold py-4 px-10 rounded transition-colors uppercase tracking-[0.2em] text-sm shadow-lg">
                     Submit Formal Application
                 </button>
-                <p class="text-center text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-4">By submitting, you agree to the EGR Code of Conduct. False information will lead to a blacklist.</p>
             </div>
 
         </div>
       </div>
 
-      <div id="success-view" class="hidden bg-white border border-gray-200 shadow-xl p-12 text-center">
+      <div id="success-view" class="hidden bg-white border border-gray-200 shadow-xl rounded-xl p-12 text-center mt-10">
           <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
               <i class="fa-solid fa-check text-4xl"></i>
           </div>
           <h2 class="text-3xl font-bold text-[#111827] uppercase tracking-tight mb-4">Transmission Successful</h2>
-          <p class="text-gray-600 mb-8 max-w-sm mx-auto">Your application has been securely logged in our Human Resources database.</p>
-          <a href="/status/" class="inline-block bg-[#111827] hover:bg-gray-800 text-white px-8 py-4 font-bold uppercase tracking-widest text-xs transition-colors">
+          <p class="text-gray-600 mb-8 max-w-md mx-auto leading-relaxed">Your application has been securely logged in the Human Resources database. Please retain your Discord ID to check your status.</p>
+          <a href="/status/" class="inline-block bg-[#111827] hover:bg-[#D71A21] text-white px-8 py-4 rounded font-bold uppercase tracking-widest text-xs transition-colors shadow-md">
             Track Application Status
           </a>
       </div>
@@ -136,60 +174,133 @@
     </div>
   </main>
 
-  <footer class="bg-[#111827] text-white py-10 px-6 border-t-4 border-[#D71A21]">
-    <div class="max-w-7xl mx-auto text-center font-bold tracking-wider uppercase text-[10px] text-gray-500">
-      <p>&copy; 2026 Emirates Group Roblox.</p>
+  <footer class="bg-[#111827] text-white py-12 md:py-16 px-6 md:px-12 mt-auto border-t-4 border-[#D71A21]">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12">
+      
+      <div class="md:col-span-1">
+        <h3 class="font-bold text-xl md:text-2xl mb-3 uppercase tracking-widest">EGR Careers</h3>
+        <p class="text-sm text-gray-400 mb-6 leading-relaxed">The premier virtual aviation organization on the Roblox platform. A proud subsidiary of the Tyler Nicholas Group.</p>
+        <div class="flex flex-wrap gap-4 text-xl text-gray-400">
+          <a href="https://discord.gg/nDAZ3p475V" target="_blank" class="hover:text-[#5865F2] transition-colors"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://www.roblox.com/communities/34795673/Emirates-Group-Roblox" target="_blank" class="hover:text-white transition-colors"><i class="fa-solid fa-cube"></i></a>
+          <a href="https://www.instagram.com/emiratesgrouproblox/" target="_blank" class="hover:text-[#E1306C] transition-colors"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://t.me/+QGw6jrQaFn45OGE8" target="_blank" class="hover:text-[#229ED9] transition-colors"><i class="fa-brands fa-telegram"></i></a>
+          <a href="https://www.youtube.com/channel/UC-ec2thID4Fl5ZrXqvoJMog" target="_blank" class="hover:text-[#FF0000] transition-colors"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://www.tiktok.com/@emirates.group.roblox" target="_blank" class="hover:text-white transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="https://trello.com/invite/b/6924057b5f69cfd3900039e5/ATTI687f45aae16291ea7b7bb4aad286254097D7A3DF/emirates-group-roblox" target="_blank" class="hover:text-[#0052CC] transition-colors"><i class="fa-brands fa-trello"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">Careers Portal</h4>
+        <ul class="space-y-3 text-sm text-gray-400 font-semibold">
+          <li><a href="/" class="hover:text-[#D71A21] transition-colors">Job Openings</a></li>
+          <li><a href="/departments/" class="hover:text-[#D71A21] transition-colors">Departments Overview</a></li>
+          <li><a href="/culture/" class="hover:text-[#D71A21] transition-colors">Life at EGR</a></li>
+          <li><a href="/faq/" class="hover:text-[#D71A21] transition-colors">Recruitment FAQ</a></li>
+          <li><a href="/status/" class="hover:text-[#D71A21] transition-colors">Application Status</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">Corporate & Network</h4>
+        <ul class="space-y-3 text-sm text-gray-400 font-semibold">
+          <li><a href="https://emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors">Main EGR Website <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i></a></li>
+          <li><a href="https://emiratesgrouproblox.link/flights/" target="_blank" class="hover:text-[#D71A21] transition-colors">Live Flight Radar</a></li>
+          <li><a href="https://tylernicholasgroup.com" target="_blank" class="hover:text-[#D71A21] transition-colors">Tyler Nicholas Group</a></li>
+          <li><span class="italic text-[10px] mt-4 block text-gray-500">Disclaimer: EGR is a virtual organization and is not affiliated with the real-world Emirates airline.</span></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">HR Operations</h4>
+        <div class="bg-gray-900 p-4 rounded-xl border border-gray-700 shadow-inner">
+            <div class="flex items-center mb-3">
+                <span id="hr-status-indicator-footer" class="w-3 h-3 rounded-full bg-gray-500 mr-3"></span>
+                <span id="hr-status-text-footer" class="text-sm font-bold uppercase tracking-widest text-gray-400">Loading...</span>
+            </div>
+            <p class="text-xs text-gray-400 mb-2"><i class="fa-solid fa-clock text-[#D71A21] mr-2"></i> UAE Standard Time</p>
+            <ul class="text-xs text-gray-500 space-y-1 font-mono">
+                <li>Mon-Fri: <span class="text-gray-300">08:00 - 18:00</span></li>
+                <li>Sat-Sun: <span class="text-gray-300">10:00 - 16:00</span></li>
+                <li class="mt-2 pt-2 border-t border-gray-800 text-[10px] text-gray-600">Closed on UAE Public Holidays.</li>
+            </ul>
+        </div>
+      </div>
+
+    </div>
+    
+    <div class="max-w-7xl mx-auto border-t border-gray-800 mt-10 md:mt-12 pt-6 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 text-center md:text-left gap-2 font-bold tracking-wider uppercase">
+      <p>&copy; 2026 Emirates Group Roblox. All rights reserved.</p>
+      <p>Powered by Tyler Nicholas Group Network</p>
     </div>
   </footer>
 
   <script>
-    let jobId = '';
-    let jobTitle = '';
+    let jobTitle = 'General Application';
 
     document.addEventListener("DOMContentLoaded", () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      jobId = urlParams.get('id');
-      jobTitle = urlParams.get('title');
-
-      if(jobTitle) {
+      // 1. Get Job Title from URL
+      const params = new URLSearchParams(window.location.search);
+      const urlTitle = params.get('title');
+      if (urlTitle) {
+          jobTitle = urlTitle;
           document.getElementById('job-title-display').innerText = jobTitle;
-      } else {
-          window.location.href = '/'; 
       }
+
+      // 2. HR Status Logic (Header & Footer)
+      function updateHRStatus() {
+        const now = new Date();
+        const uae = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Dubai', hour12: false, hour: 'numeric', weekday: 'short' }).formatToParts(now);
+        let h=0, d='';
+        uae.forEach(p => { if(p.type==='hour') h=parseInt(p.value); if(p.type==='weekday') d=p.value; });
+        let isOpen = (['Mon','Tue','Wed','Thu','Fri'].includes(d) && h>=8 && h<18) || (['Sat','Sun'].includes(d) && h>=10 && h<16);
+        
+        const indClass = isOpen ? 'w-2 h-2 rounded-full bg-green-500 animate-pulse mr-2' : 'w-2 h-2 rounded-full bg-[#D71A21] mr-2';
+        const txtClass = isOpen ? 'text-green-400' : 'text-[#D71A21]';
+        const txtLabel = isOpen ? 'HR Office is Open' : 'HR Office is Closed';
+
+        // Top Bar
+        document.getElementById('hr-status-indicator').className = indClass;
+        document.getElementById('hr-status-text').className = txtClass;
+        document.getElementById('hr-status-text').innerText = txtLabel;
+
+        // Footer Widget
+        const fIndClass = isOpen ? 'w-3 h-3 rounded-full bg-green-500 animate-pulse mr-3 shadow-[0_0_8px_#22c55e]' : 'w-3 h-3 rounded-full bg-[#D71A21] mr-3';
+        const fTxtClass = isOpen ? 'text-sm font-bold uppercase tracking-widest text-white' : 'text-sm font-bold uppercase tracking-widest text-gray-500';
+        document.getElementById('hr-status-indicator-footer').className = fIndClass;
+        document.getElementById('hr-status-text-footer').className = fTxtClass;
+        document.getElementById('hr-status-text-footer').innerText = txtLabel;
+      }
+      updateHRStatus(); setInterval(updateHRStatus, 60000);
     });
 
     async function submitApplication() {
-      const roblox = document.getElementById('roblox-user').value.trim();
-      const discord = document.getElementById('discord-user').value.trim();
-      const device = document.getElementById('q-device').value;
-      const timezone = document.getElementById('q-timezone').value.trim();
-      const exp = document.getElementById('q-exp').value.trim();
-      const why = document.getElementById('q-why').value.trim();
-      const scenario = document.getElementById('q-scenario').value.trim();
+      // Fetch all fields matching the Supabase SQL schema exactly
+      const legalName = document.getElementById('f-legal-name').value.trim();
+      const prefName = document.getElementById('f-pref-name').value.trim() || null;
+      const dob = document.getElementById('f-dob').value;
+      const country = document.getElementById('f-country').value.trim();
+      const robloxUser = document.getElementById('f-roblox').value.trim();
+      const discordUser = document.getElementById('f-discord-user').value.trim();
+      const discordId = document.getElementById('f-discord-id').value.trim();
+      const source = document.getElementById('f-source').value;
+      const fit = document.getElementById('f-fit').value.trim();
+      const whyEgr = document.getElementById('f-why-egr').value.trim();
+      const agreements = document.getElementById('f-agreements').checked;
+      const eSignature = document.getElementById('f-signature').value.trim();
       const btn = document.getElementById('submit-btn');
 
-      if(!roblox || !discord || !device || !timezone || !exp || !why || !scenario) {
-          return alert("Please fill out every field in the application before submitting.");
+      // Validation
+      if (!legalName || !dob || !country || !robloxUser || !discordUser || !discordId || !source || !fit || !whyEgr || !eSignature) {
+          return alert("Please complete all required fields (marked with *) before submitting.");
+      }
+      if (!agreements) {
+          return alert("You must agree to the declarations to submit your application.");
       }
 
-      btn.disabled = true;
-      btn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin mr-2"></i> Processing...`;
-
-      // FORMAT ALL ANSWERS INTO ONE CLEAN STRING FOR THE DATABASE
-      const compiledAnswers = `
-[LOGISTICS]
-Device: ${device}
-Timezone: ${timezone}
-
-[QUESTION 1: Experience]
-${exp}
-
-[QUESTION 2: Why EGR?]
-${why}
-
-[QUESTION 3: Scenario]
-${scenario}
-      `.trim();
+      btn.disabled = true; 
+      btn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin mr-2"></i> Transmitting to Server...`;
 
       const supabase = window.supabase.createClient(
         'https://zboyabxzhptnxnmofvcz.supabase.co', 
@@ -201,25 +312,35 @@ ${scenario}
           .from('egr_applications')
           .insert([
             { 
-                roblox_username: roblox, 
-                discord_username: discord, 
-                job_id: jobId, 
                 job_title: jobTitle,
-                answers: compiledAnswers,
+                legal_name: legalName,
+                preferred_name: prefName,
+                date_of_birth: dob,
+                discord_username: discordUser,
+                discord_id: discordId,
+                roblox_username: robloxUser,
+                country_residency: country,
+                source: source,
+                fit_reason: fit,
+                why_egr: whyEgr,
+                agreements_checked: agreements,
+                e_signature: eSignature,
                 status: 'Pending'
+                // created_at and id are handled by Supabase defaults
             }
           ]);
 
         if (error) throw error;
 
+        // Display Success View
         document.getElementById('form-container').classList.add('hidden');
         document.getElementById('success-view').classList.remove('hidden');
         window.scrollTo({ top: 0, behavior: 'smooth' });
 
       } catch (err) {
         alert("Transmission Error: " + err.message);
-        btn.disabled = false;
-        btn.innerText = "Submit Formal Application";
+        btn.disabled = false; 
+        btn.innerHTML = "Submit Formal Application";
       }
     }
   </script>
