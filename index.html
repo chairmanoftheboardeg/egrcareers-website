@@ -12,20 +12,18 @@
     body { font-family: 'Inter', sans-serif; background-color: #f9fafb; }
     .fade-in { animation: fadeIn 0.8s ease-in forwards; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes loadBar { 0% { width: 0%; } 100% { width: 100%; } }
+    .animate-load-bar { animation: loadBar 1s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
   </style>
 </head>
 <body class="flex flex-col min-h-screen">
 
-  <div class="bg-[#111827] text-white text-[10px] md:text-xs py-2 px-6 flex flex-col md:flex-row justify-between items-center uppercase tracking-widest font-bold border-b border-gray-800 z-50 relative">
-    <div class="flex items-center mb-2 md:mb-0 text-gray-400">
-      <i class="fa-solid fa-building-user text-[#D71A21] mr-2"></i> 
-      HR Hours (UAE Time): Mon-Fri 08:00 - 18:00 | Sat-Sun 10:00 - 16:00
-      <span class="ml-2 hidden lg:inline border-l border-gray-600 pl-2">Closed on UAE Public Holidays</span>
+  <div id="egr-loader" class="fixed inset-0 z-[9999] bg-white flex flex-col items-center justify-center transition-opacity duration-700">
+    <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="Emirates Group Roblox" class="h-20 md:h-28 object-contain mb-8 opacity-90 animate-pulse">
+    <div class="w-48 h-[2px] bg-gray-200 overflow-hidden">
+      <div class="h-full bg-[#D71A21] animate-load-bar"></div>
     </div>
-    <div class="flex items-center bg-gray-900 px-3 py-1 rounded shadow-inner border border-gray-700">
-      <span id="hr-status-indicator" class="w-2 h-2 rounded-full bg-gray-500 mr-2"></span>
-      <span id="hr-status-text">Checking Status...</span>
-    </div>
+    <p class="text-gray-500 text-xs font-bold tracking-[0.3em] mt-6 uppercase">Recruitment Portal</p>
   </div>
 
   <nav class="bg-white text-gray-900 py-4 px-6 md:px-12 flex justify-between items-center shadow-md sticky top-0 z-40 border-b-4 border-[#D71A21]">
@@ -62,17 +60,19 @@
   </div>
 
   <header class="bg-[#111827] text-white py-24 md:py-32 px-6 relative overflow-hidden">
-    <div class="absolute inset-0 opacity-40" style="background-image: url('https://i.ibb.co/ds9K7nNn/EGR-Flight-Pic-380-2.png'); background-size: cover; background-position: center; background-attachment: fixed;"></div>
-    <div class="absolute inset-0 bg-gradient-to-t from-[#111827] via-[#111827]/80 to-transparent"></div>
-    <div class="max-w-5xl mx-auto relative z-10 text-center">
+    <div class="absolute inset-0 bg-[#111827]/80 z-10"></div>
+    <div class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style="background-image: url('https://i.ibb.co/ds9K7nNn/EGR-Flight-Pic-380-2.png'); background-attachment: fixed;"></div>
+    
+    <div class="max-w-5xl mx-auto relative z-20 text-center">
       <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-xs mb-4 block"><i class="fa-solid fa-plane-departure mr-2"></i> Recruitment Hub</span>
-      <h1 class="text-4xl md:text-6xl font-bold mb-6 uppercase tracking-tight text-white drop-shadow-lg">Elevate Your Career</h1>
+      <h1 class="text-4xl md:text-6xl font-bold mb-6 uppercase tracking-tight text-white drop-shadow-md">Elevate Your Career</h1>
       <p class="text-gray-300 md:text-lg max-w-2xl mx-auto leading-relaxed font-medium">Join the most prestigious virtual aviation network on the Roblox platform. We are seeking disciplined, professional, and dedicated individuals.</p>
     </div>
   </header>
 
-  <main class="flex-grow max-w-7xl mx-auto py-12 px-6 md:px-12 w-full fade-in -mt-10 relative z-20">
-    <div class="bg-white p-6 md:p-8 rounded-xl shadow-xl border border-gray-200 mb-12 flex flex-col md:flex-row gap-4 items-center">
+  <main class="flex-grow max-w-6xl mx-auto py-12 px-6 w-full fade-in relative z-30 -mt-10">
+    
+    <div class="bg-white p-6 rounded-xl shadow-xl border border-gray-200 mb-12 flex flex-col md:flex-row gap-4 items-center">
       <div class="w-full md:w-1/2 relative">
         <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-gray-400"></i>
         <input type="text" id="search-input" placeholder="Search for pilot, cabin crew, ground ops..." class="w-full pl-10 pr-4 py-3 border border-gray-200 bg-gray-50 rounded focus:outline-none focus:ring-2 focus:ring-[#D71A21] focus:bg-white transition-colors font-medium text-gray-700">
@@ -100,85 +100,178 @@
       </div>
     </div>
 
-    <div id="jobs-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div class="col-span-full text-center py-20 bg-white rounded-xl shadow-sm border border-gray-200 text-gray-400">
+    <div id="jobs-container" class="flex flex-col space-y-6">
+      <div class="text-center py-20 bg-white rounded-xl shadow-sm border border-gray-200 text-gray-400">
         <i class="fa-solid fa-server text-4xl mb-4 text-gray-300"></i>
         <p class="font-bold uppercase tracking-widest text-sm">Connecting to HR Database...</p>
       </div>
     </div>
+
   </main>
 
   <footer class="bg-[#111827] text-white py-12 md:py-16 px-6 md:px-12 mt-auto border-t-4 border-[#D71A21]">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12">
-      <div class="md:col-span-2">
-        <h3 class="font-bold text-xl md:text-2xl mb-3 uppercase tracking-widest">Emirates Group Roblox</h3>
-        <p class="text-sm text-gray-400 max-w-md mb-6 leading-relaxed">The premier virtual aviation organization on the Roblox platform. A proud subsidiary of the Tyler Nicholas Group, committed to structural perfection and digital realism.</p>
+      
+      <div class="md:col-span-1">
+        <h3 class="font-bold text-xl md:text-2xl mb-3 uppercase tracking-widest">EGR Careers</h3>
+        <p class="text-sm text-gray-400 mb-6 leading-relaxed">The premier virtual aviation organization on the Roblox platform. A proud subsidiary of the Tyler Nicholas Group.</p>
+        
         <div class="flex flex-wrap gap-4 text-xl text-gray-400">
           <a href="https://discord.gg/nDAZ3p475V" target="_blank" class="hover:text-[#5865F2] transition-colors"><i class="fa-brands fa-discord"></i></a>
           <a href="https://www.roblox.com/communities/34795673/Emirates-Group-Roblox" target="_blank" class="hover:text-white transition-colors"><i class="fa-solid fa-cube"></i></a>
+          <a href="https://www.instagram.com/emiratesgrouproblox/" target="_blank" class="hover:text-[#E1306C] transition-colors"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://t.me/+QGw6jrQaFn45OGE8" target="_blank" class="hover:text-[#229ED9] transition-colors"><i class="fa-brands fa-telegram"></i></a>
           <a href="https://www.youtube.com/channel/UC-ec2thID4Fl5ZrXqvoJMog" target="_blank" class="hover:text-[#FF0000] transition-colors"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://www.tiktok.com/@emirates.group.roblox" target="_blank" class="hover:text-white transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="https://trello.com/invite/b/6924057b5f69cfd3900039e5/ATTI687f45aae16291ea7b7bb4aad286254097D7A3DF/emirates-group-roblox" target="_blank" class="hover:text-[#0052CC] transition-colors"><i class="fa-brands fa-trello"></i></a>
         </div>
       </div>
+
       <div>
-        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">Careers Links</h4>
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">Careers Portal</h4>
         <ul class="space-y-3 text-sm text-gray-400 font-semibold">
           <li><a href="/" class="hover:text-[#D71A21] transition-colors">Job Openings</a></li>
-          <li><a href="/departments/" class="hover:text-[#D71A21] transition-colors">Department Overview</a></li>
-          <li><a href="/status/" class="hover:text-[#D71A21] transition-colors">Application Status</a></li>
+          <li><a href="/departments/" class="hover:text-[#D71A21] transition-colors">Departments Overview</a></li>
+          <li><a href="/culture/" class="hover:text-[#D71A21] transition-colors">Life at EGR</a></li>
           <li><a href="/faq/" class="hover:text-[#D71A21] transition-colors">Recruitment FAQ</a></li>
+          <li><a href="/status/" class="hover:text-[#D71A21] transition-colors">Application Status</a></li>
         </ul>
       </div>
+
       <div>
-        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">Corporate & Support</h4>
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">Corporate & Network</h4>
         <ul class="space-y-3 text-sm text-gray-400 font-semibold">
-          <li><a href="https://emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors">Main EGR Website</a></li>
+          <li><a href="https://emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors">Main EGR Website <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i></a></li>
+          <li><a href="https://emiratesgrouproblox.link/flights/" target="_blank" class="hover:text-[#D71A21] transition-colors">Live Flight Radar</a></li>
           <li><a href="https://tylernicholasgroup.com" target="_blank" class="hover:text-[#D71A21] transition-colors">Tyler Nicholas Group</a></li>
-          <li><a href="https://discord.gg/nDAZ3p475V" target="_blank" class="hover:text-[#D71A21] transition-colors">HR Support Ticket</a></li>
+          <li><span class="italic text-[10px] mt-4 block text-gray-500">Disclaimer: EGR is a virtual organization and is not affiliated with the real-world Emirates airline.</span></li>
         </ul>
       </div>
+
+      <div>
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">HR Operations</h4>
+        <div class="bg-gray-900 p-4 rounded-xl border border-gray-700">
+            <div class="flex items-center mb-3">
+                <span id="hr-status-indicator" class="w-3 h-3 rounded-full bg-gray-500 mr-3"></span>
+                <span id="hr-status-text" class="text-sm font-bold uppercase tracking-widest text-gray-400">Loading...</span>
+            </div>
+            <p class="text-xs text-gray-400 mb-2"><i class="fa-solid fa-clock text-[#D71A21] mr-2"></i> UAE Standard Time</p>
+            <ul class="text-xs text-gray-500 space-y-1 font-mono">
+                <li>Mon-Fri: <span class="text-gray-300">08:00 - 18:00</span></li>
+                <li>Sat-Sun: <span class="text-gray-300">10:00 - 16:00</span></li>
+                <li class="mt-2 pt-2 border-t border-gray-800 text-[10px] text-gray-600">Closed on UAE Public Holidays.</li>
+            </ul>
+        </div>
+      </div>
+
     </div>
-    <div class="max-w-7xl mx-auto border-t border-gray-800 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 font-bold tracking-wider uppercase">
+    
+    <div class="max-w-7xl mx-auto border-t border-gray-800 mt-10 md:mt-12 pt-6 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 text-center md:text-left gap-2 font-bold tracking-wider uppercase">
       <p>&copy; 2026 Emirates Group Roblox. All rights reserved.</p>
+      <p>Powered by Tyler Nicholas Group Network</p>
     </div>
   </footer>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+      // Mobile Menu
       const mobileBtn = document.getElementById('mobile-menu-btn');
       const mobileClose = document.getElementById('mobile-menu-close');
       const mobileMenu = document.getElementById('mobile-menu-overlay');
+
       if(mobileBtn && mobileClose && mobileMenu) {
         mobileBtn.addEventListener('click', () => mobileMenu.classList.remove('translate-x-full'));
         mobileClose.addEventListener('click', () => mobileMenu.classList.add('translate-x-full'));
       }
 
+      // --- LIVE HR STATUS LOGIC IN FOOTER ---
       function updateHRStatus() {
         const now = new Date();
-        const uae = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Dubai', hour12: false, hour: 'numeric', weekday: 'short' }).formatToParts(now);
-        let h=0, d='';
-        uae.forEach(p => { if(p.type==='hour') h=parseInt(p.value); if(p.type==='weekday') d=p.value; });
-        let isOpen = (['Mon','Tue','Wed','Thu','Fri'].includes(d) && h>=8 && h<18) || (['Sat','Sun'].includes(d) && h>=10 && h<16);
-        document.getElementById('hr-status-indicator').className = isOpen ? 'w-2 h-2 rounded-full bg-green-500 animate-pulse mr-2' : 'w-2 h-2 rounded-full bg-[#D71A21] mr-2';
-        document.getElementById('hr-status-text').innerText = isOpen ? 'HR Office is Open' : 'HR Office is Closed';
-        document.getElementById('hr-status-text').className = isOpen ? 'text-green-400' : 'text-[#D71A21]';
-      }
-      updateHRStatus(); setInterval(updateHRStatus, 60000);
+        const uaeFormatter = new Intl.DateTimeFormat('en-US', {
+            timeZone: 'Asia/Dubai',
+            hour12: false,
+            hour: 'numeric',
+            weekday: 'short'
+        });
+        
+        const parts = uaeFormatter.formatToParts(now);
+        let currentHour = 0;
+        let currentDay = '';
+        
+        parts.forEach(part => {
+            if (part.type === 'hour') currentHour = parseInt(part.value);
+            if (part.type === 'weekday') currentDay = part.value;
+        });
 
+        let isOpen = false;
+        const weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+        const weekends = ['Sat', 'Sun'];
+
+        if (weekdays.includes(currentDay)) {
+            if (currentHour >= 8 && currentHour < 18) isOpen = true;
+        } else if (weekends.includes(currentDay)) {
+            if (currentHour >= 10 && currentHour < 16) isOpen = true;
+        }
+
+        const indicator = document.getElementById('hr-status-indicator');
+        const text = document.getElementById('hr-status-text');
+
+        if (isOpen) {
+            indicator.className = 'w-3 h-3 rounded-full bg-green-500 animate-pulse mr-3 shadow-[0_0_8px_#22c55e]';
+            text.innerText = 'HR Office is Open';
+            text.className = 'text-sm font-bold uppercase tracking-widest text-white';
+        } else {
+            indicator.className = 'w-3 h-3 rounded-full bg-[#D71A21] mr-3';
+            text.innerText = 'HR Office is Closed';
+            text.className = 'text-sm font-bold uppercase tracking-widest text-gray-500';
+        }
+      }
+      
+      updateHRStatus(); 
+      setInterval(updateHRStatus, 60000); 
+
+      // --- SUPABASE DATA FETCH ---
       let allJobs = [];
       const checkSupabase = setInterval(async () => {
         if (window.supabase) {
           clearInterval(checkSupabase); 
-          const supabase = window.supabase.createClient('https://zboyabxzhptnxnmofvcz.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpib3lhYnh6aHB0bnhubW9mdmN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3NjU3MTgsImV4cCI6MjA4NTM0MTcxOH0.2et1T3bQqr-ZzZgx-VWaq3kR0FJDprcAbbWBby6oRys');
+          const supabase = window.supabase.createClient(
+            'https://zboyabxzhptnxnmofvcz.supabase.co', 
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpib3lhYnh6aHB0bnhubW9mdmN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3NjU3MTgsImV4cCI6MjA4NTM0MTcxOH0.2et1T3bQqr-ZzZgx-VWaq3kR0FJDprcAbbWBby6oRys'
+          );
+
           try {
-            const { data } = await supabase.from('egr_jobs').select('*').eq('is_active', true).order('created_at', { ascending: false });
+            const { data, error } = await supabase
+              .from('egr_jobs')
+              .select('*')
+              .eq('is_active', true)
+              .order('created_at', { ascending: false });
+
+            if (error) throw error;
+            
             allJobs = data || [];
             renderJobs();
+
+            // Hide Loader
+            setTimeout(() => {
+              const loader = document.getElementById('egr-loader');
+              loader.style.opacity = '0';
+              setTimeout(() => { loader.style.display = 'none'; }, 700);
+            }, 800);
+
           } catch (err) {
-            document.getElementById('jobs-container').innerHTML = `<div class="col-span-full text-center py-20 bg-white rounded-xl shadow-sm border border-gray-200 text-[#D71A21] font-bold uppercase">Database Error</div>`;
+            document.getElementById('jobs-container').innerHTML = `
+              <div class="text-center py-20 bg-white rounded-xl shadow-sm border border-gray-200">
+                <i class="fa-solid fa-triangle-exclamation text-4xl mb-4 text-[#D71A21]"></i>
+                <p class="font-bold uppercase tracking-widest text-[#111827]">Failed to load open positions.</p>
+                <p class="text-xs text-gray-500 mt-2">Please contact Technical Support.</p>
+              </div>`;
+            document.getElementById('egr-loader').style.display = 'none';
           }
         }
       }, 100);
 
+      // Listeners for filters
       document.getElementById('search-input').addEventListener('input', renderJobs);
       document.getElementById('dept-filter').addEventListener('change', renderJobs);
 
@@ -186,31 +279,42 @@
         const query = document.getElementById('search-input').value.toLowerCase();
         const dept = document.getElementById('dept-filter').value;
         const container = document.getElementById('jobs-container');
-        const filtered = allJobs.filter(j => (j.title.toLowerCase().includes(query) || j.description.toLowerCase().includes(query)) && (dept === 'All' || j.department === dept));
         
+        const filtered = allJobs.filter(job => {
+          const matchQ = job.title.toLowerCase().includes(query) || job.description.toLowerCase().includes(query);
+          const matchD = dept === 'All' || job.department === dept;
+          return matchQ && matchD;
+        });
+
         document.getElementById('job-count').innerText = `${filtered.length} Openings`;
 
         if (filtered.length === 0) {
-          container.innerHTML = `<div class="col-span-full text-center py-20 bg-white rounded-xl border-2 border-dashed border-gray-300 text-gray-400 font-bold uppercase tracking-widest">No active positions found.</div>`;
+          container.innerHTML = `<div class="text-center py-20 bg-white rounded-xl border-2 border-dashed border-gray-300 text-gray-400 font-bold uppercase tracking-widest">No active positions match your search.</div>`;
           return;
         }
 
         let html = '';
         filtered.forEach(job => {
+          const applyLink = `/apply/?id=${job.id}&title=${encodeURIComponent(job.title)}`;
+          
+          // PREMIUM LIST-STYLE CARD DESIGN
           html += `
-            <div class="bg-white rounded-xl p-8 shadow-sm border border-gray-200 hover:shadow-xl hover:border-[#D71A21] transition-all flex flex-col h-full group">
-              <div class="mb-4">
-                <span class="inline-block bg-[#111827] text-white text-[10px] font-bold px-3 py-1 rounded uppercase tracking-widest mb-4 shadow">${job.department || 'Operations'}</span>
-                <h3 class="text-2xl font-bold text-[#111827] leading-tight mb-2 group-hover:text-[#D71A21] transition-colors">${job.title}</h3>
-                <p class="text-xs text-gray-400 font-bold uppercase tracking-widest"><i class="fa-solid fa-plane text-[#D71A21] mr-1"></i> Virtual Network</p>
-              </div>
-              <p class="text-sm text-gray-600 mb-8 line-clamp-3 flex-grow font-medium">${job.description}</p>
-              <div class="mt-auto border-t border-gray-100 pt-6">
-                <a href="/apply/?id=${job.id}&title=${encodeURIComponent(job.title)}" class="w-full bg-gray-50 hover:bg-[#111827] text-[#111827] hover:text-white font-bold py-3 px-6 rounded transition-colors block text-center text-sm uppercase tracking-wider border border-gray-200 group-hover:border-[#111827]">
-                  Begin Application <i class="fa-solid fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
-                </a>
-              </div>
-            </div>`;
+            <div class="bg-white border border-gray-200 shadow-sm hover:shadow-lg transition-shadow rounded-xl flex flex-col md:flex-row items-start md:items-center justify-between p-6 md:p-8 group border-l-4 border-l-transparent hover:border-l-[#D71A21]">
+                <div class="md:w-3/4 mb-6 md:mb-0 pr-0 md:pr-8">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="bg-[#111827] text-white text-[10px] font-bold px-3 py-1 rounded uppercase tracking-widest">${job.department || 'Operations'}</span>
+                        <span class="text-xs text-gray-500 font-bold uppercase tracking-widest"><i class="fa-solid fa-globe text-[#D71A21] mr-1"></i> Virtual Network</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-[#111827] mb-3 group-hover:text-[#D71A21] transition-colors">${job.title}</h3>
+                    <p class="text-sm text-gray-600 line-clamp-2 leading-relaxed">${job.description}</p>
+                </div>
+                <div class="md:w-1/4 flex md:justify-end w-full">
+                    <a href="${applyLink}" class="w-full md:w-auto bg-gray-50 group-hover:bg-[#111827] text-[#111827] group-hover:text-white border border-gray-200 group-hover:border-[#111827] font-bold py-4 px-8 rounded transition-all text-center text-xs uppercase tracking-widest shadow-sm">
+                        Apply Now <i class="fa-solid fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+          `;
         });
         container.innerHTML = html;
       }
