@@ -3,223 +3,97 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Track Status | Emirates Group Roblox Careers</title>
-  
+  <title>Status | Emirates Group Roblox</title>
   <link rel="icon" href="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" />
-  
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
-
   <style>
-    body { font-family: 'Inter', sans-serif; background-color: #f9fafb; }
-    .fade-in { animation: fadeIn 0.8s ease-in forwards; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes loadBar { 0% { width: 0%; } 100% { width: 100%; } }
-    .animate-load-bar { animation: loadBar 1s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
-    
+    body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; }
     .status-card { display: none; }
-    .status-card.active { display: block; animation: fadeIn 0.5s ease-out forwards; }
+    .status-card.active { display: block; }
   </style>
 </head>
 <body class="flex flex-col min-h-screen">
 
-  <div id="egr-loader" class="fixed inset-0 z-[9999] bg-white flex flex-col items-center justify-center transition-opacity duration-700">
-    <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="Emirates Group Roblox" class="h-20 md:h-28 object-contain mb-8 opacity-90 animate-pulse">
-    <div class="w-48 h-[2px] bg-gray-200 overflow-hidden">
-      <div class="h-full bg-[#D71A21] animate-load-bar"></div>
-    </div>
-    <p class="text-gray-500 text-xs font-bold tracking-[0.3em] mt-6 uppercase">Application Tracking</p>
-  </div>
-
-  <div class="bg-[#111827] text-white text-[10px] md:text-xs py-2 px-6 flex flex-col md:flex-row justify-between items-center uppercase tracking-widest font-bold border-b border-gray-800 z-50 relative">
-    <div class="flex items-center mb-2 md:mb-0 text-gray-400">
-      <i class="fa-solid fa-building-user text-[#D71A21] mr-2"></i> 
-      HR Hours (UAE Time): Mon-Fri 08:00 - 18:00 | Sat-Sun 10:00 - 16:00
-    </div>
-    <div class="flex items-center bg-gray-900 px-3 py-1 rounded shadow-inner border border-gray-700">
-      <span id="hr-status-indicator" class="w-2 h-2 rounded-full bg-gray-500 mr-2"></span>
-      <span id="hr-status-text">Checking Status...</span>
-    </div>
-  </div>
-
-  <nav class="bg-white text-gray-900 py-4 px-6 md:px-12 flex justify-between items-center shadow-md sticky top-0 z-40 border-b-4 border-[#D71A21]">
-    <a href="/" class="flex items-center group">
-      <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="EGR Careers" class="h-10 object-contain group-hover:opacity-80 transition-opacity">
-      <span class="ml-4 font-bold text-lg tracking-widest uppercase hidden sm:block border-l-2 border-gray-200 pl-4 text-gray-800">Careers</span>
+  <nav class="bg-white py-4 px-6 md:px-12 flex justify-between items-center shadow-sm sticky top-0 z-50 border-b-4 border-[#D71A21]">
+    <a href="/" class="flex items-center">
+      <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="EGR" class="h-10">
+      <span class="ml-4 font-bold text-lg tracking-widest uppercase text-[#111827] border-l-2 border-gray-200 pl-4">Careers</span>
     </a>
-    <div class="hidden lg:flex space-x-6 text-sm font-bold items-center text-gray-700 uppercase tracking-widest">
-      <a href="/" class="hover:text-[#D71A21] transition-colors">Job Search</a>
-      <a href="/departments/" class="hover:text-[#D71A21] transition-colors">Departments</a>
-      <a href="/culture/" class="hover:text-[#D71A21] transition-colors">Life at EGR</a>
-      <a href="/status/" class="text-[#D71A21]">Application Status</a>
+    <div class="hidden lg:flex space-x-8 text-sm font-bold uppercase tracking-widest text-gray-500">
+      <a href="/" class="hover:text-[#111827]">Job Search</a>
+      <a href="/departments/" class="hover:text-[#111827]">Departments</a>
+      <a href="/status/" class="text-[#D71A21]">Status</a>
     </div>
   </nav>
 
-  <main class="flex-grow flex flex-col items-center py-20 px-6 bg-[#f9fafb]">
-    <div class="max-w-xl w-full text-center mb-12">
-      <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Secure Tracking Portal</span>
-      <h1 class="text-3xl md:text-5xl font-bold text-[#111827] uppercase tracking-tight mb-6">Check Status</h1>
-      <p class="text-gray-600 font-medium">Enter your unique Discord Identifier to retrieve the current status of your employment application within our network.</p>
+  <header class="bg-[#111827] py-20 px-6 text-center border-b border-gray-800">
+    <div class="max-w-4xl mx-auto text-white">
+      <h1 class="text-4xl md:text-5xl font-bold uppercase tracking-tight">Application Status</h1>
     </div>
+  </header>
 
-    <div class="max-w-lg w-full bg-white p-8 rounded-2xl shadow-xl border border-gray-200 mb-10">
-      <div class="space-y-4">
-        <div>
-          <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em] mb-2">Discord Username (e.g. user#0000 or user)</label>
-          <input type="text" id="discord-search" placeholder="Type your Discord ID..." class="w-full px-4 py-4 border border-gray-200 bg-gray-50 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#D71A21] focus:bg-white transition-all font-bold text-[#111827]">
-        </div>
-        <button onclick="trackApplication()" id="track-btn" class="w-full bg-[#111827] hover:bg-gray-800 text-white font-bold py-4 rounded-xl shadow-lg transition-all uppercase tracking-widest text-sm flex justify-center items-center">
-          Search Database <i class="fa-solid fa-magnifying-glass ml-2"></i>
-        </button>
-      </div>
+  <main class="flex-grow flex flex-col items-center py-16 px-6">
+    <div class="max-w-lg w-full bg-white p-8 border border-gray-200 mb-8">
+      <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">Enter Discord Username</label>
+      <input type="text" id="discord-search" class="w-full px-4 py-3 border border-gray-300 bg-gray-50 focus:bg-white focus:border-[#D71A21] outline-none font-bold text-[#111827] mb-4">
+      <button onclick="trackApplication()" id="track-btn" class="w-full bg-[#111827] hover:bg-[#D71A21] text-white font-bold py-3 uppercase tracking-widest text-sm transition-colors">
+        Check Status
+      </button>
     </div>
 
     <div id="status-result-container" class="max-w-lg w-full">
+      <div id="status-loading" class="status-card text-center py-8 text-gray-400 font-bold uppercase tracking-widest">Searching...</div>
       
-      <div id="status-loading" class="status-card text-center py-10">
-        <i class="fa-solid fa-circle-notch fa-spin text-3xl text-[#D71A21] mb-4"></i>
-        <p class="font-bold text-gray-500 uppercase tracking-widest text-xs">Querying HR Records...</p>
+      <div id="status-not-found" class="status-card bg-white p-8 border border-gray-200 text-center text-[#D71A21] font-bold uppercase tracking-widest">
+        No Application Found
       </div>
 
-      <div id="status-not-found" class="status-card bg-white p-10 rounded-2xl border border-gray-200 shadow-lg text-center">
-        <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6 text-gray-400">
-            <i class="fa-solid fa-user-slash text-2xl"></i>
-        </div>
-        <h3 class="text-xl font-bold text-[#111827] uppercase mb-2">No Record Found</h3>
-        <p class="text-gray-500 text-sm mb-6">We could not locate an active application under that Discord ID. Please ensure the spelling matches exactly what you submitted.</p>
-        <a href="/" class="text-[#D71A21] font-bold text-xs uppercase tracking-widest hover:underline">View Open Positions</a>
-      </div>
-
-      <div id="status-success" class="status-card bg-white rounded-2xl border border-gray-200 shadow-2xl overflow-hidden">
-        <div id="status-banner" class="p-6 text-center text-white font-bold uppercase tracking-[0.2em] text-sm">
-            <span id="display-status">Status Update</span>
-        </div>
-        <div class="p-10">
-            <div class="flex justify-between items-start mb-8">
-                <div>
-                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Applicant</p>
-                    <h3 id="display-name" class="text-2xl font-bold text-[#111827]">---</h3>
-                </div>
-                <div class="text-right">
-                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Position</p>
-                    <p id="display-job" class="font-bold text-gray-700">---</p>
-                </div>
-            </div>
-
-            <div class="bg-gray-50 p-6 rounded-xl border border-gray-100 mb-8">
-                <p id="status-message" class="text-gray-600 text-sm leading-relaxed font-medium italic">
-                    </p>
-            </div>
-
-            <div class="flex items-center text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-                <i class="fa-solid fa-clock-rotate-left mr-2"></i> Last Updated: <span id="display-date" class="ml-2">---</span>
-            </div>
+      <div id="status-success" class="status-card bg-white border border-gray-200">
+        <div id="status-banner" class="p-4 text-center text-white font-bold uppercase tracking-widest text-sm">Status</div>
+        <div class="p-8">
+          <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Roblox Username</p>
+          <h3 id="display-name" class="text-xl font-bold text-[#111827] mb-4">---</h3>
+          <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Position</p>
+          <p id="display-job" class="font-bold text-gray-700">---</p>
         </div>
       </div>
-
     </div>
   </main>
 
-  <footer class="bg-[#111827] text-white py-12 md:py-16 px-6 md:px-12 mt-auto border-t-4 border-[#D71A21]">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-6 font-bold tracking-wider uppercase text-xs">
-      <p class="text-gray-500">&copy; 2026 Emirates Group Roblox. All rights reserved.</p>
-      <div class="space-x-6">
-        <a href="https://discord.gg/nDAZ3p475V" class="hover:text-[#D71A21] transition-colors">Discord Support</a>
-        <a href="https://emiratesgrouproblox.link" class="hover:text-[#D71A21] transition-colors">Main Hub</a>
-      </div>
-    </div>
-  </footer>
-
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      // Hide Loader
-      setTimeout(() => {
-        const loader = document.getElementById('egr-loader');
-        if(loader) {
-            loader.style.opacity = '0';
-            setTimeout(() => { loader.style.display = 'none'; }, 700);
-        }
-      }, 800); 
-
-      // --- LIVE HR STATUS LOGIC ---
-      function updateHRStatus() {
-        const now = new Date();
-        const uaeTime = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Dubai', hour12: false, hour: 'numeric', weekday: 'short' });
-        const parts = uaeTime.formatToParts(now);
-        let currentHour, currentDay;
-        parts.forEach(p => { if(p.type === 'hour') currentHour = parseInt(p.value); if(p.type === 'weekday') currentDay = p.value; });
-
-        let isOpen = (['Mon','Tue','Wed','Thu','Fri'].includes(currentDay) && currentHour >= 8 && currentHour < 18) || (['Sat','Sun'].includes(currentDay) && currentHour >= 10 && currentHour < 16);
-        
-        document.getElementById('hr-status-indicator').className = isOpen ? 'w-2 h-2 rounded-full bg-green-500 animate-pulse mr-2' : 'w-2 h-2 rounded-full bg-[#D71A21] mr-2';
-        document.getElementById('hr-status-text').innerText = isOpen ? 'HR Office is Open' : 'HR Office is Closed';
-        document.getElementById('hr-status-text').className = isOpen ? 'text-green-400' : 'text-[#D71A21]';
-      }
-      updateHRStatus(); setInterval(updateHRStatus, 60000);
-    });
-
     async function trackApplication() {
       const searchInput = document.getElementById('discord-search').value.trim();
-      const btn = document.getElementById('track-btn');
-      
-      // Reset views
-      document.querySelectorAll('.status-card').forEach(el => el.classList.remove('active'));
-      
       if(!searchInput) return;
 
-      btn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i> Checking...`;
+      document.querySelectorAll('.status-card').forEach(el => el.classList.remove('active'));
       document.getElementById('status-loading').classList.add('active');
 
-      const supabase = window.supabase.createClient(
-        'https://zboyabxzhptnxnmofvcz.supabase.co', 
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpib3lhYnh6aHB0bnhubW9mdmN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3NjU3MTgsImV4cCI6MjA4NTM0MTcxOH0.2et1T3bQqr-ZzZgx-VWaq3kR0FJDprcAbbWBby6oRys'
-      );
+      const supabase = window.supabase.createClient('https://zboyabxzhptnxnmofvcz.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpib3lhYnh6aHB0bnhubW9mdmN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3NjU3MTgsImV4cCI6MjA4NTM0MTcxOH0.2et1T3bQqr-ZzZgx-VWaq3kR0FJDprcAbbWBby6oRys');
 
       try {
-        const { data: app, error } = await supabase
-          .from('egr_applications')
-          .select('*')
-          .eq('discord_username', searchInput)
-          .maybeSingle();
-
+        const { data: app, error } = await supabase.from('egr_applications').select('*').eq('discord_username', searchInput).maybeSingle();
         document.getElementById('status-loading').classList.remove('active');
-        btn.innerHTML = `Search Database <i class="fa-solid fa-magnifying-glass ml-2"></i>`;
 
         if (error || !app) {
           document.getElementById('status-not-found').classList.add('active');
         } else {
-          // UPDATE UI WITH DATA
           document.getElementById('display-name').innerText = app.roblox_username;
           document.getElementById('display-job').innerText = app.job_title;
-          document.getElementById('display-status').innerText = app.status;
-          document.getElementById('display-date').innerText = new Date(app.created_at).toLocaleDateString();
-
+          
           const banner = document.getElementById('status-banner');
-          const message = document.getElementById('status-message');
-
-          if(app.status === 'Pending') {
-            banner.className = "p-6 text-center text-white font-bold uppercase tracking-[0.2em] text-sm bg-gray-500";
-            message.innerText = "Your application has been received by our automated systems and is currently in the queue for HR initial review.";
-          }
-          else if(app.status === 'Under Review') {
-            banner.className = "p-6 text-center text-white font-bold uppercase tracking-[0.2em] text-sm bg-blue-600";
-            message.innerText = "An EGR Recruitment Officer is currently reviewing your credentials. You will receive an update once a decision has been reached.";
-          }
-          else if(app.status === 'Approved') {
-            banner.className = "p-6 text-center text-white font-bold uppercase tracking-[0.2em] text-sm bg-green-600";
-            message.innerText = "Congratulations. Your application has been approved. A formal message containing your induction and training details will be dispatched to you soon via Discord.";
-          }
-          else if(app.status === 'Denied') {
-            banner.className = "p-6 text-center text-white font-bold uppercase tracking-[0.2em] text-sm bg-[#D71A21]";
-            message.innerText = "We regret to inform you that your application was not successful at this time. A formal message providing further feedback will be sent to you shortly.";
-          }
+          banner.innerText = app.status;
+          
+          if(app.status === 'Pending') banner.className = "p-4 text-center text-white font-bold uppercase tracking-widest text-sm bg-gray-500";
+          else if(app.status === 'Under Review') banner.className = "p-4 text-center text-white font-bold uppercase tracking-widest text-sm bg-blue-600";
+          else if(app.status === 'Approved') banner.className = "p-4 text-center text-white font-bold uppercase tracking-widest text-sm bg-green-600";
+          else if(app.status === 'Denied') banner.className = "p-4 text-center text-white font-bold uppercase tracking-widest text-sm bg-[#D71A21]";
 
           document.getElementById('status-success').classList.add('active');
         }
       } catch (err) {
-        alert("Database connection error. Please try again later.");
+        alert("Database error.");
       }
     }
   </script>
