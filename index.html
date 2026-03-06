@@ -1,198 +1,236 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>EGR Careers | Home</title>
-  <meta name="description" content="Emirates Group Roblox Careers. Explore open positions and apply to join our teams."/>
-  <link rel="icon" href="https://emiratesgrouproblox.link/images/logo.png"/>
-  <link rel="stylesheet" href="assets/css/styles.css"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Careers | Emirates Group Roblox</title>
+  
+  <link rel="icon" href="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" />
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
+
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .fade-in { animation: fadeIn 0.8s ease-in forwards; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes loadBar { 0% { width: 0%; } 100% { width: 100%; } }
+    .animate-load-bar { animation: loadBar 1s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+  </style>
 </head>
-<body>
-  <header class="topbar">
-    <div class="container">
-      <div class="nav">
-        <a class="brand" href="index.html">
-          <img src="https://emiratesgrouproblox.link/images/logo.png" alt="Emirates Group Roblox"/>
-          <div class="brand-text">
-            <div class="brand-title">Emirates Group Roblox</div>
-            <div class="brand-sub">
-              Careers · Owned & Operated by
-              <a class="inline-link" href="https://tylernicholasgroup.com" target="_blank" rel="noopener">The Tyler Nicholas Group</a>
-              ·
-              <a class="inline-link" href="https://emiratesgrouproblox.link" target="_blank" rel="noopener">Main Website</a>
-            </div>
-          </div>
-        </a>
+<body class="flex flex-col min-h-screen bg-gray-50">
 
-        <div class="navlinks" aria-label="Primary">
-          <a href="index.html">Home</a>
-          <a href="open-positions.html">Open Positions</a>
-          <a href="why-work-with-us.html">Why Work With Us</a>
-          <a href="departments.html">Departments</a>
-          <a href="hr.html">HR</a>
-          <a href="legal/terms.html">Legal</a>
-        </div>
+  <div id="egr-loader" class="fixed inset-0 z-[9999] bg-[#111827] flex flex-col items-center justify-center transition-opacity duration-700">
+    <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="Emirates Group Roblox" class="h-20 md:h-28 object-contain mb-8 opacity-90 animate-pulse">
+    <div class="w-48 h-[2px] bg-gray-800 overflow-hidden">
+      <div class="h-full bg-[#D71A21] animate-load-bar"></div>
+    </div>
+    <p class="text-white text-xs font-bold tracking-[0.3em] mt-6 uppercase">Recruitment Portal</p>
+  </div>
 
-        <div class="navright">
-          <button class="hamburger" id="hamburger" aria-label="Open menu">☰</button>
-          <div class="toggle" id="themeToggle" role="button" aria-label="Toggle theme">
-            <span class="dot" id="themeDot"></span>
-            <span class="label" id="themeLabel">Dark</span>
-          </div>
-        </div>
-      </div>
+  <nav class="bg-white text-gray-900 py-4 px-6 md:px-12 flex justify-between items-center shadow-md sticky top-0 z-50 border-b-4 border-[#D71A21]">
+    <a href="/" class="flex items-center group">
+      <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="EGR Careers" class="h-10 object-contain group-hover:opacity-80 transition-opacity">
+      <span class="ml-4 font-bold text-lg tracking-widest uppercase hidden sm:block border-l-2 border-gray-200 pl-4 text-gray-700">Careers</span>
+    </a>
 
-      <div id="mobilemenu" class="mobilemenu">
-        <a href="index.html">Home</a>
-        <a href="open-positions.html">Open Positions</a>
-        <a href="why-work-with-us.html">Why Work With Us</a>
-        <a href="departments.html">Departments</a>
-        <a href="hr.html">HR</a>
-        <a href="legal/terms.html">Legal</a>
-      </div>
+    <button id="mobile-menu-btn" class="lg:hidden text-gray-800 text-2xl focus:outline-none">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <div class="hidden lg:flex space-x-8 text-sm font-bold items-center text-gray-600 uppercase tracking-wider">
+      <a href="/" class="text-[#D71A21] transition-colors">Job Search</a>
+      <a href="/departments/" class="hover:text-[#111827] transition-colors">Departments</a>
+      <a href="/culture/" class="hover:text-[#111827] transition-colors">Life at EGR</a>
+      <a href="/faq/" class="hover:text-[#111827] transition-colors">FAQ</a>
+      <a href="/status/" class="bg-[#111827] hover:bg-gray-800 text-white px-5 py-2 rounded transition-colors shadow flex items-center">
+        <i class="fa-solid fa-magnifying-glass-chart mr-2"></i> Application Status
+      </a>
+    </div>
+  </nav>
+
+  <div id="mobile-menu-overlay" class="fixed inset-0 bg-[#111827] z-[100] transform translate-x-full transition-transform duration-300 flex flex-col lg:hidden">
+    <div class="p-6 flex justify-between items-center border-b border-gray-800 bg-white">
+      <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="Logo" class="h-10 object-contain">
+      <button id="mobile-menu-close" class="text-gray-800 text-3xl focus:outline-none"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="p-6 overflow-y-auto space-y-6 text-white flex-grow flex flex-col font-bold uppercase tracking-widest">
+      <a href="/" class="text-[#D71A21] text-xl border-b border-gray-800 pb-4">Job Search</a>
+      <a href="/departments/" class="hover:text-gray-300 text-xl border-b border-gray-800 pb-4">Departments</a>
+      <a href="/culture/" class="hover:text-gray-300 text-xl border-b border-gray-800 pb-4">Life at EGR</a>
+      <a href="/faq/" class="hover:text-gray-300 text-xl border-b border-gray-800 pb-4">FAQ</a>
+      <a href="/status/" class="mt-4 bg-[#D71A21] text-white text-center py-4 rounded flex items-center justify-center">
+        <i class="fa-solid fa-magnifying-glass-chart mr-2"></i> Application Status
+      </a>
+    </div>
+  </div>
+
+  <header class="bg-[#111827] text-white py-24 md:py-32 px-6 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-20 mix-blend-luminosity" style="background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2074&auto=format&fit=crop'); background-size: cover; background-position: center;"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-[#111827] to-transparent opacity-90"></div>
+    <div class="max-w-5xl mx-auto relative z-10 text-center">
+      <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-xs mb-4 block">EGR Recruitment Hub</span>
+      <h1 class="text-4xl md:text-6xl font-serif font-bold mb-6 uppercase tracking-tight">Elevate Your Career</h1>
+      <p class="text-gray-300 md:text-lg max-w-2xl mx-auto leading-relaxed">Join the most prestigious virtual aviation network on the Roblox platform. We are seeking disciplined, professional, and dedicated individuals to fill our ranks.</p>
     </div>
   </header>
 
-  
-        <div class="announcement-wrap" id="announcementWrap">
-          <div class="container">
-            <div class="announcement">
-              <div class="announce-left">
-                <div class="pill">ANNOUNCEMENT</div>
-                <div class="announce-text">
-                  <p class="title">Careers Updates</p>
-                  <p class="sub" id="announcementMessage">Loading announcements…</p>
-                </div>
-              </div>
-              <a class="btn small" href="open-positions.html">View Open Positions</a>
-            </div>
-          </div>
-        </div>
-        
-
-  
-<main class="container">
-  <section class="hero">
-    <div class="kicker">EGR Careers</div>
-    <div class="h1">Professionalism, structure, and high fidelity operations.</div>
-    <div class="lead">
-      Emirates Group Roblox is a structured virtual aviation organisation built for realism and teamwork.
-      Explore open volunteer roles across our departments and apply to join the team.
-    </div>
-    <div class="hero-actions">
-      <a class="btn primary" href="open-positions.html">Explore Open Positions</a>
-      <a class="btn" href="why-work-with-us.html">Why Work With Us</a>
-      <a class="btn" href="departments.html">Discover Departments</a>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2>Key employee focus areas</h2>
-    <div class="grid cols-3">
-      <div class="card">
-        <div class="card-title">Operational integrity</div>
-        <div class="card-sub">Clear SOPs, training standards, and accountability across divisions.</div>
+  <main class="flex-grow max-w-7xl mx-auto py-12 px-6 md:px-12 w-full fade-in -mt-10 relative z-20">
+    
+    <div class="bg-white p-6 rounded-xl shadow-xl border border-gray-200 mb-12 flex flex-col md:flex-row gap-4 items-center">
+      <div class="w-full md:w-1/2 relative">
+        <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-gray-400"></i>
+        <input type="text" id="search-input" placeholder="Search for pilot, cabin crew, ground ops..." class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#D71A21]">
       </div>
-      <div class="card">
-        <div class="card-title">Quality & realism</div>
-        <div class="card-sub">High-fidelity flight operations, customer experience, and structured teamwork.</div>
+      <div class="w-full md:w-1/3 relative">
+        <i class="fa-solid fa-layer-group absolute left-4 top-3.5 text-gray-400"></i>
+        <select id="dept-filter" class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#D71A21] appearance-none bg-white font-semibold text-gray-700">
+          <option value="All">All Departments</option>
+          <option value="Board of Directors">Board of Directors</option>
+          <option value="Executive Board C-Suite">Executive Board C-Suite</option>
+          <option value="Human Resources Department">Human Resources Department</option>
+          <option value="Finance & Investment">Finance & Investment</option>
+          <option value="Legal, Safety & Compliance">Legal, Safety & Compliance</option>
+          <option value="Technology & Development">Technology & Development</option>
+          <option value="Commercial & Corporate Affairs">Commercial & Corporate Affairs</option>
+          <option value="EGR Aviation University">EGR Aviation University</option>
+          <option value="Operations Control Center">Operations Control Center</option>
+          <option value="Flight Operations">Flight Operations</option>
+        </select>
       </div>
-      <div class="card">
-        <div class="card-title">Leadership development</div>
-        <div class="card-sub">We invest in mentors, trainers, and managers who build others up.</div>
+      <div class="w-full md:w-1/6 text-right">
+         <span id="job-count" class="font-bold text-[#111827] bg-gray-100 px-4 py-3 rounded inline-block w-full text-center uppercase tracking-widest text-sm border border-gray-200">
+           <i class="fa-solid fa-circle-notch fa-spin mr-2"></i> Syncing
+         </span>
       </div>
     </div>
-  </section>
 
-  <section class="section">
-    <h2>Careers statistics</h2>
-    <div class="grid cols-3">
-      <div class="card stat">
-        <div>
-          <div class="num" id="statOpenRoles">—</div>
-          <div class="lbl">Open roles (published)</div>
-        </div>
-        <span class="badge">Live from backend</span>
-      </div>
-      <div class="card stat">
-        <div>
-          <div class="num" id="statDepartments">—</div>
-          <div class="lbl">Active departments</div>
-        </div>
-        <span class="badge">Live from backend</span>
-      </div>
-      <div class="card stat">
-        <div>
-          <div class="num">24/7</div>
-          <div class="lbl">Operations mindset</div>
-        </div>
-        <span class="badge">Vision 2026</span>
+    <div id="jobs-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="col-span-full text-center py-20 text-gray-400">
+        <i class="fa-solid fa-server text-4xl mb-4"></i>
+        <p class="font-bold uppercase tracking-widest">Connecting to HR Database...</p>
       </div>
     </div>
-  </section>
 
-  <section class="section">
-    <h2>Employee benefits</h2>
-    <p>
-      We offer structured leadership, training, responsibility, and recognition.
-      Roles are volunteer-based. In special circumstances, payments may be provided by orders of the Board of Directors.
-    </p>
-    <div class="grid cols-2">
-      <div class="card">
-        <div class="card-title">Structured progression</div>
-        <div class="card-sub">Training, performance reviews, and realistic responsibilities.</div>
-      </div>
-      <div class="card">
-        <div class="card-title">Community & culture</div>
-        <div class="card-sub">A professional environment with strong standards and respect.</div>
-      </div>
-    </div>
-  </section>
+  </main>
 
-  <section class="section">
-    <div class="card" style="display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;">
+  <footer class="bg-[#111827] text-white py-12 px-6 border-t-4 border-[#D71A21]">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-6">
       <div>
-        <div style="font-weight:900; font-size:18px;">Ready to apply?</div>
-        <div style="color:var(--muted); margin-top:6px;">Browse open roles by department and submit your application in minutes.</div>
+        <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="EGR" class="h-8 mx-auto md:mx-0 mb-4 opacity-50">
+        <p class="text-xs text-gray-500 uppercase tracking-widest font-bold">&copy; 2026 Emirates Group Roblox Careers.</p>
       </div>
-      <a class="btn primary" href="open-positions.html">View Open Positions</a>
-    </div>
-  </section>
-</main>
-
-
-  <footer class="footer">
-    <div class="container">
-      <div class="row">
-        <div style="max-width:62ch">
-          <div style="font-weight:900; color:var(--text);">Emirates Group Roblox Careers</div>
-          <div style="margin-top:8px; line-height:1.6;">
-            Disclaimer: Emirates Group Roblox (EGR) is a virtual aviation organisation on Roblox and is not affiliated with The Emirates Group or dnata.
-          </div>
-        </div>
-        <div>
-          <div style="font-weight:900; color:var(--text); margin-bottom:8px;">Quick Links</div>
-          <div style="display:grid; gap:8px;">
-            <a href="open-positions.html">Open Positions</a>
-            <a href="why-work-with-us.html">Why Work With Us</a>
-            <a href="departments.html">Departments</a>
-            <a href="legal/terms.html">Legal</a>
-          </div>
-        </div>
-        <div>
-          <div style="font-weight:900; color:var(--text); margin-bottom:8px;">Legal</div>
-          <div style="display:grid; gap:8px;">
-            <a href="legal/terms.html">Terms of Service</a>
-            <a href="legal/privacy.html">Privacy Policy</a>
-            <a href="legal/compliance.html">Compliance Framework</a>
-          </div>
-        </div>
+      <div class="text-xs text-gray-400 space-x-4 uppercase tracking-widest font-bold">
+        <a href="https://discord.gg/nDAZ3p475V" target="_blank" class="hover:text-[#D71A21] transition-colors">Join Discord</a>
+        <span>|</span>
+        <a href="https://emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors">Main Corporate Site</a>
       </div>
-      <div style="margin-top:18px; color:var(--muted-2);">© <span id="year"></span> Emirates Group Roblox. All rights reserved.</div>
     </div>
   </footer>
 
-  <script type="module" src="assets/js/pages/home.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Mobile Menu
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileClose = document.getElementById('mobile-menu-close');
+      const mobileMenu = document.getElementById('mobile-menu-overlay');
+
+      if(mobileBtn && mobileClose && mobileMenu) {
+        mobileBtn.addEventListener('click', () => mobileMenu.classList.remove('translate-x-full'));
+        mobileClose.addEventListener('click', () => mobileMenu.classList.add('translate-x-full'));
+      }
+
+      // Supabase & Job Logic
+      let allJobs = [];
+
+      const checkSupabase = setInterval(async () => {
+        if (window.supabase) {
+          clearInterval(checkSupabase); 
+          const supabase = window.supabase.createClient(
+            'https://zboyabxzhptnxnmofvcz.supabase.co', 
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpib3lhYnh6aHB0bnhubW9mdmN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3NjU3MTgsImV4cCI6MjA4NTM0MTcxOH0.2et1T3bQqr-ZzZgx-VWaq3kR0FJDprcAbbWBby6oRys'
+          );
+
+          try {
+            const { data, error } = await supabase
+              .from('egr_jobs')
+              .select('*')
+              .eq('is_active', true)
+              .order('created_at', { ascending: false });
+
+            if (error) throw error;
+            
+            allJobs = data || [];
+            renderJobs();
+
+            // Hide Loader
+            setTimeout(() => {
+              const loader = document.getElementById('egr-loader');
+              loader.style.opacity = '0';
+              setTimeout(() => { loader.style.display = 'none'; }, 700);
+            }, 800);
+
+          } catch (err) {
+            document.getElementById('jobs-container').innerHTML = `
+              <div class="col-span-full text-center py-20 text-[#D71A21]">
+                <i class="fa-solid fa-triangle-exclamation text-4xl mb-4"></i>
+                <p class="font-bold uppercase tracking-widest">Failed to load open positions.</p>
+              </div>`;
+            document.getElementById('egr-loader').style.display = 'none';
+          }
+        }
+      }, 100);
+
+      // Listeners for filters
+      document.getElementById('search-input').addEventListener('input', renderJobs);
+      document.getElementById('dept-filter').addEventListener('change', renderJobs);
+
+      function renderJobs() {
+        const query = document.getElementById('search-input').value.toLowerCase();
+        const dept = document.getElementById('dept-filter').value;
+        const container = document.getElementById('jobs-container');
+        
+        const filtered = allJobs.filter(job => {
+          const matchQ = job.title.toLowerCase().includes(query) || job.description.toLowerCase().includes(query);
+          const matchD = dept === 'All' || job.department === dept;
+          return matchQ && matchD;
+        });
+
+        document.getElementById('job-count').innerText = `${filtered.length} Openings`;
+
+        if (filtered.length === 0) {
+          container.innerHTML = `<div class="col-span-full text-center py-20 text-gray-400 font-bold uppercase tracking-widest border-2 border-dashed border-gray-200 rounded-xl">No positions match your criteria.</div>`;
+          return;
+        }
+
+        let html = '';
+        filtered.forEach(job => {
+          // Passes the job ID in the URL to the apply page
+          const applyLink = `/apply/?id=${job.id}&title=${encodeURIComponent(job.title)}`;
+          
+          html += `
+            <div class="bg-white rounded-xl p-8 shadow-sm border border-gray-200 hover:shadow-xl hover:border-[#D71A21] transition-all flex flex-col h-full group">
+              <div class="mb-4">
+                <span class="inline-block bg-[#111827] text-white text-[10px] font-bold px-3 py-1 rounded uppercase tracking-widest mb-4 shadow">${job.department || 'Operations'}</span>
+                <h3 class="text-2xl font-bold text-[#111827] leading-tight mb-2 group-hover:text-[#D71A21] transition-colors">${job.title}</h3>
+                <p class="text-xs text-gray-400 font-bold uppercase tracking-widest"><i class="fa-solid fa-location-dot mr-1"></i> Virtual Network</p>
+              </div>
+              
+              <p class="text-sm text-gray-600 mb-8 line-clamp-3 flex-grow leading-relaxed">${job.description}</p>
+              
+              <div class="mt-auto border-t border-gray-100 pt-6">
+                <a href="${applyLink}" class="w-full bg-gray-100 hover:bg-[#111827] text-[#111827] hover:text-white font-bold py-3 px-6 rounded transition-colors block text-center text-sm uppercase tracking-wider">
+                  Begin Application <i class="fa-solid fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+                </a>
+              </div>
+            </div>
+          `;
+        });
+        container.innerHTML = html;
+      }
+    });
+  </script>
 </body>
 </html>
